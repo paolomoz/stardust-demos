@@ -1,6 +1,6 @@
 # UC1 Uplift — Script v3 (target: business.adobe.com)
 
-**Length:** 90s · **Audience:** VP+ · **Mode:** kinetic typography over real artifacts; **text-only** over music · **Target:** `business.adobe.com`
+**Length:** 90s · **Audience:** VP+ · **Mode:** kinetic typography over real artifacts; **text-only** over music · **Target:** `business.adobe.com` · **Implementation:** HTML multi-page build in `experience/` — see README for build plan
 
 > Audience-facing names only: **Stardust** and **AEM**. (Snowflake/EMA live in production notes — see CLAUDE.md.)
 > Distinctive phrases pulled from the Stardust whitepaper. See `context/whitepaper.md`.
@@ -64,16 +64,28 @@ The Enter press is the cut. *(This frame is one of the "real but separate hints 
 No CLI on screen after the first one. Show artifacts, not commands. All artifacts come from the existing demo asset set.
 
 ### Beat 1 — EXTRACT (00:20–00:26)
-business.adobe.com x-rayed. Adobe red lifts off as a swatch. Type samples slide off as cards. Voice motifs ("simplify", "deliver", "experience") float as small captions. Bottom annotation:
+business.adobe.com x-rayed. **Two** swatches lift off — Adobe red `#EB1000` and a deeper interactive blue. Type samples (Adobe Clean) slide off as cards. Voice motifs float as small captions:
+
+> *"orchestrate" · "deliver" · "personalize" · "experience" · "AI-powered"*
+
+Bottom annotation:
 
 > *127 palettes · today's seed `<seed-from-artifacts>`*
 
 ### Beat 2 — DIRECT (00:26–00:32)
-A designer's phrase types itself, as if dictated:
+A designer's phrase types itself, as if dictated. Intent only — no element specifics.
 
-> *"more editorial. lean into typography. keep the Adobe red. quieter density."*
+> *"feel modern. cinematic, confident. let motion carry it."*
 
-The phrase compiles into a glimpse of `DESIGN.json` — register, decade, palette token visible. Don't dwell.
+(8 words. Pure direction — no colors, typefaces, or surfaces named. The audience hears intent; Stardust does the resolution.)
+
+As the phrase lands, the system **resolves it** on screen: the Adobe red swatch from Beat 1 dims to a grayscale ghost; the blue swatch shifts to Acrobat blue and stays lit. Then `DESIGN.json` flickers into view — `register: brand`, `voice: confident, modern, motion-first`, the surface temperatures table, the Acrobat-blue accent token.
+
+Tiny caption beneath:
+
+> *Intent → tokens. Automatic.*
+
+This is the Stardust thesis: a designer briefs intent, Stardust compiles to a deterministic system. Don't dwell — the visual carries it.
 
 ### Beat 3 — PROTOTYPE (00:32–00:38)
 Three hero variants of the same page deal themselves out side by side. Then product, customers, careers, press stack like cards being dealt. Mobile/tablet/desktop frames flicker behind.
@@ -181,15 +193,19 @@ These inserts are short, deterministic, and can be re-recorded cheaply if needed
 
 ### Mapping artifacts → beats
 
+Existing asset locations (verified May 2026):
+
 | Beat | Source artifact |
 |---|---|
-| 1 — EXTRACT | `stardust/current/brand-review.html` (palette + type + voice cards) |
-| 2 — DIRECT | `DESIGN.json` at root |
-| 3 — PROTOTYPE | `stardust/prototypes/<slug>-proposed.html` × 3 hero variants × multiple slugs |
-| 4 — MIGRATE | `ls stardust/migrated/` capture + file-tree screenshot |
-| Reveal grid | rendered screenshots of every `stardust/migrated/*.html` |
-| AEM landing | AEM authoring view (one of the migrated pages, with hover affordances) |
-| Ongoing beat | post-uplift expressions (new launch / campaign / region pages). If the existing asset set doesn't contain these, repurpose 3–4 prototype variants framed as "new pages" |
+| 1 — EXTRACT | Adobe red + interactive blue swatches; Adobe Clean type samples; voice motifs from live site. **Live site capture note below.** |
+| 2 — DIRECT | `stardust/target/PRODUCT.md`, `stardust/target/DESIGN.md`, `stardust/target/DESIGN.json` (register, voice, surface temperatures, Acrobat-blue token) |
+| 3 — PROTOTYPE | `stardust/redesign/business-adobe-home/from-modules-faithful.html`, `from-modules.html`, `index.html`; sibling redesigns under `stardust/redesign/business-adobe-{brand-concierge,llm-optimizer,sites}/` and `semrush-home/` |
+| 4 — MIGRATE | `ls stardust/redesign/` capture + file tree screenshot |
+| Reveal grid | rendered screenshots of every redesigned page across the four `business-adobe-*` slugs (+ semrush-home as a sibling demonstration) |
+| AEM landing | AEM authoring view (one of the migrated pages, with hover affordances) — TBD whether existing assets cover this |
+| Ongoing beat | post-uplift expressions (new launch / campaign / region pages). If the existing asset set doesn't contain these, repurpose prototype variants framed as "new pages" |
+
+**Live site capture note:** `business.adobe.com` bot-detects headless Playwright (HTTP/2 protocol error or 60s+ timeout on `domcontentloaded`). For the cold open's fast-scroll-through and Beat 1's "x-rayed" frames, plan to capture from a real browser session (manual screen record or a stealth Playwright setup). The redesign captures at `/tmp/uc1-captures/redesign-*.png` already work for everything else.
 
 ### Music and pacing
 

@@ -35,19 +35,35 @@ UC2 and UC3 are partially supported — when a demo hits a seam in the pipeline,
 - **SLICC does not run Claude Code.** SLICC is a browser-native agent. The bridge is the `slicc-handoff` skill (Claude-Code side) that pushes work into a SLICC browser session. For demo recording, SLICC is the camera target, Claude Code runs Stardust off-camera.
 - **Stardust is built on `impeccable`.** Design opinions live in `impeccable`; Stardust is workflow + structure. If the user asks "where did the design choice come from," the answer is usually impeccable.
 
-## Demo folder layout (proposed)
+## Demo folder layout
 
 ```
 demos/
   <demo-name>/
-    README.md          # scenario, audience, narration outline
-    script.md          # voiceover / on-screen text, beat-by-beat
-    artifacts/         # pre-recorded inputs: target URLs, briefs, designer notes
-    outputs/           # generated stardust/ outputs from the run (gitignored once large)
-    recording/         # final video + intermediate captures
+    README.md          # scenario, audience, build approach
+    script.md          # beat-by-beat content + timing (medium-agnostic)
+    experience/        # HTML-first build (source of truth — see UC1)
+    recording/         # MP4 export + working files for distribution
 ```
 
-Don't scaffold this until the first demo is being made — wait for the user to pick UC1/UC2/UC3 and a target.
+Default build approach is **HTML-first, designed by Stardust**:
+
+1. The demo experience is a Stardust product expression. The wrapper inherits Stardust's brand: `/stardust:extract https://paolomoz.github.io/stardust-site/` → `/stardust:direct "<intent phrase>"` → `/stardust:prototype <beat>` per beat page.
+2. A small hand-wired layer goes on top of the Stardust prototypes: autoplay timer, page-to-page transitions, key/wheel override, cover screen, any beat-specific content (iframes, MP4 inserts).
+3. The MP4 is a screen recording of the HTML experience with music mixed in — that's what gets sent over email or pasted into a deck.
+
+Reasons this is the default:
+
+- Medium = message: Stardust generates HTML; the demo about Stardust is made by Stardust.
+- Maximum dogfood: every demo proves the product by being made of it.
+- Iteration speed: re-running `/stardust:direct` with a tweaked phrase regenerates the whole wrapper.
+- Live iframes for "this is real" reveals (e.g. UC1's Beat 3 iframes the business-adobe redesign).
+
+Two brand surfaces to keep separated: **outer** (the wrapper, always Stardust's brand) and **inner** (whatever artifact the demo is presenting — its own brand, in an iframe). Don't conflate them.
+
+When a demo specifically benefits from After Effects / video editing (heavy compositing, footage-heavy storytelling, voiceover-led), document that override in the demo's README.
+
+`artifacts/` and `outputs/` are optional — only add them if a demo runs Stardust live. UC1 references existing artifacts via absolute path (see `demos/uc1-uplift/script.md` and `README.md`) rather than co-locating them.
 
 ## Audience-facing language (load-bearing)
 
