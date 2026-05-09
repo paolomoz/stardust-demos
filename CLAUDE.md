@@ -49,9 +49,22 @@ demos/
 
 Don't scaffold this until the first demo is being made — wait for the user to pick UC1/UC2/UC3 and a target.
 
+## Audience-facing language (load-bearing)
+
+For any audience-facing demo surface — script narration, on-screen text, slide copy, voiceover — only **Stardust** and **AEM** appear by name.
+
+- **Stardust** is the protagonist. Each demo is "the Stardust demo, for this use case."
+- **AEM** is named only as the destination — "lands in AEM," "authorable in AEM."
+- **Snowflake** (the ai-ecoverse bridge) is **never** named on screen.
+- **Experience Modernization Agent (EMA)** is the AEM capability that ingests Stardust output. Not named on screen by default. Mention only if user explicitly asks.
+
+The internal/audience split is a writing-surface rule, not a knowledge-suppression rule. `context/` files keep the technical truth (Snowflake, EMA, EDS) so we know what we're building. Demo `README.md` / production notes can use the technical names freely. `script.md` and any frame the camera sees can't.
+
+If a demo specifically needs Snowflake or EMA on screen (e.g. a developer-targeted track), confirm before naming.
+
 ## When working in this repo
 
-- Default to the two framings above; ask which one when ambiguous.
+- Default to the two framings (standalone vs AEM context); ask which one when ambiguous.
 - Quote distinctive language from `context/whitepaper.md` rather than paraphrasing in narration.
 - For any new external source, add it to `context/references.md` rather than inlining the URL elsewhere.
 - Keep `context/` files lean — they're decision support, not a knowledge dump. If something fits better in a demo's own README, put it there.
