@@ -8,23 +8,11 @@
    diagonal line indicator.
 */
 
-@property --w {
-  syntax: '<number>';
-  inherits: true;
-  initial-value: 0;
-}
-
 #b3 {
   padding: 0;
   align-items: stretch;
   position: relative;
   overflow: hidden;
-  --w: 0;
-}
-#b3.active {
-  --w: 1;
-  /* hold for 1.2s so the OLD page can be read, then sweep over 9.5s */
-  transition: --w 9.5s cubic-bezier(0.45, 0, 0.55, 1) 1.2s;
 }
 
 /* The two layers — both full-bleed, with their iframe content scrolling
@@ -47,45 +35,57 @@
   background: #fff;
   will-change: transform;
 }
+/* When the OLD layer is a tall PNG screenshot, let height auto-scale to
+   preserve aspect ratio at full viewport width. */
+#b3 .b3-frame-img {
+  height: auto;
+  background: #fff;
+  user-select: none;
+  -webkit-user-drag: none;
+}
 
 /* Bottom layer: the redesigned page (always visible underneath) */
 #b3 .b3-new { z-index: 1; }
 #b3 .b3-new .b3-frame { background: var(--bg); }
 
-/* Top layer: the OLD mock — clip-path animates a diagonal sweep */
+/* Top layer: the OLD page — clip-path animates a diagonal sweep L→R via
+   @keyframes that interpolate polygon points directly. Reliable across
+   render paths (transition: --w via @property had Playwright-capture issues). */
 #b3 .b3-old {
   z-index: 2;
-  /* Diagonal polygon: top-edge x = -8% + w*108%, bottom-edge x = w*108%.
-     At w=0, polygon covers full width (slight bleed left).
-     At w=1, polygon is degenerate off-right.
-     Top-x is BEFORE bottom-x → backslash (\) angle. */
-  clip-path: polygon(
-    calc(-8% + var(--w) * 108%) 0,
-    100% 0,
-    100% 100%,
-    calc(var(--w) * 108%) 100%
-  );
+  clip-path: polygon(-8% 0, 100% 0, 100% 100%, 0% 100%);
+}
+#b3.active .b3-old {
+  animation: b3-clip-wipe 9.5s cubic-bezier(0.45, 0, 0.55, 1) 1.2s forwards;
+}
+@keyframes b3-clip-wipe {
+  0%   { clip-path: polygon(-8% 0, 100% 0, 100% 100%,   0%   100%); }
+  100% { clip-path: polygon(100% 0, 100% 0, 100% 100%, 108%  100%); }
 }
 
-/* Both iframes scroll via translateY animation while .active */
-#b3.active .b3-frame {
-  animation: b3-scroll 14s linear forwards;
+/* OLD image scrolls via translateY (it's a static PNG — no internal motion). */
+#b3.active .b3-frame-img {
+  animation: b3-scroll-img 14s linear forwards;
 }
-@keyframes b3-scroll {
+/* The image is ~11820 × 1440 wide at viewport, scaling to ~4900px tall.
+   Scroll through ~3300px so the audience sees most of the page. */
+@keyframes b3-scroll-img {
   from { transform: translateY(0); }
-  to   { transform: translateY(-2400px); }
+  to   { transform: translateY(-3300px); }
 }
 
-/* The hot diagonal line sitting at the wipe boundary.
-   Positioned at the TOP edge of the wipe (the polygon's top-x), skewed by
-   the angle, scaled tall enough to span the viewport with skew. */
+/* The NEW redesign iframe is scrolled programmatically by scripts/beats/beat3.js
+   so its internal Lenis/GSAP scroll-driven motions actually fire. */
+#b3 .b3-new .b3-frame { will-change: auto; }
+
+/* The hot diagonal line sitting at the wipe boundary — animated left
+   in tandem with the clip wipe. */
 #b3 .b3-wipe-line {
   position: absolute;
   top: -10%;
   bottom: -10%;
-  left: calc(var(--w) * 100%);
+  left: -8px;
   width: 5px;
-  margin-left: -2px;
   background: linear-gradient(180deg, var(--red), var(--red2));
   box-shadow:
     0 0 30px rgba(235, 16, 0, 0.85),
@@ -95,20 +95,15 @@
   pointer-events: none;
   transform: skewX(-4deg);
   opacity: 0;
-  transition: opacity 0.4s var(--ease-out-quart);
 }
 #b3.active .b3-wipe-line {
-  opacity: 1;
-  transition-delay: 1.2s; /* line fades in just as the wipe starts */
+  animation: b3-line-sweep 9.5s cubic-bezier(0.45, 0, 0.55, 1) 1.2s forwards;
 }
-/* Once the wipe finishes, fade the line out so it doesn't sit on the new page */
-#b3 .b3-wipe-line {
-  animation: b3-line-trail 14s linear forwards;
-}
-@keyframes b3-line-trail {
-  0%, 80% { /* let opacity transition handle it */ }
-  82% { opacity: 1; }
-  100% { opacity: 0; }
+@keyframes b3-line-sweep {
+  0%   { opacity: 0;  left: -8px; }
+  4%   { opacity: 1; }
+  92%  { opacity: 1; }
+  100% { opacity: 0;  left: calc(100% + 8px); }
 }
 
 /* Small labels at the top so the audience reads "BEFORE" vs "AFTER" */
@@ -181,8 +176,7 @@
 #b3.active .b3-overlay p { opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
-  #b3.active { transition: none; }
-  #b3.active .b3-frame { animation: none; transform: none; }
-  #b3 .b3-wipe-line { animation: none; }
+  #b3.active .b3-frame, #b3.active .b3-old, #b3.active .b3-wipe-line { animation: none; }
+  #b3.active .b3-frame-img { transform: none; }
   #b3.active .b3-old { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
 }

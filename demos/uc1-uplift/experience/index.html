@@ -359,16 +359,15 @@
           tabindex="-1"></iframe>
       </div>
 
-      <!-- OLD (top, clipped): mock of the live business.adobe.com — sits over
-           the new page; clip-path polygon animates the diagonal sweep. -->
+      <!-- OLD (top, clipped): the actual live business.adobe.com captured as
+           a tall PNG — sits over the new page; clip-path polygon animates
+           the diagonal sweep, image translateY-animated for the scroll. -->
       <div class="b3-layer b3-old">
-        <iframe
-          class="b3-frame"
-          src="./assets/business-adobe-old/index.html"
-          title="business.adobe.com — current (mock)"
-          loading="lazy"
-          sandbox="allow-scripts allow-same-origin"
-          tabindex="-1"></iframe>
+        <img
+          class="b3-frame b3-frame-img"
+          src="./assets/business-adobe-old/business-adobe-live.png"
+          alt="business.adobe.com — current"
+          width="3456" height="11820">
       </div>
 
       <!-- Hot red diagonal line at the wipe boundary -->
@@ -522,6 +521,7 @@
 
 <!-- Per-beat timelines -->
 <script src="./scripts/beats/beat1.js"></script>
+<script src="./scripts/beats/beat3.js"></script>
 
 <script src="./scripts/controller.js"></script>
 </body>
