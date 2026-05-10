@@ -78,6 +78,40 @@ First HTML page is a cover screen with a "press space to begin" affordance. Solv
 
 For a ~90s demo, group the script's beats into ~6 HTML pages (10–20s each). Internal scroll-driven motion within each page; auto-advance between pages on a timer with key/wheel override (`→`/space advances, `←` rewinds, scroll drives intra-page reveals before auto-advance).
 
+### Per-beat distinct mask vocabulary
+
+Every beat should have its **own** reveal mechanic — never repeat a mask across beats. Audience curiosity is sustained by variety. If you reach for the same trick twice, invent a new one. Established UC1 vocabularies:
+
+| Beat | Mechanic | Signature |
+|---|---|---|
+| Cold open + transition | Polygon hole grows / shrinks / regrows in tiled-page-cover | Surgical aperture, content "emerges through" pages |
+| Trap | Two grids (varied vs identical layouts) with stagger pacing as message | Visual disparity carries the contrast |
+| Turn | Red slab + white-hot scan-line wipe top→bottom | Theatrical horizontal sweep |
+| Reveal | Dark veil over live iframe → fades out | Cinematic curtain on a real artifact |
+
+Plan more (slide-up / 3D card flip / ticker / scramble / morph / iris / liquid distortion / SVG path morph). Reserve one fresh mask per beat, in a deliberate order — strongest two as bookends.
+
+### Visual disparity over typographic disparity
+
+When a beat compares two concepts (X vs Y), render them as actual visual exemplars, not just contrasting labels. Beat 1 trap: instead of "Bespoke" vs "Templated" with a gantt and a stack, two grids — six visibly different page wireframes vs six identical ones. The eye reads it before the brain parses the headline. The comparison stops being abstract.
+
+Rule of thumb: if the audience needs to read the text to understand the contrast, the visuals are doing too little.
+
+### Stagger pacing as message
+
+Animation pacing carries semantic weight, not just style:
+
+- **Varied / irregular delays** → organic, hand-crafted, unique
+- **Synchronous / uniform delays** → industrial, templated, stamped
+- **Sequential / left-to-right** → process, pipeline, time-as-direction
+- **Random scatter** → chaos, noise
+
+In Beat 1 the unique grid cascades with varied delays (0.50/0.68/0.83/1.05/1.24/1.48s) while the template grid snaps in at a single 0.55s — same number of tiles, opposite meanings, conveyed through pacing alone.
+
+### Cover-as-transition
+
+A single visual element (cover, curtain, slab, page-tile mass) can do double duty: it's the reveal mechanic AND the scene transition. Don't add separate transition elements if the reveal mechanic can carry both jobs. Beat 1 demonstrates: the same `.reveal-cover` grows a hole on Scene A, shrinks back to wipe out, regrows with a different polygon shape on Scene B. Continuous mask narrative across two scenes instead of a hard cut.
+
 ### Translate-Y page-wrap navigator (alternative to scroll-snap)
 
 For full control over transitions and per-section reveal timing — and to side-step the messy interaction between `scroll-snap-type: y mandatory` and JS-driven scrolling — drive a single wrapper element via `transform: translateY(-section.offsetTop)` instead of letting the browser scroll. The Adobe AI Factory Piñata reference uses this pattern: one `#page-wrap` parent with sections inside, a `goTo(i)` function that sets the transform, a busy-lockout for the transition duration (~900ms), and reveal-class toggling per section.
@@ -204,10 +238,35 @@ For internal audiences (the product's own org), self-aware cold opens are licens
 
 ---
 
+## Per-beat module convention (established UC1)
+
+Each beat gets its own scoped CSS file at `experience/styles/beats/beatN.css` and, if it needs a JS timeline, `experience/scripts/beats/beatN.js`. The JS module:
+
+1. Self-installs by observing the section's `.active` class via `MutationObserver`.
+2. Runs `enter()` when `.active` is added, `exit()` when removed. Idempotent — re-entry replays from start.
+3. Keeps `clearTimers()` in both `reset()` and `exit()` so handles never leak.
+4. Stores DOM refs in module scope, queried once on `init()`.
+
+Markup pattern: `<section class="beat" id="bN" data-duration="MMMM">` — controller adds `.active`, beat module reacts.
+
+Pure-CSS beats (no JS) drive their reveal off `#bN.active` selectors with `transition` or `animation: ... forwards`. Use animations rather than transitions when the property must always replay even if the element loaded with `.active` already on (transitions may be skipped).
+
+## Asset placeholder convention
+
+When the demo needs real artifacts (live-site captures, terminal-running videos, AEM authoring screens) that aren't yet recorded:
+
+- Render an HTML/SVG **placeholder** with the same shape, weight, and timing as the real asset
+- Mark it with a class like `.placeholder` or a comment so it's findable later
+- Reserve `<video>` elements with empty `<source>` tags + a `data-pending` attribute identifying what to swap in
+- Note the asset list in the demo's README under "Required assets (status)"
+
+Placeholders should look intentional, not broken. A boxed wireframe with an "EXTRACT — capture pending" label reads better than a missing-asset hole.
+
 ## Source demos this draft is based on
 
 - `demos/uc1-uplift/` — UC1, business.adobe.com uplift, 90s text-only HTML, Adobe-branded wrapper.
-  - Brand source: **reference replication** of `~/Desktop/preso/AI Factory Piñata — Adobe.html` (translate-Y page-wrap navigator, Adobe red accent on near-black, Adobe Clean type, particles + cursor glow ambience).
-  - Status: plan locked; wrapper skeleton next.
+  - Brand source: **reference replication** of `~/Desktop/preso/AI Factory Piñata — Adobe.html` (translate-Y page-wrap navigator, Adobe red accent on near-black, Adobe Clean type).
+  - Motion reference: rpacomunicacion.com (mask reveals, character cascades, MorphSVG + MotionPath choreography, autoplay videos as content).
+  - Status: Beat 1 (cold open + trap), Beat 2 turn, Beat 3 (live iframe reveal) shipped. Beats 2-pipeline / 4 / 5 / 6 in progress.
 
 Add new entries as demos ship. Each demo should contribute back: a pattern, a decision, or a gotcha.

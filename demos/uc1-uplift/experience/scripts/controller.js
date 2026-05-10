@@ -6,6 +6,17 @@
 (function () {
   'use strict';
 
+  // Capture the hash IMMEDIATELY (before the browser auto-scrolls to the
+  // matching element id) and strip it from the URL. With `body { overflow:
+  // hidden }` the page won't scroll visually, but body.scrollTop still gets
+  // set, which compounds with our translate-Y page-wrap and offsets the
+  // beats. By removing the hash before any scroll resolution, the browser
+  // has nothing to scroll to.
+  const INITIAL_HASH = location.hash;
+  if (INITIAL_HASH) {
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (_) {}
+  }
+
   // Per-beat durations in ms — must match script.md
   // Beat 1 cold open + trap        14s
   // Beat 2 turn + pipeline montage 32s
@@ -37,6 +48,11 @@
     if (secs.length !== BEAT_DURATIONS_MS.length) {
       console.warn('controller: beat count mismatch with BEAT_DURATIONS_MS');
     }
+    // Belt-and-braces scroll reset (hash was already stripped above, but
+    // some browsers may still have set scrollTop before the strip landed).
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
     // Place first beat at offset 0 without animating
     wrap.style.transition = 'none';
     wrap.style.transform = 'translateY(0)';
@@ -66,9 +82,10 @@
     goTo(typeof targetIndex === 'number' ? targetIndex : 0);
   }
 
-  // Deeplink: #b3 (or #beat=3) jumps straight to that beat, skipping the cover.
+  // Deeplink: #b3 jumps straight to that beat, skipping the cover.
+  // Reads from the hash captured at script-eval time (before the URL was stripped).
   function readDeeplink() {
-    const m = (location.hash || '').match(/#b(\d+)/i);
+    const m = (INITIAL_HASH || '').match(/#b(\d+)/i);
     if (!m) return -1;
     const i = parseInt(m[1], 10) - 1;
     return (i >= 0 && i < (secs.length || 6)) ? i : -1;
@@ -78,6 +95,10 @@
     if (i < 0 || i >= secs.length || busy) return;
     busy = true;
     cur = i;
+    // Belt-and-braces: clear any document scroll the browser inserted.
+    if (window.scrollY || document.documentElement.scrollTop) {
+      window.scrollTo(0, 0);
+    }
 
     // Clear .active on all, set on current — drives motion.css selectors
     secs.forEach(s => s.classList.remove('active'));

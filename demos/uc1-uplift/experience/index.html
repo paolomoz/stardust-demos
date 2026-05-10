@@ -11,6 +11,9 @@
 <link rel="stylesheet" href="./styles/motion.css">
 <link rel="stylesheet" href="./styles/beats/beat1.css">
 <link rel="stylesheet" href="./styles/beats/beat2.css">
+<link rel="stylesheet" href="./styles/beats/beat4.css">
+<link rel="stylesheet" href="./styles/beats/beat5.css">
+<link rel="stylesheet" href="./styles/beats/beat6.css">
 </head>
 <body>
 
@@ -250,7 +253,89 @@
       <div class="b2-scanline" aria-hidden="true"></div>
     </div>
 
-    <!-- (Pipeline montage at 0:20–0:46 lands in a later iteration.) -->
+    <!-- SCENE · Pipeline montage (0:20–0:46) — 4 sub-beats × ~6.5s each.
+         Each sub-beat has a captioned video frame for the actual agent
+         executing the corresponding Stardust command (3-5s each).
+         Real recordings will replace the placeholders. -->
+    <div class="b2-pipeline">
+      <div class="b2-pipeline-rail"><i></i></div>
+
+      <article class="b2-step" data-step="extract">
+        <div class="b2-step-meta">
+          <span class="b2-step-num">01</span>
+          <span class="b2-step-cmd">/stardust:extract https://business.adobe.com</span>
+        </div>
+        <h3 class="b2-step-title">Extract.</h3>
+        <p class="b2-step-cap">Capture brand surface.</p>
+        <div class="b2-step-frame" data-pending="extract-recording">
+          <video class="b2-step-video" muted autoplay loop playsinline preload="metadata">
+            <!-- TODO: replace with 3-5s capture of /stardust:extract running -->
+          </video>
+          <div class="b2-step-placeholder">
+            <span class="ph-eyebrow">Recording pending</span>
+            <span class="ph-line">Terminal: agent executes</span>
+            <span class="ph-cmd">/stardust:extract https://business.adobe.com</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="b2-step" data-step="direct">
+        <div class="b2-step-meta">
+          <span class="b2-step-num">02</span>
+          <span class="b2-step-cmd">/stardust:direct "feel modern. cinematic, confident. let motion carry it."</span>
+        </div>
+        <h3 class="b2-step-title">Direct.</h3>
+        <p class="b2-step-cap">Designer briefs intent. Stardust resolves to tokens.</p>
+        <div class="b2-step-frame" data-pending="direct-recording">
+          <video class="b2-step-video" muted autoplay loop playsinline preload="metadata">
+            <!-- TODO: replace with 3-5s capture of /stardust:direct running -->
+          </video>
+          <div class="b2-step-placeholder">
+            <span class="ph-eyebrow">Recording pending</span>
+            <span class="ph-line">Agent compiles intent → DESIGN.json</span>
+            <span class="ph-cmd">register · voice · palette · type</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="b2-step" data-step="prototype">
+        <div class="b2-step-meta">
+          <span class="b2-step-num">03</span>
+          <span class="b2-step-cmd">/stardust:prototype</span>
+        </div>
+        <h3 class="b2-step-title">Prototype.</h3>
+        <p class="b2-step-cap">Variants per page across viewports.</p>
+        <div class="b2-step-frame" data-pending="prototype-recording">
+          <video class="b2-step-video" muted autoplay loop playsinline preload="metadata">
+            <!-- TODO: replace with 3-5s capture of /stardust:prototype running -->
+          </video>
+          <div class="b2-step-placeholder">
+            <span class="ph-eyebrow">Recording pending</span>
+            <span class="ph-line">Three hero variants per page</span>
+            <span class="ph-cmd">desktop · tablet · mobile</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="b2-step" data-step="migrate">
+        <div class="b2-step-meta">
+          <span class="b2-step-num">04</span>
+          <span class="b2-step-cmd">/stardust:migrate</span>
+        </div>
+        <h3 class="b2-step-title">Migrate.</h3>
+        <p class="b2-step-cap">Deployable static HTML. No build step.</p>
+        <div class="b2-step-frame" data-pending="migrate-recording">
+          <video class="b2-step-video" muted autoplay loop playsinline preload="metadata">
+            <!-- TODO: replace with 3-5s capture of /stardust:migrate running -->
+          </video>
+          <div class="b2-step-placeholder">
+            <span class="ph-eyebrow">Recording pending</span>
+            <span class="ph-line">stardust/migrated/</span>
+            <span class="ph-cmd">home.html · products.html · …</span>
+          </div>
+        </div>
+      </article>
+    </div>
 
   </section>
 
@@ -277,46 +362,119 @@
     </div>
   </section>
 
-  <!-- BEAT 4 · 1:00–1:08 · Lands in AEM -->
+  <!-- BEAT 4 · 1:00–1:08 · Lands in AEM
+       Mask: vertical slide-up. Stardust output frame slides up; AEM
+       authoring frame revealed underneath with hover-edit affordance. -->
   <section class="beat" id="b4" data-duration="8000">
-    <div class="inner" style="text-align:center;">
-      <div class="tag reveal reveal-1">Where it lands</div>
-      <h2 class="reveal reveal-2">
-        Lands in <span class="red">AEM.</span>
-      </h2>
-      <p class="sub reveal reveal-3" style="margin: 1.6rem auto 0;">
-        Authorable on day one.
-      </p>
+    <div class="b4-stage">
+      <div class="b4-eyebrow">Where it lands</div>
+      <h2 class="b4-title">Lands in <span class="red">AEM.</span></h2>
+
+      <div class="b4-frames" aria-hidden="true">
+        <span class="b4-caption-top">stardust/migrated/ → aem author</span>
+
+        <!-- Top frame: Stardust output (will slide up) -->
+        <div class="b4-frame-stardust">
+          <div class="mock-header"></div>
+          <div class="mock-body">
+            <div class="mock-hero"></div>
+            <div class="mock-cols"><i></i><i></i><i></i></div>
+          </div>
+        </div>
+
+        <!-- Bottom frame: AEM authoring view (revealed) -->
+        <div class="b4-frame-aem">
+          <div class="aem-toolbar">
+            <span class="aem-mark">Adobe</span>
+            <span class="aem-ctx">Experience Manager · home</span>
+            <span class="aem-spacer"></span>
+            <span class="aem-pill">Published</span>
+          </div>
+          <div class="aem-page">
+            <div class="aem-block aem-hero"></div>
+            <div class="aem-cols"><i></i><i></i><i></i></div>
+          </div>
+        </div>
+
+        <span class="b4-caption-bot">authorable on day one</span>
+      </div>
+
+      <p class="b4-sub">in-page edits · scheduling · drafts</p>
     </div>
   </section>
 
-  <!-- BEAT 5 · 1:08–1:22 · Ongoing capability — the VP+ payoff -->
+  <!-- BEAT 5 · 1:08–1:22 · The Ongoing Capability — VP+ payoff
+       Mask: horizontal river of page thumbnails flowing right→left,
+       infinite-loop. Headline overlay turns "Not a project." → "A capability."
+       The river is the message: pages keep coming. -->
   <section class="beat" id="b5" data-duration="14000">
-    <div class="inner" style="text-align:center;">
-      <div class="tag reveal reveal-1">The Ongoing Capability</div>
-      <h2 class="reveal reveal-2">
-        Not a project.
-      </h2>
-      <h2 class="reveal reveal-3" style="margin-top: 0.4rem;">
-        <span class="red">A capability.</span>
-      </h2>
-      <p class="sub reveal reveal-4" style="margin: 1.6rem auto 0;">
-        New launches. New campaigns. New regions.
-        Same rules. No new design team.
-      </p>
+    <div class="b5-stage">
+      <div class="b5-eyebrow">The Ongoing Capability</div>
+
+      <div class="b5-river" aria-hidden="true">
+        <!-- Track: 12 cards, doubled in markup so animation can loop seamlessly -->
+        <div class="b5-track">
+          <!-- pass 1 -->
+          <div class="b5-card tint-a"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Q3 launch</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-b"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Black Friday</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-c"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">EMEA variant</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-d"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Investor update</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-e"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Webinar series</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-a"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">APAC launch</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-b"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Customer story</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-c"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Summit 2026</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-d"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Pricing update</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-e"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Q4 outlook</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-a"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">CMO hub</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-b"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Acrobat refresh</span><span class="when">on-brand</span></div></div>
+          <!-- pass 2 (duplicate for seamless loop) -->
+          <div class="b5-card tint-a"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Q3 launch</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-b"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Black Friday</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-c"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">EMEA variant</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-d"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Investor update</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-e"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Webinar series</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-a"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">APAC launch</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-b"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Customer story</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-c"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Summit 2026</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-d"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Pricing update</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-e"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Q4 outlook</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-a"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">CMO hub</span><span class="when">on-brand</span></div></div>
+          <div class="b5-card tint-b"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Acrobat refresh</span><span class="when">on-brand</span></div></div>
+        </div>
+
+        <!-- Headline overlays the river -->
+        <div class="b5-headline">
+          <h2>
+            <span class="h-line-1">Not a project.</span>
+            <span class="h-line-2">A capability.</span>
+          </h2>
+        </div>
+      </div>
+
+      <div class="b5-bottom">
+        <p class="b5-sub">New launches. New campaigns. New regions. Same rules.</p>
+        <span class="b5-team-size">Team size: unchanged</span>
+      </div>
     </div>
   </section>
 
-  <!-- BEAT 6 · 1:22–1:30 · The line + close -->
+  <!-- BEAT 6 · 1:22–1:30 · Math, not mysticism. — the close
+       Mask: pipeline strip lights up sequentially (extract → direct → prototype
+       → migrate), then headline mask-reveals from center via clip-path. -->
   <section class="beat" id="b6" data-duration="8000">
-    <div class="inner" style="text-align:center;">
-      <div class="tag reveal reveal-1">extract → direct → prototype → migrate</div>
-      <h1 class="reveal reveal-2" style="font-size: clamp(2.5rem, 6vw, 5rem);">
-        <span class="red">Math,</span> not mysticism.
-      </h1>
-      <p class="sub reveal reveal-3" style="margin: 1.6rem auto 0;">
-        Ship the demo before the deck.
-      </p>
+    <div class="b6-stage">
+      <div class="b6-pipeline" aria-hidden="true">
+        <div class="b6-step"><span>Extract</span></div>
+        <div class="b6-step"><span>Direct</span></div>
+        <div class="b6-step"><span>Prototype</span></div>
+        <div class="b6-step"><span>Migrate</span></div>
+      </div>
+
+      <h1 class="b6-title"><span class="red">Math,</span> not mysticism.</h1>
+
+      <p class="b6-sub">Ship the demo before the deck.</p>
+
+      <div class="b6-mark">Stardust</div>
     </div>
   </section>
 

@@ -98,6 +98,14 @@
 #b2.active .b2-question .red {
   animation: b2-didnt-pulse 0.8s 2.7s ease-out;
 }
+
+/* Turn text fades out as the pipeline montage takes over */
+#b2.active .b2-turn {
+  animation: b2-turn-out 0.7s var(--ease-out-quart) 4.8s forwards;
+}
+@keyframes b2-turn-out {
+  to { opacity: 0; transform: translateY(-20px); }
+}
 @keyframes b2-didnt-pulse {
   0%   { transform: scale(1); }
   40%  { transform: scale(1.08); }
@@ -113,9 +121,152 @@
   pointer-events: none;
 }
 
+/* ──────────────────────────────────────────────────────────────
+   Pipeline montage (0:20–0:46) — 4 sub-beats run sequentially.
+   Each step has a captioned video frame (placeholder pending real
+   captures of the agent executing /stardust:* commands).
+   The whole montage scrolls into view from the right after the turn.
+   ────────────────────────────────────────────────────────────── */
+
+#b2 .b2-pipeline {
+  position: absolute; inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.5rem, 1.2vw, 1.5rem);
+  padding: clamp(5rem, 8vh, 7rem) clamp(2rem, 4vw, 4rem) clamp(3rem, 5vh, 4rem);
+  z-index: 4;
+  opacity: 0;
+  transform: translateY(30px);
+  pointer-events: none;
+  transition: opacity 0.8s var(--ease-out-quart) 5.0s, transform 0.8s var(--ease-out-quart) 5.0s;
+}
+#b2.active .b2-pipeline { opacity: 1; transform: translateY(0); }
+
+/* Horizontal red rail behind the steps that fills as the montage advances */
+#b2 .b2-pipeline-rail {
+  position: absolute;
+  left: clamp(2rem, 4vw, 4rem);
+  right: clamp(2rem, 4vw, 4rem);
+  top: clamp(5rem, 8vh, 7rem);
+  height: 2px;
+  background: rgba(235, 16, 0, 0.10);
+  grid-column: 1 / -1;
+  z-index: 0;
+}
+#b2 .b2-pipeline-rail > i {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--red), var(--red2));
+  box-shadow: 0 0 24px rgba(235, 16, 0, 0.6);
+  transition: width 22s linear 5.5s;
+}
+#b2.active .b2-pipeline-rail > i { width: 100%; }
+
+/* Each step */
+#b2 .b2-step {
+  position: relative;
+  padding-top: 1.6rem;
+  display: flex; flex-direction: column;
+  gap: 0.5rem;
+  opacity: 0.18;
+  transition: opacity 0.5s var(--ease-out-quart);
+}
+/* Each step lights up as its window comes (sub-beats 6-12, 12-18, 18-24, 24-30 sec into Beat 2) */
+#b2.active .b2-step[data-step="extract"]   { animation: b2-step-active 0.5s var(--ease-out-quart) 5.5s forwards;  }
+#b2.active .b2-step[data-step="direct"]    { animation: b2-step-active 0.5s var(--ease-out-quart) 11.5s forwards; }
+#b2.active .b2-step[data-step="prototype"] { animation: b2-step-active 0.5s var(--ease-out-quart) 17.5s forwards; }
+#b2.active .b2-step[data-step="migrate"]   { animation: b2-step-active 0.5s var(--ease-out-quart) 23.5s forwards; }
+@keyframes b2-step-active {
+  to { opacity: 1; }
+}
+
+#b2 .b2-step-meta {
+  display: flex; align-items: baseline; gap: 0.6rem;
+  font-family: var(--ff-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  white-space: nowrap; overflow: hidden;
+}
+#b2 .b2-step-num   { color: var(--red); font-weight: 700; }
+#b2 .b2-step-cmd   { color: var(--muted); text-transform: none; letter-spacing: 0.05em; }
+
+#b2 .b2-step-title {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: clamp(1.4rem, 1.8vw, 2rem);
+  letter-spacing: -0.025em;
+  color: var(--text);
+}
+#b2 .b2-step-cap {
+  font-family: var(--ff-display);
+  font-weight: 500;
+  font-size: clamp(0.78rem, 0.9vw, 1rem);
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+/* Video frame — fills with real capture when available, placeholder otherwise */
+#b2 .b2-step-frame {
+  position: relative;
+  margin-top: 0.4rem;
+  aspect-ratio: 4 / 3;
+  background: var(--surface);
+  border: 1px solid rgba(235, 16, 0, 0.20);
+  overflow: hidden;
+  display: flex; align-items: stretch;
+}
+#b2 .b2-step-video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+/* Placeholder when video has no source — looks intentional */
+#b2 .b2-step-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+  gap: 0.4rem;
+  padding: 1rem;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 12px, rgba(235, 16, 0, 0.04) 12px 13px),
+    var(--surface);
+  font-family: var(--ff-mono);
+  text-transform: lowercase;
+}
+#b2 .ph-eyebrow {
+  font-size: 0.58rem;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--red2);
+  border: 1px solid rgba(235, 16, 0, 0.30);
+  padding: 0.2rem 0.4rem;
+  background: rgba(235, 16, 0, 0.06);
+}
+#b2 .ph-line {
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+#b2 .ph-cmd {
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  word-break: break-all;
+}
+
+/* Hide placeholder once a real video has loaded with playable source */
+#b2 .b2-step-video:not([poster]):not([src]) ~ .b2-step-placeholder,
+#b2 .b2-step-frame:has(video[src]) .b2-step-placeholder { /* progressive enhancement */ }
+
 @media (prefers-reduced-motion: reduce) {
   #b2 .b2-slab     { transition: none; clip-path: inset(100% 0 0 0); }
   #b2 .b2-scanline { animation: none; opacity: 0; }
   #b2 .b2-question .red::after { transform: scaleX(1); transition: none; }
   #b2 .b2-question .red        { animation: none; }
+  #b2 .b2-pipeline { opacity: 1; transform: none; transition: none; }
+  #b2 .b2-step    { opacity: 1; animation: none; }
+  #b2 .b2-pipeline-rail > i { width: 100%; transition: none; }
 }
