@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Adobe for Business — old (mock)</title>
+<style>
+  /* Stylized mock of the live business.adobe.com vibe, pre-redesign.
+     White/light surfaces, standard rounded corners, templated grid,
+     enterprise-marketing default. Used as the OLD layer in Beat 3's
+     diagonal scrub reveal. */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    background: #ffffff;
+    color: #1a1a1a;
+    font-family: 'Adobe Clean', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.45;
+    overflow-x: hidden;
+  }
+  body { width: 100%; }
+
+  /* Top nav */
+  .nav {
+    height: 52px;
+    background: #fff;
+    border-bottom: 1px solid #ececec;
+    display: flex; align-items: center;
+    padding: 0 28px;
+    gap: 28px;
+    position: sticky; top: 0; z-index: 10;
+  }
+  .nav .brand { display: flex; align-items: center; gap: 14px; font-weight: 700; }
+  .nav .brand .mark { color: #eb1000; font-weight: 800; font-size: 16px; }
+  .nav .brand .div { color: #d0d0d0; }
+  .nav .brand .for { color: #1a1a1a; font-weight: 600; }
+  .nav .links { display: flex; gap: 22px; font-size: 13px; color: #404040; }
+  .nav .links a { color: inherit; text-decoration: none; }
+  .nav .links a:hover { color: #eb1000; }
+  .nav .right { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+  .nav .signin { font-size: 13px; color: #404040; }
+  .nav .cta {
+    background: #eb1000; color: #fff; font-weight: 600; font-size: 13px;
+    padding: 8px 16px; border-radius: 4px; border: 0; cursor: pointer;
+  }
+
+  /* Hero — generic centered marketing */
+  .hero {
+    padding: 90px 28px 110px;
+    text-align: center;
+    background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
+  }
+  .hero .eyebrow {
+    text-transform: uppercase; letter-spacing: 0.12em;
+    font-size: 12px; color: #6e6e6e; margin-bottom: 18px; font-weight: 600;
+  }
+  .hero h1 {
+    font-size: 56px; line-height: 1.05; font-weight: 700;
+    max-width: 920px; margin: 0 auto 24px;
+    letter-spacing: -0.01em; color: #1a1a1a;
+  }
+  .hero .lede {
+    font-size: 18px; color: #4a4a4a; max-width: 640px; margin: 0 auto 32px;
+  }
+  .hero .actions { display: flex; gap: 12px; justify-content: center; }
+  .hero .actions .btn {
+    padding: 12px 24px; border-radius: 4px; font-weight: 600; font-size: 14px;
+    border: 0; cursor: pointer;
+  }
+  .hero .actions .btn.primary { background: #eb1000; color: #fff; }
+  .hero .actions .btn.ghost { background: #fff; color: #1a1a1a; border: 1px solid #ccc; }
+
+  /* Trust strip — logos */
+  .trust {
+    padding: 36px 28px;
+    background: #fff;
+    border-top: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
+  }
+  .trust-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 32px; flex-wrap: wrap;
+  }
+  .trust-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em;
+    color: #8e8e8e; font-weight: 600;
+  }
+  .trust-logo {
+    font-weight: 800; font-size: 18px; letter-spacing: 0.04em; color: #707070;
+    font-family: serif; padding: 0 6px;
+  }
+  .trust-logo:nth-child(2n) { font-family: sans-serif; font-weight: 700; }
+  .trust-logo:nth-child(3n) { font-style: italic; font-family: 'Times New Roman', serif; }
+
+  /* 3-card feature row */
+  .cards {
+    padding: 88px 28px;
+    background: #fff;
+  }
+  .cards-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .card {
+    background: #fff; border: 1px solid #e5e5e5; border-radius: 6px;
+    padding: 28px 24px;
+    transition: box-shadow 0.2s;
+  }
+  .card .icon {
+    width: 36px; height: 36px; background: #eb1000; border-radius: 4px;
+    margin-bottom: 18px;
+  }
+  .card .icon.alt { background: #5b5b5b; }
+  .card h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; color: #1a1a1a; }
+  .card p { font-size: 14px; color: #555; line-height: 1.6; }
+  .card a { font-size: 13px; color: #eb1000; font-weight: 600; text-decoration: none; }
+
+  /* Alt section: text + image, repeated */
+  .alt {
+    padding: 88px 28px;
+    background: #f7f7f7;
+  }
+  .alt-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+  }
+  .alt h2 {
+    font-size: 38px; font-weight: 700; line-height: 1.1; color: #1a1a1a;
+    margin-bottom: 16px; letter-spacing: -0.01em;
+  }
+  .alt p { font-size: 16px; color: #4a4a4a; margin-bottom: 20px; line-height: 1.6; }
+  .alt .stat {
+    border-left: 3px solid #eb1000; padding-left: 16px; margin-top: 24px;
+  }
+  .alt .stat strong { font-size: 32px; font-weight: 800; color: #1a1a1a; display: block; }
+  .alt .stat span { font-size: 13px; color: #6e6e6e; }
+  .alt .image {
+    aspect-ratio: 4 / 3; background: linear-gradient(135deg, #d0d0d0, #e0e0e0);
+    border-radius: 6px; position: relative; overflow: hidden;
+  }
+  .alt .image::after {
+    content: ''; position: absolute; inset: 30%;
+    background: rgba(255, 255, 255, 0.6); border-radius: 4px;
+  }
+
+  .alt.flip .alt-inner { grid-template-columns: 1fr 1fr; }
+  .alt.flip .alt-inner > .image { order: -1; }
+
+  /* Latest articles grid */
+  .latest {
+    padding: 88px 28px;
+    background: #fff;
+  }
+  .latest-inner { max-width: 1200px; margin: 0 auto; }
+  .latest h2 {
+    font-size: 32px; font-weight: 700; margin-bottom: 32px; color: #1a1a1a;
+    letter-spacing: -0.01em;
+  }
+  .latest .grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .article {
+    border: 1px solid #e5e5e5; border-radius: 6px; overflow: hidden;
+  }
+  .article .thumb {
+    aspect-ratio: 16 / 9;
+    background: linear-gradient(135deg, #404040, #1a1a1a);
+  }
+  .article .thumb.red { background: linear-gradient(135deg, #eb1000, #ad0c00); }
+  .article .thumb.gray { background: linear-gradient(135deg, #888, #555); }
+  .article .body { padding: 22px; }
+  .article .body .tag {
+    text-transform: uppercase; letter-spacing: 0.14em;
+    font-size: 11px; color: #eb1000; font-weight: 700; margin-bottom: 10px;
+  }
+  .article .body h4 { font-size: 18px; font-weight: 700; color: #1a1a1a; line-height: 1.3; margin-bottom: 8px; }
+  .article .body p { font-size: 13px; color: #6e6e6e; }
+
+  /* Newsletter */
+  .newsletter {
+    padding: 80px 28px;
+    background: #1a1a1a; color: #fff;
+    text-align: center;
+  }
+  .newsletter h2 { font-size: 32px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.01em; }
+  .newsletter p { color: rgba(255,255,255,0.6); font-size: 16px; margin-bottom: 24px; }
+  .newsletter .form {
+    display: flex; gap: 8px; justify-content: center;
+    max-width: 480px; margin: 0 auto;
+  }
+  .newsletter .form input {
+    flex: 1; padding: 12px 16px; border-radius: 4px; border: 1px solid #444;
+    background: #2c2c2c; color: #fff; font-size: 14px;
+  }
+  .newsletter .form button {
+    padding: 12px 22px; border-radius: 4px; background: #eb1000; color: #fff;
+    border: 0; cursor: pointer; font-weight: 600;
+  }
+
+  /* Footer */
+  footer {
+    background: #fff; border-top: 1px solid #ececec;
+    padding: 48px 28px 32px; color: #555;
+  }
+  footer .inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 32px;
+  }
+  footer h5 { font-size: 13px; color: #1a1a1a; font-weight: 700; margin-bottom: 12px; }
+  footer ul { list-style: none; }
+  footer li { font-size: 13px; color: #6e6e6e; margin-bottom: 6px; }
+  footer .legal {
+    margin-top: 36px; padding-top: 20px; border-top: 1px solid #ececec;
+    font-size: 12px; color: #8e8e8e; display: flex; justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="brand">
+    <span class="mark">Adobe</span>
+    <span class="div">|</span>
+    <span class="for">for Business</span>
+  </div>
+  <div class="links">
+    <a>Products</a><a>AI</a><a>Industries</a><a>Roles</a><a>Resources</a><a>Support</a>
+  </div>
+  <div class="right">
+    <span class="signin">Sign In</span>
+    <button class="cta">Get started</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="eyebrow">Adobe for Business</div>
+  <h1>Customer experience orchestration starts with Adobe CX Enterprise.</h1>
+  <p class="lede">Deliver personalized, on-brand content and experiences across the entire customer lifecycle with Adobe's end-to-end agentic system for CXO.</p>
+  <div class="actions">
+    <button class="btn primary">Learn more</button>
+    <button class="btn ghost">Watch the announcement</button>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="trust-inner">
+    <div class="trust-label">Trusted by</div>
+    <div class="trust-logo">Coca-Cola</div>
+    <div class="trust-logo">QUALCOMM</div>
+    <div class="trust-logo">Premier League</div>
+    <div class="trust-logo">Prudential</div>
+    <div class="trust-logo">CISCO</div>
+    <div class="trust-logo">THE HOME DEPOT</div>
+  </div>
+</section>
+
+<section class="cards">
+  <div class="cards-inner">
+    <div class="card">
+      <div class="icon"></div>
+      <h3>Adobe Brand Intelligence</h3>
+      <p>Create content with a continuously learning, agentic system that understands your full brand identity.</p>
+      <a>Learn more →</a>
+    </div>
+    <div class="card">
+      <div class="icon alt"></div>
+      <h3>Adobe CX Enterprise Coworker</h3>
+      <p>Execute complex, cross-system workflows using an AI agent that understands your business context.</p>
+      <a>Learn more →</a>
+    </div>
+    <div class="card">
+      <div class="icon"></div>
+      <h3>Adobe CX Analytics</h3>
+      <p>Bring your customer experience and enterprise data together, delivering fast insights and activation at scale.</p>
+      <a>Learn more →</a>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="alt-inner">
+    <div>
+      <h2>Real teams. Real work. Real impact.</h2>
+      <p>From small businesses to the world's largest enterprises, our customers use Adobe to unleash their creativity, accelerate document productivity, and power their digital businesses.</p>
+      <p>One platform. Every persona. Every channel.</p>
+      <div class="stat">
+        <strong>3.4×</strong>
+        <span>faster time to revenue with Adobe Experience Cloud</span>
+      </div>
+    </div>
+    <div class="image"></div>
+  </div>
+</section>
+
+<section class="alt flip">
+  <div class="alt-inner">
+    <div class="image"></div>
+    <div>
+      <h2>Built for marketers. Trusted by IT.</h2>
+      <p>Best-in-class governance, security, and integration. Authorable in-context, with content reuse, scheduling, and review workflows.</p>
+      <div class="stat">
+        <strong>92%</strong>
+        <span>reduction in content production overhead</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="latest">
+  <div class="latest-inner">
+    <h2>Recent announcements</h2>
+    <div class="grid">
+      <div class="article">
+        <div class="thumb"></div>
+        <div class="body">
+          <div class="tag">Adobe acquires Semrush</div>
+          <h4>Access the world's most powerful data for AI search optimization.</h4>
+          <p>Adobe completes the acquisition of Semrush. Read the announcement.</p>
+        </div>
+      </div>
+      <div class="article">
+        <div class="thumb red"></div>
+        <div class="body">
+          <div class="tag">CX Maturity Index</div>
+          <h4>Evaluate your organization's readiness for the age of AI-powered orchestration.</h4>
+          <p>Start the assessment now.</p>
+        </div>
+      </div>
+      <div class="article">
+        <div class="thumb gray"></div>
+        <div class="body">
+          <div class="tag">Product innovation</div>
+          <h4>Adobe Engagement Intelligence optimizes customer journeys with goal-driven decisioning.</h4>
+          <p>Learn more.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <h2>Stay in the loop.</h2>
+  <p>Subscribe for product updates, customer stories, and the latest research from Adobe.</p>
+  <div class="form">
+    <input type="email" placeholder="Enter your work email">
+    <button>Subscribe</button>
+  </div>
+</section>
+
+<footer>
+  <div class="inner">
+    <div>
+      <h5>Adobe</h5>
+      <ul>
+        <li>Customer engagement</li>
+        <li>Content supply chain</li>
+        <li>Brand visibility</li>
+        <li>B2B CX orchestration</li>
+        <li>AI for business</li>
+      </ul>
+    </div>
+    <div>
+      <h5>Products</h5>
+      <ul><li>Acrobat</li><li>Express</li><li>Firefly</li><li>Photoshop</li><li>Illustrator</li></ul>
+    </div>
+    <div>
+      <h5>Resources</h5>
+      <ul><li>Resource center</li><li>Customer success</li><li>Blog</li><li>Community</li></ul>
+    </div>
+    <div>
+      <h5>Adobe</h5>
+      <ul><li>Overview</li><li>Careers</li><li>Investors</li><li>Newsroom</li></ul>
+    </div>
+    <div>
+      <h5>Region</h5>
+      <ul><li>Choose your region</li></ul>
+    </div>
+  </div>
+  <div class="legal">
+    <span>© 2026 Adobe. All rights reserved.</span>
+    <span>Privacy · Terms · Cookie preferences</span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+/* beat3.css — diagonal scrub reveal between OLD and NEW (14s)
+   Mask vocabulary: a diagonal vertical line sweeps L→R. Where it has passed,
+   the redesigned page (new) is revealed underneath the OLD page (mock).
+   Both pages "scroll" via translateY animation on their iframes.
+
+   The wipe progress is driven by a CSS custom property `--w` (0 → 1) which
+   controls both the clip-path of the OLD layer AND the position of the
+   diagonal line indicator.
+*/
+
+@property --w {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+#b3 {
+  padding: 0;
+  align-items: stretch;
+  position: relative;
+  overflow: hidden;
+  --w: 0;
+}
+#b3.active {
+  --w: 1;
+  /* hold for 1.2s so the OLD page can be read, then sweep over 9.5s */
+  transition: --w 9.5s cubic-bezier(0.45, 0, 0.55, 1) 1.2s;
+}
+
+/* The two layers — both full-bleed, with their iframe content scrolling
+   via translateY on the iframe element itself. */
+#b3 .b3-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+#b3 .b3-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+#b3 .b3-frame {
+  display: block;
+  width: 100%;
+  height: 4000px;
+  border: 0;
+  background: #fff;
+  will-change: transform;
+}
+
+/* Bottom layer: the redesigned page (always visible underneath) */
+#b3 .b3-new { z-index: 1; }
+#b3 .b3-new .b3-frame { background: var(--bg); }
+
+/* Top layer: the OLD mock — clip-path animates a diagonal sweep */
+#b3 .b3-old {
+  z-index: 2;
+  /* Diagonal polygon: top-edge x = -8% + w*108%, bottom-edge x = w*108%.
+     At w=0, polygon covers full width (slight bleed left).
+     At w=1, polygon is degenerate off-right.
+     Top-x is BEFORE bottom-x → backslash (\) angle. */
+  clip-path: polygon(
+    calc(-8% + var(--w) * 108%) 0,
+    100% 0,
+    100% 100%,
+    calc(var(--w) * 108%) 100%
+  );
+}
+
+/* Both iframes scroll via translateY animation while .active */
+#b3.active .b3-frame {
+  animation: b3-scroll 14s linear forwards;
+}
+@keyframes b3-scroll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-2400px); }
+}
+
+/* The hot diagonal line sitting at the wipe boundary.
+   Positioned at the TOP edge of the wipe (the polygon's top-x), skewed by
+   the angle, scaled tall enough to span the viewport with skew. */
+#b3 .b3-wipe-line {
+  position: absolute;
+  top: -10%;
+  bottom: -10%;
+  left: calc(var(--w) * 100%);
+  width: 5px;
+  margin-left: -2px;
+  background: linear-gradient(180deg, var(--red), var(--red2));
+  box-shadow:
+    0 0 30px rgba(235, 16, 0, 0.85),
+    0 0 80px rgba(235, 16, 0, 0.55),
+    0 0 160px rgba(235, 16, 0, 0.35);
+  z-index: 4;
+  pointer-events: none;
+  transform: skewX(-4deg);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out-quart);
+}
+#b3.active .b3-wipe-line {
+  opacity: 1;
+  transition-delay: 1.2s; /* line fades in just as the wipe starts */
+}
+/* Once the wipe finishes, fade the line out so it doesn't sit on the new page */
+#b3 .b3-wipe-line {
+  animation: b3-line-trail 14s linear forwards;
+}
+@keyframes b3-line-trail {
+  0%, 80% { /* let opacity transition handle it */ }
+  82% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Small labels at the top so the audience reads "BEFORE" vs "AFTER" */
+#b3 .b3-label {
+  position: absolute;
+  top: 24px;
+  font-family: var(--ff-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.7rem;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-out-quart);
+}
+#b3 .b3-label.before { left: 24px; color: #1a1a1a; background: rgba(255, 255, 255, 0.85); }
+#b3 .b3-label.after  { right: 24px; color: var(--text); background: rgba(7, 9, 15, 0.85); border: 1px solid rgba(235, 16, 0, 0.30); }
+#b3.active .b3-label { opacity: 1; transition-delay: 0.6s; }
+
+/* Headline overlay — appears late, once enough of the new page is visible */
+#b3 .b3-overlay {
+  position: absolute;
+  bottom: 8vh;
+  left: 0; right: 0;
+  text-align: center;
+  z-index: 6;
+  pointer-events: none;
+}
+#b3 .b3-overlay .tag {
+  font-family: var(--ff-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red2);
+  display: inline-block;
+  background: rgba(7, 9, 15, 0.65);
+  padding: 0.4rem 0.7rem;
+  margin-bottom: 0.6rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s var(--ease-out-quart) 9.5s, transform 0.6s var(--ease-out-quart) 9.5s;
+}
+#b3.active .b3-overlay .tag { opacity: 1; transform: translateY(0); }
+
+#b3 .b3-overlay h2 {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  letter-spacing: -0.025em;
+  color: var(--text);
+  text-shadow: 0 8px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(0, 0, 0, 0.6);
+  margin: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s var(--ease-out-quart) 9.8s, transform 0.7s var(--ease-out-quart) 9.8s;
+}
+#b3.active .b3-overlay h2 { opacity: 1; transform: translateY(0); }
+#b3 .b3-overlay h2 .red { color: var(--red); }
+
+#b3 .b3-overlay p {
+  font-family: var(--ff-display);
+  font-size: clamp(0.95rem, 1.2vw, 1.2rem);
+  color: var(--muted);
+  margin-top: 0.6rem;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-out-quart) 10.3s;
+}
+#b3.active .b3-overlay p { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  #b3.active { transition: none; }
+  #b3.active .b3-frame { animation: none; transform: none; }
+  #b3 .b3-wipe-line { animation: none; }
+  #b3.active .b3-old { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
+}
