@@ -1,0 +1,70 @@
+/* tokens.css — lifted from AI Factory Piñata reference
+   Source: ~/Desktop/preso/AI Factory Piñata — Adobe.html (lines 79-84)
+*/
+
+:root {
+  /* Surfaces */
+  --bg:        #0a0a0a;
+  --surface:   #111111;
+  --surface2:  #1a1a1a;
+
+  /* Adobe red — primary accent */
+  --red:       #eb1000;
+  --red2:      #ff3320;
+
+  /* Text */
+  --text:      #e8eef8;
+  --muted:     rgba(232, 238, 248, 0.68);
+  --dim:       rgba(232, 238, 248, 0.45);
+
+  /* Borders */
+  --border:    rgba(235, 16, 0, 0.15);
+  --border2:   rgba(255, 255, 255, 0.06);
+
+  /* Type families */
+  --ff-display: 'Adobe Clean', 'Source Sans 3', -apple-system, system-ui, sans-serif;
+  --ff-body:    'Adobe Clean', 'Source Sans 3', -apple-system, system-ui, sans-serif;
+  --ff-mono:    'Source Code Pro', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Easings */
+  --ease-out-quart: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
+
+  /* Per-beat durations (must match scripts/controller.js BEAT_DURATIONS_MS)
+     Beat 1: cold open + trap        — 14s
+     Beat 2: turn + pipeline montage — 32s
+     Beat 3: reveal                  — 14s
+     Beat 4: lands in AEM            —  8s
+     Beat 5: ongoing capability      — 14s
+     Beat 6: math + close            —  8s
+  */
+}
+
+/* Adobe Clean — sourced from the same CDN the Piñata uses */
+@font-face {
+  font-family: 'Adobe Clean';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('https://db.onlinewebfonts.com/t/6c172dfff73b4a0370160ffe6ae0df54.woff2') format('woff2'),
+       url('https://db.onlinewebfonts.com/t/6c172dfff73b4a0370160ffe6ae0df54.woff') format('woff');
+}
+@font-face {
+  font-family: 'Adobe Clean';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('https://db.onlinewebfonts.com/t/3f3f555b34b89acb24fd04ce5ca7dfdf.woff2') format('woff2'),
+       url('https://db.onlinewebfonts.com/t/3f3f555b34b89acb24fd04ce5ca7dfdf.woff') format('woff');
+}
+@font-face {
+  font-family: 'Adobe Clean';
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+  src: url('https://db.onlinewebfonts.com/t/a9de0e2343c8e46fd7ba2bed6afc5954.woff2') format('woff2'),
+       url('https://db.onlinewebfonts.com/t/a9de0e2343c8e46fd7ba2bed6afc5954.woff') format('woff');
+}
+
+/* Source Code Pro for monospace eyebrows */
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap');

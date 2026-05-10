@@ -1,0 +1,79 @@
+[
+  {
+    "i": 0,
+    "offsetTop": 0,
+    "cls": "hero",
+    "heading": "The AI Factorythat never sleeps.",
+    "height": 900
+  },
+  {
+    "i": 1,
+    "offsetTop": 947,
+    "cls": "opp-sec video-sec",
+    "heading": "",
+    "height": 900
+  },
+  {
+    "i": 2,
+    "offsetTop": 1847,
+    "cls": "",
+    "heading": "Chef vs. Kitchen",
+    "height": 900
+  },
+  {
+    "i": 3,
+    "offsetTop": 2747,
+    "cls": "comp-sec",
+    "heading": "The window is closing.",
+    "height": 900
+  },
+  {
+    "i": 4,
+    "offsetTop": 3647,
+    "cls": "",
+    "heading": "Not waiting. Building the reference.",
+    "height": 900
+  },
+  {
+    "i": 5,
+    "offsetTop": 4547,
+    "cls": "",
+    "heading": "Where we operate.",
+    "height": 900
+  },
+  {
+    "i": 6,
+    "offsetTop": 5447,
+    "cls": "trust-sec",
+    "heading": "Every objection. Answered.",
+    "height": 900
+  },
+  {
+    "i": 7,
+    "offsetTop": 6347,
+    "cls": "validated-sec",
+    "heading": "8 of 12 areas: Validated or Extended beyond their own reference.",
+    "height": 900
+  },
+  {
+    "i": 8,
+    "offsetTop": 7247,
+    "cls": "",
+    "heading": "Piñata gets better as the AI does.",
+    "height": 900
+  },
+  {
+    "i": 9,
+    "offsetTop": 8147,
+    "cls": "",
+    "heading": "We proved it works. How do we scale it?",
+    "height": 900
+  },
+  {
+    "i": 10,
+    "offsetTop": 9047,
+    "cls": "cta-sec",
+    "heading": "Not promises.Evidence.",
+    "height": 900
+  }
+]

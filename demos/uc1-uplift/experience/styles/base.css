@@ -1,0 +1,242 @@
+/* base.css — primitives modeled on the AI Factory Piñata grammar
+   Reference: ~/Desktop/preso/AI Factory Piñata — Adobe.html (lines 78-1010)
+*/
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--ff-body);
+  overflow: hidden; /* the page-wrap drives all motion; no native scroll */
+}
+
+body {
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Nav — fixed top bar, frosted */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 3rem;
+  background: rgba(7, 9, 15, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transform: translateY(-100%);
+  animation: slideDown 0.8s 0.2s var(--ease-out-quart) forwards;
+}
+.logo {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: 1rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.logo-adobe { color: var(--red); }
+.logo-sep   { color: var(--dim); font-weight: 400; }
+.logo-title { color: var(--text); }
+
+.nav-progress {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+}
+.nav-progress > i {
+  display: block; height: 100%; width: 0;
+  background: linear-gradient(90deg, var(--red), var(--red2));
+  transition: width 700ms var(--ease-out-quart);
+}
+
+/* Cover screen */
+.cover {
+  position: fixed; inset: 0; z-index: 1000;
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 2rem;
+  cursor: pointer;
+  transition: opacity 600ms var(--ease-out-quart), visibility 600ms;
+}
+.cover.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.cover-eyebrow {
+  font-family: var(--ff-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--red2);
+}
+.cover-title {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: -0.025em;
+  text-align: center;
+  max-width: 18ch;
+  line-height: 1.05;
+}
+.cover-cta {
+  font-family: var(--ff-mono);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.cover-cta kbd {
+  font-family: var(--ff-mono);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border2);
+  border-radius: 3px;
+  padding: 2px 8px;
+  color: var(--text);
+}
+
+/* Page wrap — the Piñata pattern: transform: translateY(-section.offsetTop) */
+#page-wrap {
+  position: relative;
+  width: 100%;
+  transform: translateY(0);
+  transition: transform 900ms var(--ease-out-quart);
+  will-change: transform;
+}
+
+/* Sections — each beat is one section, full viewport */
+section.beat {
+  min-height: 100vh;
+  width: 100%;
+  display: flex; align-items: center; justify-content: center;
+  padding: 6rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.inner {
+  max-width: 1100px; margin: 0 auto; width: 100%;
+}
+
+/* Eyebrow tag */
+.tag {
+  display: inline-block;
+  font-family: var(--ff-mono);
+  font-size: 0.81rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--red2);
+  margin-bottom: 0.6rem;
+}
+
+/* Headlines */
+h1, h2 {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  color: var(--text);
+}
+h1 {
+  font-size: clamp(2.94rem, 8vw, 7.14rem);
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+}
+h2 {
+  font-size: clamp(2.37rem, 4.5vw, 3.544rem);
+}
+.red { color: var(--red); }
+
+.sub {
+  font-size: 1.1rem;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 560px;
+  margin-top: 1rem;
+}
+
+/* Reveals — initial state, gain .in to animate */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s var(--ease-out-quart), transform 0.9s var(--ease-out-quart);
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-1 { transition-delay: 0.10s; }
+.reveal-2 { transition-delay: 0.25s; }
+.reveal-3 { transition-delay: 0.40s; }
+.reveal-4 { transition-delay: 0.55s; }
+.reveal-5 { transition-delay: 0.70s; }
+
+/* Buttons */
+.btn-r {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 2.4rem;
+  border-radius: 4px;
+  background: var(--red);
+  color: #fff;
+  font-family: var(--ff-display);
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: none; cursor: pointer;
+  position: relative; overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+.btn-r:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(235, 16, 0, 0.35);
+}
+.btn-g {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 2.4rem;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--ff-display);
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: 1px solid var(--border2);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  text-decoration: none;
+}
+.btn-g:hover {
+  border-color: rgba(235, 16, 0, 0.4);
+  color: var(--red2);
+  transform: translateY(-3px);
+}
+
+/* Cards — used by trap, ongoing, etc. */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out-quart);
+}
+.card.in::before { transform: scaleX(1); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.001s !important;
+  }
+  #page-wrap { transition: none; }
+}

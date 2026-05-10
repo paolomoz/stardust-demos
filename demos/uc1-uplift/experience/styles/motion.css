@@ -1,0 +1,72 @@
+/* motion.css — keyframes lifted from AI Factory Piñata reference.
+   The Piñata uses 21 keyframes; Phase 0 carries the load-bearing few.
+   Add the rest in Phase 2 (ambience) as needed.
+*/
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); }
+  to   { transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroReveal {
+  from { opacity: 0; transform: translateY(40px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.3; }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  92%      { transform: translate(0); filter: none; }
+  93%      { transform: translate(-2px, 1px); filter: hue-rotate(-15deg); }
+  94%      { transform: translate(2px, -1px); filter: hue-rotate(15deg); }
+  95%      { transform: translate(-1px, 0); filter: none; }
+  96%      { transform: translate(1px, 1px); filter: hue-rotate(10deg); }
+  97%      { transform: translate(0); filter: none; }
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  50%      { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 1; }
+}
+
+/* Hero glitch on the red word */
+.glitch-target {
+  display: inline-block;
+  animation: glitch 7s 2.5s infinite;
+}
+
+/* Hero internal stagger — used by Beat 1, Beat 6 */
+.hero-eyebrow { opacity: 0; animation: fadeUp 0.8s 0.4s var(--ease-out-quart) forwards; }
+.hero-h1      { opacity: 0; animation: heroReveal 1.0s 0.8s var(--ease-out-quart) forwards; }
+.hero-sub     { opacity: 0; animation: fadeUp 0.8s 1.1s var(--ease-out-quart) forwards; }
+.hero-cta     { opacity: 0; animation: fadeUp 0.8s 1.3s var(--ease-out-quart) forwards; }
+
+/* Section enters: when a section is currently active, give it the play class
+   so its child animations re-run on re-entry. controller.js handles this. */
+section.beat:not(.active) .hero-eyebrow,
+section.beat:not(.active) .hero-h1,
+section.beat:not(.active) .hero-sub,
+section.beat:not(.active) .hero-cta {
+  animation: none;
+  opacity: 0;
+}
+section.beat.active .hero-eyebrow,
+section.beat.active .hero-h1,
+section.beat.active .hero-sub,
+section.beat.active .hero-cta {
+  animation-play-state: running;
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stardust × Adobe — UC1 Uplift</title>
+<meta name="description" content="A 90-second vision demo. The AI design factory that never sleeps.">
+
+<link rel="stylesheet" href="./styles/tokens.css">
+<link rel="stylesheet" href="./styles/base.css">
+<link rel="stylesheet" href="./styles/motion.css">
+</head>
+<body>
+
+<!-- Cover screen — gestures music + recording first frame -->
+<div id="cover" class="cover">
+  <div class="cover-eyebrow">Adobe × Stardust</div>
+  <div class="cover-title">A vision demo. <span class="red">90 seconds.</span></div>
+  <div class="cover-cta">
+    Press <kbd>Space</kbd> or click to begin
+  </div>
+</div>
+
+<!-- Top nav (Piñata-style) -->
+<nav class="nav">
+  <div class="logo">
+    <span class="logo-adobe">Adobe</span>
+    <span class="logo-sep">|</span>
+    <span class="logo-title">Stardust × business.adobe.com</span>
+  </div>
+  <div class="nav-progress"><i></i></div>
+</nav>
+
+<!-- Page wrap — the Piñata navigator: 6 beats, translateY snap -->
+<div id="page-wrap">
+
+  <!-- BEAT 1 · 0:00–0:14 · Cold open + Trap -->
+  <section class="beat" id="b1" data-duration="14000">
+    <div class="inner" style="text-align:center;">
+      <div class="tag hero-eyebrow">Cold Open</div>
+      <h1 class="hero-h1">
+        business.adobe.com has<br>
+        <span class="red glitch-target">hundreds</span> of pages.
+      </h1>
+      <p class="sub hero-sub" style="margin: 1.6rem auto 0;">
+        They share <span class="red">twelve</span> templates.
+      </p>
+    </div>
+  </section>
+
+  <!-- BEAT 2 · 0:14–0:46 · The turn + 4-beat pipeline montage -->
+  <section class="beat" id="b2" data-duration="32000">
+    <div class="inner">
+      <div class="tag reveal reveal-1">The Turn</div>
+      <h2 class="reveal reveal-2">
+        What if you <span class="red">didn't</span> have to?
+      </h2>
+      <p class="sub reveal reveal-3">
+        Pipeline montage placeholder — extract → direct → prototype → migrate.
+        (Beat 2 content lands in Phase 1.)
+      </p>
+    </div>
+  </section>
+
+  <!-- BEAT 3 · 0:46–1:00 · The reveal -->
+  <section class="beat" id="b3" data-duration="14000">
+    <div class="inner" style="text-align:center;">
+      <div class="tag reveal reveal-1">The Reveal</div>
+      <h2 class="reveal reveal-2">
+        Same brand. <span class="red">New surface.</span>
+      </h2>
+      <p class="sub reveal reveal-3" style="margin: 1.6rem auto 0;">
+        Every page its own page — the rules held.
+        <br><em style="opacity:0.5;">(Phase 1: iframe of business-adobe redesign + before/after slider lands here.)</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- BEAT 4 · 1:00–1:08 · Lands in AEM -->
+  <section class="beat" id="b4" data-duration="8000">
+    <div class="inner" style="text-align:center;">
+      <div class="tag reveal reveal-1">Where it lands</div>
+      <h2 class="reveal reveal-2">
+        Lands in <span class="red">AEM.</span>
+      </h2>
+      <p class="sub reveal reveal-3" style="margin: 1.6rem auto 0;">
+        Authorable on day one.
+      </p>
+    </div>
+  </section>
+
+  <!-- BEAT 5 · 1:08–1:22 · Ongoing capability — the VP+ payoff -->
+  <section class="beat" id="b5" data-duration="14000">
+    <div class="inner" style="text-align:center;">
+      <div class="tag reveal reveal-1">The Ongoing Capability</div>
+      <h2 class="reveal reveal-2">
+        Not a project.
+      </h2>
+      <h2 class="reveal reveal-3" style="margin-top: 0.4rem;">
+        <span class="red">A capability.</span>
+      </h2>
+      <p class="sub reveal reveal-4" style="margin: 1.6rem auto 0;">
+        New launches. New campaigns. New regions.
+        Same rules. No new design team.
+      </p>
+    </div>
+  </section>
+
+  <!-- BEAT 6 · 1:22–1:30 · The line + close -->
+  <section class="beat" id="b6" data-duration="8000">
+    <div class="inner" style="text-align:center;">
+      <div class="tag reveal reveal-1">extract → direct → prototype → migrate</div>
+      <h1 class="reveal reveal-2" style="font-size: clamp(2.5rem, 6vw, 5rem);">
+        <span class="red">Math,</span> not mysticism.
+      </h1>
+      <p class="sub reveal reveal-3" style="margin: 1.6rem auto 0;">
+        Ship the demo before the deck.
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<!-- Music bed — Phase 1 wires the file; gesture-gated by cover -->
+<audio id="music" preload="auto" loop>
+  <!-- <source src="./assets/audio/bed.mp3" type="audio/mpeg"> -->
+</audio>
+
+<script src="./scripts/controller.js"></script>
+</body>
+</html>

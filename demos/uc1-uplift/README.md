@@ -203,14 +203,25 @@ demos/uc1-uplift/
 - ❌ Ongoing-beat post-uplift expressions — confirm coverage in existing artifacts; otherwise reframe prototype variants.
 - ❌ Music bed — direction proposed: editorial-restrained, slight tension in trap, resolves on reveal, urgency in ongoing, lands quiet on the close.
 
-### Build phases (proposed)
+### Build phases
 
-0. **Wrapper skeleton** — scaffold `experience/`. Lift Piñata tokens → `tokens.css`; lift Piñata layout primitives (nav, sections, cards, buttons) → `base.css`; lift the 21 keyframes → `motion.css`; port the `goTo()` navigator + reveal-class system → `controller.js`; replace wheel/key triggers with an autoplay timer per-beat from `script.md`. Six beat sections stubbed with placeholder headlines on the right schedule. Cover screen + press-space-to-begin. ~1 day.
+0. ✅ **Wrapper skeleton** — *done.* `experience/` scaffolded with Piñata tokens (`tokens.css`), layout primitives (`base.css`), load-bearing keyframes (`motion.css`), and the `goTo()` navigator + reveal-class controller (`controller.js`) wired to an autoplay timer matching `script.md`. Six beats stubbed with placeholder headlines. Cover screen + press-space-to-begin. Reduced-motion fallback in.
 1. **Beat content** — fill each beat with on-screen text and assets per `script.md`. Wire the Beat 3 iframe of the business-adobe redesign with a before/after slider. Place inserts (prompt press, file-tree blip, AEM authoring frame). ~1 day.
 2. **Ambience** — port the 160-particle canvas + cursor glow + grid pulse + hero glow breathe. ~½ day.
 3. **Polish + record** — pacing, music sync, cross-browser sanity check (Chrome + Safari), screen-record at 1920×1080 60fps, mix audio, export MP4. ~½ day.
 
-Total: ~3 days.
+Total remaining: ~2 days.
+
+### Running the skeleton
+
+Web fonts CORS-block under `file://`. To preview with proper Adobe Clean:
+
+```
+cd demos/uc1-uplift/experience
+npx serve    # or: python3 -m http.server
+# open the printed URL in Chrome
+# press Space to begin; ArrowRight / ArrowLeft / PageUp / PageDown / Home / End to navigate
+```
 
 ### Internal clearance
 
