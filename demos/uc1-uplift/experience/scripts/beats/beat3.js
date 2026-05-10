@@ -7,8 +7,13 @@
   'use strict';
 
   const SECTION_ID = 'b3';
-  const SCROLL_DURATION_MS = 14000; // matches data-duration on b3
-  const SCROLL_HOLD_BEFORE_MS = 0;  // start scrolling immediately on .active
+  // Wipe runs from 1.2s to 10.7s (clip-path animation in beat3.css).
+  // 80% of the wipe completes at 1.2s + 0.8 * 9.5s = 8.8s.
+  // Hold the NEW iframe static until then, so the redesign's
+  // scroll-driven hero animations fire WHEN the audience is actually
+  // looking at the new page (not while it's clipped to a thin strip).
+  const SCROLL_HOLD_BEFORE_MS = 8800;
+  const SCROLL_DURATION_MS    = 5000;  // ~5s of visible scroll before b3 ends at 14s
 
   let section, iframe, raf = 0, started = false;
 
