@@ -16,7 +16,7 @@
 
   let timer = null;
   let timeoutHandles = [];
-  let cover, hole, sceneA, sceneB, stinger, footer, h1, sub, shader, trapCanvas;
+  let cover, hole, sceneA, sceneB, stinger, footer, h1, sub;
 
   // Polygon points: tiny center ↔ large irregular pentagon.
   // Two distinct "open" shapes give visual variety between scene A and scene B.
@@ -90,8 +90,6 @@
     at(4600, () => {
       sceneA.classList.remove('visible');
       sceneB.classList.add('visible');
-      // Kick off the WebGL noise shader for the trap atmosphere
-      if (shader) shader.play();
     });
 
     // 4.8s — second opening: hole regrows with a different polygon shape on Scene B
@@ -133,7 +131,6 @@
 
   function exit() {
     clearTimers();
-    if (shader) shader.pause();
   }
 
   function init() {
@@ -148,10 +145,6 @@
     footer = section.querySelector('.footer-line');
     h1 = section.querySelector('.cold-open-h1');
     sub = section.querySelector('.cold-open-sub');
-    trapCanvas = section.querySelector('.trap-shader');
-    if (trapCanvas && window.TrapShader) {
-      shader = window.TrapShader.init(trapCanvas);
-    }
 
     // Stash the original HTML of the stinger so we can restore .red after scramble
     if (stinger) {
