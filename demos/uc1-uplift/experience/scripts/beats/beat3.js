@@ -7,81 +7,108 @@
   'use strict';
 
   const SECTION_ID = 'b3';
-  // Wipe runs from 1.2s to 10.7s (clip-path animation in beat3.css).
-  // 80% of the wipe completes at 1.2s + 0.8 * 9.5s = 8.8s.
-  // Hold the NEW iframe static until then, so the redesign's
-  // scroll-driven hero animations fire WHEN the audience is actually
-  // looking at the new page (not while it's clipped to a thin strip).
+  // Wipe runs from 1.2s to 10.7s. 80% of wipe = 8.8s.
+  // Hold the NEW iframe at the top until then, so the redesign's
+  // scroll-driven hero animations fire when the audience is looking.
   const SCROLL_HOLD_BEFORE_MS = 8800;
-  const SCROLL_DURATION_MS    = 5000;  // ~5s of visible scroll before b3 ends at 14s
 
-  let section, iframe, raf = 0, started = false;
+  // Phased scroll calibrated to the redesign's actual content positions
+  // (probed live from the iframe — see /tmp/uc1-skeleton-check/probe-y*.png):
+  //   y=0     hero with "Customer experience orchestration" headline
+  //   y=700   end of hero-pin-spacer (mosaic fully converged)
+  //   y=735–1005  editorial-bento stagger-reveal fires (3 cards slide in)
+  //   y=1500  cards section settled — readable
+  //   y=2500  next section ("Business solutions" 3-card alt)
+  //   y=7000  CTA section with red gradient ("Let's talk about Adobe for Business")
+  //
+  // Phase 1: 0 → 1500 over 2.5s ease-out — smoothly through mosaic
+  //          convergence AND the stagger-reveal of the 3 cards.
+  // Hold:    500ms at 1500 — let the cards register.
+  // Phase 2: 1500 → 7000 over 1.8s linear — sprint past Business solutions
+  //          / Ford / products, land on the CTA section.
+  const CARDS_END_Y      = 1500;
+  const PHASE1_DURATION  = 2.5;     // seconds
+  const PHASE1_HOLD_MS   = 500;
+  const PHASE2_TARGET_Y  = 7000;
+  const PHASE2_DURATION  = 1.8;     // seconds
 
-  function startScroll() {
-    if (!iframe || !iframe.contentWindow) return;
+  let section, iframe, started = false;
+  let timeouts = [];
 
-    let win;
-    try { win = iframe.contentWindow; } catch (e) {
-      console.warn('beat3: iframe contentWindow inaccessible', e);
-      return;
-    }
+  function clearTimers() { timeouts.forEach(clearTimeout); timeouts = []; }
+  function at(delay, fn) { timeouts.push(setTimeout(fn, delay)); }
 
-    const startTs = performance.now() + SCROLL_HOLD_BEFORE_MS;
-    // Ask the iframe document how tall it is. If it's still loading, retry.
-    function getMaxScroll() {
-      try {
-        const doc = iframe.contentDocument;
-        if (!doc) return 0;
-        const h = Math.max(
-          doc.documentElement.scrollHeight,
-          doc.body ? doc.body.scrollHeight : 0
-        );
-        return Math.max(0, h - 900);
-      } catch (_) { return 0; }
-    }
+  function getMaxScroll() {
+    try {
+      const doc = iframe.contentDocument;
+      if (!doc) return 0;
+      const h = Math.max(
+        doc.documentElement.scrollHeight,
+        doc.body ? doc.body.scrollHeight : 0
+      );
+      return Math.max(0, h - 900);
+    } catch (_) { return 0; }
+  }
 
+  function getLenis() {
+    try { return iframe.contentWindow?.__lenis || iframe.contentWindow?.lenis || null; }
+    catch (_) { return null; }
+  }
+
+  // Drive position frame-by-frame. Lenis's own `duration` parameter
+  // collapses to its internal lerp (~0.5s regardless of what we pass), so
+  // we control timing in JS and call Lenis with `immediate: true` each frame
+  // to set the position exactly.
+  function scrollTo(targetY, durationSec, easing) {
+    const win = iframe.contentWindow;
+    if (!win) return;
+    const lenis = getLenis();
+    const start = (lenis ? lenis.animatedScroll : win.scrollY) || 0;
+    const t0 = performance.now();
+    const dms = durationSec * 1000;
+    const ease = easing || (t => t);
     function tick(now) {
       if (!started) return;
-      const t = (now - startTs) / SCROLL_DURATION_MS;
-      const p = Math.min(Math.max(t, 0), 1);
-      // Quint ease-in-out for cinematic pacing
-      const eased = p < 0.5
-        ? 16 * p * p * p * p * p
-        : 1 - Math.pow(-2 * p + 2, 5) / 2;
-
-      const maxScroll = getMaxScroll();
-      const targetY = eased * maxScroll * 0.78; // scroll ~78% of the page
-
+      const p = Math.min((now - t0) / dms, 1);
+      const y = start + (targetY - start) * ease(p);
       try {
-        // If Lenis is exposed, use its scrollTo to keep its internal state in sync.
-        const lenis = win.__lenis || win.lenis || null;
         if (lenis && typeof lenis.scrollTo === 'function') {
-          lenis.scrollTo(targetY, { immediate: true, force: true });
+          lenis.scrollTo(y, { immediate: true, force: true, lock: true });
         } else {
-          win.scrollTo(0, targetY);
-          // Belt: dispatch a synthetic scroll event so any non-Lenis ScrollTrigger
-          // listeners pick it up.
+          win.scrollTo(0, y);
           win.dispatchEvent(new Event('scroll'));
         }
-      } catch (_) { /* cross-origin guarded — same-origin should always work */ }
-
-      if (p < 1) raf = requestAnimationFrame(tick);
+      } catch (_) {}
+      if (p < 1) requestAnimationFrame(tick);
     }
-    raf = requestAnimationFrame(tick);
+    requestAnimationFrame(tick);
+  }
+
+  function startScroll() {
+    if (!iframe?.contentWindow) return;
+
+    // PHASE 1 — 0 → 1500 over 2.5s ease-out. Mosaic converges into the
+    // hero, then the 3 cards stagger-reveal as they enter viewport.
+    at(SCROLL_HOLD_BEFORE_MS, () => {
+      scrollTo(CARDS_END_Y, PHASE1_DURATION, t => 1 - Math.pow(1 - t, 3));
+    });
+
+    // PHASE 2 — after holding so the cards register, sprint to the CTA
+    // section linearly so the headline overlay lands on a clean composition.
+    at(SCROLL_HOLD_BEFORE_MS + PHASE1_DURATION * 1000 + PHASE1_HOLD_MS, () => {
+      scrollTo(PHASE2_TARGET_Y, PHASE2_DURATION, t => t);
+    });
   }
 
   function stopScroll() {
     started = false;
-    if (raf) cancelAnimationFrame(raf);
-    raf = 0;
-    // Reset the iframe scroll for clean re-entry
+    clearTimers();
     try {
-      const win = iframe?.contentWindow;
-      const lenis = win?.__lenis || win?.lenis || null;
+      const lenis = getLenis();
       if (lenis && typeof lenis.scrollTo === 'function') {
         lenis.scrollTo(0, { immediate: true, force: true });
-      } else if (win) {
-        win.scrollTo(0, 0);
+      } else if (iframe?.contentWindow) {
+        iframe.contentWindow.scrollTo(0, 0);
       }
     } catch (_) {}
   }
