@@ -159,47 +159,55 @@
   color: var(--red);
 }
 
-/* Gantt bar fills painfully */
-#b1 .gantt {
-  position: relative;
-  height: 10px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 999px;
-  overflow: hidden;
+/* Page grid — the primary VISUAL communicator of unique-vs-template.
+   Left grid: 6 visibly different layouts.   Right grid: 6 identical templates. */
+#b1 .page-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 0.4rem 0 0.2rem;
 }
-#b1 .gantt-fill {
-  position: absolute; left: 0; top: 0; bottom: 0;
-  width: 0%;
-  background: linear-gradient(90deg, var(--red2), var(--red));
-  transition: width 1400ms cubic-bezier(0.55, 0, 0.18, 1);
-}
-#b1 .scene-b.visible .gantt-fill { width: 100%; transition-delay: 0.5s; }
-
-/* Card stack */
-#b1 .card-stack {
-  position: relative;
-  height: 60px;
-}
-#b1 .card-stack > i {
-  position: absolute;
-  left: 0;
-  width: 50%;
-  height: 14px;
-  background: var(--surface2);
-  border: 1px solid var(--border2);
-  border-radius: 3px;
+#b1 .page-grid .mp {
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: block;
   opacity: 0;
-  transform: translateX(-12px);
-  transition: opacity 0.4s var(--ease-out-quart), transform 0.4s var(--ease-out-quart);
+  transform: translateY(10px) scale(0.96);
+  transition: opacity 0.45s var(--ease-out-quart), transform 0.45s var(--ease-out-quart);
 }
-#b1 .card-stack > i:nth-child(1) { top: 0px;  }
-#b1 .card-stack > i:nth-child(2) { top: 16px; }
-#b1 .card-stack > i:nth-child(3) { top: 32px; }
-#b1 .card-stack > i:nth-child(4) { top: 48px; }
-#b1 .scene-b.visible .card-stack > i:nth-child(1) { opacity: 1; transform: translateX(0); transition-delay: 0.50s; }
-#b1 .scene-b.visible .card-stack > i:nth-child(2) { opacity: 1; transform: translateX(0); transition-delay: 0.62s; }
-#b1 .scene-b.visible .card-stack > i:nth-child(3) { opacity: 1; transform: translateX(0); transition-delay: 0.74s; }
-#b1 .scene-b.visible .card-stack > i:nth-child(4) { opacity: 1; transform: translateX(0); transition-delay: 0.86s; }
+
+/* UNIQUE grid — varied stagger pacing reinforces "varied/handcrafted" */
+#b1 .scene-b.visible .page-grid-unique .mp:nth-child(1) { transition-delay: 0.50s; }
+#b1 .scene-b.visible .page-grid-unique .mp:nth-child(2) { transition-delay: 0.68s; }
+#b1 .scene-b.visible .page-grid-unique .mp:nth-child(3) { transition-delay: 0.83s; }
+#b1 .scene-b.visible .page-grid-unique .mp:nth-child(4) { transition-delay: 1.05s; }
+#b1 .scene-b.visible .page-grid-unique .mp:nth-child(5) { transition-delay: 1.24s; }
+#b1 .scene-b.visible .page-grid-unique .mp:nth-child(6) { transition-delay: 1.48s; }
+#b1 .scene-b.visible .page-grid-unique .mp {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* SAME grid — all tiles snap in TOGETHER, reinforcing "uniform/templated".
+   Slightly different border/contrast vs unique grid to read as "stamped". */
+#b1 .page-grid-same .mp { border-color: rgba(235, 16, 0, 0.12); }
+#b1 .scene-b.visible .page-grid-same .mp {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.55s;
+  /* identical timing for all → reads as "stamped" */
+}
+
+/* When the grid lands, "Day one" gets a quick highlight */
+#b1 .scene-b.visible .trap-col-r .timing {
+  animation: trapDayOne 0.5s ease-out 0.95s both;
+}
+@keyframes trapDayOne {
+  0%   { opacity: 0; transform: translateX(-6px); }
+  60%  { opacity: 1; transform: translateX(0); color: #ff5040; }
+  100% { opacity: 1; transform: translateX(0); }
+}
 
 /* Vertical separator with VS */
 #b1 .vs {
@@ -248,7 +256,6 @@
 @media (prefers-reduced-motion: reduce) {
   #b1 .scene { transition: none; }
   #b1 .scene-b .trap-col { opacity: 1; transform: none; transition: none; }
-  #b1 .scene-b .gantt-fill { width: 100%; transition: none; }
-  #b1 .scene-b .card-stack > i { opacity: 1; transform: none; transition: none; }
-  #b1 .aperture { transition: none; }
+  #b1 .scene-b .page-grid .mp { opacity: 1; transform: none; transition: none; }
+  #b1 .reveal-cover { transition: none; }
 }

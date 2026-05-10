@@ -54,7 +54,83 @@
         <div class="trap-col trap-col-l">
           <div class="label">Every page unique</div>
           <h3>Bespoke design,<br>page by page.</h3>
-          <div class="gantt"><div class="gantt-fill"></div></div>
+
+          <!-- 6 visibly DIFFERENT mini-page layouts — variety is the point. -->
+          <div class="page-grid page-grid-unique" aria-hidden="true">
+            <svg class="mp" viewBox="0 0 100 70" preserveAspectRatio="xMidYMid slice">
+              <!-- Layout: header + hero + 3-col grid -->
+              <rect width="100" height="70" fill="#0e0e0e"/>
+              <rect x="4" y="4" width="6" height="3" fill="#eb1000"/>
+              <rect x="14" y="5" width="40" height="2" fill="#555"/>
+              <rect x="4" y="12" width="92" height="32" fill="#1a1a1a"/>
+              <rect x="10" y="22" width="34" height="3" fill="#eb1000"/>
+              <rect x="10" y="29" width="58" height="2" fill="#666"/>
+              <rect x="10" y="34" width="44" height="2" fill="#555"/>
+              <rect x="4" y="48" width="28" height="18" fill="#222"/>
+              <rect x="36" y="48" width="28" height="18" fill="#222"/>
+              <rect x="68" y="48" width="28" height="18" fill="#222"/>
+            </svg>
+            <svg class="mp" viewBox="0 0 100 70" preserveAspectRatio="xMidYMid slice">
+              <!-- Layout: split — sidebar nav + content -->
+              <rect width="100" height="70" fill="#0e0e0e"/>
+              <rect x="0" y="0" width="32" height="70" fill="#181818"/>
+              <rect x="6" y="6" width="6" height="3" fill="#eb1000"/>
+              <rect x="6" y="14" width="20" height="2" fill="#666"/>
+              <rect x="6" y="20" width="18" height="2" fill="#666"/>
+              <rect x="6" y="26" width="22" height="2" fill="#666"/>
+              <rect x="6" y="32" width="14" height="2" fill="#666"/>
+              <rect x="38" y="6" width="58" height="36" fill="#262626"/>
+              <rect x="38" y="46" width="40" height="2" fill="#888"/>
+              <rect x="38" y="52" width="56" height="2" fill="#666"/>
+              <rect x="38" y="58" width="48" height="2" fill="#666"/>
+            </svg>
+            <svg class="mp" viewBox="0 0 100 70" preserveAspectRatio="xMidYMid slice">
+              <!-- Layout: full-bleed hero + 2-col body -->
+              <rect width="100" height="70" fill="#0e0e0e"/>
+              <rect x="0" y="0" width="100" height="38" fill="#1f0e0e"/>
+              <rect x="36" y="14" width="28" height="6" fill="#eb1000"/>
+              <rect x="38" y="22" width="24" height="2" fill="#999"/>
+              <rect x="4" y="44" width="44" height="22" fill="#1a1a1a"/>
+              <rect x="52" y="44" width="44" height="22" fill="#1a1a1a"/>
+            </svg>
+            <svg class="mp" viewBox="0 0 100 70" preserveAspectRatio="xMidYMid slice">
+              <!-- Layout: editorial — big headline + 2-col text -->
+              <rect width="100" height="70" fill="#0e0e0e"/>
+              <rect x="6" y="6" width="6" height="3" fill="#eb1000"/>
+              <rect x="6" y="14" width="76" height="6" fill="#aaa"/>
+              <rect x="6" y="23" width="56" height="6" fill="#aaa"/>
+              <rect x="6" y="36" width="40" height="2" fill="#555"/>
+              <rect x="6" y="42" width="38" height="2" fill="#555"/>
+              <rect x="6" y="48" width="42" height="2" fill="#555"/>
+              <rect x="6" y="54" width="32" height="2" fill="#555"/>
+              <rect x="52" y="36" width="40" height="2" fill="#555"/>
+              <rect x="52" y="42" width="38" height="2" fill="#555"/>
+              <rect x="52" y="48" width="42" height="2" fill="#555"/>
+              <rect x="52" y="54" width="36" height="2" fill="#555"/>
+            </svg>
+            <svg class="mp" viewBox="0 0 100 70" preserveAspectRatio="xMidYMid slice">
+              <!-- Layout: dark hero with centered mark -->
+              <rect width="100" height="70" fill="#0e0e0e"/>
+              <rect x="0" y="0" width="100" height="56" fill="#080808"/>
+              <rect x="38" y="22" width="24" height="14" fill="#eb1000"/>
+              <rect x="42" y="40" width="16" height="2" fill="#888"/>
+              <rect x="6" y="62" width="20" height="2" fill="#444"/>
+              <rect x="30" y="62" width="20" height="2" fill="#444"/>
+              <rect x="54" y="62" width="20" height="2" fill="#444"/>
+              <rect x="78" y="62" width="18" height="2" fill="#444"/>
+            </svg>
+            <svg class="mp" viewBox="0 0 100 70" preserveAspectRatio="xMidYMid slice">
+              <!-- Layout: card grid — 2x2 -->
+              <rect width="100" height="70" fill="#0e0e0e"/>
+              <rect x="4" y="4" width="6" height="3" fill="#eb1000"/>
+              <rect x="14" y="5" width="40" height="2" fill="#555"/>
+              <rect x="4" y="12" width="44" height="26" fill="#1a1a1a"/>
+              <rect x="52" y="12" width="44" height="26" fill="#1a1a1a"/>
+              <rect x="4" y="42" width="44" height="26" fill="#1a1a1a"/>
+              <rect x="52" y="42" width="44" height="26" fill="#1a1a1a"/>
+            </svg>
+          </div>
+
           <div class="timing">18 months</div>
         </div>
 
@@ -63,7 +139,65 @@
         <div class="trap-col trap-col-r">
           <div class="label">Every page consistent</div>
           <h3>One template,<br>repeated forever.</h3>
-          <div class="card-stack"><i></i><i></i><i></i><i></i></div>
+
+          <!-- 6 IDENTICAL mini-pages — uniformity is the point. -->
+          <div class="page-grid page-grid-same" aria-hidden="true">
+            <svg class="mp mp-template" viewBox="0 0 100 70" preserveAspectRatio="xMidYMid slice">
+              <rect width="100" height="70" fill="#161616"/>
+              <rect x="4" y="4" width="6" height="3" fill="#eb1000"/>
+              <rect x="14" y="5" width="40" height="2" fill="#555"/>
+              <rect x="4" y="12" width="92" height="20" fill="#1a1a1a"/>
+              <rect x="4" y="36" width="44" height="14" fill="#1a1a1a"/>
+              <rect x="52" y="36" width="44" height="14" fill="#1a1a1a"/>
+              <rect x="4" y="54" width="92" height="12" fill="#1a1a1a"/>
+            </svg>
+            <svg class="mp mp-template" viewBox="0 0 100 70" preserveAspectRatio="xMidYMid slice">
+              <rect width="100" height="70" fill="#161616"/>
+              <rect x="4" y="4" width="6" height="3" fill="#eb1000"/>
+              <rect x="14" y="5" width="40" height="2" fill="#555"/>
+              <rect x="4" y="12" width="92" height="20" fill="#1a1a1a"/>
+              <rect x="4" y="36" width="44" height="14" fill="#1a1a1a"/>
+              <rect x="52" y="36" width="44" height="14" fill="#1a1a1a"/>
+              <rect x="4" y="54" width="92" height="12" fill="#1a1a1a"/>
+            </svg>
+            <svg class="mp mp-template" viewBox="0 0 100 70" preserveAspectRatio="xMidYMid slice">
+              <rect width="100" height="70" fill="#161616"/>
+              <rect x="4" y="4" width="6" height="3" fill="#eb1000"/>
+              <rect x="14" y="5" width="40" height="2" fill="#555"/>
+              <rect x="4" y="12" width="92" height="20" fill="#1a1a1a"/>
+              <rect x="4" y="36" width="44" height="14" fill="#1a1a1a"/>
+              <rect x="52" y="36" width="44" height="14" fill="#1a1a1a"/>
+              <rect x="4" y="54" width="92" height="12" fill="#1a1a1a"/>
+            </svg>
+            <svg class="mp mp-template" viewBox="0 0 100 70" preserveAspectRatio="xMidYMid slice">
+              <rect width="100" height="70" fill="#161616"/>
+              <rect x="4" y="4" width="6" height="3" fill="#eb1000"/>
+              <rect x="14" y="5" width="40" height="2" fill="#555"/>
+              <rect x="4" y="12" width="92" height="20" fill="#1a1a1a"/>
+              <rect x="4" y="36" width="44" height="14" fill="#1a1a1a"/>
+              <rect x="52" y="36" width="44" height="14" fill="#1a1a1a"/>
+              <rect x="4" y="54" width="92" height="12" fill="#1a1a1a"/>
+            </svg>
+            <svg class="mp mp-template" viewBox="0 0 100 70" preserveAspectRatio="xMidYMid slice">
+              <rect width="100" height="70" fill="#161616"/>
+              <rect x="4" y="4" width="6" height="3" fill="#eb1000"/>
+              <rect x="14" y="5" width="40" height="2" fill="#555"/>
+              <rect x="4" y="12" width="92" height="20" fill="#1a1a1a"/>
+              <rect x="4" y="36" width="44" height="14" fill="#1a1a1a"/>
+              <rect x="52" y="36" width="44" height="14" fill="#1a1a1a"/>
+              <rect x="4" y="54" width="92" height="12" fill="#1a1a1a"/>
+            </svg>
+            <svg class="mp mp-template" viewBox="0 0 100 70" preserveAspectRatio="xMidYMid slice">
+              <rect width="100" height="70" fill="#161616"/>
+              <rect x="4" y="4" width="6" height="3" fill="#eb1000"/>
+              <rect x="14" y="5" width="40" height="2" fill="#555"/>
+              <rect x="4" y="12" width="92" height="20" fill="#1a1a1a"/>
+              <rect x="4" y="36" width="44" height="14" fill="#1a1a1a"/>
+              <rect x="52" y="36" width="44" height="14" fill="#1a1a1a"/>
+              <rect x="4" y="54" width="92" height="12" fill="#1a1a1a"/>
+            </svg>
+          </div>
+
           <div class="timing">Day one</div>
         </div>
       </div>
