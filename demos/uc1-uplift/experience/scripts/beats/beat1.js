@@ -11,15 +11,15 @@
 
   const SCENE_A_END_MS = 5000;
   const TRAP_START_MS = 5000;        // Scene B begins
-  const STINGER_SWAP_MS = 11500;     // swap "Pick one." → "Enterprise marketing. Since forever."
+  const STINGER_MS = 9500;           // "Pick one. That's the deal." scrambles in
+  const FOOTER_MS = 11500;           // "Enterprise marketing. Since forever." subtitle fades in
 
-  const STINGER_INITIAL_HTML = "Pick one. That's <span class=\"red\">the deal.</span>";
-  const STINGER_SWAP_TEXT = "Enterprise marketing. Since forever.";
-  const STINGER_SWAP_HTML = "Enterprise marketing. <span class=\"red\">Since forever.</span>";
+  const STINGER_TEXT = "Pick one. That's the deal.";
+  const STINGER_HTML = "Pick one. That's <span class=\"red\">the deal.</span>";
 
   let timer = null;
   let timeoutHandles = [];
-  let cover, hole, sceneA, sceneB, stinger, h1, sub;
+  let cover, hole, sceneA, sceneB, stinger, footer, h1, sub;
 
   // Polygon points: tiny center ↔ large irregular pentagon.
   // Two distinct "open" shapes give visual variety between scene A and scene B.
@@ -42,7 +42,8 @@
     if (cover) cover.classList.remove('fading');
     if (hole) hole.setAttribute('points', HOLE_START);
     stinger.classList.remove('scrambling');
-    stinger.innerHTML = STINGER_INITIAL_HTML;
+    stinger.innerHTML = STINGER_HTML;
+    footer.classList.remove('in');
     // H1 starts visible (it's revealed by the cover's hole, not its own mask)
     section.querySelectorAll('.cold-open-sub .st-char')
       .forEach(c => { c.style.opacity = '0'; c.style.transform = 'translateY(20px)'; });
@@ -123,8 +124,11 @@
     // (Scene A → Scene B handoff is now embedded in the cover choreography
     //  above: shrink at 3.8s, swap at 4.6s, regrow at 4.8s, fade at 6.0s.)
 
-    // ── Stinger swap — scramble from "Pick one." to "Enterprise marketing." at 11.5s ──
-    at(STINGER_SWAP_MS, () => scrambleStinger(STINGER_SWAP_TEXT, STINGER_SWAP_HTML));
+    // ── Stinger — "Pick one. That's the deal." scrambles in at 9.5s ──
+    at(STINGER_MS, () => scrambleStinger(STINGER_TEXT, STINGER_HTML));
+
+    // ── Subtitle — "Enterprise marketing. Since forever." fades in at 11.5s ──
+    at(FOOTER_MS, () => footer.classList.add('in'));
   }
 
   function exit() {
@@ -140,6 +144,7 @@
     sceneA = section.querySelector('.scene-a');
     sceneB = section.querySelector('.scene-b');
     stinger = section.querySelector('.stinger');
+    footer = section.querySelector('.footer-line');
     h1 = section.querySelector('.cold-open-h1');
     sub = section.querySelector('.cold-open-sub');
 

@@ -21,17 +21,23 @@
   //   y=2500  next section ("Business solutions" 3-card alt)
   //   y=7000  CTA section with red gradient ("Let's talk about Adobe for Business")
   //
-  // Phase 1: 0 → 1500 over 3.0s LINEAR — steady velocity. Mosaic at 0–700
-  //          gets ~1.4s of scroll time, cards reveal at 700–1500 gets ~1.6s.
-  //          (Ease-out front-loaded velocity and made the mosaic flash by.)
-  // Hold:    700ms at 1500 — let the cards register.
-  // Phase 2: 1500 → 7000 over 1.5s linear — sprint past Business solutions
-  //          / Ford / products, land on the CTA section.
+  // Phase 1: 0 → 1500 over 3.0s LINEAR — steady velocity through the
+  //          mosaic convergence + 3-cards stagger reveal.
+  // Hold:    300ms at 1500 — brief pause so cards register.
+  // Phase 2: 1500 → maxScroll over the REMAINING beat time. No freeze at
+  //          the end — page scrolls continuously through the rest of the
+  //          redesign (Business solutions, Ford story, products, CTA, footer)
+  //          right up to the beat-to-Beat-4 transition.
   const CARDS_END_Y      = 1500;
   const PHASE1_DURATION  = 3.0;     // seconds
-  const PHASE1_HOLD_MS   = 700;
-  const PHASE2_TARGET_Y  = 7000;
-  const PHASE2_DURATION  = 1.5;     // seconds
+  const PHASE1_HOLD_MS   = 300;
+  const PHASE2_TARGET_F  = 0.92;    // fraction of maxScroll to land on
+  // Beat 3 total duration is 17s in controller.js; subtract the hold +
+  // Phase 1 + Phase 1 hold to get whatever's left for Phase 2.
+  const BEAT_TOTAL_MS    = 17000;
+  const PHASE2_END_BUFFER_MS = 200; // small buffer before the controller advances
+  const PHASE2_DURATION_MS = BEAT_TOTAL_MS - SCROLL_HOLD_BEFORE_MS
+                            - PHASE1_DURATION * 1000 - PHASE1_HOLD_MS - PHASE2_END_BUFFER_MS;
 
   let section, iframe, started = false;
   let timeouts = [];
@@ -95,10 +101,13 @@
       scrollTo(CARDS_END_Y, PHASE1_DURATION, t => t);
     });
 
-    // PHASE 2 — after holding so the cards register, sprint to the CTA
-    // section linearly so the headline overlay lands on a clean composition.
+    // PHASE 2 — after a brief hold for the cards to register, scroll
+    // continuously through the rest of the redesigned page. Uses ALL
+    // remaining beat time so there's no freeze before transition.
     at(SCROLL_HOLD_BEFORE_MS + PHASE1_DURATION * 1000 + PHASE1_HOLD_MS, () => {
-      scrollTo(PHASE2_TARGET_Y, PHASE2_DURATION, t => t);
+      const maxScroll = getMaxScroll();
+      const targetY = maxScroll * PHASE2_TARGET_F;
+      scrollTo(targetY, PHASE2_DURATION_MS / 1000, t => t);
     });
   }
 
