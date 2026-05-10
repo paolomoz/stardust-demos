@@ -1,0 +1,209 @@
+{
+  "intel": {
+    "window_libs": {
+      "THREE": false,
+      "gsap": true,
+      "Lenis": true,
+      "barba": false,
+      "locomotive": false,
+      "lottie": false,
+      "Splitting": false,
+      "SplitType": false,
+      "rive": false
+    },
+    "canvases": [],
+    "videos": [
+      {
+        "src": "https://rpacomunicacion.com/wp-content/uploads/2025/09/v_reducida.mp4",
+        "autoplay": true,
+        "muted": true,
+        "loop": true,
+        "controls": false,
+        "cls": "media__source w-100"
+      },
+      {
+        "src": "https://rpacomunicacion.com/wp-content/uploads/2026/02/Armani-Mare-Short_OK-1_1.mp4",
+        "autoplay": true,
+        "muted": true,
+        "loop": true,
+        "controls": false,
+        "cls": "media__source w-100"
+      },
+      {
+        "src": "https://rpacomunicacion.com/wp-content/uploads/2026/02/Redken-Mejor-Organizacion-OK_1.mp4",
+        "autoplay": true,
+        "muted": true,
+        "loop": true,
+        "controls": false,
+        "cls": "media__source w-100"
+      },
+      {
+        "src": "https://rpacomunicacion.com/wp-content/uploads/2025/09/VALENTINO-PROYECTO1-2.mp4",
+        "autoplay": true,
+        "muted": true,
+        "loop": true,
+        "controls": false,
+        "cls": "media__source w-100"
+      },
+      {
+        "src": "https://rpacomunicacion.com/wp-content/uploads/2025/09/VALENTINO-2.mp4",
+        "autoplay": true,
+        "muted": true,
+        "loop": true,
+        "controls": false,
+        "cls": "media__source w-100"
+      },
+      {
+        "src": "https://rpacomunicacion.com/wp-content/uploads/2025/09/I-FERIA-AECC.mp4",
+        "autoplay": true,
+        "muted": true,
+        "loop": true,
+        "controls": false,
+        "cls": "media__source w-100"
+      }
+    ],
+    "dataAttrs": [
+      [
+        "ckyTag",
+        33
+      ],
+      [
+        "color",
+        17
+      ],
+      [
+        "original",
+        8
+      ],
+      [
+        "namesection",
+        8
+      ],
+      [
+        "submenu",
+        7
+      ],
+      [
+        "video",
+        7
+      ],
+      [
+        "src",
+        6
+      ],
+      [
+        "mask",
+        5
+      ],
+      [
+        "num",
+        4
+      ],
+      [
+        "numLg",
+        4
+      ],
+      [
+        "numMob",
+        4
+      ],
+      [
+        "wpStrategy",
+        2
+      ],
+      [
+        "lenisPrevent",
+        2
+      ],
+      [
+        "ppp",
+        2
+      ],
+      [
+        "category",
+        2
+      ]
+    ],
+    "h1": [],
+    "h2": [
+      "Vamosconsoluciones",
+      "Armani Mare",
+      "Redken Weekend NYC Inspired",
+      "Presentación Valentino Born In Rome Extradose",
+      "Presentación Otulfi",
+      "I Feria del Voluntariado AECC",
+      "Marcasqueimpactan"
+    ],
+    "sectionCount": 8,
+    "bodyBg": "rgb(1, 6, 91)",
+    "bodyFont": "Inter, sans-serif",
+    "hasCursor": false,
+    "title": "Agencia de Comunicación y Eventos - RPA Comunicación"
+  },
+  "externalLibs": [
+    "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js?ver=1.0",
+    "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js?ver=1.0",
+    "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Draggable.min.js?ver=1.0",
+    "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js?ver=1.0",
+    "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MorphSVGPlugin.min.js?ver=1.0",
+    "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathPlugin.min.js?ver=1.0",
+    "https://unpkg.com/lenis@1.3.1/dist/lenis.min.js?ver=1.0"
+  ],
+  "scriptUrls": [
+    "https://rpacomunicacion.com/wp-content/plugins/sitepress-multilingual-cms/res/js/cookies/language-cookie.js?ver=482900",
+    "https://rpacomunicacion.com/wp-content/plugins/cookie-law-info/lite/frontend/js/script.min.js?ver=3.2.8",
+    "https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js?ver=1.0",
+    "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js?ver=1.0",
+    "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js?ver=1.0",
+    "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Draggable.min.js?ver=1.0",
+    "https://unpkg.com/swup@4?ver=1.0",
+    "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js?ver=1.0",
+    "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MorphSVGPlugin.min.js?ver=1.0",
+    "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/MotionPathPlugin.min.js?ver=1.0",
+    "https://unpkg.com/lenis@1.3.1/dist/lenis.min.js?ver=1.0",
+    "https://rpacomunicacion.com/wp-content/themes/rpa2025/js/preloader.js?ver=2.1",
+    "https://rpacomunicacion.com/wp-includes/js/dist/hooks.min.js?ver=dd5603f07f9220ed27f1",
+    "https://rpacomunicacion.com/wp-includes/js/dist/i18n.min.js?ver=c26c3dc7bed366793375",
+    "https://rpacomunicacion.com/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.2",
+    "https://rpacomunicacion.com/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.2",
+    "https://rpacomunicacion.com/wp-content/themes/rpa2025/js/root.js?ver=2.1",
+    "https://rpacomunicacion.com/wp-content/themes/rpa2025/js/rollovers.js?ver=2.1",
+    "https://rpacomunicacion.com/wp-content/themes/rpa2025/js/clicks.js?ver=2.1",
+    "https://rpacomunicacion.com/wp-content/themes/rpa2025/js/animations.js?ver=2.1",
+    "https://rpacomunicacion.com/wp-content/themes/rpa2025/js/main.js?ver=2.1",
+    "https://maps.googleapis.com/maps/api/js?key=AIzaSyBffn6t-Q3wTN3SkT1JsUsdv29NowmP5t8&ver=1.0",
+    "https://www.google.com/recaptcha/api.js?render=6LfUxeErAAAAAAixzB5Z3-3s9yQgMrOw73vBkVlM&ver=3.0",
+    "https://rpacomunicacion.com/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=3.15.0",
+    "https://rpacomunicacion.com/wp-content/plugins/contact-form-7/modules/recaptcha/index.js?ver=6.1.2",
+    "https://unpkg.com/swup@4.9.0/dist/Swup.umd.js?ver=1.0",
+    "https://www.googletagmanager.com/gtm.js?id=GTM-TH6G888F",
+    "https://www.gstatic.com/recaptcha/releases/U5VsmTDhJM1iOJUyw4DEUTYv/recaptcha__en.js",
+    "https://www.googletagmanager.com/gtag/js?id=G-0P0H5Q53M7&cx=c&gtm=4e6562",
+    "https://www.gstatic.com/recaptcha/releases/U5VsmTDhJM1iOJUyw4DEUTYv/recaptcha__en.js",
+    "https://www.google.com/recaptcha/api2/webworker.js?hl=en&v=U5VsmTDhJM1iOJUyw4DEUTYv",
+    "https://maps.googleapis.com/maps-api-v3/api/js/64/12d/common.js",
+    "https://maps.googleapis.com/maps-api-v3/api/js/64/12d/util.js"
+  ],
+  "stylesheetUrls": [
+    "https://rpacomunicacion.com/wp-content/cache/wpfc-minified/qlwgmhqp/9um5u.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.css?ver=1.0",
+    "https://rpacomunicacion.com/wp-content/cache/wpfc-minified/ottebi7/9um5u.css",
+    "https://www.gstatic.com/recaptcha/releases/U5VsmTDhJM1iOJUyw4DEUTYv/styles__ltr.css"
+  ],
+  "videoUrls": [
+    "https://rpacomunicacion.com/wp-content/uploads/2025/09/v_reducida.mp4",
+    "https://rpacomunicacion.com/wp-content/uploads/2026/02/Armani-Mare-Short_OK-1_1.mp4",
+    "https://rpacomunicacion.com/wp-content/uploads/2026/02/Redken-Mejor-Organizacion-OK_1.mp4",
+    "https://rpacomunicacion.com/wp-content/uploads/2025/09/VALENTINO-PROYECTO1-2.mp4",
+    "https://rpacomunicacion.com/wp-content/uploads/2025/09/VALENTINO-2.mp4",
+    "https://rpacomunicacion.com/wp-content/uploads/2025/09/I-FERIA-AECC.mp4",
+    "https://rpacomunicacion.com/wp-content/uploads/2026/02/Redken-Mejor-Organizacion-OK_1.mp4",
+    "https://rpacomunicacion.com/wp-content/uploads/2025/09/I-FERIA-AECC.mp4",
+    "https://rpacomunicacion.com/wp-content/uploads/2025/09/I-FERIA-AECC.mp4"
+  ],
+  "fontUrls": [
+    "https://rpacomunicacion.com/wp-content/themes/rpa2025/css/fonts/exatcyrwide-bold.woff2",
+    "https://rpacomunicacion.com/wp-content/themes/rpa2025/css/fonts/exatcyrwide-bold.woff",
+    "https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBHMdazQ.woff2"
+  ]
+}
