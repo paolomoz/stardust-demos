@@ -21,16 +21,17 @@
   //   y=2500  next section ("Business solutions" 3-card alt)
   //   y=7000  CTA section with red gradient ("Let's talk about Adobe for Business")
   //
-  // Phase 1: 0 → 1500 over 2.5s ease-out — smoothly through mosaic
-  //          convergence AND the stagger-reveal of the 3 cards.
-  // Hold:    500ms at 1500 — let the cards register.
-  // Phase 2: 1500 → 7000 over 1.8s linear — sprint past Business solutions
+  // Phase 1: 0 → 1500 over 3.0s LINEAR — steady velocity. Mosaic at 0–700
+  //          gets ~1.4s of scroll time, cards reveal at 700–1500 gets ~1.6s.
+  //          (Ease-out front-loaded velocity and made the mosaic flash by.)
+  // Hold:    700ms at 1500 — let the cards register.
+  // Phase 2: 1500 → 7000 over 1.5s linear — sprint past Business solutions
   //          / Ford / products, land on the CTA section.
   const CARDS_END_Y      = 1500;
-  const PHASE1_DURATION  = 2.5;     // seconds
-  const PHASE1_HOLD_MS   = 500;
+  const PHASE1_DURATION  = 3.0;     // seconds
+  const PHASE1_HOLD_MS   = 700;
   const PHASE2_TARGET_Y  = 7000;
-  const PHASE2_DURATION  = 1.8;     // seconds
+  const PHASE2_DURATION  = 1.5;     // seconds
 
   let section, iframe, started = false;
   let timeouts = [];
@@ -87,10 +88,11 @@
   function startScroll() {
     if (!iframe?.contentWindow) return;
 
-    // PHASE 1 — 0 → 1500 over 2.5s ease-out. Mosaic converges into the
-    // hero, then the 3 cards stagger-reveal as they enter viewport.
+    // PHASE 1 — 0 → 1500 over 3.0s LINEAR. Mosaic converges into the
+    // hero (steady time on the convergence), then the 3 cards
+    // stagger-reveal as they enter viewport.
     at(SCROLL_HOLD_BEFORE_MS, () => {
-      scrollTo(CARDS_END_Y, PHASE1_DURATION, t => 1 - Math.pow(1 - t, 3));
+      scrollTo(CARDS_END_Y, PHASE1_DURATION, t => t);
     });
 
     // PHASE 2 — after holding so the cards register, sprint to the CTA
