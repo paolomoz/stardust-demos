@@ -20,8 +20,11 @@
   // Stage 3 (relative to STAGE 3 ACTIVATION)
   // Wipe is 0.5s delay + 4s = ends at 4.5s
   const STAGE3_SCROLL_AT_MS      = 5500;  // 1s after wipe ends
-  // Scroll runs for 7s (0..7), overlay reveals at 2s into scroll for 5s
+  // Scroll runs for 7s; overlay reveals at 2s into scroll for 5s.
+  // Target reduced from 0.85 → 0.5 of maxScroll so the velocity is
+  // ~40% slower (audience can read what's passing by).
   const STAGE3_SCROLL_DURATION_S = 7;
+  const STAGE3_SCROLL_TARGET_F   = 0.5;
 
   let section, stages = [], video, scrollIframe, started = false;
   let timeouts = [];
@@ -86,7 +89,7 @@
         const maxScroll = doc
           ? Math.max(0, doc.documentElement.scrollHeight - 900)
           : 4000;
-        const target = maxScroll * 0.85;
+        const target = maxScroll * STAGE3_SCROLL_TARGET_F;
         if (lenis && typeof lenis.scrollTo === 'function') {
           lenis.scrollTo(target, {
             duration: STAGE3_SCROLL_DURATION_S,
