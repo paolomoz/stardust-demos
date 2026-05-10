@@ -487,57 +487,96 @@
   </section>
 
   <!-- BEAT 5 · 1:08–1:22 · The Ongoing Capability — VP+ payoff
-       Mask: horizontal river of page thumbnails flowing right→left,
-       infinite-loop. Headline overlay turns "Not a project." → "A capability."
-       The river is the message: pages keep coming. -->
+       Five real campaign pages from content-block-vocabulary.html — each
+       iframed inside a browser-mock card and revealed with a bold scale-in.
+       Headline lives in the top header so it doesn't fight the cards. -->
   <section class="beat" id="b5" data-duration="14000">
     <div class="b5-stage">
-      <div class="b5-eyebrow">The Ongoing Capability</div>
 
-      <div class="b5-river" aria-hidden="true">
-        <!-- Track: 12 cards, doubled in markup so animation can loop seamlessly -->
-        <div class="b5-track">
-          <!-- pass 1 -->
-          <div class="b5-card tint-a"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Q3 launch</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-b"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Black Friday</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-c"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">EMEA variant</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-d"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Investor update</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-e"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Webinar series</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-a"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">APAC launch</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-b"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Customer story</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-c"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Summit 2026</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-d"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Pricing update</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-e"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Q4 outlook</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-a"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">CMO hub</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-b"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Acrobat refresh</span><span class="when">on-brand</span></div></div>
-          <!-- pass 2 (duplicate for seamless loop) -->
-          <div class="b5-card tint-a"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Q3 launch</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-b"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Black Friday</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-c"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">EMEA variant</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-d"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Investor update</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-e"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Webinar series</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-a"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">APAC launch</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-b"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Customer story</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-c"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Summit 2026</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-d"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Pricing update</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-e"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Q4 outlook</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-a"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">CMO hub</span><span class="when">on-brand</span></div></div>
-          <div class="b5-card tint-b"><div class="b5-card-mock"></div><div class="b5-card-label"><span class="cat">Acrobat refresh</span><span class="when">on-brand</span></div></div>
+      <header class="b5-header">
+        <div class="b5-eyebrow">The Ongoing Capability</div>
+        <h2 class="b5-headline">
+          <span class="h-line-1">Not a project.</span>
+          <span class="h-line-2">A capability.</span>
+        </h2>
+      </header>
+
+      <div class="b5-gallery" aria-hidden="true">
+        <div class="b5-mock" style="--i:0">
+          <div class="b5-mock-chrome">
+            <span class="b5-dot"></span><span class="b5-dot"></span><span class="b5-dot"></span>
+            <span class="b5-url">business.adobe.com / customer-story</span>
+          </div>
+          <div class="b5-mock-viewport">
+            <iframe class="b5-mock-frame"
+              src="./assets/business-adobe/redesign/explorations/content-block-vocabulary.html#b-customer"
+              loading="lazy" tabindex="-1"
+              sandbox="allow-scripts allow-same-origin"></iframe>
+          </div>
+          <div class="b5-mock-label">Customer story</div>
         </div>
 
-        <!-- Headline overlays the river -->
-        <div class="b5-headline">
-          <h2>
-            <span class="h-line-1">Not a project.</span>
-            <span class="h-line-2">A capability.</span>
-          </h2>
+        <div class="b5-mock" style="--i:1">
+          <div class="b5-mock-chrome">
+            <span class="b5-dot"></span><span class="b5-dot"></span><span class="b5-dot"></span>
+            <span class="b5-url">business.adobe.com / black-friday</span>
+          </div>
+          <div class="b5-mock-viewport">
+            <iframe class="b5-mock-frame"
+              src="./assets/business-adobe/redesign/explorations/content-block-vocabulary.html#b-blackfriday"
+              loading="lazy" tabindex="-1"
+              sandbox="allow-scripts allow-same-origin"></iframe>
+          </div>
+          <div class="b5-mock-label">Black Friday</div>
+        </div>
+
+        <div class="b5-mock" style="--i:2">
+          <div class="b5-mock-chrome">
+            <span class="b5-dot"></span><span class="b5-dot"></span><span class="b5-dot"></span>
+            <span class="b5-url">business.adobe.com / pricing</span>
+          </div>
+          <div class="b5-mock-viewport">
+            <iframe class="b5-mock-frame"
+              src="./assets/business-adobe/redesign/explorations/content-block-vocabulary.html#b-pricing"
+              loading="lazy" tabindex="-1"
+              sandbox="allow-scripts allow-same-origin"></iframe>
+          </div>
+          <div class="b5-mock-label">Pricing update</div>
+        </div>
+
+        <div class="b5-mock" style="--i:3">
+          <div class="b5-mock-chrome">
+            <span class="b5-dot"></span><span class="b5-dot"></span><span class="b5-dot"></span>
+            <span class="b5-url">business.adobe.com / webinar</span>
+          </div>
+          <div class="b5-mock-viewport">
+            <iframe class="b5-mock-frame"
+              src="./assets/business-adobe/redesign/explorations/content-block-vocabulary.html#b-webinar"
+              loading="lazy" tabindex="-1"
+              sandbox="allow-scripts allow-same-origin"></iframe>
+          </div>
+          <div class="b5-mock-label">Webinar series</div>
+        </div>
+
+        <div class="b5-mock" style="--i:4">
+          <div class="b5-mock-chrome">
+            <span class="b5-dot"></span><span class="b5-dot"></span><span class="b5-dot"></span>
+            <span class="b5-url">business.adobe.com / whitepaper</span>
+          </div>
+          <div class="b5-mock-viewport">
+            <iframe class="b5-mock-frame"
+              src="./assets/business-adobe/redesign/explorations/content-block-vocabulary.html#b-whitepaper"
+              loading="lazy" tabindex="-1"
+              sandbox="allow-scripts allow-same-origin"></iframe>
+          </div>
+          <div class="b5-mock-label">Case study</div>
         </div>
       </div>
 
-      <div class="b5-bottom">
+      <footer class="b5-bottom">
         <p class="b5-sub">New launches. New campaigns. New regions. Same rules.</p>
         <span class="b5-team-size">Team size: unchanged</span>
-      </div>
+      </footer>
     </div>
   </section>
 
