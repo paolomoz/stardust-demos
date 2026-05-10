@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="./styles/tokens.css">
 <link rel="stylesheet" href="./styles/base.css">
 <link rel="stylesheet" href="./styles/motion.css">
+<link rel="stylesheet" href="./styles/beats/beat1.css">
 </head>
 <body>
 
@@ -34,18 +35,53 @@
 <!-- Page wrap — the Piñata navigator: 6 beats, translateY snap -->
 <div id="page-wrap">
 
-  <!-- BEAT 1 · 0:00–0:14 · Cold open + Trap -->
+  <!-- BEAT 1 · 0:00–0:14 · Cold open + Trap (uplifted) -->
   <section class="beat" id="b1" data-duration="14000">
-    <div class="inner" style="text-align:center;">
-      <div class="tag hero-eyebrow">Cold Open</div>
-      <h1 class="hero-h1">
-        business.adobe.com has<br>
-        <span class="red glitch-target">hundreds</span> of pages.
-      </h1>
-      <p class="sub hero-sub" style="margin: 1.6rem auto 0;">
-        They share <span class="red">twelve</span> templates.
-      </p>
+
+    <!-- SCENE A · 0:00–0:05 — cold open -->
+    <div class="scene scene-a">
+      <div class="cold-open-eyebrow">Cold Open</div>
+      <h1 class="cold-open-h1">business.adobe.com has hundreds of pages.</h1>
+      <p class="cold-open-sub">They share <span class="red">twelve</span> templates.</p>
+
+      <div class="aperture" aria-hidden="true">
+        <div class="aperture-content">
+          <div class="aperture-tile"><i></i><i></i></div>
+          <div class="aperture-tile"><i></i><i></i></div>
+          <div class="aperture-tile"><i></i><i></i></div>
+          <div class="aperture-tile"><i></i><i></i></div>
+          <div class="aperture-tile"><i></i><i></i></div>
+          <div class="aperture-tile"><i></i><i></i></div>
+        </div>
+      </div>
     </div>
+
+    <!-- SCENE B · 0:05–0:14 — the trap -->
+    <div class="scene scene-b">
+      <div class="trap-eyebrow">Pick one. That's the deal.</div>
+
+      <div class="trap-cols">
+        <div class="trap-col trap-col-l">
+          <div class="label">Every page unique</div>
+          <h3>Bespoke design,<br>page by page.</h3>
+          <div class="gantt"><div class="gantt-fill"></div></div>
+          <div class="timing">18 months</div>
+        </div>
+
+        <div class="vs"><span>VS</span></div>
+
+        <div class="trap-col trap-col-r">
+          <div class="label">Every page consistent</div>
+          <h3>One template,<br>repeated forever.</h3>
+          <div class="card-stack"><i></i><i></i><i></i><i></i></div>
+          <div class="timing">Day one</div>
+        </div>
+      </div>
+
+      <div class="stinger">Pick one. That's <span class="red">the deal.</span></div>
+      <div class="footer-line">— enterprise marketing, since forever.</div>
+    </div>
+
   </section>
 
   <!-- BEAT 2 · 0:14–0:46 · The turn + 4-beat pipeline montage -->
@@ -134,6 +170,18 @@
 <audio id="music" preload="auto" loop>
   <!-- <source src="./assets/audio/bed.mp3" type="audio/mpeg"> -->
 </audio>
+
+<!-- Vendor: GSAP + ScrollTrigger + Lenis (lifted from the redesign's runtime) -->
+<script src="./vendor/gsap.min.js"></script>
+<script src="./vendor/ScrollTrigger.min.js"></script>
+<script src="./vendor/lenis.min.js"></script>
+
+<!-- Helpers (no GSAP Club dependency) -->
+<script src="./scripts/split-text.js"></script>
+<script src="./scripts/scramble.js"></script>
+
+<!-- Per-beat timelines -->
+<script src="./scripts/beats/beat1.js"></script>
 
 <script src="./scripts/controller.js"></script>
 </body>

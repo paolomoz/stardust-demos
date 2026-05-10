@@ -44,9 +44,16 @@
       wrap.style.transition = '';
     });
     bindInputs();
+
+    // Auto-start on deeplink
+    const deep = readDeeplink();
+    if (deep >= 0) {
+      // brief delay so transitions are armed
+      setTimeout(() => start(deep), 60);
+    }
   }
 
-  function start() {
+  function start(targetIndex) {
     if (started) return;
     started = true;
     cover.classList.add('hidden');
@@ -56,7 +63,15 @@
       audio.volume = 0.6;
       audio.play().catch(e => console.warn('audio play blocked:', e.message));
     }
-    goTo(0);
+    goTo(typeof targetIndex === 'number' ? targetIndex : 0);
+  }
+
+  // Deeplink: #b3 (or #beat=3) jumps straight to that beat, skipping the cover.
+  function readDeeplink() {
+    const m = (location.hash || '').match(/#b(\d+)/i);
+    if (!m) return -1;
+    const i = parseInt(m[1], 10) - 1;
+    return (i >= 0 && i < (secs.length || 6)) ? i : -1;
   }
 
   function goTo(i) {
