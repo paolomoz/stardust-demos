@@ -129,18 +129,38 @@
 #b3 .b3-label.after  { right: 24px; color: var(--text); background: rgba(7, 9, 15, 0.85); border: 1px solid rgba(235, 16, 0, 0.30); }
 #b3.active .b3-label { opacity: 1; transition-delay: 0.6s; }
 
-/* Headline overlay — appears AFTER Phase 1 scroll has settled (cards readable
-   at scrollY=1500) so the transition's paint cost doesn't compete with the
-   active scroll. GPU-promoted via will-change + translateZ for smooth
-   compositing on top of the heavy iframe paint. */
+/* Headline overlay — center-top, with a dark backdrop band for readability
+   against any frame of the scrolling video underneath. Lands ~5s earlier
+   than before (right around when the wipe completes), so the audience reads
+   it while the redesign is still actively scrolling. */
 #b3 .b3-overlay {
   position: absolute;
-  bottom: 8vh;
+  top: 12vh;
+  bottom: auto;
   left: 0; right: 0;
   text-align: center;
   z-index: 6;
   pointer-events: none;
+  padding: 2rem 1rem 3.5rem;
 }
+
+/* Dark gradient backdrop — fades in with the headline; provides contrast
+   no matter what's playing in the video underneath. */
+#b3 .b3-overlay::before {
+  content: '';
+  position: absolute;
+  inset: -1rem 0;
+  background: linear-gradient(180deg,
+    rgba(7, 9, 15, 0.88) 0%,
+    rgba(7, 9, 15, 0.72) 50%,
+    rgba(7, 9, 15, 0.30) 85%,
+    transparent 100%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-out-quart) 10.7s;
+  will-change: opacity;
+}
+#b3.active .b3-overlay::before { opacity: 1; }
 #b3 .b3-overlay .tag {
   font-family: var(--ff-mono);
   font-size: 0.78rem;
@@ -153,7 +173,7 @@
   margin-bottom: 0.6rem;
   opacity: 0;
   transform: translate3d(0, 8px, 0);
-  transition: opacity 0.5s var(--ease-out-quart) 15.7s, transform 0.5s var(--ease-out-quart) 15.7s;
+  transition: opacity 0.5s var(--ease-out-quart) 10.7s, transform 0.5s var(--ease-out-quart) 10.7s;
   will-change: opacity, transform;
 }
 #b3.active .b3-overlay .tag { opacity: 1; transform: translate3d(0, 0, 0); }
@@ -161,14 +181,14 @@
 #b3 .b3-overlay h2 {
   font-family: var(--ff-display);
   font-weight: 800;
-  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  font-size: clamp(2.4rem, 5vw, 4rem);
   letter-spacing: -0.025em;
   color: var(--text);
-  text-shadow: 0 6px 32px rgba(0, 0, 0, 0.85);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
   margin: 0;
   opacity: 0;
   transform: translate3d(0, 20px, 0);
-  transition: opacity 0.6s var(--ease-out-quart) 16.0s, transform 0.6s var(--ease-out-quart) 16.0s;
+  transition: opacity 0.6s var(--ease-out-quart) 11.0s, transform 0.6s var(--ease-out-quart) 11.0s;
   will-change: opacity, transform;
 }
 #b3.active .b3-overlay h2 { opacity: 1; transform: translate3d(0, 0, 0); }
@@ -179,9 +199,9 @@
   font-size: clamp(0.95rem, 1.2vw, 1.2rem);
   color: var(--muted);
   margin-top: 0.6rem;
-  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.85);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
   opacity: 0;
-  transition: opacity 0.5s var(--ease-out-quart) 16.4s;
+  transition: opacity 0.5s var(--ease-out-quart) 11.4s;
   will-change: opacity;
 }
 #b3.active .b3-overlay p { opacity: 1; }

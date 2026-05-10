@@ -87,13 +87,15 @@
 }
 #b1 .ai-correction.struck .ai-original { color: rgba(232, 238, 248, 0.28); }
 
-/* Two-stroke scribble cross-out — drawn on like an angry red pen */
+/* Two-stroke scribble cross-out — drawn on like an angry red pen.
+   Sits ON the "AI" letters: padding-top is 1.55em, AI cap-height ≈ 0.7em,
+   so the SVG (height 0.78em) starts at 1.5em to cover the letters. */
 #b1 .ai-scribble {
   position: absolute;
   left: -16%;
-  top: 1.12em; /* through the mid-mass of "AI" letters */
+  top: 1.5em;
   width: 132%;
-  height: 0.9em;
+  height: 0.78em;
   pointer-events: none;
   overflow: visible;
   z-index: 2;
