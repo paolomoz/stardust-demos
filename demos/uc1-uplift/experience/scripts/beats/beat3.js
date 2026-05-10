@@ -21,21 +21,25 @@
   //   y=2500  next section ("Business solutions" 3-card alt)
   //   y=7000  CTA section with red gradient ("Let's talk about Adobe for Business")
   //
-  // Phase 1: 0 → 1500 over 3.0s LINEAR — steady velocity through the
+  // Phase 1: 0 → 1500 over 2.5s LINEAR — steady velocity through the
   //          mosaic convergence + 3-cards stagger reveal.
-  // Hold:    300ms at 1500 — brief pause so cards register.
-  // Phase 2: 1500 → maxScroll over the REMAINING beat time. No freeze at
-  //          the end — page scrolls continuously through the rest of the
-  //          redesign (Business solutions, Ford story, products, CTA, footer)
-  //          right up to the beat-to-Beat-4 transition.
+  // Phase 2: 1500 → ~maxScroll*0.92 over the rest of the beat (~5.5s)
+  //          with EASE-OUT-CUBIC. Velocity is highest at handoff (sprint
+  //          past Business solutions / Ford / products) and decelerates
+  //          smoothly toward the CTA section. By the time the headline
+  //          overlay fades in (last ~1.2s in CSS), the page is barely
+  //          moving (<5% of avg velocity), so scroll-vs-paint pressure
+  //          is negligible.
+  //
+  // No hold between phases. Linear→ease-out boundary still has a small
+  // velocity jump, but ease-out's high initial velocity quickly
+  // overwhelms the linear tail, blending visually.
   const CARDS_END_Y      = 1500;
-  const PHASE1_DURATION  = 3.0;     // seconds
-  const PHASE1_HOLD_MS   = 300;
-  const PHASE2_TARGET_F  = 0.92;    // fraction of maxScroll to land on
-  // Beat 3 total duration is 17s in controller.js; subtract the hold +
-  // Phase 1 + Phase 1 hold to get whatever's left for Phase 2.
+  const PHASE1_DURATION  = 2.5;     // seconds
+  const PHASE1_HOLD_MS   = 0;
+  const PHASE2_TARGET_F  = 0.92;
   const BEAT_TOTAL_MS    = 17000;
-  const PHASE2_END_BUFFER_MS = 200; // small buffer before the controller advances
+  const PHASE2_END_BUFFER_MS = 200;
   const PHASE2_DURATION_MS = BEAT_TOTAL_MS - SCROLL_HOLD_BEFORE_MS
                             - PHASE1_DURATION * 1000 - PHASE1_HOLD_MS - PHASE2_END_BUFFER_MS;
 
@@ -62,30 +66,33 @@
     catch (_) { return null; }
   }
 
-  // Drive position frame-by-frame. Lenis's own `duration` parameter
-  // collapses to its internal lerp (~0.5s regardless of what we pass), so
-  // we control timing in JS and call Lenis with `immediate: true` each frame
-  // to set the position exactly.
+  // Let Lenis own the animation. One scrollTo call with explicit duration
+  // and easing — Lenis lerps from current to target over `duration` seconds
+  // and fires scroll events along the way (GSAP ScrollTrigger picks them up).
+  // Fallback to manual rAF when Lenis isn't available.
   function scrollTo(targetY, durationSec, easing) {
     const win = iframe.contentWindow;
     if (!win) return;
     const lenis = getLenis();
-    const start = (lenis ? lenis.animatedScroll : win.scrollY) || 0;
+    const ease = easing || (t => t);
+    if (lenis && typeof lenis.scrollTo === 'function') {
+      lenis.scrollTo(targetY, {
+        duration: durationSec,
+        easing: ease,
+        force: true,
+        lock: false,
+      });
+      return;
+    }
+    // Fallback for missing Lenis
+    const start = win.scrollY || 0;
     const t0 = performance.now();
     const dms = durationSec * 1000;
-    const ease = easing || (t => t);
     function tick(now) {
       if (!started) return;
       const p = Math.min((now - t0) / dms, 1);
       const y = start + (targetY - start) * ease(p);
-      try {
-        if (lenis && typeof lenis.scrollTo === 'function') {
-          lenis.scrollTo(y, { immediate: true, force: true, lock: true });
-        } else {
-          win.scrollTo(0, y);
-          win.dispatchEvent(new Event('scroll'));
-        }
-      } catch (_) {}
+      try { win.scrollTo(0, y); win.dispatchEvent(new Event('scroll')); } catch (_) {}
       if (p < 1) requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
@@ -101,13 +108,15 @@
       scrollTo(CARDS_END_Y, PHASE1_DURATION, t => t);
     });
 
-    // PHASE 2 — after a brief hold for the cards to register, scroll
-    // continuously through the rest of the redesigned page. Uses ALL
-    // remaining beat time so there's no freeze before transition.
+    // PHASE 2 — scroll the rest of the page with EASE-OUT. Velocity is
+    // highest at the start of Phase 2 (sprint past Business solutions /
+    // Ford / products) and decelerates toward the CTA section. The slow
+    // tail gives the overlay headline room to fade in without the active
+    // scroll repainting underneath.
     at(SCROLL_HOLD_BEFORE_MS + PHASE1_DURATION * 1000 + PHASE1_HOLD_MS, () => {
       const maxScroll = getMaxScroll();
       const targetY = maxScroll * PHASE2_TARGET_F;
-      scrollTo(targetY, PHASE2_DURATION_MS / 1000, t => t);
+      scrollTo(targetY, PHASE2_DURATION_MS / 1000, t => 1 - Math.pow(1 - t, 3));
     });
   }
 
@@ -115,11 +124,13 @@
     started = false;
     clearTimers();
     try {
+      const win = iframe?.contentWindow;
+      if (win) win.scrollTo(0, 0);
       const lenis = getLenis();
-      if (lenis && typeof lenis.scrollTo === 'function') {
-        lenis.scrollTo(0, { immediate: true, force: true });
-      } else if (iframe?.contentWindow) {
-        iframe.contentWindow.scrollTo(0, 0);
+      if (lenis) {
+        lenis.animatedScroll = 0;
+        lenis.targetScroll = 0;
+        if (typeof lenis.start === 'function') lenis.start();
       }
     } catch (_) {}
   }
