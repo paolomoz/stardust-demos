@@ -86,136 +86,175 @@
   will-change: points;
 }
 
-/* ── SCENE B · Trap ── */
+/* ── SCENE B · Trap (asymmetric, 3D, shader-backed) ── */
 
 #b1 .scene-b {
   z-index: 2;
   display: grid;
-  grid-template-rows: auto 1fr auto auto;
-  gap: 2.2rem;
-  align-items: center; justify-content: center;
+  grid-template-rows: 1fr auto auto;
+  gap: 1.4rem;
+  align-items: center; justify-content: stretch;
+  padding: 5rem 4vw 5rem;
 }
 
-#b1 .trap-eyebrow {
+/* WebGL noise/grain shader behind everything in scene B */
+#b1 .trap-shader {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.85;
+}
+
+/* Asymmetric stage — left zone dominates ~62%, right is squeezed */
+#b1 .trap-stage {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 62fr 38fr;
+  column-gap: clamp(1rem, 4vw, 5rem);
+  align-items: center;
+  perspective: 1400px;
+  perspective-origin: 50% 65%;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+#b1 .trap-zone {
+  position: relative;
+  transform-style: preserve-3d;
+  opacity: 0;
+  /* Each zone tilts in opposite directions for asymmetric 3D */
+}
+#b1 .trap-zone-l {
+  transform: translateZ(-260px) rotateY(22deg) rotateX(2deg);
+  transition: transform 1.3s var(--ease-out-quart) 0.05s, opacity 1.0s var(--ease-out-quart) 0.05s;
+}
+#b1 .trap-zone-r {
+  transform: translateZ(-220px) rotateY(-26deg) rotateX(2deg);
+  transition: transform 1.3s var(--ease-out-quart) 0.18s, opacity 1.0s var(--ease-out-quart) 0.18s;
+  text-align: right;
+}
+#b1 .scene-b.visible .trap-zone-l {
+  transform: translateZ(0) rotateY(-3.5deg) rotateX(0deg);
+  opacity: 1;
+}
+#b1 .scene-b.visible .trap-zone-r {
+  transform: translateZ(-40px) rotateY(4.5deg) rotateX(0deg);
+  opacity: 0.92;
+}
+
+#b1 .zone-eyebrow {
   font-family: var(--ff-mono);
-  font-size: 0.81rem;
+  font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: var(--red2);
-  text-align: center;
-}
-
-#b1 .trap-cols {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 2.4rem;
-  align-items: stretch;
-  width: min(1100px, 92vw);
-}
-
-#b1 .trap-col {
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: 4px;
-  padding: 2.2rem 2rem;
-  position: relative;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s var(--ease-out-quart), transform 0.7s var(--ease-out-quart);
-}
-#b1 .scene-b.visible .trap-col-l { transition-delay: 0.05s; }
-#b1 .scene-b.visible .trap-col-r { transition-delay: 0.15s; }
-#b1 .scene-b.visible .trap-col   { opacity: 1; transform: translateY(0); }
-#b1 .trap-col::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: var(--red);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.6s var(--ease-out-quart) 0.35s;
-}
-#b1 .scene-b.visible .trap-col::before { transform: scaleX(1); }
-#b1 .trap-col h3 {
-  font-family: var(--ff-display);
-  font-weight: 800;
-  font-size: 1.8rem;
-  letter-spacing: -0.015em;
-  margin-bottom: 1rem;
-}
-#b1 .trap-col .label {
-  font-family: var(--ff-mono);
-  font-size: 0.74rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
   color: var(--dim);
-  margin-bottom: 0.4rem;
-}
-#b1 .trap-col .timing {
-  margin-top: 1.2rem;
-  font-family: var(--ff-display);
-  font-weight: 800;
-  font-size: 1.4rem;
-  color: var(--red);
+  margin-bottom: 0.6rem;
 }
 
-/* Gantt bar fills painfully */
-#b1 .gantt {
-  position: relative;
-  height: 10px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 999px;
-  overflow: hidden;
+/* The big stat — time IS the visual */
+#b1 .zone-stat {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  line-height: 0.86;
+  letter-spacing: -0.05em;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.4rem;
 }
-#b1 .gantt-fill {
+#b1 .zone-stat .num {
+  font-size: clamp(7rem, 22vw, 17rem);
+  color: var(--red);
+  text-shadow: 0 0 80px rgba(235, 16, 0, 0.45);
+}
+#b1 .zone-stat .unit {
+  font-size: clamp(1.2rem, 1.8vw, 1.8rem);
+  font-family: var(--ff-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text);
+  padding-bottom: 0.7em;
+}
+
+#b1 .zone-stat-small {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  letter-spacing: -0.025em;
+  color: var(--text);
+  line-height: 1;
+}
+
+#b1 .zone-meta {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: clamp(1rem, 1.3vw, 1.3rem);
+  color: var(--muted);
+  margin-top: 0.8rem;
+  line-height: 1.2;
+}
+
+/* Painful gantt bar — 70% of zone width, fills slowly */
+#b1 .zone-bar {
+  position: relative;
+  height: 14px;
+  margin-top: 1.6rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(235, 16, 0, 0.18);
+  width: 92%;
+}
+#b1 .zone-bar-fill {
   position: absolute; left: 0; top: 0; bottom: 0;
   width: 0%;
   background: linear-gradient(90deg, var(--red2), var(--red));
-  transition: width 1400ms cubic-bezier(0.55, 0, 0.18, 1);
+  box-shadow: 0 0 24px rgba(235, 16, 0, 0.45);
+  transition: width 1700ms cubic-bezier(0.55, 0, 0.18, 1) 0.55s;
 }
-#b1 .scene-b.visible .gantt-fill { width: 100%; transition-delay: 0.5s; }
-
-/* Card stack */
-#b1 .card-stack {
-  position: relative;
-  height: 60px;
+#b1 .scene-b.visible .zone-bar-fill { width: 100%; }
+#b1 .zone-bar-ticks {
+  position: absolute; inset: 0;
+  display: flex; justify-content: space-between;
+  pointer-events: none;
+  padding: 0 1px;
 }
-#b1 .card-stack > i {
-  position: absolute;
-  left: 0;
-  width: 50%;
-  height: 14px;
-  background: var(--surface2);
-  border: 1px solid var(--border2);
-  border-radius: 3px;
-  opacity: 0;
-  transform: translateX(-12px);
-  transition: opacity 0.4s var(--ease-out-quart), transform 0.4s var(--ease-out-quart);
-}
-#b1 .card-stack > i:nth-child(1) { top: 0px;  }
-#b1 .card-stack > i:nth-child(2) { top: 16px; }
-#b1 .card-stack > i:nth-child(3) { top: 32px; }
-#b1 .card-stack > i:nth-child(4) { top: 48px; }
-#b1 .scene-b.visible .card-stack > i:nth-child(1) { opacity: 1; transform: translateX(0); transition-delay: 0.50s; }
-#b1 .scene-b.visible .card-stack > i:nth-child(2) { opacity: 1; transform: translateX(0); transition-delay: 0.62s; }
-#b1 .scene-b.visible .card-stack > i:nth-child(3) { opacity: 1; transform: translateX(0); transition-delay: 0.74s; }
-#b1 .scene-b.visible .card-stack > i:nth-child(4) { opacity: 1; transform: translateX(0); transition-delay: 0.86s; }
-
-/* Vertical separator with VS */
-#b1 .vs {
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--ff-mono);
-  font-size: 0.85rem;
-  letter-spacing: 0.18em;
-  color: var(--dim);
-}
-#b1 .vs::before, #b1 .vs::after {
-  content: '';
-  width: 1px; height: 28px;
-  background: var(--border2);
+#b1 .zone-bar-ticks > i {
   display: block;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.10);
 }
-#b1 .vs span { padding: 0.4rem; }
+
+/* Single dot — "Day one" — solitary, tiny */
+#b1 .zone-dot {
+  width: 18px; height: 18px;
+  background: var(--red);
+  margin-top: 1.6rem;
+  margin-left: auto;
+  box-shadow: 0 0 24px rgba(235, 16, 0, 0.45);
+  transform: scale(0);
+  transition: transform 0.5s var(--ease-out-quart) 1.2s;
+}
+#b1 .scene-b.visible .zone-dot { transform: scale(1); }
+
+/* Subtle constant sway on each zone after settle, for living-frame feel */
+#b1 .scene-b.visible .trap-zone-l {
+  animation: zoneSway-l 9s ease-in-out infinite 1.5s;
+}
+#b1 .scene-b.visible .trap-zone-r {
+  animation: zoneSway-r 11s ease-in-out infinite 1.5s;
+}
+@keyframes zoneSway-l {
+  0%, 100% { transform: translateZ(0) rotateY(-3.5deg); }
+  50%      { transform: translateZ(8px) rotateY(-5deg); }
+}
+@keyframes zoneSway-r {
+  0%, 100% { transform: translateZ(-40px) rotateY(4.5deg); }
+  50%      { transform: translateZ(-30px) rotateY(6deg); }
+}
 
 /* Stinger — full-frame "Pick one. That's the deal." */
 #b1 .stinger {
@@ -246,9 +285,10 @@
 #b1 .scene-b.visible .footer-line.in { opacity: 1; transform: translateY(0); }
 
 @media (prefers-reduced-motion: reduce) {
-  #b1 .scene { transition: none; }
-  #b1 .scene-b .trap-col { opacity: 1; transform: none; transition: none; }
-  #b1 .scene-b .gantt-fill { width: 100%; transition: none; }
-  #b1 .scene-b .card-stack > i { opacity: 1; transform: none; transition: none; }
-  #b1 .aperture { transition: none; }
+  #b1 .scene             { transition: none; }
+  #b1 .trap-zone-l,
+  #b1 .trap-zone-r       { transform: none !important; opacity: 1 !important; animation: none !important; transition: none !important; }
+  #b1 .zone-bar-fill     { width: 100%; transition: none; }
+  #b1 .zone-dot          { transform: scale(1); transition: none; }
+  #b1 .reveal-cover      { transition: none; }
 }

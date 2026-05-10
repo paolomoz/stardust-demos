@@ -46,26 +46,36 @@
       <p class="cold-open-sub">They share <span class="red">twelve</span> templates.</p>
     </div>
 
-    <!-- SCENE B · 0:05–0:14 — the trap -->
+    <!-- SCENE B · 0:05–0:14 — the trap (asymmetric, 3D perspective, shader-backed) -->
     <div class="scene scene-b">
-      <div class="trap-eyebrow">Pick one. That's the deal.</div>
+      <canvas class="trap-shader" aria-hidden="true"></canvas>
 
-      <div class="trap-cols">
-        <div class="trap-col trap-col-l">
-          <div class="label">Every page unique</div>
-          <h3>Bespoke design,<br>page by page.</h3>
-          <div class="gantt"><div class="gantt-fill"></div></div>
-          <div class="timing">18 months</div>
+      <div class="trap-stage">
+
+        <!-- Left zone: dominant. Time IS the visual. 18 / months / painful gantt -->
+        <div class="trap-zone trap-zone-l">
+          <div class="zone-eyebrow">Every page unique</div>
+          <div class="zone-stat">
+            <span class="num">18</span>
+            <span class="unit">months</span>
+          </div>
+          <div class="zone-meta">Bespoke design,<br>page by page.</div>
+          <div class="zone-bar" aria-hidden="true">
+            <div class="zone-bar-fill"></div>
+            <div class="zone-bar-ticks">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+          </div>
         </div>
 
-        <div class="vs"><span>VS</span></div>
-
-        <div class="trap-col trap-col-r">
-          <div class="label">Every page consistent</div>
-          <h3>One template,<br>repeated forever.</h3>
-          <div class="card-stack"><i></i><i></i><i></i><i></i></div>
-          <div class="timing">Day one</div>
+        <!-- Right zone: subordinate. A single template, instant -->
+        <div class="trap-zone trap-zone-r">
+          <div class="zone-eyebrow">Every page consistent</div>
+          <div class="zone-stat-small">Day one.</div>
+          <div class="zone-meta">One template,<br>repeated forever.</div>
+          <div class="zone-dot" aria-hidden="true"></div>
         </div>
+
       </div>
 
       <div class="stinger">Pick one. That's <span class="red">the deal.</span></div>
@@ -201,6 +211,7 @@
 <!-- Helpers (no GSAP Club dependency) -->
 <script src="./scripts/split-text.js"></script>
 <script src="./scripts/scramble.js"></script>
+<script src="./scripts/trap-shader.js"></script>
 
 <!-- Per-beat timelines -->
 <script src="./scripts/beats/beat1.js"></script>
