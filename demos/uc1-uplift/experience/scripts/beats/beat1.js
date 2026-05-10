@@ -11,12 +11,15 @@
 
   const SCENE_A_END_MS = 5000;
   const TRAP_START_MS = 5000;        // Scene B begins
-  const STINGER_START_MS = 9500;     // "Pick one. That's the deal." scrambles in
-  const FOOTER_START_MS = 11500;     // motto fades in
+  const STINGER_SWAP_MS = 11500;     // swap "Pick one." → "Enterprise marketing. Since forever."
+
+  const STINGER_INITIAL_HTML = "Pick one. That's <span class=\"red\">the deal.</span>";
+  const STINGER_SWAP_TEXT = "Enterprise marketing. Since forever.";
+  const STINGER_SWAP_HTML = "Enterprise marketing. <span class=\"red\">Since forever.</span>";
 
   let timer = null;
   let timeoutHandles = [];
-  let cover, hole, sceneA, sceneB, stinger, footer, h1, sub;
+  let cover, hole, sceneA, sceneB, stinger, h1, sub;
 
   // Polygon points: tiny center ↔ large irregular pentagon.
   // Two distinct "open" shapes give visual variety between scene A and scene B.
@@ -38,11 +41,24 @@
     sceneB.classList.remove('visible');
     if (cover) cover.classList.remove('fading');
     if (hole) hole.setAttribute('points', HOLE_START);
-    footer.classList.remove('in');
     stinger.classList.remove('scrambling');
+    stinger.innerHTML = STINGER_INITIAL_HTML;
     // H1 starts visible (it's revealed by the cover's hole, not its own mask)
     section.querySelectorAll('.cold-open-sub .st-char')
       .forEach(c => { c.style.opacity = '0'; c.style.transform = 'translateY(20px)'; });
+  }
+
+  function scrambleStinger(text, html) {
+    stinger.classList.add('scrambling');
+    stinger.textContent = '';
+    return window.Scramble.to(stinger, text, {
+      duration: 1500,
+      scrambleSpeed: 28,
+      charDelay: 22,
+    }).then(() => {
+      stinger.innerHTML = html;
+      stinger.classList.remove('scrambling');
+    });
   }
 
   function enter(section) {
@@ -107,26 +123,8 @@
     // (Scene A → Scene B handoff is now embedded in the cover choreography
     //  above: shrink at 3.8s, swap at 4.6s, regrow at 4.8s, fade at 6.0s.)
 
-    // ── Stinger scrambles in at 9.5s ──
-    at(STINGER_START_MS, () => {
-      stinger.classList.add('scrambling');
-      const target = stinger.dataset.text || stinger.textContent;
-      stinger.dataset.text = target;
-      // Tease — show empty for the scramble
-      stinger.textContent = '';
-      window.Scramble.to(stinger, target, {
-        duration: 1500,
-        scrambleSpeed: 28,
-        charDelay: 22,
-      }).then(() => {
-        // restore the .red span by re-rendering with HTML when it lands
-        stinger.innerHTML = stinger.dataset.html || target;
-        stinger.classList.remove('scrambling');
-      });
-    });
-
-    // ── Footer line at 11.5s ──
-    at(FOOTER_START_MS, () => footer.classList.add('in'));
+    // ── Stinger swap — scramble from "Pick one." to "Enterprise marketing." at 11.5s ──
+    at(STINGER_SWAP_MS, () => scrambleStinger(STINGER_SWAP_TEXT, STINGER_SWAP_HTML));
   }
 
   function exit() {
@@ -142,15 +140,8 @@
     sceneA = section.querySelector('.scene-a');
     sceneB = section.querySelector('.scene-b');
     stinger = section.querySelector('.stinger');
-    footer = section.querySelector('.footer-line');
     h1 = section.querySelector('.cold-open-h1');
     sub = section.querySelector('.cold-open-sub');
-
-    // Stash the original HTML of the stinger so we can restore .red after scramble
-    if (stinger) {
-      stinger.dataset.html = stinger.innerHTML;
-      stinger.dataset.text = stinger.textContent;
-    }
 
     // Watch for `.active` class toggle — drive enter/exit accordingly
     const obs = new MutationObserver(muts => {

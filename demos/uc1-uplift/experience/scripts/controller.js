@@ -20,11 +20,11 @@
   // Per-beat durations in ms — must match script.md
   // Beat 1 cold open + trap        14s
   // Beat 2 turn + pipeline montage 32s
-  // Beat 3 reveal                  14s
+  // Beat 3 reveal (extended)       17s — Phase 2 + hold at landing
   // Beat 4 lands in AEM             8s
   // Beat 5 ongoing capability      14s
   // Beat 6 math + close             8s
-  const BEAT_DURATIONS_MS = [14000, 32000, 14000, 8000, 14000, 8000];
+  const BEAT_DURATIONS_MS = [14000, 32000, 17000, 8000, 14000, 8000];
   const TRANSITION_MS = 900; // matches CSS #page-wrap transition
 
   const wrap = document.getElementById('page-wrap');
