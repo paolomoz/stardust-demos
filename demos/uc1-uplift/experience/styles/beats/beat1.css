@@ -62,14 +62,13 @@
 }
 #b1 .cold-open-sub .red { color: var(--red); font-weight: 800; }
 
-/* The reveal cover — full-bleed SVG of tiled page-wireframes
-   with a polygon hole that grows to reveal the H1 underneath.
-   Modeled on RPA's mask grammar: text emerges through an opening in
-   an overlapping image. */
+/* The reveal cover — full-bleed SVG of tiled page-wireframes.
+   Sits above both scene A and scene B; the polygon hole grows / shrinks /
+   regrows to reveal A, wipe to B, reveal B. */
 #b1 .reveal-cover {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
-  z-index: 2; /* above H1 + subhead */
+  z-index: 5; /* above all scene content */
   pointer-events: none;
   opacity: 1;
   transition: opacity 1.0s var(--ease-out-quart);
@@ -83,18 +82,8 @@
 }
 #b1 .reveal-cover.fading { opacity: 0; }
 
-/* The polygon hole — JS animates the points attribute */
 #b1 .reveal-hole {
-  /* GSAP will tween the points attribute. Initial state set in markup. */
   will-change: points;
-}
-
-/* Make sure H1 + subhead sit beneath the cover */
-#b1 .scene-a .cold-open-eyebrow,
-#b1 .scene-a .cold-open-h1,
-#b1 .scene-a .cold-open-sub {
-  position: relative;
-  z-index: 1;
 }
 
 /* ── SCENE B · Trap ── */

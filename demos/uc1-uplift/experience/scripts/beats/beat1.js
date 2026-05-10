@@ -18,9 +18,12 @@
   let timeoutHandles = [];
   let cover, hole, sceneA, sceneB, stinger, footer, h1, sub;
 
-  // Polygon points: tiny center → large irregular pentagon
-  const HOLE_START = '720,450 720,450 720,450 720,450 720,450';
-  const HOLE_FULL  = '110,160 1330,200 1390,720 700,860 80,720';
+  // Polygon points: tiny center ↔ large irregular pentagon.
+  // Two distinct "open" shapes give visual variety between scene A and scene B.
+  const HOLE_START   = '720,450 720,450 720,450 720,450 720,450';
+  const HOLE_FULL_A  = '110,160 1330,200 1390,720 700,860 80,720';   // scene A reveal
+  const HOLE_FULL_B  = '60,260  1380,120 1340,780 760,840 100,640';  // scene B reveal — different angle
+  const HOLE_FADE    = '720,450 720,450 720,450 720,450 720,450';    // collapse back
 
   function clearTimers() {
     timeoutHandles.forEach(h => clearTimeout(h));
@@ -53,22 +56,17 @@
     // ── Scene A · Cold open ──
     sceneA.classList.add('visible');
 
-    // After a brief beat, expand the polygon hole — H1 emerges through it.
-    // GSAP attr tween interpolates each number in the points string.
+    // 0.28s — first opening: hole grows on Scene A → H1 emerges
     at(280, () => {
       gsap.to(hole, {
-        attr: { points: HOLE_FULL },
+        attr: { points: HOLE_FULL_A },
         duration: 1.9,
         ease: 'power3.out',
       });
     });
 
-    // After the hole is fully open + a brief hold, fade the cover out
-    // so the H1 reads cleanly without the wireframe pattern around it.
-    at(2700, () => cover.classList.add('fading'));
-
-    // Subhead lands once the cover is mostly gone
-    at(3300, () => {
+    // 2.4s — subhead cascades in while H1 is still framed by the cover
+    at(2400, () => {
       const subChars = window.SplitText.chars(sub);
       gsap.to(subChars, {
         opacity: 1,
@@ -79,11 +77,35 @@
       });
     });
 
-    // ── Scene A → Scene B handoff at 5s ──
-    at(SCENE_A_END_MS, () => {
+    // 3.8s — hole shrinks back: Scene A wipes out, page-pattern re-covers
+    at(3800, () => {
+      gsap.to(hole, {
+        attr: { points: HOLE_FADE },
+        duration: 0.8,
+        ease: 'power3.in',
+      });
+    });
+
+    // 4.6s — under the fully-closed cover, swap scenes A → B (invisible cut)
+    at(4600, () => {
       sceneA.classList.remove('visible');
       sceneB.classList.add('visible');
     });
+
+    // 4.8s — second opening: hole regrows with a different polygon shape on Scene B
+    at(4800, () => {
+      gsap.to(hole, {
+        attr: { points: HOLE_FULL_B },
+        duration: 1.4,
+        ease: 'power3.out',
+      });
+    });
+
+    // 6.0s — fade the cover so Scene B reads cleanly for the rest of the beat
+    at(6000, () => cover.classList.add('fading'));
+
+    // (Scene A → Scene B handoff is now embedded in the cover choreography
+    //  above: shrink at 3.8s, swap at 4.6s, regrow at 4.8s, fade at 6.0s.)
 
     // ── Stinger scrambles in at 9.5s ──
     at(STINGER_START_MS, () => {

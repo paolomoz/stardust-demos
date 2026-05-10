@@ -43,38 +43,6 @@
       <div class="cold-open-eyebrow">Cold Open</div>
       <h1 class="cold-open-h1">business.adobe.com has hundreds of pages.</h1>
       <p class="cold-open-sub">They share <span class="red">twelve</span> templates.</p>
-
-      <!-- Image cover with a polygon hole that grows.
-           The "image" is a tiled page-wireframe pattern (suggesting "hundreds of pages");
-           the hole opens through it to reveal the H1 underneath. -->
-      <svg class="reveal-cover" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <defs>
-          <!-- One tile = a miniature page wireframe -->
-          <pattern id="page-tile" x="0" y="0" width="240" height="180" patternUnits="userSpaceOnUse">
-            <rect width="240" height="180" fill="#0e0e0e"/>
-            <rect x="8" y="8" width="6" height="6" fill="#eb1000"/>
-            <rect x="20" y="10" width="60" height="2" fill="rgba(255,255,255,0.18)"/>
-            <rect x="200" y="10" width="32" height="2" fill="rgba(255,255,255,0.10)"/>
-            <rect x="8" y="22" width="224" height="64" fill="#1a1a1a"/>
-            <rect x="14" y="34" width="80" height="3" fill="rgba(235,16,0,0.45)"/>
-            <rect x="14" y="44" width="200" height="3" fill="rgba(255,255,255,0.20)"/>
-            <rect x="14" y="52" width="160" height="3" fill="rgba(255,255,255,0.12)"/>
-            <rect x="8" y="96" width="108" height="56" fill="#161616"/>
-            <rect x="124" y="96" width="108" height="56" fill="#161616"/>
-            <rect x="8" y="160" width="100" height="2" fill="rgba(255,255,255,0.08)"/>
-            <rect x="120" y="160" width="80" height="2" fill="rgba(255,255,255,0.08)"/>
-            <line x1="0" y1="179" x2="240" y2="179" stroke="rgba(235,16,0,0.18)" stroke-width="1"/>
-          </pattern>
-          <mask id="reveal-mask">
-            <rect width="1440" height="900" fill="white"/>
-            <!-- Initial state: 5 points collapsed at center. JS animates points to expand the hole. -->
-            <polygon class="reveal-hole"
-                     points="720,450 720,450 720,450 720,450 720,450"
-                     fill="black"/>
-          </mask>
-        </defs>
-        <rect class="reveal-cover-fill" width="1440" height="900" fill="url(#page-tile)" mask="url(#reveal-mask)"/>
-      </svg>
     </div>
 
     <!-- SCENE B · 0:05–0:14 — the trap -->
@@ -102,6 +70,35 @@
       <div class="stinger">Pick one. That's <span class="red">the deal.</span></div>
       <div class="footer-line">— enterprise marketing, since forever.</div>
     </div>
+
+    <!-- Shared reveal cover: sits above both scenes, grows + shrinks + regrows
+         the polygon hole to reveal A, transition to B, then reveal B. -->
+    <svg class="reveal-cover" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <pattern id="page-tile" x="0" y="0" width="240" height="180" patternUnits="userSpaceOnUse">
+          <rect width="240" height="180" fill="#0e0e0e"/>
+          <rect x="8" y="8" width="6" height="6" fill="#eb1000"/>
+          <rect x="20" y="10" width="60" height="2" fill="rgba(255,255,255,0.18)"/>
+          <rect x="200" y="10" width="32" height="2" fill="rgba(255,255,255,0.10)"/>
+          <rect x="8" y="22" width="224" height="64" fill="#1a1a1a"/>
+          <rect x="14" y="34" width="80" height="3" fill="rgba(235,16,0,0.45)"/>
+          <rect x="14" y="44" width="200" height="3" fill="rgba(255,255,255,0.20)"/>
+          <rect x="14" y="52" width="160" height="3" fill="rgba(255,255,255,0.12)"/>
+          <rect x="8" y="96" width="108" height="56" fill="#161616"/>
+          <rect x="124" y="96" width="108" height="56" fill="#161616"/>
+          <rect x="8" y="160" width="100" height="2" fill="rgba(255,255,255,0.08)"/>
+          <rect x="120" y="160" width="80" height="2" fill="rgba(255,255,255,0.08)"/>
+          <line x1="0" y1="179" x2="240" y2="179" stroke="rgba(235,16,0,0.18)" stroke-width="1"/>
+        </pattern>
+        <mask id="reveal-mask">
+          <rect width="1440" height="900" fill="white"/>
+          <polygon class="reveal-hole"
+                   points="720,450 720,450 720,450 720,450 720,450"
+                   fill="black"/>
+        </mask>
+      </defs>
+      <rect class="reveal-cover-fill" width="1440" height="900" fill="url(#page-tile)" mask="url(#reveal-mask)"/>
+    </svg>
 
   </section>
 
