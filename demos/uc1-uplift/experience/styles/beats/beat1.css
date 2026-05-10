@@ -45,23 +45,7 @@
 }
 #b1 .cold-open-h1 .red { color: var(--red); }
 
-/* Mask reveal — each word becomes a clipping mask;
-   chars start below the line and rise into view (RPA-style).
-   The padding/margin trick extends the clip below baseline to accommodate
-   descenders ("p", "g", "y") without altering layout. */
-#b1 .cold-open-h1 .st-word {
-  overflow: hidden;
-  padding-bottom: 0.18em;
-  margin-bottom: -0.18em;
-  vertical-align: top;
-}
-#b1 .cold-open-h1 .st-char {
-  transform: translateY(110%);
-  will-change: transform;
-}
-
-/* Subhead keeps the lighter opacity+y cascade for contrast against
-   the architectural H1 mask reveal. */
+/* Subhead keeps the lighter opacity+y cascade. */
 #b1 .cold-open-sub .st-char {
   opacity: 0;
   transform: translateY(20px);
@@ -78,92 +62,40 @@
 }
 #b1 .cold-open-sub .red { color: var(--red); font-weight: 800; }
 
-/* The aperture — irregular polygon mask that reveals a "many pages" montage.
-   Positioned bottom-left of the hero text so it suggests "pages stacking up"
-   rather than competing with the headline.
-*/
-#b1 .aperture {
-  position: absolute;
-  width: min(34vw, 480px);
-  aspect-ratio: 5 / 3;
-  bottom: 7vh;
-  left: 4vw;
-  -webkit-clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
-          clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
-  background: var(--surface);
-  overflow: hidden;
-  will-change: clip-path;
-  transition: clip-path 1.4s var(--ease-out-quart);
-  border: 1px solid var(--border);
-}
-#b1 .aperture.open {
-  -webkit-clip-path: polygon(6% 0%, 94% 5%, 100% 72%, 78% 100%, 0% 92%);
-          clip-path: polygon(6% 0%, 94% 5%, 100% 72%, 78% 100%, 0% 92%);
-}
-#b1 .aperture.closing {
-  -webkit-clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
-          clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
-}
-#b1 .aperture-content {
+/* The reveal cover — full-bleed SVG of tiled page-wireframes
+   with a polygon hole that grows to reveal the H1 underneath.
+   Modeled on RPA's mask grammar: text emerges through an opening in
+   an overlapping image. */
+#b1 .reveal-cover {
   position: absolute; inset: 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 1fr;
-  gap: 6px;
-  padding: 10px;
-  background: var(--bg);
+  width: 100%; height: 100%;
+  z-index: 2; /* above H1 + subhead */
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 1.0s var(--ease-out-quart);
+  will-change: opacity;
+  /* subtle drift — the page mass feels alive */
+  animation: coverDrift 18s ease-in-out infinite;
+}
+@keyframes coverDrift {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+#b1 .reveal-cover.fading { opacity: 0; }
+
+/* The polygon hole — JS animates the points attribute */
+#b1 .reveal-hole {
+  /* GSAP will tween the points attribute. Initial state set in markup. */
+  will-change: points;
 }
 
-/* Each tile is a tiny faked "page": a header bar, a hero block, body rules.
-   Shimmer + slow scroll animations suggest a montage of many pages cycling. */
-#b1 .aperture-tile {
+/* Make sure H1 + subhead sit beneath the cover */
+#b1 .scene-a .cold-open-eyebrow,
+#b1 .scene-a .cold-open-h1,
+#b1 .scene-a .cold-open-sub {
   position: relative;
-  background: linear-gradient(180deg, var(--surface) 0%, var(--surface2) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  overflow: hidden;
-  display: flex; flex-direction: column;
-  padding: 4px;
-  gap: 3px;
+  z-index: 1;
 }
-/* mini header */
-#b1 .aperture-tile::before {
-  content: '';
-  display: block;
-  height: 4px;
-  background: linear-gradient(90deg, var(--red) 0%, var(--red) 8%, rgba(255,255,255,0.12) 8%, rgba(255,255,255,0.12) 100%);
-  border-radius: 1px;
-}
-/* mini hero block */
-#b1 .aperture-tile::after {
-  content: '';
-  display: block;
-  flex: 1.4;
-  background: linear-gradient(135deg, rgba(235,16,0,0.10), rgba(255,255,255,0.04));
-  border-radius: 1px;
-}
-#b1 .aperture-tile > i {
-  display: block;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.10);
-  border-radius: 1px;
-}
-#b1 .aperture-tile > i:nth-child(2) { width: 70%; }
-#b1 .aperture-tile > i:nth-child(3) { width: 90%; }
-
-/* Sweeping red shimmer suggests "pages flying past" */
-#b1 .aperture-tile {
-  animation: tileSweep 2.2s linear infinite;
-}
-#b1 .aperture-tile:nth-child(2) { animation-delay: 0.3s; }
-#b1 .aperture-tile:nth-child(3) { animation-delay: 0.6s; }
-#b1 .aperture-tile:nth-child(4) { animation-delay: 0.9s; }
-#b1 .aperture-tile:nth-child(5) { animation-delay: 1.2s; }
-#b1 .aperture-tile:nth-child(6) { animation-delay: 1.5s; }
-@keyframes tileSweep {
-  0%, 100% { box-shadow: inset 0 0 0 1px rgba(255,255,255,0); }
-  50%      { box-shadow: inset 0 0 0 1px rgba(235,16,0,0.30), inset 0 -12px 0 -6px rgba(235,16,0,0.10); }
-}
-
 
 /* ── SCENE B · Trap ── */
 

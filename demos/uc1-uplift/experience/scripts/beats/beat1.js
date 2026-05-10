@@ -10,15 +10,17 @@
   const TOTAL_MS = 14000;
 
   const SCENE_A_END_MS = 5000;
-  const APERTURE_OPEN_MS = 2400;     // aperture starts opening at +2.4s into Scene A
-  const APERTURE_CLOSE_MS = 4500;    // and starts closing right before Scene B
   const TRAP_START_MS = 5000;        // Scene B begins
   const STINGER_START_MS = 9500;     // "Pick one. That's the deal." scrambles in
   const FOOTER_START_MS = 11500;     // motto fades in
 
   let timer = null;
   let timeoutHandles = [];
-  let aperture, sceneA, sceneB, stinger, footer, h1, sub;
+  let cover, hole, sceneA, sceneB, stinger, footer, h1, sub;
+
+  // Polygon points: tiny center → large irregular pentagon
+  const HOLE_START = '720,450 720,450 720,450 720,450 720,450';
+  const HOLE_FULL  = '110,160 1330,200 1390,720 700,860 80,720';
 
   function clearTimers() {
     timeoutHandles.forEach(h => clearTimeout(h));
@@ -31,13 +33,11 @@
   function reset(section) {
     sceneA.classList.remove('visible');
     sceneB.classList.remove('visible');
-    aperture.classList.remove('open', 'closing');
+    if (cover) cover.classList.remove('fading');
+    if (hole) hole.setAttribute('points', HOLE_START);
     footer.classList.remove('in');
     stinger.classList.remove('scrambling');
-    // Reset H1 chars to mask-reveal initial state (translateY(110%))
-    section.querySelectorAll('.cold-open-h1 .st-char')
-      .forEach(c => { c.style.opacity = ''; c.style.transform = 'translateY(110%)'; });
-    // Reset subhead chars to fade-up initial state
+    // H1 starts visible (it's revealed by the cover's hole, not its own mask)
     section.querySelectorAll('.cold-open-sub .st-char')
       .forEach(c => { c.style.opacity = '0'; c.style.transform = 'translateY(20px)'; });
   }
@@ -50,37 +50,33 @@
     clearTimers();
     reset(section);
 
-    // Split text into chars (idempotent — split-text guards re-runs)
-    const h1Chars = window.SplitText.chars(h1);
-    const subChars = window.SplitText.chars(sub);
-
     // ── Scene A · Cold open ──
     sceneA.classList.add('visible');
 
-    // Headline mask-reveal: each char rises from translateY(110%) to 0
-    // through the word-level overflow:hidden mask. 22ms per char stagger.
-    gsap.to(h1Chars, {
-      y: 0,
-      duration: 0.95,
-      ease: 'power3.out',
-      stagger: { each: 0.022, from: 'start' },
+    // After a brief beat, expand the polygon hole — H1 emerges through it.
+    // GSAP attr tween interpolates each number in the points string.
+    at(280, () => {
+      gsap.to(hole, {
+        attr: { points: HOLE_FULL },
+        duration: 1.9,
+        ease: 'power3.out',
+      });
     });
 
-    // Subhead fade-up cascade — gentler, body-scale type
-    gsap.to(subChars, {
-      opacity: 1,
-      y: 0,
-      duration: 0.5,
-      ease: 'power3.out',
-      delay: 1.4,
-      stagger: { each: 0.018, from: 'start' },
-    });
+    // After the hole is fully open + a brief hold, fade the cover out
+    // so the H1 reads cleanly without the wireframe pattern around it.
+    at(2700, () => cover.classList.add('fading'));
 
-    // Aperture opens at 2.4s, closes at 4.5s
-    at(APERTURE_OPEN_MS, () => aperture.classList.add('open'));
-    at(APERTURE_CLOSE_MS, () => {
-      aperture.classList.remove('open');
-      aperture.classList.add('closing');
+    // Subhead lands once the cover is mostly gone
+    at(3300, () => {
+      const subChars = window.SplitText.chars(sub);
+      gsap.to(subChars, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: 'power3.out',
+        stagger: { each: 0.018, from: 'start' },
+      });
     });
 
     // ── Scene A → Scene B handoff at 5s ──
@@ -119,7 +115,8 @@
     const section = document.getElementById(SECTION_ID);
     if (!section) return;
 
-    aperture = section.querySelector('.aperture');
+    cover = section.querySelector('.reveal-cover');
+    hole = section.querySelector('.reveal-hole');
     sceneA = section.querySelector('.scene-a');
     sceneB = section.querySelector('.scene-b');
     stinger = section.querySelector('.stinger');
