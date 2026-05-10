@@ -47,7 +47,8 @@
     stinger.classList.remove('scrambling');
     stinger.innerHTML = STINGER_HTML;
     footer.classList.remove('in');
-    if (intro) intro.classList.remove('visible', 'leaving');
+    // Intro stays .visible (it's the splash); just clear timeline-applied states
+    if (intro) intro.classList.remove('leaving', 'started');
     if (aiBlock) aiBlock.classList.remove('struck');
     // H1 starts visible (it's revealed by the cover's hole, not its own mask)
     section.querySelectorAll('.cold-open-sub .st-char')
@@ -76,8 +77,9 @@
     reset(section);
 
     // ── Scene 0 · Stardust intro overlay (0:00–0:10) ──
-    // Fade in next frame so the CSS transition triggers from opacity 0
-    requestAnimationFrame(() => intro && intro.classList.add('visible'));
+    // Intro is already .visible from page-load splash; mark .started so the
+    // press-space cue fades out now that the user has begun.
+    if (intro) intro.classList.add('started');
 
     // 4.0s — red marker strikes "AI" and writes "Unique" handwritten above
     at(AI_CORRECT_MS, () => {
@@ -162,6 +164,14 @@
     sub = section.querySelector('.cold-open-sub');
     intro = section.querySelector('.b1-intro-overlay');
     aiBlock = section.querySelector('.ai-correction');
+
+    // Show the intro overlay immediately on page load — it's the splash
+    // screen, visible before the user presses Space. The full beat-1
+    // timeline (AI correction, fade out, cold open) only fires once the
+    // controller activates the section via .active.
+    if (intro) {
+      requestAnimationFrame(() => intro.classList.add('visible'));
+    }
 
     // Watch for `.active` class toggle — drive enter/exit accordingly
     const obs = new MutationObserver(muts => {

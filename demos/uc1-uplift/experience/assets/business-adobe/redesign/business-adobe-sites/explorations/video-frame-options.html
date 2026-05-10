@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bolder hero video — frame treatment options</title>
+  <style>
+    :root {
+      --bg-deep: #050316;
+      --bg-mid: #0c0820;
+      --gradient-warm: linear-gradient(135deg, #FF7A40 0%, #E84C8B 100%);
+      --gradient-cool: linear-gradient(135deg, #4FB6E8 0%, #2EBF98 100%);
+      --gradient-tri:  linear-gradient(120deg, #FF7A40 0%, #E84C8B 50%, #4FB6E8 100%);
+      --t-display: 'Adobe Clean Display', 'Helvetica Neue', system-ui, sans-serif;
+      --t-sans:    'Adobe Clean', 'Helvetica Neue', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { min-height: 100vh; }
+    body {
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 0%, rgba(139,104,232,0.18), transparent 60%),
+        radial-gradient(ellipse 80% 60% at 80% 100%, rgba(232,76,139,0.15), transparent 60%),
+        var(--bg-deep);
+      color: #fff;
+      font-family: var(--t-sans);
+      padding: 64px 48px;
+    }
+
+    .header {
+      max-width: 1280px; margin: 0 auto 48px;
+    }
+    .header h1 {
+      font-family: var(--t-display); font-weight: 900;
+      font-size: clamp(28px, 3.2vw, 44px); line-height: 1.05;
+      letter-spacing: -0.025em;
+    }
+    .header p {
+      margin-top: 10px;
+      font-size: 15px; line-height: 1.5;
+      color: rgba(255,255,255,0.65);
+      max-width: 60ch;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 80px 64px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; gap: 64px; } }
+
+    .opt {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .opt__label {
+      font-family: var(--t-sans); font-size: 11px;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 700; color: rgba(255,255,255,0.55);
+    }
+    .opt__title {
+      font-family: var(--t-display); font-weight: 900;
+      font-size: 22px; line-height: 1.1; letter-spacing: -0.02em;
+      color: #fff;
+    }
+    .opt__hint {
+      font-size: 13px; line-height: 1.5;
+      color: rgba(255,255,255,0.55);
+      max-width: 44ch;
+    }
+
+    /* Stage = a fixed-aspect frame each option fills */
+    .stage {
+      position: relative;
+      aspect-ratio: 4/3;
+      width: 100%;
+    }
+    .stage video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      border-radius: 24px;
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       OPTION A — animated gradient border + pulsing glow halo
+       ──────────────────────────────────────────────────────────── */
+    .stage--a { padding: 0; }
+    .stage--a::before {
+      content: ""; position: absolute; inset: -3px;
+      border-radius: 27px;
+      background: conic-gradient(from 0deg,
+        #FF7A40, #E84C8B, #8B68E8, #4FB6E8, #2EBF98, #FF7A40);
+      animation: spinBorder 8s linear infinite;
+      z-index: 0;
+      filter: blur(0.4px);
+    }
+    .stage--a::after {
+      content: ""; position: absolute; inset: -20px;
+      border-radius: 36px;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(232,76,139,0.4), transparent 70%);
+      filter: blur(20px);
+      animation: pulseGlow 3.6s ease-in-out infinite;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .stage--a video {
+      position: relative; z-index: 1;
+      border-radius: 24px;
+    }
+    @keyframes spinBorder { to { transform: rotate(360deg); } }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.55; transform: scale(0.94); }
+      50%      { opacity: 1;    transform: scale(1.02); }
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       OPTION B — Memphis offset slab + corner crop marks
+       ──────────────────────────────────────────────────────────── */
+    .stage--b {}
+    .stage--b::before {
+      content: ""; position: absolute;
+      top: 24px; left: 24px; right: -24px; bottom: -24px;
+      background: var(--gradient-warm);
+      border-radius: 24px;
+      z-index: 0;
+    }
+    .stage--b::after {
+      content: ""; position: absolute;
+      top: 48px; left: -16px; width: 80px; height: 80px;
+      background: var(--gradient-cool);
+      border-radius: 16px;
+      z-index: 0;
+      transform: rotate(-12deg);
+    }
+    .stage--b video {
+      position: relative; z-index: 1;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.5);
+    }
+    /* corner crop marks */
+    .stage--b .crop {
+      position: absolute; width: 22px; height: 22px;
+      border: 2px solid #fff; z-index: 2;
+    }
+    .stage--b .crop--tl { top: -10px; left: -10px;  border-right: 0; border-bottom: 0; }
+    .stage--b .crop--tr { top: -10px; right: -10px; border-left: 0;  border-bottom: 0; }
+    .stage--b .crop--bl { bottom: -10px; left: -10px;  border-right: 0; border-top: 0; }
+    .stage--b .crop--br { bottom: -10px; right: -10px; border-left: 0;  border-top: 0; }
+
+    /* ════════════════════════════════════════════════════════════
+       OPTION C — browser chrome wrapper with LIVE badge
+       ──────────────────────────────────────────────────────────── */
+    .stage--c {
+      background: rgba(255,255,255,0.04);
+      border-radius: 16px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4),
+                  0 0 0 1px rgba(255,255,255,0.06) inset;
+      overflow: hidden;
+    }
+    .stage--c__chrome {
+      height: 36px; display: flex; align-items: center; gap: 8px;
+      padding: 0 14px;
+      background: rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .stage--c__dot { width: 11px; height: 11px; border-radius: 999px; }
+    .stage--c__dot--r { background: #FF5F57; }
+    .stage--c__dot--y { background: #FEBC2E; }
+    .stage--c__dot--g { background: #28C840; }
+    .stage--c__url {
+      flex: 1; margin: 0 24px;
+      height: 22px; padding: 0 10px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 6px;
+      display: flex; align-items: center;
+      font-family: ui-monospace, monospace;
+      font-size: 11px; color: rgba(255,255,255,0.55);
+      letter-spacing: 0.2px;
+    }
+    .stage--c__url::before {
+      content: "🔒"; font-size: 9px; margin-right: 6px; opacity: 0.7;
+    }
+    .stage--c video {
+      width: 100%; height: calc(100% - 36px);
+      border-radius: 0;
+    }
+    .stage--c__live {
+      position: absolute; top: 50px; right: 14px;
+      padding: 4px 10px;
+      background: #ff2e55; color: #fff;
+      border-radius: 999px;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.16em;
+      text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 6px;
+      z-index: 2;
+      animation: liveBlink 1.6s ease-in-out infinite;
+    }
+    .stage--c__live::before {
+      content: ""; width: 6px; height: 6px;
+      border-radius: 999px; background: #fff;
+    }
+    @keyframes liveBlink { 0%,100% { opacity: 1; } 50% { opacity: 0.55; } }
+    /* scanline shimmer over the video */
+    .stage--c__scan {
+      position: absolute; top: 36px; left: 0; right: 0; bottom: 0;
+      pointer-events: none; overflow: hidden; z-index: 1;
+    }
+    .stage--c__scan::before {
+      content: ""; position: absolute;
+      top: -50%; left: -50%; width: 200%; height: 30%;
+      background: linear-gradient(180deg, transparent, rgba(79,182,232,0.15), transparent);
+      transform: rotate(0);
+      animation: scanSweep 4.5s linear infinite;
+    }
+    @keyframes scanSweep {
+      0%   { top: -30%; }
+      100% { top: 110%; }
+    }
+
+    /* ════════════════════════════════════════════════════════════
+       OPTION D — layered card deck behind
+       ──────────────────────────────────────────────────────────── */
+    .stage--d {}
+    .stage--d__back {
+      position: absolute; inset: 0;
+      border-radius: 24px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+    }
+    .stage--d__back--1 {
+      transform: translate(-32px, 24px) rotate(-5deg);
+      background: linear-gradient(135deg, #2EBF98, #4FB6E8);
+      z-index: 0;
+    }
+    .stage--d__back--2 {
+      transform: translate(-16px, 12px) rotate(-2deg);
+      background: linear-gradient(135deg, #E84C8B, #8B68E8);
+      z-index: 1;
+    }
+    .stage--d video {
+      position: relative; z-index: 2;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    }
+    /* labels on the back cards (page filenames, like a CMS variant deck) */
+    .stage--d__tag {
+      position: absolute; bottom: 14px; left: 14px;
+      font-family: ui-monospace, monospace;
+      font-size: 10px; font-weight: 700;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 0.4px;
+      padding: 4px 8px;
+      background: rgba(0,0,0,0.25);
+      border-radius: 6px;
+    }
+    .stage--d__back--1 .stage--d__tag { left: -22px; }
+    .stage--d__back--2 .stage--d__tag { left: -10px; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Hero video — frame treatment options</h1>
+    <p>Four candidate treatments for the hero video container in <code>index-bolder.html</code>. All wrap the same live <code>hero-video.mp4</code>; only the surrounding chrome changes.</p>
+  </div>
+
+  <div class="grid">
+
+    <!-- A · animated gradient border + pulsing glow -->
+    <div class="opt">
+      <span class="opt__label">A · gradient border</span>
+      <div class="stage stage--a">
+        <video autoplay muted loop playsinline poster="../assets/scraped/features-poster.png">
+          <source src="../assets/scraped/hero-video.mp4" type="video/mp4">
+        </video>
+      </div>
+      <h3 class="opt__title">Animated gradient border + glow halo</h3>
+      <p class="opt__hint">Conic tri-color border rotating slowly around the frame, plus a soft pulsing halo behind it. Most kinetic — pairs energetically with the moving video.</p>
+    </div>
+
+    <!-- B · Memphis offset slab + crop marks -->
+    <div class="opt">
+      <span class="opt__label">B · Memphis offset</span>
+      <div class="stage stage--b">
+        <video autoplay muted loop playsinline poster="../assets/scraped/features-poster.png">
+          <source src="../assets/scraped/hero-video.mp4" type="video/mp4">
+        </video>
+        <span class="crop crop--tl"></span>
+        <span class="crop crop--tr"></span>
+        <span class="crop crop--bl"></span>
+        <span class="crop crop--br"></span>
+      </div>
+      <h3 class="opt__title">Offset color slab + crop marks</h3>
+      <p class="opt__hint">A hard-edged warm-gradient rectangle peeking from behind the video, a small cool-gradient block accent, plus white crop-mark brackets at the corners. Editorial / poster vibe.</p>
+    </div>
+
+    <!-- C · browser chrome -->
+    <div class="opt">
+      <span class="opt__label">C · CMS preview chrome</span>
+      <div class="stage stage--c">
+        <div class="stage--c__chrome">
+          <span class="stage--c__dot stage--c__dot--r"></span>
+          <span class="stage--c__dot stage--c__dot--y"></span>
+          <span class="stage--c__dot stage--c__dot--g"></span>
+          <span class="stage--c__url">experience-manager.adobe.com / sites / preview</span>
+        </div>
+        <video autoplay muted loop playsinline poster="../assets/scraped/features-poster.png">
+          <source src="../assets/scraped/hero-video.mp4" type="video/mp4">
+        </video>
+        <span class="stage--c__scan"></span>
+        <span class="stage--c__live">LIVE</span>
+      </div>
+      <h3 class="opt__title">Browser chrome wrapper</h3>
+      <p class="opt__hint">A fake macOS browser window — traffic-light dots, URL bar reading <code>experience-manager.adobe.com / sites / preview</code>, plus a blinking LIVE badge and a teal scanline sweep. Conceptually on-brand for a CMS.</p>
+    </div>
+
+    <!-- D · layered card deck -->
+    <div class="opt">
+      <span class="opt__label">D · layered deck</span>
+      <div class="stage stage--d">
+        <div class="stage--d__back stage--d__back--1">
+          <span class="stage--d__tag">variant-fr.html</span>
+        </div>
+        <div class="stage--d__back stage--d__back--2">
+          <span class="stage--d__tag">variant-de.html</span>
+        </div>
+        <video autoplay muted loop playsinline poster="../assets/scraped/features-poster.png">
+          <source src="../assets/scraped/hero-video.mp4" type="video/mp4">
+        </video>
+      </div>
+      <h3 class="opt__title">Layered card deck behind</h3>
+      <p class="opt__hint">Two angled gradient cards stacked behind the video, with locale tags (<code>variant-fr.html</code> / <code>variant-de.html</code>). Communicates "the CMS authors many variants of this page."</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

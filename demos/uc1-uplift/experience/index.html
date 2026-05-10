@@ -18,15 +18,6 @@
 </head>
 <body>
 
-<!-- Cover screen — gestures music + recording first frame -->
-<div id="cover" class="cover">
-  <div class="cover-eyebrow">Adobe × Stardust</div>
-  <div class="cover-title">A vision demo. <span class="red">90 seconds.</span></div>
-  <div class="cover-cta">
-    Press <kbd>Space</kbd> or click to begin
-  </div>
-</div>
-
 <!-- Top nav (Piñata-style) -->
 <nav class="nav">
   <div class="logo">
@@ -64,6 +55,7 @@
           </span>
           design. On brand.
         </p>
+        <div class="b1-intro-cue">Press <kbd>Space</kbd> to begin</div>
       </div>
     </div>
 
@@ -369,44 +361,85 @@
        away behind it, revealing the redesigned NEW page underneath.
        Both iframes scroll via translateY for the duration. Extended to
        17s so Phase 2 lands cleanly with a hold before transition. -->
-  <section class="beat" id="b3" data-duration="17000">
+  <section class="beat" id="b3" data-duration="30000">
     <div class="b3-stage">
 
-      <!-- NEW (bottom): pre-rendered video of the redesigned page scrolling.
-           The redesign's Lenis + GSAP scroll triggers fight any external
-           attempt to drive their scroll, so we recorded one clean
-           play-through and use a video element here. -->
-      <div class="b3-layer b3-new">
-        <video
-          class="b3-frame b3-frame-video"
-          src="./assets/business-adobe/redesign-scroll.mp4"
-          muted playsinline preload="auto"
-          tabindex="-1"></video>
+      <!-- ─── STAGE 1 (0-12s) · Home redesign ─────────────────────────
+           OLD homepage screenshot → diagonal wipe → NEW redesign video.
+           Video cuts after 5s, then we hand off to Stage 2. -->
+      <div class="b3-pass" data-stage="1">
+        <div class="b3-layer b3-new">
+          <video
+            class="b3-frame b3-frame-video"
+            src="./assets/business-adobe/redesign-scroll.mp4"
+            muted playsinline preload="auto"
+            tabindex="-1"></video>
+        </div>
+        <div class="b3-layer b3-old">
+          <img
+            class="b3-frame b3-frame-img"
+            src="./assets/business-adobe-old/business-adobe-live.png"
+            alt="business.adobe.com — current"
+            width="3456" height="11820">
+        </div>
+        <div class="b3-wipe-line" aria-hidden="true"></div>
+        <div class="b3-label before">Before</div>
+        <div class="b3-label after">After</div>
       </div>
 
-      <!-- OLD (top, clipped): the actual live business.adobe.com captured as
-           a tall PNG — sits over the new page; clip-path polygon animates
-           the diagonal sweep, image translateY-animated for the scroll. -->
-      <div class="b3-layer b3-old">
-        <img
-          class="b3-frame b3-frame-img"
-          src="./assets/business-adobe-old/business-adobe-live.png"
-          alt="business.adobe.com — current"
-          width="3456" height="11820">
+      <!-- ─── STAGE 2 (12-17s) · AEM Sites — first redesign ──────────
+           OLD AEM Sites screenshot → diagonal wipe → NEW redesigned
+           AEM Sites page (no scroll, hold on hero). -->
+      <div class="b3-pass" data-stage="2">
+        <div class="b3-layer b3-new">
+          <iframe
+            class="b3-frame b3-frame-iframe"
+            src="./assets/business-adobe/redesign/business-adobe-sites/index.html"
+            title="AEM Sites — redesigned"
+            loading="lazy"
+            sandbox="allow-scripts allow-same-origin"
+            tabindex="-1"></iframe>
+        </div>
+        <div class="b3-layer b3-old">
+          <img
+            class="b3-frame b3-frame-img"
+            src="./assets/business-adobe-old/business-adobe-sites-live.png"
+            alt="business.adobe.com/products/experience-manager/sites — current"
+            width="3456" height="12465">
+        </div>
+        <div class="b3-wipe-line" aria-hidden="true"></div>
       </div>
 
-      <!-- Hot red diagonal line at the wipe boundary -->
-      <div class="b3-wipe-line" aria-hidden="true"></div>
+      <!-- ─── STAGE 3 (17-30s) · AEM Sites — bolder ──────────────────
+           Stage 2's redesign becomes the OLD; bolder variant is the NEW.
+           Wipe → 1s pause → scroll begins → +2s overlay for 5s. -->
+      <div class="b3-pass" data-stage="3">
+        <div class="b3-layer b3-new">
+          <iframe
+            class="b3-frame b3-frame-iframe b3-frame-iframe-scroll"
+            src="./assets/business-adobe/redesign/business-adobe-sites/index-bolder.html"
+            title="AEM Sites — bolder redesign"
+            loading="lazy"
+            sandbox="allow-scripts allow-same-origin"
+            tabindex="-1"></iframe>
+        </div>
+        <div class="b3-layer b3-old">
+          <iframe
+            class="b3-frame b3-frame-iframe"
+            src="./assets/business-adobe/redesign/business-adobe-sites/index.html"
+            title="AEM Sites — first redesign"
+            loading="lazy"
+            sandbox="allow-scripts allow-same-origin"
+            tabindex="-1"></iframe>
+        </div>
+        <div class="b3-wipe-line" aria-hidden="true"></div>
 
-      <!-- Before / After labels -->
-      <div class="b3-label before">Before</div>
-      <div class="b3-label after">After</div>
-
-      <!-- Headline overlay — lands once the wipe is mostly through -->
-      <div class="b3-overlay">
-        <div class="tag">The Reveal</div>
-        <h2>Same brand. <span class="red">New surface.</span></h2>
-        <p>Every page its own page — the rules held.</p>
+        <!-- Headline overlay — appears 2s after Stage 3 scroll begins, holds 5s -->
+        <div class="b3-overlay">
+          <div class="tag">The Reveal</div>
+          <h2>Same brand. <span class="red">New surface.</span></h2>
+          <p>Every page its own page — the rules held.</p>
+        </div>
       </div>
 
     </div>

@@ -1,0 +1,234 @@
+{
+  "_meta": {
+    "page": "Adobe Experience Manager Sites",
+    "url": "https://business.adobe.com/products/experience-manager/sites.html",
+    "extracted_from": "user-supplied screenshot 2026-05-08",
+    "extraction_method": "screenshot + smart-curl scrape (browser-fingerprinted headers) on 2026-05-08 — page HTML reachable; image assets needed Playwright via tools/fetch-asset/",
+    "gaps_resolved": [
+      "kyndryl metric tail: 'Built and launched a new site in only 8 weeks.' (was truncated in screenshot)",
+      "5-tab Features content: tabs 2-5 (Performance & experimentation / Rapid development / Omnichannel experiences / Headless CMS) now have full headlines + image references"
+    ],
+    "gaps": [
+      "FAQ answers — accordion bodies need a second scrape pass with the panels expanded (or DOM inspection of inline content)",
+      "Resource-card category labels — most inferred correctly from the live HTML; remaining 3 cards (AI-Powered Scalability / Components / Content & Experience Fragments) had no visible category in the source"
+    ]
+  },
+  "page": {
+    "site": "Adobe for Business",
+    "header": {
+      "logo": "Adobe for Business",
+      "navigation": [
+        "Web Menu",
+        "Experience Manager Sites",
+        "Features",
+        "Use Cases",
+        "Pricing",
+        "Resources",
+        "Additional Products"
+      ],
+      "cta": "Get started"
+    },
+    "sections": [
+      {
+        "id": "hero",
+        "eyebrow": "ADOBE EXPERIENCE MANAGER SITES",
+        "headline": "An agentic CMS to structure and scale modern experiences.",
+        "description": "Create and deliver high-performance experiences faster — built for agility and optimized for AI-driven discovery.",
+        "ctas": [
+          { "label": "Watch overview", "icon": "play" },
+          { "label": "Book a demo" }
+        ],
+        "media": {
+          "kind": "ui-mockup",
+          "description": "Static product UI render, right column. Decorative — copy inside the mockup is illustrative and not part of page content."
+        }
+      },
+      {
+        "id": "agents_strip",
+        "_pattern": "rainbow-strip",
+        "headline": "Discover Agents in Adobe Experience Manager",
+        "cta": "Learn more"
+      },
+      {
+        "id": "explore_features",
+        "headline": "Explore the features and capabilities of Adobe Experience Manager Sites.",
+        "description": "Digital experience has evolved — your CMS should too. Experience Manager Sites addresses the core challenges of managing your digital properties, leveraging powerful agentic execution to help teams create, update, and activate experiences more efficiently. The result: structured, high-performing pages designed for both human engagement and AI visibility.",
+        "tabs": [
+          "Content creation",
+          "Performance & experimentation",
+          "Rapid development",
+          "Omnichannel experiences",
+          "Headless CMS"
+        ],
+        "active_tab": "Content creation",
+        "tab_content": {
+          "title": "Accelerate content creation with agentic capabilities.",
+          "body": "Give marketers the ability to quickly create, update, and scale digital experiences faster with flexible authoring tools and built-in agentic support.",
+          "bullets": [
+            "Modernize legacy content and use agentic workflows to automate updates, enforce governance and streamline optimization across sites.",
+            "Use flexible authoring to create and publish content directly from Microsoft Word and Google Docs, or use a visual editor for real time, in-context page editing.",
+            "Instantly create on-brand copy and image variations, test performance, and personalize content using integrated generative AI capabilities.",
+            "Reuse content across properties, manage metadata, and streamline translation to deliver consistent global experiences."
+          ],
+          "cta": "Learn about content creation"
+        }
+      },
+      {
+        "id": "use_cases",
+        "headline": "Adobe Experience Manager Sites use cases.",
+        "items": [
+          {
+            "icon": "page-edit",
+            "title": "Accelerate website production.",
+            "body": "Empower any team to build and publish high-quality websites with easy-to-use AI."
+          },
+          {
+            "icon": "globe",
+            "title": "Scale experiences across brands and regions.",
+            "body": "Expand web experiences across brands, regions, and languages using a shared foundation that balances consistency and local flexibility."
+          },
+          {
+            "icon": "lightning",
+            "title": "Deliver high-performance experiences by default.",
+            "body": "Deliver fast, reliable web experiences without requiring ongoing manual optimization."
+          }
+        ]
+      },
+      {
+        "id": "forrester",
+        "_pattern": "studio-banner-with-overlay",
+        "headline": "Forrester names Adobe a Leader in CMS.",
+        "cta": "Read report",
+        "media": {
+          "kind": "ui-overlay",
+          "description": "Right-side mockup showing 'Upload assets' and 'Approved assets' UI panels. Decorative."
+        }
+      },
+      {
+        "id": "customer_stories",
+        "headline": "Helping global brands drive business impact with personalization.",
+        "items": [
+          {
+            "logo": "IBM",
+            "metric": "Created pages 96 times faster."
+          },
+          {
+            "logo": "HANES Brands Inc",
+            "metric": "Improved page load time by 400%."
+          },
+          {
+            "logo": "kyndryl",
+            "metric": "Built and launched a new site in only 8 weeks."
+          }
+        ],
+        "cta": "Read more stories"
+      },
+      {
+        "id": "resources",
+        "headline": "Learn more about Experience Manager Sites.",
+        "items": [
+          {
+            "category": "Blog",
+            "title": "The next era of content management systems."
+          },
+          {
+            "category": "Webinar",
+            "title": "Build, author, publish and load web pages in record time."
+          },
+          {
+            "category": "Blog",
+            "title": "Learn how to accelerate content production."
+          },
+          {
+            "category": "Customer Story",
+            "title": "Juniper Networks turns its website into a differentiator."
+          },
+          {
+            "category": "Guide",
+            "title": "Content management systems: Software buyer's guide."
+          },
+          {
+            "category": "Customer Story",
+            "title": "Qualcomm boosts page views by 800%."
+          },
+          {
+            "category": "Report",
+            "title": "IDC: The business value of Adobe Experience Manager Sites"
+          },
+          {
+            "title": "AI-Powered Scalability with Experience Manager Sites"
+          },
+          {
+            "title": "Experience Manager Sites Components"
+          },
+          {
+            "title": "Content & Experience Fragments"
+          }
+        ],
+        "cta": "See all Experience Manager Sites resources"
+      },
+      {
+        "id": "integrations",
+        "_pattern": "acrobat-feature-3up (themed surface)",
+        "surface": "light-teal",
+        "headline": "Unlock more with Adobe integrations.",
+        "description": "Connect Adobe products to create experiences that are right on time and just right for your customers.",
+        "items": [
+          {
+            "title": "Experience Manager Sites + Adobe Experience Manager Assets",
+            "body": "Update assets and digital content everywhere automatically, saving time for developers and marketers.",
+            "cta": "Learn more"
+          },
+          {
+            "title": "Experience Manager Sites + Adobe Commerce",
+            "body": "Create immersive shopping experiences by enriching product pages with content, and manage both content and commerce with a single integrated system.",
+            "cta": "Learn more"
+          },
+          {
+            "title": "Experience Manager Sites + Adobe Analytics",
+            "body": "Fuel content with real-time, omnichannel insights for better optimization and to make each customer interaction relevant.",
+            "cta": "Learn more"
+          }
+        ]
+      },
+      {
+        "id": "faqs",
+        "_pattern": "faq-accordion",
+        "headline": "FAQs",
+        "items": [
+          { "question": "What is content personalization?" },
+          { "question": "What does Adobe Experience Manager Content Services do?" },
+          { "question": "What is a headless CMS?" },
+          { "question": "What does Adobe Experience Manager Sites Content as a Service include?" },
+          { "question": "What is a Customer Experience (CX)?" },
+          { "question": "What makes AEM Sites a truly scalable CMS for enterprises?" }
+        ],
+        "_gap": "answers are not visible in the screenshot (accordion collapsed) — needs live-page scrape"
+      },
+      {
+        "id": "lead_form",
+        "_pattern": "inline-form",
+        "headline": "Let us show you the full power of Adobe Experience Manager Sites.",
+        "fields": [
+          { "type": "email", "label": "Business email", "required": true },
+          { "type": "country", "label": "Country", "required": true }
+        ],
+        "submit_label": "Next",
+        "step_indicator": "Step 1 of 2"
+      },
+      {
+        "id": "final_cta",
+        "headline": "Let's talk about what Adobe Experience Manager Sites can do for your business.",
+        "cta": "Get started",
+        "media": {
+          "kind": "portrait-with-overlay",
+          "description": "Right-side portrait image with overlay UI elements — Microsoft Word toolbar, article title 'Espresso: Fall in love with coffee. Every single sip...', a stat label, and color swatches. Decorative."
+        }
+      }
+    ],
+    "footer": {
+      "_inherits_from": "stardust/redesign/business-adobe-home/content.json#footer",
+      "note": "Same 6-column footer as the home page. Re-extract per-page if any links differ."
+    }
+  }
+}

@@ -20,15 +20,14 @@
   // Per-beat durations in ms — must match script.md
   // Beat 1 intro + cold open + trap 24s
   // Beat 2 turn + pipeline montage  32s
-  // Beat 3 reveal (extended)        17s — Phase 2 + hold at landing
+  // Beat 3 reveal (3-stage uplift)  30s — home → AEM Sites → bolder
   // Beat 4 lands in AEM              8s
   // Beat 5 ongoing capability       14s
   // Beat 6 math + close              8s
-  const BEAT_DURATIONS_MS = [24000, 32000, 17000, 8000, 14000, 8000];
+  const BEAT_DURATIONS_MS = [24000, 32000, 30000, 8000, 14000, 8000];
   const TRANSITION_MS = 900; // matches CSS #page-wrap transition
 
   const wrap = document.getElementById('page-wrap');
-  const cover = document.getElementById('cover');
   const progress = document.querySelector('.nav-progress > i');
 
   if (!wrap) {
@@ -72,7 +71,6 @@
   function start(targetIndex) {
     if (started) return;
     started = true;
-    cover.classList.add('hidden');
     // Start the music bed if present and gated by user gesture
     const audio = document.getElementById('music');
     if (audio) {
@@ -175,8 +173,8 @@
       }
     });
 
-    // Cover screen click also starts
-    cover.addEventListener('click', () => start());
+    // Click anywhere also starts (alternative to Space/Enter)
+    window.addEventListener('click', () => { if (!started) start(); });
 
     // Disable wheel-driven scroll (we don't want native scroll)
     window.addEventListener('wheel', e => {

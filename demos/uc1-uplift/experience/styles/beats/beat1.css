@@ -69,6 +69,48 @@
 }
 #b1 .b1-intro-overlay.visible .b1-intro-tagline { opacity: 1; transform: translateY(0); }
 
+/* Press-Space-to-begin cue — visible while waiting for user gesture, hides once demo starts */
+#b1 .b1-intro-cue {
+  font-family: var(--ff-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  margin-top: 2.6rem;
+  padding: 0.65rem 1.4rem;
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  pointer-events: auto;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.6s var(--ease-out-quart) 2s, transform 0.6s var(--ease-out-quart) 2s;
+}
+#b1 .b1-intro-overlay.visible .b1-intro-cue {
+  opacity: 1;
+  transform: translateY(0);
+  animation: cuePulse 2.4s ease-in-out 2.7s infinite;
+}
+#b1 .b1-intro-overlay.started .b1-intro-cue {
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+  animation: none;
+}
+#b1 .b1-intro-cue kbd {
+  font-family: var(--ff-mono);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border2);
+  border-radius: 3px;
+  padding: 2px 8px;
+  color: var(--text);
+}
+@keyframes cuePulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.45; }
+}
+
 /* AI / Unique correction — bold marker scribble + handwritten "Unique" with hand-drawn circle.
    Reads as a designer's red-pen edit on a printout. */
 #b1 .ai-correction {

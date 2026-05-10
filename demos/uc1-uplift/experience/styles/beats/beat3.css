@@ -15,6 +15,21 @@
   overflow: hidden;
 }
 
+/* Three layered stages, each with its own OLD/NEW + wipe-line.
+   Default: all hidden. JS adds .b3-stage-active to one at a time. */
+#b3 .b3-pass {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s linear, visibility 0s linear 0.25s;
+}
+#b3 .b3-pass.b3-stage-active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.25s linear, visibility 0s;
+}
+
 /* The two layers — both full-bleed, with their iframe content scrolling
    via translateY on the iframe element itself. */
 #b3 .b3-stage {
@@ -55,36 +70,63 @@
 #b3 .b3-new { z-index: 1; }
 #b3 .b3-new .b3-frame { background: var(--bg); }
 
-/* Top layer: the OLD page — clip-path animates a diagonal sweep L→R via
-   @keyframes that interpolate polygon points directly. Reliable across
-   render paths (transition: --w via @property had Playwright-capture issues). */
+/* Top layer: the OLD page — clip-path animates a diagonal sweep L→R.
+   Each stage gets its own wipe duration / delay so they trigger when
+   their stage activates. */
 #b3 .b3-old {
   z-index: 2;
   clip-path: polygon(-8% 0, 100% 0, 100% 100%, 0% 100%);
 }
-#b3.active .b3-old {
+
+/* Stage 1 wipe: 9.5s after a 1.2s hold (homepage gets the most time) */
+#b3 .b3-pass[data-stage="1"].b3-stage-active .b3-old {
   animation: b3-clip-wipe 9.5s cubic-bezier(0.45, 0, 0.55, 1) 1.2s forwards;
 }
+/* Stage 2 wipe: 4s after a 0.5s hold (faster — second comparison) */
+#b3 .b3-pass[data-stage="2"].b3-stage-active .b3-old {
+  animation: b3-clip-wipe 4s cubic-bezier(0.45, 0, 0.55, 1) 0.5s forwards;
+}
+/* Stage 3 wipe: 4s after a 0.5s hold (faster — third comparison) */
+#b3 .b3-pass[data-stage="3"].b3-stage-active .b3-old {
+  animation: b3-clip-wipe 4s cubic-bezier(0.45, 0, 0.55, 1) 0.5s forwards;
+}
+
 @keyframes b3-clip-wipe {
   0%   { clip-path: polygon(-8% 0, 100% 0, 100% 100%,   0%   100%); }
   100% { clip-path: polygon(100% 0, 100% 0, 100% 100%, 108%  100%); }
 }
 
-/* OLD image scrolls via translateY (static PNG — no internal motion).
-   17s to scroll through most of the live business.adobe.com screenshot. */
-#b3.active .b3-frame-img {
-  animation: b3-scroll-img 17s linear forwards;
+/* Stage 1 (homepage) OLD image scrolls via translateY for the 12s it's on screen */
+#b3 .b3-pass[data-stage="1"].b3-stage-active .b3-frame-img {
+  animation: b3-scroll-img 12s linear forwards;
 }
 @keyframes b3-scroll-img {
   from { transform: translateY(0); }
-  to   { transform: translateY(-3300px); }
+  to   { transform: translateY(-2000px); }
 }
+
+/* Stage 2 (AEM Sites) OLD image — slower scroll over its 5s on screen */
+#b3 .b3-pass[data-stage="2"].b3-stage-active .b3-frame-img {
+  animation: b3-scroll-img-2 5s linear forwards;
+}
+@keyframes b3-scroll-img-2 {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-600px); }
+}
+
+/* Iframes for stage 2/3 — full-bleed, no scrollbars */
+#b3 .b3-frame-iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: 0;
+  background: var(--bg);
+}
+#b3 .b3-frame-iframe-scroll { /* identifier for the scrolling iframe */ }
 
 /* NEW layer: <video> plays itself, no JS scroll. */
 #b3 .b3-new .b3-frame { will-change: auto; }
 
-/* The hot diagonal line sitting at the wipe boundary — animated left
-   in tandem with the clip wipe. */
+/* The hot diagonal line sitting at the wipe boundary — animated per-stage. */
 #b3 .b3-wipe-line {
   position: absolute;
   top: -10%;
@@ -101,8 +143,14 @@
   transform: skewX(-4deg);
   opacity: 0;
 }
-#b3.active .b3-wipe-line {
+#b3 .b3-pass[data-stage="1"].b3-stage-active .b3-wipe-line {
   animation: b3-line-sweep 9.5s cubic-bezier(0.45, 0, 0.55, 1) 1.2s forwards;
+}
+#b3 .b3-pass[data-stage="2"].b3-stage-active .b3-wipe-line {
+  animation: b3-line-sweep 4s cubic-bezier(0.45, 0, 0.55, 1) 0.5s forwards;
+}
+#b3 .b3-pass[data-stage="3"].b3-stage-active .b3-wipe-line {
+  animation: b3-line-sweep 4s cubic-bezier(0.45, 0, 0.55, 1) 0.5s forwards;
 }
 @keyframes b3-line-sweep {
   0%   { opacity: 0;  left: -8px; }
@@ -173,10 +221,12 @@
   margin-bottom: 0.6rem;
   opacity: 0;
   transform: translate3d(0, 8px, 0);
-  transition: opacity 0.5s var(--ease-out-quart) 10.7s, transform 0.5s var(--ease-out-quart) 10.7s;
+  transition: opacity 0.5s var(--ease-out-quart) 7.5s, transform 0.5s var(--ease-out-quart) 7.5s;
   will-change: opacity, transform;
 }
-#b3.active .b3-overlay .tag { opacity: 1; transform: translate3d(0, 0, 0); }
+#b3 .b3-pass[data-stage="3"].b3-stage-active .b3-overlay .tag {
+  opacity: 1; transform: translate3d(0, 0, 0);
+}
 
 #b3 .b3-overlay h2 {
   font-family: var(--ff-display);
@@ -188,10 +238,12 @@
   margin: 0;
   opacity: 0;
   transform: translate3d(0, 20px, 0);
-  transition: opacity 0.6s var(--ease-out-quart) 11.0s, transform 0.6s var(--ease-out-quart) 11.0s;
+  transition: opacity 0.6s var(--ease-out-quart) 7.8s, transform 0.6s var(--ease-out-quart) 7.8s;
   will-change: opacity, transform;
 }
-#b3.active .b3-overlay h2 { opacity: 1; transform: translate3d(0, 0, 0); }
+#b3 .b3-pass[data-stage="3"].b3-stage-active .b3-overlay h2 {
+  opacity: 1; transform: translate3d(0, 0, 0);
+}
 #b3 .b3-overlay h2 .red { color: var(--red); }
 
 #b3 .b3-overlay p {
@@ -201,9 +253,10 @@
   margin-top: 0.6rem;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
   opacity: 0;
-  transition: opacity 0.5s var(--ease-out-quart) 11.4s;
+  transition: opacity 0.5s var(--ease-out-quart) 8.2s;
   will-change: opacity;
 }
+#b3 .b3-pass[data-stage="3"].b3-stage-active .b3-overlay p { opacity: 1; }
 #b3.active .b3-overlay p { opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adobe Experience Manager Sites — agentic CMS (bolder)</title>
+  <link rel="icon" type="image/svg+xml" href="../../target/runtime/assets/adobe-logo-red.svg">
+
+  <link rel="stylesheet" href="../../target/runtime/styles/global/reset.css">
+  <link rel="stylesheet" href="../../target/runtime/styles/global/grid.css">
+  <link rel="stylesheet" href="../../target/runtime/styles/global/typography.css">
+  <link rel="stylesheet" href="../../target/runtime/styles/page.css">
+  <link rel="stylesheet" href="../../target/runtime/styles/nav.css">
+  <link rel="stylesheet" href="../../target/runtime/styles/mega-nav.css">
+  <link rel="stylesheet" href="../../target/runtime/styles/mobile-nav.css">
+  <link rel="stylesheet" href="../../target/runtime/styles/faq-accordion.css">
+
+  <style>
+    :root {
+      --s2a-color-blue-900: #3b63fb;
+      --s2a-spacing-md: 16px; --s2a-spacing-lg: 24px;
+      --s2a-spacing-xl: 32px; --s2a-spacing-2xl: 40px;
+      --s2a-spacing-3xl: 48px; --s2a-spacing-4xl: 64px;
+      --s2a-spacing-5xl: 80px; --s2a-spacing-6xl: 96px;
+      --s2a-layout-lg: 124px;
+      --s2a-easing-default: cubic-bezier(0.42, 0, 0, 1);
+      --grid-margin-sm: 24px; --grid-margin-md: 8.333vw;
+      /* AEM palette: warm + teal — distinct from Brand Concierge's pure warm */
+      --gradient-warm: linear-gradient(135deg, #FF7A40 0%, #E84C8B 100%);
+      --gradient-cool: linear-gradient(135deg, #4FB6E8 0%, #2EBF98 100%);
+      --gradient-tri:  linear-gradient(120deg, #FF7A40 0%, #E84C8B 50%, #4FB6E8 100%);
+    }
+
+    body { background: #fff; overflow-x: clip; }
+
+    .container { width: 100%; padding-inline: var(--grid-margin-sm); }
+    @media (min-width: 768px) { .container { padding-inline: var(--grid-margin-md); } }
+
+    /* Buttons (shared) */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      height: 48px; padding: 0 28px;
+      border-radius: 999px;
+      font-family: var(--font-body); font-size: 14px; font-weight: 700; line-height: 18px;
+      border: 1.5px solid transparent; text-decoration: none;
+      transition: transform 0.25s var(--s2a-easing-default), background 0.2s, border-color 0.2s, color 0.2s;
+      white-space: nowrap; cursor: pointer; will-change: transform;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--solid-white { background: #fff; color: #000; }
+    .btn--solid-white:hover { background: #f0f0f0; }
+    .btn--ghost-white { background: transparent; color: #fff; border-color: rgba(255,255,255,0.7); backdrop-filter: blur(16px); }
+    .btn--ghost-white:hover { background: rgba(255,255,255,0.08); border-color: #fff; }
+    .btn--outline { background: transparent; color: #1a1a1a; border-color: #1a1a1a; }
+    .btn--outline:hover { background: #1a1a1a; color: #fff; }
+
+    /* Gnav minor adjustments (same as bolder BC) */
+    .gnav-cta {
+      display: inline-flex; align-items: center; height: 40px;
+      padding: 0 20px; background: #fff; color: #000;
+      border-radius: 999px;
+      font-family: var(--font-body); font-size: 14px; font-weight: 700; line-height: 18px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      margin-left: 4px;
+    }
+    .gnav-cta:hover { background: #e8e8e8; transform: translateY(-1px); }
+    .gnav-subbrand {
+      font-family: var(--font-body); font-size: 16px; font-weight: 700; color: #fff;
+      letter-spacing: -0.01em; padding-left: 8px; margin-left: 4px;
+      border-left: 1px solid rgba(255,255,255,0.24);
+      align-self: center; line-height: 18px; white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    #gnav.gnav--scrolled .gnav-subbrand { color: #1a1a1a; border-left-color: rgba(0,0,0,0.16); }
+    @media (max-width: 767px) { .gnav-subbrand { display: none; } }
+
+    /* ═══════════════════════════════════════════════════════════════
+       SCROLL-DRIVEN PRIMITIVES (same set as bolder Brand Concierge)
+       ═══════════════════════════════════════════════════════════════ */
+    .slide-in-left {
+      animation: slide-in-from-left 1ms linear both, slide-out-to-top 1ms linear both;
+      animation-timeline: view(), view();
+      animation-range: entry 0% cover 30%, cover 75% exit 100%;
+    }
+    @keyframes slide-in-from-left { from { opacity: 0; transform: translateX(-200px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes slide-out-to-top    { from { opacity: 1; transform: translateY(0); } to { opacity: 0.3; transform: translateY(-80px); } }
+
+    .slide-in-right {
+      animation: slide-in-from-right 1ms linear both, slide-out-to-top 1ms linear both;
+      animation-timeline: view(), view();
+      animation-range: entry 0% cover 30%, cover 75% exit 100%;
+    }
+    @keyframes slide-in-from-right { from { opacity: 0; transform: translateX(200px); } to { opacity: 1; transform: translateX(0); } }
+
+    .slide-in-up {
+      animation: slide-in-from-bottom 1ms linear both, slide-out-to-top-soft 1ms linear both;
+      animation-timeline: view(), view();
+      animation-range: entry 0% cover 30%, cover 75% exit 100%;
+    }
+    @keyframes slide-in-from-bottom  { from { opacity: 0; transform: translateY(120px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slide-out-to-top-soft { from { transform: translateY(0); } to { transform: translateY(-40px); opacity: 0.5; } }
+
+    .mask-wipe {
+      position: relative; display: inline-block; overflow: hidden;
+      clip-path: inset(0 100% 0 0);
+      animation: mask-wipe-in 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 35%;
+    }
+    @keyframes mask-wipe-in { to { clip-path: inset(0 0% 0 0); } }
+
+    .stagger > * {
+      opacity: 0; transform: translateX(-80px);
+      animation: stagger-in 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 50%;
+    }
+    .stagger > *:nth-child(1) { animation-delay: 0ms; }
+    .stagger > *:nth-child(2) { animation-delay: 80ms; }
+    .stagger > *:nth-child(3) { animation-delay: 160ms; }
+    .stagger > *:nth-child(4) { animation-delay: 240ms; }
+    .stagger > *:nth-child(5) { animation-delay: 320ms; }
+    .stagger > *:nth-child(6) { animation-delay: 400ms; }
+    .stagger > *:nth-child(7) { animation-delay: 480ms; }
+    .stagger > *:nth-child(8) { animation-delay: 560ms; }
+    .stagger > *:nth-child(9) { animation-delay: 640ms; }
+    .stagger > *:nth-child(10){ animation-delay: 720ms; }
+    @keyframes stagger-in { to { opacity: 1; transform: translateX(0); } }
+
+    .word-slide { display: inline-block; }
+    .word-slide > .word {
+      display: inline-block;
+      opacity: 0; transform: translateX(-80px);
+      animation: word-slide-in 0.95s var(--s2a-easing-default) both;
+    }
+    .word-slide > .word:nth-child(1) { animation-delay: 0.10s; }
+    .word-slide > .word:nth-child(2) { animation-delay: 0.22s; }
+    .word-slide > .word:nth-child(3) { animation-delay: 0.34s; }
+    .word-slide > .word:nth-child(4) { animation-delay: 0.46s; }
+    .word-slide > .word:nth-child(5) { animation-delay: 0.58s; }
+    .word-slide > .word:nth-child(6) { animation-delay: 0.70s; }
+    @keyframes word-slide-in { to { opacity: 1; transform: translateX(0); } }
+  </style>
+  <style>
+    /* ═══════════════════════════════════════════════════════════════
+       HERO — animated mesh + word-slide title + parallax media
+       ═══════════════════════════════════════════════════════════════ */
+    .aem-hero {
+      position: relative; overflow: hidden; isolation: isolate;
+      background: #0c0820; color: #fff;
+      padding: 95px var(--grid-margin-md, 8.333vw) 45px;
+      min-height: calc(100vh - 130px);
+    }
+    @media (max-width: 1023px) { .aem-hero { padding-inline: var(--grid-margin-sm); padding-top: 80px; } }
+    .aem-hero__mesh { position: absolute; inset: -10%; z-index: 0; pointer-events: none; filter: blur(60px); }
+    .aem-hero__blob { position: absolute; width: 60vmin; height: 60vmin; border-radius: 50%; mix-blend-mode: screen; opacity: 0.7; }
+    .aem-hero__blob--1 { background: #4FB6E8; animation: blob-drift-1 22s ease-in-out infinite alternate; }
+    .aem-hero__blob--2 { background: #E84C8B; animation: blob-drift-2 28s ease-in-out infinite alternate; }
+    .aem-hero__blob--3 { background: #2EBF98; animation: blob-drift-3 26s ease-in-out infinite alternate; }
+    .aem-hero__blob--4 { background: #FF7A40; animation: blob-drift-4 32s ease-in-out infinite alternate; opacity: 0.45; }
+    @keyframes blob-drift-1 { 0%{top:-10%;left:-8%;transform:scale(1);} 100%{top:30%;left:25%;transform:scale(1.2);} }
+    @keyframes blob-drift-2 { 0%{top:20%;right:-10%;transform:scale(0.9);} 100%{top:55%;right:15%;transform:scale(1.15);} }
+    @keyframes blob-drift-3 { 0%{bottom:-8%;left:30%;transform:scale(1.1);} 100%{bottom:20%;left:5%;transform:scale(0.95);} }
+    @keyframes blob-drift-4 { 0%{bottom:5%;right:20%;transform:scale(1);} 100%{bottom:35%;right:-5%;transform:scale(1.25);} }
+
+    .aem-hero__grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center; max-width: 1920px; margin-inline: auto; }
+    @media (max-width: 1023px) { .aem-hero__grid { grid-template-columns: 1fr; gap: 48px; } }
+    .aem-hero__copy { display: flex; flex-direction: column; gap: 28px; }
+    .aem-hero__eyebrow {
+      font-family: var(--font-body); font-weight: 700;
+      font-size: 14px; letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      animation: hero-eyebrow-in 0.8s var(--s2a-easing-default) 0.05s both;
+    }
+    @keyframes hero-eyebrow-in { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+    .aem-hero__title {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: clamp(40px, 5vw, 72px);
+      line-height: 0.94; letter-spacing: -0.04em;
+      max-width: 18ch;
+    }
+    .aem-hero__title .word--accent {
+      background: var(--gradient-tri);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .aem-hero__body {
+      font-family: var(--font-body); font-size: 19px; line-height: 1.5;
+      color: rgba(255,255,255,0.78); max-width: 56ch;
+      animation: hero-body-in 0.95s var(--s2a-easing-default) 0.7s both;
+    }
+    @keyframes hero-body-in { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+    .aem-hero__ctas {
+      display: flex; gap: 12px; flex-wrap: wrap;
+      animation: hero-body-in 0.95s var(--s2a-easing-default) 0.9s both;
+    }
+
+    /* OUTER FRAME — holds the offset Memphis slab + accent block + crop
+       marks + the actual media. overflow:visible so the slab and crops
+       can bleed beyond the video clip. Parallax 3D rotation lives here
+       so the entire composition turns together. */
+    .aem-hero__frame {
+      position: relative;
+      aspect-ratio: 4/3; max-width: 640px; justify-self: center;
+      width: 100%;
+      transform-style: preserve-3d;
+      transform: perspective(1200px)
+                 rotateY(calc(var(--mx, 0) * 6deg))
+                 rotateX(calc(var(--my, 0) * -6deg))
+                 translateZ(0);
+      transition: transform 0.6s cubic-bezier(0.2, 0, 0, 1);
+      animation: portrait-in 1.3s var(--s2a-easing-default) 0.4s both;
+    }
+    @keyframes portrait-in { from { opacity: 0; transform: perspective(1200px) translateX(120px) scale(0.92); } to { opacity: 1; } }
+
+    /* Big warm-gradient slab peeking from behind, offset bottom-right */
+    .aem-hero__slab {
+      position: absolute;
+      top: 28px; left: 28px; right: -28px; bottom: -28px;
+      background: var(--gradient-warm);
+      border-radius: 28px;
+      z-index: 0;
+    }
+    /* Small cool-gradient accent block, top-left, rotated */
+    .aem-hero__accent {
+      position: absolute;
+      top: 56px; left: -22px;
+      width: 96px; height: 96px;
+      background: var(--gradient-cool);
+      border-radius: 18px;
+      transform: rotate(-12deg);
+      box-shadow: 0 16px 32px rgba(46,191,152,0.35);
+      z-index: 0;
+    }
+    /* The media holder — keeps overflow:hidden so the video stays clipped
+       to the rounded rectangle. */
+    .aem-hero__media {
+      position: relative; z-index: 1;
+      width: 100%; height: 100%;
+      border-radius: 28px; overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5),
+                  0 0 0 1px rgba(255,255,255,0.06) inset;
+    }
+    .aem-hero__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* Corner crop marks — white brackets at each corner of the frame */
+    .aem-hero__crop {
+      position: absolute; width: 24px; height: 24px;
+      border: 2px solid #fff; z-index: 4;
+      pointer-events: none;
+      animation: crop-fade-in 0.6s var(--s2a-easing-default) 0.9s both;
+    }
+    @keyframes crop-fade-in { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: scale(1); } }
+    .aem-hero__crop--tl { top: -12px; left:  -12px; border-right: 0; border-bottom: 0; }
+    .aem-hero__crop--tr { top: -12px; right: -12px; border-left:  0; border-bottom: 0; }
+    .aem-hero__crop--bl { bottom: -12px; left:  -12px; border-right: 0; border-top:    0; }
+    .aem-hero__crop--br { bottom: -12px; right: -12px; border-left:  0; border-top:    0; }
+
+    /* AEM-themed floating chips on the hero portrait */
+    .aem-hero__chip {
+      position: absolute; z-index: 3;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.95); color: #1a1a1a;
+      border-radius: 14px;
+      font-family: var(--font-body); font-size: 13px; font-weight: 600;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+      backdrop-filter: blur(10px);
+      animation: chip-slide-in 0.85s var(--s2a-easing-default) both;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .aem-hero__chip svg { flex-shrink: 0; }
+    @keyframes chip-slide-in { from { opacity: 0; transform: translateY(20px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .aem-hero__chip--1 { top: 8%;  left: -4%;  animation-delay: 1.05s; }
+    .aem-hero__chip--2 { top: 36%; right: -3%; animation-delay: 1.4s;  background: linear-gradient(135deg, #FFE5D6, #FFCFB5); }
+    .aem-hero__chip--3 { bottom: 18%; left: 4%; animation-delay: 1.75s; background: linear-gradient(135deg, #DCF5E5, #B5E0C5); }
+    .aem-hero__chip--4 { bottom: 6%;  right: 8%; animation-delay: 2.1s;  background: linear-gradient(135deg, #DCE7FF, #B8C9FF); }
+
+    /* ═══════════════════════════════════════════════════════════════
+       MARQUEE — kinetic strip
+       ═══════════════════════════════════════════════════════════════ */
+    .aem-marquee {
+      position: relative;
+      background: #0c0820;
+      color: #fff;
+      padding-block: 32px;
+      overflow: hidden;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .aem-marquee__track {
+      display: flex; gap: 48px;
+      width: max-content;
+      animation: marquee-scroll 45s linear infinite;
+    }
+    @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .aem-marquee__item {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: clamp(30px, 4vw, 60px);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: rgba(255,255,255,0.18);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .aem-marquee__item--accent {
+      background: var(--gradient-tri);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .aem-marquee__sep {
+      font-family: var(--font-display); font-size: clamp(30px, 4vw, 60px);
+      color: #4FB6E8;
+      flex-shrink: 0;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       RAINBOW STRIP — agents announce
+       ═══════════════════════════════════════════════════════════════ */
+    .aem-rainbow {
+      background: var(--gradient-tri);
+      color: #fff;
+      padding: 22px var(--grid-margin-md);
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      flex-wrap: wrap;
+      font-family: var(--font-body); font-size: 16px; font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    .aem-rainbow a {
+      color: #fff; text-decoration: underline; text-underline-offset: 4px; font-weight: 700;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .aem-rainbow a:hover { text-decoration-thickness: 2px; }
+  </style>
+</head>
+<body>
+
+  <header id="gnav">
+    <div class="gnav-inner">
+      <div class="gnav-left">
+        <img src="../../target/runtime/assets/adobe-logo.svg"       alt="Adobe" class="gnav-logo">
+        <img src="../../target/runtime/assets/adobe-logo-black.svg" alt="Adobe" class="gnav-logo-black">
+        <span class="gnav-subbrand">for Business</span>
+        <div class="gnav-logo-sm-wrap" aria-hidden="true">
+          <img src="../../target/runtime/assets/adobe-logo-sm.svg"       alt="" class="gnav-logo-sm">
+          <img src="../../target/runtime/assets/adobe-logo-sm-black.svg" alt="" class="gnav-logo-sm-black">
+        </div>
+        <button id="mobileNavToggle" class="gnav-hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+        <nav class="gnav-links">
+          <a href="#" class="gnav-link">Experience Manager Sites</a>
+          <a href="#" class="gnav-link">Features</a>
+          <a href="#" class="gnav-link">Use Cases</a>
+          <a href="#" class="gnav-link">Pricing</a>
+          <a href="#" class="gnav-link">Resources</a>
+        </nav>
+      </div>
+      <div class="gnav-right">
+        <button class="gnav-apps" aria-label="Apps">
+          <img src="../../target/runtime/assets/icons/S2_Icon_AppsAll_20_N.svg" alt="">
+        </button>
+        <a href="#" class="gnav-cta">Get started</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="aem-hero" id="aem-hero">
+    <div class="aem-hero__mesh" aria-hidden="true">
+      <div class="aem-hero__blob aem-hero__blob--1"></div>
+      <div class="aem-hero__blob aem-hero__blob--2"></div>
+      <div class="aem-hero__blob aem-hero__blob--3"></div>
+      <div class="aem-hero__blob aem-hero__blob--4"></div>
+    </div>
+    <div class="aem-hero__grid">
+      <div class="aem-hero__copy">
+        <p class="aem-hero__eyebrow">ADOBE EXPERIENCE MANAGER SITES</p>
+        <h1 class="aem-hero__title word-slide">
+          <span class="word">An</span>
+          <span class="word">agentic</span>
+          <span class="word word--accent">CMS</span>
+          <span class="word">to scale</span>
+          <span class="word">modern</span>
+          <span class="word">experiences.</span>
+        </h1>
+        <p class="aem-hero__body">Create and deliver high-performance experiences faster &mdash; built for agility and optimized for AI-driven discovery.</p>
+        <div class="aem-hero__ctas">
+          <a href="#" class="btn btn--solid-white">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M3 1.5l9 5.5-9 5.5z"/></svg>
+            Watch overview
+          </a>
+          <a href="#" class="btn btn--ghost-white">Book a demo</a>
+        </div>
+      </div>
+      <div class="aem-hero__frame" id="aem-hero-portrait">
+        <div class="aem-hero__slab" aria-hidden="true"></div>
+        <div class="aem-hero__accent" aria-hidden="true"></div>
+        <div class="aem-hero__media">
+          <video class="aem-hero__bg"
+                 autoplay muted loop playsinline
+                 poster="assets/scraped/features-poster.png">
+            <source src="assets/scraped/hero-video.mp4" type="video/mp4">
+          </video>
+        </div>
+        <span class="aem-hero__crop aem-hero__crop--tl" aria-hidden="true"></span>
+        <span class="aem-hero__crop aem-hero__crop--tr" aria-hidden="true"></span>
+        <span class="aem-hero__crop aem-hero__crop--bl" aria-hidden="true"></span>
+        <span class="aem-hero__crop aem-hero__crop--br" aria-hidden="true"></span>
+        <div class="aem-hero__chip aem-hero__chip--1">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"/></svg>
+          New page generated
+        </div>
+        <div class="aem-hero__chip aem-hero__chip--2">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12l5 5L21 4"/></svg>
+          Brand-aligned variant
+        </div>
+        <div class="aem-hero__chip aem-hero__chip--3">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12h20M12 2c3 4 3 16 0 20M12 2c-3 4-3 16 0 20"/></svg>
+          Translated · 12 locales
+        </div>
+        <div class="aem-hero__chip aem-hero__chip--4">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 17l4-4 4 4 6-6 4 4"/></svg>
+          Page load &lt; 0.4s
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KINETIC MARQUEE -->
+  <section class="aem-marquee" aria-hidden="true">
+    <div class="aem-marquee__track">
+      <span class="aem-marquee__item">Experience Manager Sites</span>
+      <span class="aem-marquee__sep">✦</span>
+      <span class="aem-marquee__item aem-marquee__item--accent">Agentic CMS</span>
+      <span class="aem-marquee__sep">✦</span>
+      <span class="aem-marquee__item">Built for AI discovery</span>
+      <span class="aem-marquee__sep">✦</span>
+      <span class="aem-marquee__item aem-marquee__item--accent">Headless</span>
+      <span class="aem-marquee__sep">✦</span>
+      <!-- duplicate -->
+      <span class="aem-marquee__item">Experience Manager Sites</span>
+      <span class="aem-marquee__sep">✦</span>
+      <span class="aem-marquee__item aem-marquee__item--accent">Agentic CMS</span>
+      <span class="aem-marquee__sep">✦</span>
+      <span class="aem-marquee__item">Built for AI discovery</span>
+      <span class="aem-marquee__sep">✦</span>
+      <span class="aem-marquee__item aem-marquee__item--accent">Headless</span>
+      <span class="aem-marquee__sep">✦</span>
+    </div>
+  </section>
+
+  <!-- RAINBOW STRIP — Agents announce -->
+  <section class="aem-rainbow slide-in-up">
+    <span>✦ Discover Agents in Adobe Experience Manager</span>
+    <a href="#">Learn more <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+  </section>
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════
+       FEATURES INTRO — mask-wipe headline
+       ═══════════════════════════════════════════════════════════════ */
+    .aem-intro {
+      background: #fff;
+      padding: var(--s2a-spacing-6xl) var(--grid-margin-sm) var(--s2a-spacing-3xl);
+      text-align: center;
+    }
+    .aem-intro__title {
+      max-width: 1000px; margin: 0 auto 24px;
+      font-family: var(--font-display); font-weight: 900;
+      font-size: clamp(28px, 3.2vw, 44px); line-height: 1.08;
+      letter-spacing: -0.025em; color: #1a1a1a;
+    }
+    .aem-intro__body {
+      max-width: 820px; margin: 0 auto;
+      font-family: var(--font-body); font-size: 17px; line-height: 1.55;
+      color: rgba(0,0,0,0.65);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       SPLIT — image clip-reveal + bullets stagger from edge
+       (5 rows, alternating; replaces tabs UI from index.html)
+       ═══════════════════════════════════════════════════════════════ */
+    .aem-split { background: #fff; padding-block: var(--s2a-spacing-6xl); }
+    .aem-split__inner {
+      max-width: 1280px; margin-inline: auto;
+      padding-inline: var(--grid-margin-md, 8.333vw);
+      display: flex; flex-direction: column; gap: 160px;
+    }
+    @media (max-width: 1023px) { .aem-split__inner { padding-inline: var(--grid-margin-sm); gap: 100px; } }
+    .aem-split__row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    @media (max-width: 1023px) { .aem-split__row { grid-template-columns: 1fr; gap: 32px; } }
+    .aem-split__row[data-side="right"] .aem-split__media { order: 2; }
+    .aem-split__row[data-side="right"] .aem-split__copy  { order: 1; }
+    @media (max-width: 1023px) {
+      .aem-split__row[data-side="right"] .aem-split__media,
+      .aem-split__row[data-side="right"] .aem-split__copy { order: 0; }
+    }
+    .aem-split__media {
+      position: relative;
+      aspect-ratio: 4/3; border-radius: 24px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+      background: #f3f3f3;
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+      animation: clip-reveal-left 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+    }
+    .aem-split__row[data-side="right"] .aem-split__media {
+      clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+      animation-name: clip-reveal-right;
+    }
+    @keyframes clip-reveal-left  { to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); } }
+    @keyframes clip-reveal-right { to { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); } }
+    .aem-split__media img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transform: scale(1.1);
+      animation: media-zoom-out 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 50%;
+    }
+    @keyframes media-zoom-out { to { transform: scale(1); } }
+
+    .aem-split__copy { display: flex; flex-direction: column; gap: 22px; }
+    .aem-split__eyebrow {
+      font-family: var(--font-body); font-weight: 700;
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: #4FB6E8;
+    }
+    .aem-split__title {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: clamp(26px, 2.8vw, 38px); line-height: 1.1;
+      letter-spacing: -0.025em; color: #1a1a1a; max-width: 22ch;
+      opacity: 0; transform: translateX(-100px);
+      animation: split-title-in 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 35%;
+    }
+    .aem-split__row[data-side="right"] .aem-split__title { transform: translateX(100px); }
+    @keyframes split-title-in { to { opacity: 1; transform: translateX(0); } }
+
+    .aem-split__body {
+      font-family: var(--font-body); font-size: 17px; line-height: 1.5;
+      color: rgba(0,0,0,0.75); max-width: 56ch;
+      opacity: 0; transform: translateX(-60px);
+      animation: split-body-in 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 40%;
+    }
+    .aem-split__row[data-side="right"] .aem-split__body { transform: translateX(60px); }
+    @keyframes split-body-in { to { opacity: 1; transform: translateX(0); } }
+
+    .aem-split__bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+    .aem-split__bullet {
+      position: relative; padding-left: 32px;
+      font-family: var(--font-body); font-size: 15px; line-height: 1.5; color: rgba(0,0,0,0.78);
+      opacity: 0; transform: translateX(-80px);
+      animation: bullet-slide-in 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 15% cover 50%;
+    }
+    .aem-split__row[data-side="right"] .aem-split__bullet { transform: translateX(80px); }
+    .aem-split__bullets > .aem-split__bullet:nth-child(1) { animation-delay: 0ms; }
+    .aem-split__bullets > .aem-split__bullet:nth-child(2) { animation-delay: 100ms; }
+    .aem-split__bullets > .aem-split__bullet:nth-child(3) { animation-delay: 200ms; }
+    .aem-split__bullets > .aem-split__bullet:nth-child(4) { animation-delay: 300ms; }
+    @keyframes bullet-slide-in { to { opacity: 1; transform: translateX(0); } }
+    .aem-split__bullet::before {
+      content: ''; position: absolute; left: 0; top: 6px;
+      width: 18px; height: 18px;
+      background: var(--gradient-cool);
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(46,191,152,0.4);
+    }
+    .aem-split__bullet::after {
+      content: '✓'; position: absolute; left: 4px; top: 4px;
+      width: 10px; height: 10px;
+      color: #fff; font-size: 10px; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .aem-split__cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      align-self: flex-start;
+      height: 44px; padding: 0 24px;
+      background: #1a1a1a; color: #fff;
+      border-radius: 999px;
+      font-family: var(--font-body); font-size: 14px; font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .aem-split__cta:hover { transform: translateY(-2px); background: #2a2a2a; }
+    .aem-split__cta::after { content: '→'; transition: transform 0.2s; }
+    .aem-split__cta:hover::after { transform: translateX(4px); }
+  </style>
+
+  <!-- INTRO -->
+  <section class="aem-intro">
+    <h2 class="aem-intro__title">
+      <span class="mask-wipe">Explore the features and capabilities of</span><br>
+      <span class="mask-wipe" style="animation-delay: 100ms">Adobe Experience Manager Sites.</span>
+    </h2>
+    <p class="aem-intro__body slide-in-up">Digital experience has evolved &mdash; your CMS should too. Experience Manager Sites addresses the core challenges of managing your digital properties, leveraging powerful agentic execution to help teams create, update, and activate experiences more efficiently. The result: structured, high-performing pages designed for both human engagement and AI&nbsp;visibility.</p>
+  </section>
+
+  <!-- SPLIT — 5 alternating rows, one per AEM Sites capability -->
+  <section class="aem-split">
+    <div class="aem-split__inner">
+
+      <article class="aem-split__row" data-side="left">
+        <div class="aem-split__media">
+          <img src="assets/scraped/features-tab-content-creation.png" alt="" width="1000" height="751">
+        </div>
+        <div class="aem-split__copy">
+          <p class="aem-split__eyebrow">Content creation</p>
+          <h3 class="aem-split__title">Accelerate content creation with agentic capabilities.</h3>
+          <p class="aem-split__body">Give marketers the ability to quickly create, update, and scale digital experiences faster with flexible authoring tools and built-in agentic support.</p>
+          <ul class="aem-split__bullets">
+            <li class="aem-split__bullet">Modernize legacy content and use agentic workflows to automate updates, enforce governance and streamline optimization across sites.</li>
+            <li class="aem-split__bullet">Use flexible authoring to create and publish content directly from Microsoft Word and Google Docs, or use a visual editor for real time, in-context page editing.</li>
+            <li class="aem-split__bullet">Instantly create on-brand copy and image variations, test performance, and personalize content using integrated generative AI capabilities.</li>
+            <li class="aem-split__bullet">Reuse content across properties, manage metadata, and streamline translation to deliver consistent global experiences.</li>
+          </ul>
+          <a href="#" class="aem-split__cta">Learn about content creation</a>
+        </div>
+      </article>
+
+      <article class="aem-split__row" data-side="right">
+        <div class="aem-split__media">
+          <img src="assets/scraped/features-tab-performance.png" alt="" width="1000" height="751">
+        </div>
+        <div class="aem-split__copy">
+          <p class="aem-split__eyebrow">Performance &amp; experimentation</p>
+          <h3 class="aem-split__title">Deliver fast experiences and optimize them as you go.</h3>
+          <p class="aem-split__body">Ship high-performance pages by default and run experiments without slowing teams down.</p>
+          <a href="#" class="aem-split__cta">Learn about performance</a>
+        </div>
+      </article>
+
+      <article class="aem-split__row" data-side="left">
+        <div class="aem-split__media">
+          <img src="assets/scraped/features-tab-rapid-development.png" alt="" width="1000" height="751">
+        </div>
+        <div class="aem-split__copy">
+          <p class="aem-split__eyebrow">Rapid development</p>
+          <h3 class="aem-split__title">Build with reusable components and agentic workflows.</h3>
+          <p class="aem-split__body">Accelerate development with reusable building blocks, agentic generation, and a low-code authoring environment that lets teams move at the speed of marketing.</p>
+          <a href="#" class="aem-split__cta">Learn about rapid development</a>
+        </div>
+      </article>
+
+      <article class="aem-split__row" data-side="right">
+        <div class="aem-split__media">
+          <img src="assets/scraped/features-tab-omnichannel.png" alt="" width="1000" height="751">
+        </div>
+        <div class="aem-split__copy">
+          <p class="aem-split__eyebrow">Omnichannel experiences</p>
+          <h3 class="aem-split__title">Author once, deliver everywhere your customers are.</h3>
+          <p class="aem-split__body">Author content centrally and deliver consistent experiences across web, mobile, in-product surfaces, and AI search — without rebuilding the same content for every channel.</p>
+          <a href="#" class="aem-split__cta">Learn about omnichannel</a>
+        </div>
+      </article>
+
+      <article class="aem-split__row" data-side="left">
+        <div class="aem-split__media">
+          <img src="assets/scraped/features-tab-headless.png" alt="" width="1000" height="751">
+        </div>
+        <div class="aem-split__copy">
+          <p class="aem-split__eyebrow">Headless CMS</p>
+          <h3 class="aem-split__title">A headless foundation for every front end.</h3>
+          <p class="aem-split__body">Power any front end — including custom apps, kiosks, and AI agents — with a structured, API-first content layer that scales with your business.</p>
+          <a href="#" class="aem-split__cta">Learn about headless</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════
+       USE CASES — divergent layout (cards swing in from 3 directions)
+       ═══════════════════════════════════════════════════════════════ */
+    .aem-use-cases {
+      position: relative;
+      background: #f0f5f7;
+      padding-block: 140px;
+      overflow: hidden;
+    }
+    .aem-use-cases::before {
+      content: ''; position: absolute;
+      width: 800px; height: 800px;
+      top: -300px; right: -200px;
+      background: radial-gradient(circle, rgba(79,182,232,0.20), transparent 60%);
+      pointer-events: none;
+    }
+    .aem-use-cases::after {
+      content: ''; position: absolute;
+      width: 600px; height: 600px;
+      bottom: -200px; left: -150px;
+      background: radial-gradient(circle, rgba(255,122,64,0.12), transparent 60%);
+      pointer-events: none;
+    }
+    .aem-use-cases__header {
+      max-width: 720px; margin: 0 auto 96px;
+      text-align: center; padding-inline: var(--grid-margin-sm);
+      position: relative; z-index: 1;
+    }
+    .aem-use-cases__title {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: clamp(28px, 3.2vw, 44px); line-height: 1.05;
+      letter-spacing: -0.03em; color: #1a1a1a;
+    }
+    .aem-use-cases__grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 1200px; margin: 0 auto;
+      padding-inline: var(--grid-margin-md, 8.333vw);
+      position: relative; z-index: 1;
+    }
+    @media (max-width: 1023px) { .aem-use-cases__grid { grid-template-columns: 1fr; gap: 32px; } }
+    .aem-use-case {
+      position: relative;
+      padding: 36px 28px 32px;
+      background: #fff; border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+      transition: transform 0.5s var(--s2a-easing-default), box-shadow 0.5s, opacity 0.4s;
+      will-change: transform;
+    }
+    .aem-use-case--1 {
+      opacity: 0; transform: translate(-300px, 80px) rotate(-20deg);
+      animation: case-swing-1 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
+    .aem-use-case--2 {
+      opacity: 0; transform: translate(0, 200px) rotate(15deg);
+      animation: case-swing-2 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 40%;
+    }
+    .aem-use-case--3 {
+      opacity: 0; transform: translate(300px, 80px) rotate(20deg);
+      animation: case-swing-3 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 45%;
+    }
+    @keyframes case-swing-1 { to { opacity: 1; transform: translate(0, 0) rotate(-2.5deg); } }
+    @keyframes case-swing-2 { to { opacity: 1; transform: translate(0, -32px) rotate(1.5deg); } }
+    @keyframes case-swing-3 { to { opacity: 1; transform: translate(0, 16px) rotate(-1deg); } }
+    @media (max-width: 1023px) {
+      .aem-use-case--1, .aem-use-case--2, .aem-use-case--3 {
+        animation: none; opacity: 1; transform: none;
+      }
+    }
+    .aem-use-cases__grid:hover .aem-use-case { opacity: 0.55; }
+    .aem-use-cases__grid .aem-use-case:hover {
+      transform: rotate(0) translateY(-12px) scale(1.04) !important;
+      opacity: 1;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.18);
+      z-index: 2;
+    }
+    .aem-use-case__icon {
+      width: 64px; height: 64px;
+      border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .aem-use-case__icon img { width: 36px; height: 36px; filter: brightness(0) invert(1); }
+    .aem-use-case--1 .aem-use-case__icon { background: var(--gradient-warm); }
+    .aem-use-case--2 .aem-use-case__icon { background: var(--gradient-cool); }
+    .aem-use-case--3 .aem-use-case__icon { background: linear-gradient(135deg, #5B7BFF, #8B68E8); }
+    .aem-use-case__title {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: 22px; line-height: 1.15;
+      letter-spacing: -0.02em; color: #1a1a1a;
+      margin-bottom: 12px;
+    }
+    .aem-use-case__body {
+      font-family: var(--font-body); font-size: 15px; line-height: 1.5;
+      color: rgba(0,0,0,0.65);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       FORRESTER — copy slides from left, media clip-reveal from right
+       ═══════════════════════════════════════════════════════════════ */
+    .aem-forrester {
+      position: relative;
+      background: radial-gradient(ellipse 80% 100% at 30% 50%, rgba(79,182,232,0.18), transparent 60%), #0c0820;
+      color: #fff;
+      padding-block: var(--s2a-spacing-6xl);
+      overflow: hidden;
+    }
+    .aem-forrester__grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+      max-width: 1280px; margin: 0 auto;
+      padding-inline: var(--grid-margin-md, 8.333vw);
+    }
+    @media (max-width: 1023px) {
+      .aem-forrester__grid { grid-template-columns: 1fr; gap: 48px; padding-inline: var(--grid-margin-sm); }
+    }
+    .aem-forrester__title {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: clamp(32px, 4vw, 52px); line-height: 1.05;
+      letter-spacing: -0.03em; color: #fff;
+      margin-bottom: 32px; max-width: 14ch;
+    }
+    .aem-forrester__media {
+      position: relative;
+      aspect-ratio: 4/3; border-radius: 24px; overflow: hidden;
+      transform-style: preserve-3d;
+      transform: perspective(1200px)
+                 rotateY(calc(var(--mx, 0) * 5deg))
+                 rotateX(calc(var(--my, 0) * -5deg));
+      transition: transform 0.6s cubic-bezier(0.2, 0, 0, 1);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+      clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+      animation: clip-reveal-right 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+    }
+    .aem-forrester__media img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════
+       BRANDS STRIP — 3 customer-story cards, alternating L/R/L slide-in
+       ═══════════════════════════════════════════════════════════════ */
+    .aem-brands { background: #fff; padding-block: var(--s2a-spacing-6xl); overflow: hidden; }
+    .aem-brands__header {
+      max-width: 880px; margin: 0 auto 64px;
+      text-align: center; padding-inline: var(--grid-margin-sm);
+    }
+    .aem-brands__title {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: clamp(28px, 3.2vw, 44px); line-height: 1.08;
+      letter-spacing: -0.025em; color: #1a1a1a;
+    }
+    .aem-brands__items {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; max-width: 1280px; margin: 0 auto;
+      padding-inline: var(--grid-margin-md, 8.333vw);
+    }
+    @media (max-width: 1023px) { .aem-brands__items { grid-template-columns: 1fr; } }
+    .aem-brand-card {
+      position: relative;
+      padding: 40px 32px;
+      border-radius: 24px;
+      background: #f8f8f8;
+      display: flex; flex-direction: column; gap: 20px; align-items: flex-start;
+      min-height: 240px;
+      transition: transform 0.4s var(--s2a-easing-default), box-shadow 0.4s;
+    }
+    .aem-brand-card:hover {
+      transform: translateY(-8px) !important;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.10);
+    }
+    .aem-brand-card--1 { background: linear-gradient(160deg, #FFE5D6 0%, #FFCFB5 100%); }
+    .aem-brand-card--2 { background: linear-gradient(160deg, #DCE7FF 0%, #B8C9FF 100%); }
+    .aem-brand-card--3 { background: linear-gradient(160deg, #DCF5E5 0%, #B5E0C5 100%); }
+    .aem-brand-card--1 { opacity: 0; transform: translateX(-200px); animation: brand-in-left 1ms linear both;  animation-timeline: view(); animation-range: entry 0% cover 35%; }
+    .aem-brand-card--2 { opacity: 0; transform: translateY(120px);  animation: brand-in-up 1ms linear both;   animation-timeline: view(); animation-range: entry 5% cover 40%; }
+    .aem-brand-card--3 { opacity: 0; transform: translateX(200px);  animation: brand-in-right 1ms linear both; animation-timeline: view(); animation-range: entry 10% cover 45%; }
+    @keyframes brand-in-left  { to { opacity: 1; transform: translateX(0); } }
+    @keyframes brand-in-up    { to { opacity: 1; transform: translateY(0); } }
+    @keyframes brand-in-right { to { opacity: 1; transform: translateX(0); } }
+    .aem-brand-card__logo { color: #1a1a1a; }
+    .aem-brand-card__metric {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: 24px; line-height: 1.15;
+      letter-spacing: -0.02em; color: #1a1a1a;
+      max-width: 22ch;
+    }
+    .aem-brands__foot { text-align: center; margin-top: 64px; }
+
+    /* ═══════════════════════════════════════════════════════════════
+       RESOURCES — stagger reveal from edge
+       ═══════════════════════════════════════════════════════════════ */
+    .aem-resources {
+      background: #fafafa; padding-block: var(--s2a-spacing-6xl);
+      overflow: hidden;
+    }
+    .aem-resources__header {
+      max-width: 880px; margin: 0 auto 56px;
+      text-align: center; padding-inline: var(--grid-margin-sm);
+    }
+    .aem-resources__title {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: clamp(28px, 3.2vw, 44px); line-height: 1.08;
+      letter-spacing: -0.025em; color: #1a1a1a;
+    }
+    .aem-resources__grid {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 16px; max-width: 1320px; margin: 0 auto;
+      padding-inline: var(--grid-margin-md, 8.333vw);
+    }
+    @media (max-width: 1199px) { .aem-resources__grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 767px)  { .aem-resources__grid { grid-template-columns: repeat(2, 1fr); } }
+    .aem-resource-card {
+      display: flex; flex-direction: column; gap: 12px;
+      padding: 20px;
+      background: #fff; border-radius: 18px;
+      text-decoration: none; color: #1a1a1a;
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: transform 0.3s var(--s2a-easing-default), box-shadow 0.3s, border-color 0.3s;
+      min-height: 168px;
+    }
+    .aem-resource-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      border-color: rgba(79,182,232,0.5);
+    }
+    .aem-resource-card__icon { width: 24px; height: 24px; color: #4FB6E8; }
+    .aem-resource-card__category {
+      font-family: var(--font-body); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: #E84C8B;
+    }
+    .aem-resource-card__title {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 15px; line-height: 1.25;
+      letter-spacing: -0.01em; color: #1a1a1a;
+    }
+    .aem-resources__foot { text-align: center; margin-top: 48px; }
+  </style>
+
+  <!-- USE CASES — divergent -->
+  <section class="aem-use-cases">
+    <div class="aem-use-cases__header">
+      <h2 class="aem-use-cases__title slide-in-up">Adobe Experience Manager Sites use cases.</h2>
+    </div>
+    <div class="aem-use-cases__grid">
+      <article class="aem-use-case aem-use-case--1">
+        <div class="aem-use-case__icon">
+          <img src="assets/scraped/use-case-1-website-production.png" alt="">
+        </div>
+        <h3 class="aem-use-case__title">Accelerate website production.</h3>
+        <p class="aem-use-case__body">Empower any team to build and publish high-quality websites with easy-to-use AI.</p>
+      </article>
+      <article class="aem-use-case aem-use-case--2">
+        <div class="aem-use-case__icon">
+          <img src="assets/scraped/use-case-2-scale-experiences.png" alt="">
+        </div>
+        <h3 class="aem-use-case__title">Scale experiences across brands and regions.</h3>
+        <p class="aem-use-case__body">Expand web experiences across brands, regions, and languages using a shared foundation that balances consistency and local flexibility.</p>
+      </article>
+      <article class="aem-use-case aem-use-case--3">
+        <div class="aem-use-case__icon">
+          <img src="assets/scraped/use-case-3-high-performance.png" alt="">
+        </div>
+        <h3 class="aem-use-case__title">Deliver high-performance experiences by default.</h3>
+        <p class="aem-use-case__body">Deliver fast, reliable web experiences without requiring ongoing manual optimization.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- FORRESTER -->
+  <section class="aem-forrester">
+    <div class="aem-forrester__grid">
+      <div>
+        <h2 class="aem-forrester__title slide-in-left">Forrester names Adobe a Leader in CMS.</h2>
+        <a href="#" class="btn btn--ghost-white slide-in-left">Read report</a>
+      </div>
+      <div class="aem-forrester__media" id="aem-forrester-portrait" aria-hidden="true">
+        <img src="assets/scraped/forrester.png" alt="">
+      </div>
+    </div>
+  </section>
+
+  <!-- BRANDS STRIP — customer stories -->
+  <section class="aem-brands">
+    <div class="aem-brands__header">
+      <h2 class="aem-brands__title slide-in-up">Helping global brands drive business impact with personalization.</h2>
+    </div>
+    <div class="aem-brands__items">
+      <article class="aem-brand-card aem-brand-card--1">
+        <span class="aem-brand-card__logo" aria-label="IBM">
+          <svg viewBox="0 0 96 36" height="34" fill="currentColor" role="img" aria-hidden="true">
+            <g>
+              <rect x="2"  y="6"  width="22" height="3"/><rect x="2"  y="12" width="22" height="3"/>
+              <rect x="2"  y="18" width="22" height="3"/><rect x="2"  y="24" width="22" height="3"/>
+              <rect x="32" y="6"  width="22" height="3"/><rect x="32" y="12" width="22" height="3"/>
+              <rect x="32" y="18" width="22" height="3"/><rect x="32" y="24" width="22" height="3"/>
+              <rect x="32" y="6"  width="3" height="21"/>
+              <rect x="51" y="6"  width="3" height="9"/><rect x="51" y="18" width="3" height="9"/>
+              <rect x="62" y="6"  width="3" height="21"/><rect x="80" y="6"  width="3" height="21"/>
+              <polygon points="65,6 68,6 71,15 68,15"/><polygon points="80,6 77,6 74,15 77,15"/>
+              <rect x="65" y="9"  width="15" height="3"/>
+            </g>
+          </svg>
+        </span>
+        <p class="aem-brand-card__metric">Created pages 96 times faster.</p>
+      </article>
+      <article class="aem-brand-card aem-brand-card--2">
+        <span class="aem-brand-card__logo" aria-label="Hanes Brands Inc.">
+          <svg viewBox="0 0 220 36" height="32" fill="currentColor" role="img" aria-hidden="true">
+            <text x="0" y="22" font-family="Helvetica, sans-serif" font-weight="900" font-size="22" letter-spacing="-0.5">Hanes</text>
+            <text x="80" y="22" font-family="Helvetica, sans-serif" font-weight="900" font-size="22" letter-spacing="-0.5">Brands</text>
+            <text x="174" y="22" font-family="Helvetica, sans-serif" font-weight="400" font-size="14" letter-spacing="0.5">Inc</text>
+          </svg>
+        </span>
+        <p class="aem-brand-card__metric">Improved page load time by 400%.</p>
+      </article>
+      <article class="aem-brand-card aem-brand-card--3">
+        <span class="aem-brand-card__logo" aria-label="Kyndryl">
+          <svg viewBox="0 0 140 36" height="30" fill="currentColor" role="img" aria-hidden="true">
+            <text x="0" y="26" font-family="Helvetica, sans-serif" font-weight="700" font-size="28" letter-spacing="-0.5">kyndryl</text>
+            <polygon points="78,28 88,32 78,32" opacity="0.55"/>
+          </svg>
+        </span>
+        <p class="aem-brand-card__metric">Built and launched a new site in only 8 weeks.</p>
+      </article>
+    </div>
+    <div class="aem-brands__foot slide-in-up">
+      <a href="#" class="btn btn--outline">Read more stories</a>
+    </div>
+  </section>
+
+  <!-- RESOURCES — staggered grid -->
+  <section class="aem-resources">
+    <div class="aem-resources__header">
+      <h2 class="aem-resources__title slide-in-up">Learn more about Experience Manager Sites.</h2>
+    </div>
+    <div class="aem-resources__grid stagger">
+      <a href="#" class="aem-resource-card">
+        <svg class="aem-resource-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"/><path d="M16 4v3h3"/></svg>
+        <p class="aem-resource-card__category">Blog</p>
+        <p class="aem-resource-card__title">The next era of content management systems.</p>
+      </a>
+      <a href="#" class="aem-resource-card">
+        <svg class="aem-resource-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="6" width="14" height="10" rx="1.5"/><path d="M21 9l-4 3 4 3z"/></svg>
+        <p class="aem-resource-card__category">Webinar</p>
+        <p class="aem-resource-card__title">Build, author, publish and load web pages in record time.</p>
+      </a>
+      <a href="#" class="aem-resource-card">
+        <svg class="aem-resource-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"/><path d="M16 4v3h3"/></svg>
+        <p class="aem-resource-card__category">Blog</p>
+        <p class="aem-resource-card__title">Learn how to accelerate content production.</p>
+      </a>
+      <a href="#" class="aem-resource-card">
+        <svg class="aem-resource-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="9" r="3"/><path d="M5 19c1-4 5-6 7-6s6 2 7 6"/></svg>
+        <p class="aem-resource-card__category">Customer Story</p>
+        <p class="aem-resource-card__title">Juniper Networks turns its website into a differentiator.</p>
+      </a>
+      <a href="#" class="aem-resource-card">
+        <svg class="aem-resource-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        <p class="aem-resource-card__category">Guide</p>
+        <p class="aem-resource-card__title">Content management systems: Software buyer's guide.</p>
+      </a>
+      <a href="#" class="aem-resource-card">
+        <svg class="aem-resource-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="9" r="3"/><path d="M5 19c1-4 5-6 7-6s6 2 7 6"/></svg>
+        <p class="aem-resource-card__category">Customer Story</p>
+        <p class="aem-resource-card__title">Qualcomm boosts page views by 800%.</p>
+      </a>
+      <a href="#" class="aem-resource-card">
+        <svg class="aem-resource-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="4" width="14" height="16" rx="1.5"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>
+        <p class="aem-resource-card__category">Report</p>
+        <p class="aem-resource-card__title">IDC: The business value of Adobe Experience Manager Sites.</p>
+      </a>
+      <a href="#" class="aem-resource-card">
+        <svg class="aem-resource-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 4l3 6 6 1-4.5 4.5 1 6L12 18.5 6.5 21.5l1-6L3 11l6-1z"/></svg>
+        <p class="aem-resource-card__title">AI-Powered Scalability with Experience Manager Sites.</p>
+      </a>
+      <a href="#" class="aem-resource-card">
+        <svg class="aem-resource-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/></svg>
+        <p class="aem-resource-card__title">Experience Manager Sites Components.</p>
+      </a>
+      <a href="#" class="aem-resource-card">
+        <svg class="aem-resource-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 4h14v6H5zM5 14h14v6H5z"/></svg>
+        <p class="aem-resource-card__title">Content &amp; Experience Fragments.</p>
+      </a>
+    </div>
+    <div class="aem-resources__foot slide-in-up">
+      <a href="#" class="btn btn--outline">See all Experience Manager Sites resources</a>
+    </div>
+  </section>
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════
+       INTEGRATIONS — teal surface, 3 cards alternating slide direction
+       ═══════════════════════════════════════════════════════════════ */
+    .aem-integrations {
+      background: linear-gradient(180deg, #d6e8ec 0%, #c4dee5 100%);
+      padding-block: var(--s2a-spacing-6xl);
+      overflow: hidden;
+    }
+    .aem-integrations__header {
+      max-width: 880px; margin: 0 auto 64px;
+      text-align: center; padding-inline: var(--grid-margin-sm);
+    }
+    .aem-integrations__title {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: clamp(28px, 3.2vw, 44px); line-height: 1.05;
+      letter-spacing: -0.03em; color: #1a1a1a;
+    }
+    .aem-integrations__sub {
+      font-family: var(--font-body); font-size: 17px; line-height: 1.5;
+      color: rgba(0,0,0,0.65); margin-top: 16px;
+    }
+    .aem-integrations__list {
+      display: flex; flex-direction: column; gap: 24px;
+      max-width: 1280px; margin: 0 auto;
+      padding-inline: var(--grid-margin-md, 8.333vw);
+    }
+    .aem-integration-card {
+      background: #fff; border-radius: 24px;
+      overflow: hidden;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; align-items: center;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+      transition: transform 0.4s var(--s2a-easing-default), box-shadow 0.4s;
+    }
+    @media (max-width: 1023px) { .aem-integration-card { grid-template-columns: 1fr; } }
+    .aem-integration-card:hover {
+      transform: translateY(-6px) !important;
+      box-shadow: 0 28px 60px rgba(0,0,0,0.14);
+    }
+    .aem-integration-card--1 { opacity: 0; transform: translateX(-200px); animation: int-in-left 1ms linear both;  animation-timeline: view(); animation-range: entry 0% cover 35%; }
+    .aem-integration-card--2 { opacity: 0; transform: translateX(200px);  animation: int-in-right 1ms linear both; animation-timeline: view(); animation-range: entry 5% cover 40%; }
+    .aem-integration-card--3 { opacity: 0; transform: translateX(-200px); animation: int-in-left 1ms linear both;  animation-timeline: view(); animation-range: entry 10% cover 45%; }
+    @keyframes int-in-left  { to { opacity: 1; transform: translateX(0); } }
+    @keyframes int-in-right { to { opacity: 1; transform: translateX(0); } }
+
+    .aem-integration-card__media { aspect-ratio: 4/3; overflow: hidden; background: #f3f3f3; }
+    .aem-integration-card__media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s var(--s2a-easing-default); }
+    .aem-integration-card:hover .aem-integration-card__media img { transform: scale(1.04); }
+    .aem-integration-card__copy { padding: 40px 48px; display: flex; flex-direction: column; gap: 16px; }
+    @media (max-width: 1023px) { .aem-integration-card__copy { padding: 28px; } }
+    .aem-integration-card__title {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: 22px; line-height: 1.18;
+      letter-spacing: -0.02em; color: #1a1a1a;
+    }
+    .aem-integration-card__body { font-family: var(--font-body); font-size: 15px; line-height: 1.5; color: rgba(0,0,0,0.7); }
+    .aem-integration-card__cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-body); font-weight: 700; font-size: 14px;
+      color: #1a1a1a; text-decoration: none; align-self: flex-start;
+      margin-top: 4px;
+    }
+    .aem-integration-card__cta::after { content: '→'; transition: transform 0.2s; }
+    .aem-integration-card__cta:hover::after { transform: translateX(4px); }
+
+    /* FAQ — section title mask-wipe + each row slides in from left */
+    .faq-accordion__list .faq-accordion__item {
+      opacity: 0; transform: translateX(-80px);
+      animation: faq-row-in 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 50%;
+    }
+    .faq-accordion__list .faq-accordion__item:nth-child(1) { animation-delay: 0ms; }
+    .faq-accordion__list .faq-accordion__item:nth-child(2) { animation-delay: 60ms; }
+    .faq-accordion__list .faq-accordion__item:nth-child(3) { animation-delay: 120ms; }
+    .faq-accordion__list .faq-accordion__item:nth-child(4) { animation-delay: 180ms; }
+    .faq-accordion__list .faq-accordion__item:nth-child(5) { animation-delay: 240ms; }
+    .faq-accordion__list .faq-accordion__item:nth-child(6) { animation-delay: 300ms; }
+    @keyframes faq-row-in { to { opacity: 1; transform: translateX(0); } }
+
+    /* ═══════════════════════════════════════════════════════════════
+       FINAL CTA — title slides from left, portrait from right + glow
+       ═══════════════════════════════════════════════════════════════ */
+    .aem-final-cta {
+      position: relative;
+      background: radial-gradient(ellipse 80% 100% at 30% 50%, rgba(255,122,64,0.18), transparent 60%), #000;
+      padding-block: var(--s2a-spacing-6xl);
+      overflow: hidden;
+    }
+    .aem-final-cta__grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+      max-width: 1280px; margin: 0 auto;
+      padding-inline: var(--grid-margin-md, 8.333vw);
+    }
+    @media (max-width: 1023px) { .aem-final-cta__grid { grid-template-columns: 1fr; gap: 48px; padding-inline: var(--grid-margin-sm); } }
+    .aem-final-cta__title {
+      color: #fff;
+      font-family: var(--font-display); font-weight: 900;
+      font-size: clamp(32px, 4vw, 52px); line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 32px;
+      max-width: 18ch;
+    }
+    .aem-final-cta__cta {
+      position: relative;
+      display: inline-flex; align-items: center; gap: 8px;
+      height: 52px; padding: 0 32px;
+      background: var(--gradient-warm);
+      color: #fff; border-radius: 999px;
+      font-family: var(--font-body); font-size: 15px; font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 0 0 0 rgba(255,122,64,0.5);
+      animation: cta-glow 3s ease-in-out infinite;
+      transition: transform 0.2s;
+    }
+    .aem-final-cta__cta:hover { transform: translateY(-3px); }
+    @keyframes cta-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255,122,64,0.4); }
+      50%      { box-shadow: 0 0 0 16px rgba(255,122,64,0); }
+    }
+    .aem-final-cta__cta::after { content: '→'; }
+    .aem-final-cta__media {
+      position: relative;
+      aspect-ratio: 4/3; border-radius: 24px; overflow: hidden;
+      transform-style: preserve-3d;
+      transform: perspective(1200px)
+                 rotateY(calc(var(--mx, 0) * 5deg))
+                 rotateX(calc(var(--my, 0) * -5deg));
+      transition: transform 0.6s cubic-bezier(0.2, 0, 0, 1);
+    }
+    .aem-final-cta__media img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+
+    /* Footer */
+    .footer { position: relative; background: #000; }
+    .footer__main { display: flex; flex-direction: column; gap: 40px; padding: 64px var(--grid-margin-sm) 0; }
+    @media (min-width: 768px) { .footer__main { padding-inline: var(--s2a-layout-lg); } }
+    .footer__cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 20px; }
+    @media (min-width: 900px) { .footer__cols { grid-template-columns: repeat(6, 1fr); gap: 0 8px; } }
+    .footer__col { display: flex; flex-direction: column; gap: 24px; }
+    .footer__col-title { font-family: var(--font-body); font-weight: 700; color: #fff; font-size: 16px; line-height: 20px; letter-spacing: -0.2px; }
+    .footer__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+    .footer__col ul li a { font-family: var(--font-body); font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.64); text-decoration: none; }
+    .footer__bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-block: 32px; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 48px; }
+    .footer__legal { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+    .footer__legal-item { font-family: var(--font-body); font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.64); letter-spacing: 0.04em; }
+    .footer__legal-item a { color: rgba(255,255,255,0.64); text-decoration: none; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .slide-in-left, .slide-in-right, .slide-in-up, .mask-wipe, .stagger > *,
+      .aem-split__media, .aem-split__media img,
+      .aem-split__title, .aem-split__body, .aem-split__bullet,
+      .aem-use-case--1, .aem-use-case--2, .aem-use-case--3,
+      .aem-brand-card--1, .aem-brand-card--2, .aem-brand-card--3,
+      .aem-integration-card--1, .aem-integration-card--2, .aem-integration-card--3,
+      .aem-forrester__media,
+      .faq-accordion__list .faq-accordion__item,
+      .aem-hero__title .word, .aem-hero__chip, .aem-hero__frame, .aem-hero__crop,
+      .aem-hero__eyebrow, .aem-hero__body, .aem-hero__ctas {
+        opacity: 1 !important; transform: none !important;
+        clip-path: none !important;
+      }
+    }
+  </style>
+
+  <!-- INTEGRATIONS -->
+  <section class="aem-integrations">
+    <div class="aem-integrations__header">
+      <h2 class="aem-integrations__title slide-in-up">Unlock more with Adobe integrations.</h2>
+      <p class="aem-integrations__sub slide-in-up">Connect Adobe products to create experiences that are right on time and just right for your customers.</p>
+    </div>
+    <div class="aem-integrations__list">
+      <article class="aem-integration-card aem-integration-card--1">
+        <div class="aem-integration-card__media">
+          <img src="assets/scraped/integration-assets.png" alt="" width="758" height="380">
+        </div>
+        <div class="aem-integration-card__copy">
+          <h3 class="aem-integration-card__title">Experience Manager Sites + Adobe Experience Manager Assets</h3>
+          <p class="aem-integration-card__body">Update assets and digital content everywhere automatically, saving time for developers and marketers.</p>
+          <a href="#" class="aem-integration-card__cta">Learn more</a>
+        </div>
+      </article>
+      <article class="aem-integration-card aem-integration-card--2">
+        <div class="aem-integration-card__media">
+          <img src="assets/scraped/integration-commerce.png" alt="" width="756" height="381">
+        </div>
+        <div class="aem-integration-card__copy">
+          <h3 class="aem-integration-card__title">Experience Manager Sites + Adobe Commerce</h3>
+          <p class="aem-integration-card__body">Create immersive shopping experiences by enriching product pages with content, and manage both content and commerce with a single integrated system.</p>
+          <a href="#" class="aem-integration-card__cta">Learn more</a>
+        </div>
+      </article>
+      <article class="aem-integration-card aem-integration-card--3">
+        <div class="aem-integration-card__media">
+          <img src="assets/scraped/integration-analytics.png" alt="" width="756" height="381">
+        </div>
+        <div class="aem-integration-card__copy">
+          <h3 class="aem-integration-card__title">Experience Manager Sites + Adobe Analytics</h3>
+          <p class="aem-integration-card__body">Fuel content with real-time, omnichannel insights for better optimization and to make each customer interaction relevant.</p>
+          <a href="#" class="aem-integration-card__cta">Learn more</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- FAQs -->
+  <section class="faq-accordion">
+    <div class="faq-accordion__inner">
+      <h2 class="faq-accordion__title slide-in-up">FAQs</h2>
+      <ul class="faq-accordion__list">
+        <li class="faq-accordion__item"><button class="faq-accordion__trigger" type="button"><span>What is content personalization?</span><span class="faq-accordion__icon" aria-hidden="true"></span></button><div class="faq-accordion__panel"><p class="faq-accordion__answer">Content personalization adapts the experience each visitor sees — copy, imagery, recommendations — based on profile, behavior, and intent. Experience Manager Sites makes this possible at scale by combining structured content, audience segmentation from Adobe Experience Platform, and agentic decisioning.</p></div></li>
+        <li class="faq-accordion__item"><button class="faq-accordion__trigger" type="button"><span>What does Adobe Experience Manager Content Services do?</span><span class="faq-accordion__icon" aria-hidden="true"></span></button><div class="faq-accordion__panel"><p class="faq-accordion__answer">Content Services exposes managed content via APIs so that any front end — websites, apps, kiosks, AI agents — can render the same authoritative copy and assets without duplicating editorial work.</p></div></li>
+        <li class="faq-accordion__item"><button class="faq-accordion__trigger" type="button"><span>What is a headless CMS?</span><span class="faq-accordion__icon" aria-hidden="true"></span></button><div class="faq-accordion__panel"><p class="faq-accordion__answer">A headless CMS separates content management from presentation. Editors work in the CMS; developers consume the content through APIs and render it however they want — modern web frameworks, native apps, AI surfaces.</p></div></li>
+        <li class="faq-accordion__item"><button class="faq-accordion__trigger" type="button"><span>What does Adobe Experience Manager Sites Content as a Service include?</span><span class="faq-accordion__icon" aria-hidden="true"></span></button><div class="faq-accordion__panel"><p class="faq-accordion__answer">Content as a Service (CaaS) packages the structured authoring, governance, and delivery layer of Experience Manager Sites as a managed service — without the need to operate the underlying infrastructure.</p></div></li>
+        <li class="faq-accordion__item"><button class="faq-accordion__trigger" type="button"><span>What is a Customer Experience (CX)?</span><span class="faq-accordion__icon" aria-hidden="true"></span></button><div class="faq-accordion__panel"><p class="faq-accordion__answer">Customer Experience is the sum of every interaction a customer has with a brand — across web, mobile, in-store, AI agents, and beyond. Experience Manager Sites is the structured content layer that makes those interactions consistent.</p></div></li>
+        <li class="faq-accordion__item"><button class="faq-accordion__trigger" type="button"><span>What makes AEM Sites a truly scalable CMS for enterprises?</span><span class="faq-accordion__icon" aria-hidden="true"></span></button><div class="faq-accordion__panel"><p class="faq-accordion__answer">AEM Sites scales because it separates concerns: structured content, governance, performance, and delivery each run on dedicated, agentic services. Enterprises can add brands, regions, languages, and channels without rebuilding from scratch.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- LEAD FORM (kept simple — bolder pages keep this section straight) -->
+  <section class="inline-form">
+    <div class="inline-form__inner">
+      <h2 class="inline-form__title slide-in-up">Let us show you the full power of Adobe Experience Manager Sites.</h2>
+      <form class="inline-form__form" novalidate>
+        <div class="inline-form__field">
+          <label for="if-email" class="inline-form__label">Business email</label>
+          <input id="if-email" class="inline-form__input" type="email" placeholder="Business email*" required>
+        </div>
+        <div class="inline-form__field">
+          <label for="if-country" class="inline-form__label">Country</label>
+          <select id="if-country" class="inline-form__select" required>
+            <option value="" disabled selected>Country*</option>
+            <option value="us">United States</option>
+            <option value="ca">Canada</option>
+            <option value="gb">United Kingdom</option>
+            <option value="de">Germany</option>
+            <option value="fr">France</option>
+            <option value="jp">Japan</option>
+          </select>
+        </div>
+        <div class="inline-form__field inline-form__field--full">
+          <button type="submit" class="inline-form__submit">Next</button>
+        </div>
+      </form>
+      <p class="inline-form__step">Step 1 of 2</p>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="aem-final-cta">
+    <div class="aem-final-cta__grid">
+      <div>
+        <h2 class="aem-final-cta__title slide-in-left">Let's talk about what Adobe Experience Manager Sites can do for your business.</h2>
+        <a href="#" class="aem-final-cta__cta slide-in-left">Get started</a>
+      </div>
+      <div class="aem-final-cta__media slide-in-right" id="aem-final-portrait">
+        <img src="assets/scraped/final-cta-portrait.png" alt="" width="756" height="426">
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__main">
+      <div class="footer__cols">
+        <div class="footer__col">
+          <div class="footer__col-title">Contact us</div>
+          <ul><li><a href="#">Request a demo</a></li></ul>
+          <div class="footer__col-title" style="margin-top:24px">Our solutions</div>
+          <ul>
+            <li><a href="#">Customer engagement</a></li>
+            <li><a href="#">Content supply chain</a></li>
+            <li><a href="#">Brand visibility</a></li>
+            <li><a href="#">B2B CX orchestration</a></li>
+            <li><a href="#">AI for business</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <div class="footer__col-title">Large &amp; medium<br>business</div>
+          <ul>
+            <li><a href="#">Explore products</a></li>
+            <li><a href="#">Adobe Analytics</a></li>
+            <li><a href="#">Acrobat Sign</a></li>
+            <li><a href="#">Brand intelligence</a></li>
+            <li><a href="#">GenStudio</a></li>
+            <li><a href="#">Real-Time CDP</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <div class="footer__col-title">Individuals &amp;<br>small business</div>
+          <ul>
+            <li><a href="#">Explore all products</a></li>
+            <li><a href="#">Adobe Express</a></li>
+            <li><a href="#">Adobe Firefly</a></li>
+            <li><a href="#">Creative Cloud</a></li>
+            <li><a href="#">Photoshop</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <div class="footer__col-title">Resources &amp;<br>support</div>
+          <ul>
+            <li><a href="#">Resource center</a></li>
+            <li><a href="#">Customer success stories</a></li>
+            <li><a href="#">Adobe business blog</a></li>
+            <li><a href="#">Customer support</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <div class="footer__col-title">Adobe</div>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Investors</a></li>
+            <li><a href="#">Newsroom</a></li>
+            <li><a href="#">Adobe for All</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <div class="footer__col-title">Region</div>
+          <ul><li><a href="#">English (US)</a></li></ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <div class="footer__legal">
+          <span class="footer__legal-item">© 2026 Adobe. All rights reserved.</span>
+          <span class="footer__legal-item"><a href="#">Privacy</a></span>
+          <span class="footer__legal-item"><a href="#">Terms of Use</a></span>
+          <span class="footer__legal-item"><a href="#">Cookie preferences</a></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.__reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  </script>
+  <script src="../../target/runtime/scripts/faq-accordion.js"></script>
+  <script>
+    /* gnav scroll state */
+    (function () {
+      var gnav = document.getElementById('gnav');
+      function update() { gnav.classList.toggle('gnav--scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    }());
+
+    /* Mouse-reactive parallax on hero portrait + Forrester media + final CTA portrait */
+    (function () {
+      if (window.__reducedMotion) return;
+      var targets = [
+        document.getElementById('aem-hero-portrait'),
+        document.getElementById('aem-forrester-portrait'),
+        document.getElementById('aem-final-portrait')
+      ].filter(Boolean);
+      function update(e) {
+        var x = (e.clientX / window.innerWidth) - 0.5;
+        var y = (e.clientY / window.innerHeight) - 0.5;
+        targets.forEach(function (t) {
+          t.style.setProperty('--mx', x.toFixed(3));
+          t.style.setProperty('--my', y.toFixed(3));
+        });
+      }
+      window.addEventListener('pointermove', update, { passive: true });
+    }());
+  </script>
+
+</body>
+</html>
