@@ -1,6 +1,6 @@
 # UC1 Uplift — Script v3 (target: business.adobe.com)
 
-**Length:** 90s · **Audience:** VP+ · **Mode:** kinetic typography over real artifacts; **text-only** over music · **Target:** `business.adobe.com` · **Implementation:** HTML multi-page build in `experience/` — see README for build plan
+**Length:** 90s · **Audience:** VP+ · **Mode:** kinetic typography over real artifacts; **text-only** over music · **Target:** `business.adobe.com` · **Implementation:** Adobe-branded HTML build in `experience/`, modeled on AI Factory Piñata reference — see README for build plan
 
 > Audience-facing names only: **Stardust** and **AEM**. (Snowflake/EMA live in production notes — see CLAUDE.md.)
 > Distinctive phrases pulled from the Stardust whitepaper. See `context/whitepaper.md`.

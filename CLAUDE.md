@@ -27,6 +27,17 @@ UC2 and UC3 are partially supported — when a demo hits a seam in the pipeline,
 - `context/whitepaper.md` — proposed-A/B/C variants, pull-quotes for narration.
 - `context/use-cases.md` — UC1/UC2/UC3 detail and where the seams are.
 - `context/references.md` — every external URL.
+- `context/motion-demo-skill.md` — **living draft of a future skill** that codifies how we build demos here. Update it as we go (see below).
+
+## Maintain `context/motion-demo-skill.md` during build
+
+This doc is the seed for an eventual Claude Code skill that codifies "build a cinematic, motion-driven HTML demo." Update it inline whenever you:
+
+- **Lock a decision** worth reusing (length, beat structure, brand layering, naming surface, audience tailoring)
+- **Define a reusable pattern** (controller logic, cover screen, page-per-beat architecture, walk-out line)
+- **Hit a gotcha** (bot detection, autoplay policy, browser quirk, pipeline order)
+
+Update during the work, not at the end — value compounds when the entry is fresh and specific. After the first 1–2 demos ship, the doc should be ready to lift into a SKILL.md.
 
 ## Disambiguations (do not confuse)
 
@@ -46,22 +57,18 @@ demos/
     recording/         # MP4 export + working files for distribution
 ```
 
-Default build approach is **HTML-first, designed by Stardust**:
+Default build approach is **HTML-first**: a multi-page cinematic experience, screen-recorded to MP4 with music for distribution. Two viable wrapper-brand sources, picked per demo:
 
-1. The demo experience is a Stardust product expression. The wrapper inherits Stardust's brand: `/stardust:extract https://paolomoz.github.io/stardust-site/` → `/stardust:direct "<intent phrase>"` → `/stardust:prototype <beat>` per beat page.
-2. A small hand-wired layer goes on top of the Stardust prototypes: autoplay timer, page-to-page transitions, key/wheel override, cover screen, any beat-specific content (iframes, MP4 inserts).
-3. The MP4 is a screen recording of the HTML experience with music mixed in — that's what gets sent over email or pasted into a deck.
+1. **Reference replication** — copy a polished existing brand artifact (e.g. an internal Adobe vision deck) and adapt it. Best for execs in the product's own org where instant brand recognition matters more than meta-coherence. **UC1 uses this** (modeled on the AI Factory Piñata).
+2. **Stardust dogfood** — `/stardust:extract` against the product's own site → `/stardust:direct "<intent phrase>"` → `/stardust:prototype` per beat page. Best for designer/dev/PM audiences where "the demo about Stardust is made by Stardust" is part of the value.
 
-Reasons this is the default:
+Either way, a small hand-wired layer on top: autoplay timer, page-to-page transitions, key/wheel override, cover screen, beat-specific content (iframes, MP4 inserts), music bed.
 
-- Medium = message: Stardust generates HTML; the demo about Stardust is made by Stardust.
-- Maximum dogfood: every demo proves the product by being made of it.
-- Iteration speed: re-running `/stardust:direct` with a tweaked phrase regenerates the whole wrapper.
-- Live iframes for "this is real" reveals (e.g. UC1's Beat 3 iframes the business-adobe redesign).
-
-Two brand surfaces to keep separated: **outer** (the wrapper, always Stardust's brand) and **inner** (whatever artifact the demo is presenting — its own brand, in an iframe). Don't conflate them.
+Two brand surfaces stay separated: **outer** (the wrapper) and **inner** (whatever artifact the demo is presenting — its own brand, in an iframe). Don't conflate them.
 
 When a demo specifically benefits from After Effects / video editing (heavy compositing, footage-heavy storytelling, voiceover-led), document that override in the demo's README.
+
+See `context/motion-demo-skill.md` for the full pattern catalog (translate-Y page-wrap navigator, cover-screen + press-to-begin, page-per-beat architecture, reference-vs-dogfood tradeoff).
 
 `artifacts/` and `outputs/` are optional — only add them if a demo runs Stardust live. UC1 references existing artifacts via absolute path (see `demos/uc1-uplift/script.md` and `README.md`) rather than co-locating them.
 
