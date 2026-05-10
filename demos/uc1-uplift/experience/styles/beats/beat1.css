@@ -37,18 +37,34 @@
   font-family: var(--ff-display);
   font-weight: 800;
   font-size: clamp(3rem, 8vw, 7.14rem);
-  line-height: 0.92;
+  line-height: 0.96;
   letter-spacing: -0.03em;
   text-align: center;
   max-width: 22ch;
   color: var(--text);
 }
 #b1 .cold-open-h1 .red { color: var(--red); }
-/* SplitText spans are inline-block, set initial state for the timeline */
-#b1 .cold-open-h1 .st-char,
+
+/* Mask reveal — each word becomes a clipping mask;
+   chars start below the line and rise into view (RPA-style).
+   The padding/margin trick extends the clip below baseline to accommodate
+   descenders ("p", "g", "y") without altering layout. */
+#b1 .cold-open-h1 .st-word {
+  overflow: hidden;
+  padding-bottom: 0.18em;
+  margin-bottom: -0.18em;
+  vertical-align: top;
+}
+#b1 .cold-open-h1 .st-char {
+  transform: translateY(110%);
+  will-change: transform;
+}
+
+/* Subhead keeps the lighter opacity+y cascade for contrast against
+   the architectural H1 mask reveal. */
 #b1 .cold-open-sub .st-char {
   opacity: 0;
-  transform: translateY(48px) rotate(2deg);
+  transform: translateY(20px);
   will-change: transform, opacity;
 }
 

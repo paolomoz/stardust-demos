@@ -34,9 +34,12 @@
     aperture.classList.remove('open', 'closing');
     footer.classList.remove('in');
     stinger.classList.remove('scrambling');
-    // Reset SplitText character states (so they can be re-animated)
-    section.querySelectorAll('.cold-open-h1 .st-char, .cold-open-sub .st-char')
-      .forEach(c => { c.style.opacity = '0'; c.style.transform = 'translateY(48px) rotate(2deg)'; });
+    // Reset H1 chars to mask-reveal initial state (translateY(110%))
+    section.querySelectorAll('.cold-open-h1 .st-char')
+      .forEach(c => { c.style.opacity = ''; c.style.transform = 'translateY(110%)'; });
+    // Reset subhead chars to fade-up initial state
+    section.querySelectorAll('.cold-open-sub .st-char')
+      .forEach(c => { c.style.opacity = '0'; c.style.transform = 'translateY(20px)'; });
   }
 
   function enter(section) {
@@ -54,21 +57,19 @@
     // ── Scene A · Cold open ──
     sceneA.classList.add('visible');
 
-    // Headline cascade: 25ms per char, 48px → 0
+    // Headline mask-reveal: each char rises from translateY(110%) to 0
+    // through the word-level overflow:hidden mask. 22ms per char stagger.
     gsap.to(h1Chars, {
-      opacity: 1,
       y: 0,
-      rotate: 0,
-      duration: 0.7,
+      duration: 0.95,
       ease: 'power3.out',
-      stagger: { each: 0.025, from: 'start' },
+      stagger: { each: 0.022, from: 'start' },
     });
 
-    // Subhead cascade — slightly later, faster stagger
+    // Subhead fade-up cascade — gentler, body-scale type
     gsap.to(subChars, {
       opacity: 1,
       y: 0,
-      rotate: 0,
       duration: 0.5,
       ease: 'power3.out',
       delay: 1.4,
