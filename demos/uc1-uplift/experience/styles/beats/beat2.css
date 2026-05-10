@@ -1,0 +1,121 @@
+/* beat2.css — "What if you didn't have to?" turn moment.
+   Mask vocabulary: red slab covers text, white-hot scan-line sweeps top→bottom,
+   slab clips off behind the line, text emerges underneath line by line. */
+
+#b2 {
+  padding: 0;
+  align-items: stretch;
+  position: relative;
+  overflow: hidden;
+}
+
+#b2 .b2-turn {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* The headline — much bolder than the standard H2.
+   Two stacked lines so the question reads as a structured beat. */
+#b2 .b2-question {
+  font-family: var(--ff-display);
+  font-weight: 800;
+  font-size: clamp(3.5rem, 11vw, 9.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  max-width: 22ch;
+}
+#b2 .b2-line { display: block; }
+#b2 .b2-question .red {
+  color: var(--red);
+  position: relative;
+  display: inline-block;
+}
+
+/* Red underscore on "didn't" — draws in after the slab clears */
+#b2 .b2-question .red::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -0.04em;
+  height: 0.10em;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s 2.7s var(--ease-out-quart);
+}
+#b2.active .b2-question .red::after { transform: scaleX(1); }
+
+/* Slab that hides the text initially; clip-path wipes top → bottom on .active.
+   Animation rather than transition so it always plays from the start when
+   .active toggles on (transitions are skipped if the property was already
+   in target state at first paint). */
+#b2 .b2-slab {
+  position: absolute; inset: 0;
+  background: var(--red);
+  z-index: 2;
+  pointer-events: none;
+  clip-path: inset(0 0 0 0);
+  will-change: clip-path;
+}
+#b2.active .b2-slab {
+  animation: b2-slab-wipe 2.5s cubic-bezier(0.42, 0, 0, 1) 0.25s forwards;
+}
+@keyframes b2-slab-wipe {
+  0%   { clip-path: inset(0 0 0 0); }
+  100% { clip-path: inset(100% 0 0 0); }
+}
+
+/* White-hot scan-line that follows the wipe edge */
+#b2 .b2-scanline {
+  position: absolute; left: 0; right: 0; top: 0;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 0 80px  rgba(255, 255, 255, 0.85),
+    0 0 180px rgba(235, 16, 0, 0.75),
+    0 -2px 90px rgba(255, 255, 255, 0.4);
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-6px);
+  will-change: transform, opacity;
+}
+#b2.active .b2-scanline {
+  animation: b2-scanline-sweep 2.7s cubic-bezier(0.42, 0, 0, 1) 0.18s forwards;
+}
+@keyframes b2-scanline-sweep {
+  0%   { opacity: 0; transform: translateY(-6px); }
+  5%   { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(100vh); }
+}
+
+/* "didn't" pulse right after the slab clears — punctuates the question */
+#b2.active .b2-question .red {
+  animation: b2-didnt-pulse 0.8s 2.7s ease-out;
+}
+@keyframes b2-didnt-pulse {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* Subtle ambient red wash to give the dark side of the wipe presence */
+#b2::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 60%, rgba(235, 16, 0, 0.06) 0%, transparent 65%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #b2 .b2-slab     { transition: none; clip-path: inset(100% 0 0 0); }
+  #b2 .b2-scanline { animation: none; opacity: 0; }
+  #b2 .b2-question .red::after { transform: scaleX(1); transition: none; }
+  #b2 .b2-question .red        { animation: none; }
+}
