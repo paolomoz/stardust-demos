@@ -31,12 +31,12 @@
   --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
 
   /* Per-beat durations (must match scripts/controller.js BEAT_DURATIONS_MS)
-     Beat 1: cold open + trap        — 14s
-     Beat 2: turn + pipeline montage — 32s
-     Beat 3: reveal                  — 14s
-     Beat 4: lands in AEM            —  8s
-     Beat 5: ongoing capability      — 14s
-     Beat 6: math + close            —  8s
+     Beat 1: intro + cold open + trap — 24s
+     Beat 2: turn + pipeline montage  — 32s
+     Beat 3: reveal                   — 17s
+     Beat 4: lands in AEM             —  8s
+     Beat 5: ongoing capability       — 14s
+     Beat 6: math + close             —  8s
   */
 }
 
@@ -66,5 +66,5 @@
        url('https://db.onlinewebfonts.com/t/a9de0e2343c8e46fd7ba2bed6afc5954.woff') format('woff');
 }
 
-/* Source Code Pro for monospace eyebrows */
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap');
+/* Source Code Pro for monospace eyebrows; Caveat + Permanent Marker for handwritten "Unique" correction in Beat 1 intro */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Permanent+Marker&family=Source+Code+Pro:wght@400;700&display=swap');

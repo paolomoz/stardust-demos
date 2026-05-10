@@ -1,25 +1,28 @@
-/* beat1.js — orchestrates the cold open + trap timeline.
+/* beat1.js — orchestrates the Stardust intro + cold open + trap timeline.
    Self-installs by observing the section's `.active` class. When the controller
-   activates b1, this kicks off the 14s timeline. Idempotent — re-entry replays.
+   activates b1, this kicks off the 24s timeline. Idempotent — re-entry replays.
 */
 
 (function () {
   'use strict';
 
   const SECTION_ID = 'b1';
-  const TOTAL_MS = 14000;
+  const TOTAL_MS = 24000;
 
-  const SCENE_A_END_MS = 5000;
-  const TRAP_START_MS = 5000;        // Scene B begins
-  const STINGER_MS = 9500;           // "Pick one. That's the deal." scrambles in
-  const FOOTER_MS = 11500;           // "Enterprise marketing. Since forever." subtitle fades in
+  // ── Intro (0:00–0:10) — "Stardust / AI design. On brand." with AI→Unique correction ──
+  const AI_CORRECT_MS = 4000;        // marker strikes "AI" + writes "Unique" above
+  const INTRO_FADE_OUT_MS = 9000;    // intro fades out
+  const INTRO_END_MS = 10000;        // original timeline begins (cover hole opens)
+
+  // ── Cold open + trap (timings relative to INTRO_END_MS) ──
+  const STINGER_MS = INTRO_END_MS + 9500;   // "Pick one. That's the deal." scrambles in
+  const FOOTER_MS  = INTRO_END_MS + 11500;  // "Enterprise marketing. Since forever." fades in
 
   const STINGER_TEXT = "Pick one. That's the deal.";
   const STINGER_HTML = "Pick one. That's <span class=\"red\">the deal.</span>";
 
-  let timer = null;
   let timeoutHandles = [];
-  let cover, hole, sceneA, sceneB, stinger, footer, h1, sub;
+  let cover, hole, sceneA, sceneB, stinger, footer, sub, intro, aiBlock;
 
   // Polygon points: tiny center ↔ large irregular pentagon.
   // Two distinct "open" shapes give visual variety between scene A and scene B.
@@ -44,6 +47,8 @@
     stinger.classList.remove('scrambling');
     stinger.innerHTML = STINGER_HTML;
     footer.classList.remove('in');
+    if (intro) intro.classList.remove('visible', 'leaving');
+    if (aiBlock) aiBlock.classList.remove('struck');
     // H1 starts visible (it's revealed by the cover's hole, not its own mask)
     section.querySelectorAll('.cold-open-sub .st-char')
       .forEach(c => { c.style.opacity = '0'; c.style.transform = 'translateY(20px)'; });
@@ -70,11 +75,23 @@
     clearTimers();
     reset(section);
 
-    // ── Scene A · Cold open ──
-    sceneA.classList.add('visible');
+    // ── Scene 0 · Stardust intro overlay (0:00–0:10) ──
+    // Fade in next frame so the CSS transition triggers from opacity 0
+    requestAnimationFrame(() => intro && intro.classList.add('visible'));
 
-    // 0.28s — first opening: hole grows on Scene A → H1 emerges
-    at(280, () => {
+    // 4.0s — red marker strikes "AI" and writes "Unique" handwritten above
+    at(AI_CORRECT_MS, () => {
+      if (aiBlock) aiBlock.classList.add('struck');
+    });
+
+    // 9.0s — intro fades out
+    at(INTRO_FADE_OUT_MS, () => intro && intro.classList.add('leaving'));
+
+    // 10.0s — Scene A becomes visible (still hidden behind the cover until hole opens)
+    at(INTRO_END_MS, () => sceneA.classList.add('visible'));
+
+    // 10.28s — first opening: hole grows on Scene A → H1 emerges
+    at(INTRO_END_MS + 280, () => {
       gsap.to(hole, {
         attr: { points: HOLE_FULL_A },
         duration: 1.9,
@@ -82,8 +99,8 @@
       });
     });
 
-    // 2.4s — subhead cascades in while H1 is still framed by the cover
-    at(2400, () => {
+    // 12.4s — subhead cascades in while H1 is still framed by the cover
+    at(INTRO_END_MS + 2400, () => {
       const subChars = window.SplitText.chars(sub);
       gsap.to(subChars, {
         opacity: 1,
@@ -94,8 +111,8 @@
       });
     });
 
-    // 3.8s — hole shrinks back: Scene A wipes out, page-pattern re-covers
-    at(3800, () => {
+    // 13.8s — hole shrinks back: Scene A wipes out, page-pattern re-covers
+    at(INTRO_END_MS + 3800, () => {
       gsap.to(hole, {
         attr: { points: HOLE_FADE },
         duration: 0.8,
@@ -103,14 +120,14 @@
       });
     });
 
-    // 4.6s — under the fully-closed cover, swap scenes A → B (invisible cut)
-    at(4600, () => {
+    // 14.6s — under the fully-closed cover, swap scenes A → B (invisible cut)
+    at(INTRO_END_MS + 4600, () => {
       sceneA.classList.remove('visible');
       sceneB.classList.add('visible');
     });
 
-    // 4.8s — second opening: hole regrows with a different polygon shape on Scene B
-    at(4800, () => {
+    // 14.8s — second opening: hole regrows with a different polygon shape on Scene B
+    at(INTRO_END_MS + 4800, () => {
       gsap.to(hole, {
         attr: { points: HOLE_FULL_B },
         duration: 1.4,
@@ -118,16 +135,13 @@
       });
     });
 
-    // 6.0s — fade the cover so Scene B reads cleanly for the rest of the beat
-    at(6000, () => cover.classList.add('fading'));
+    // 16.0s — fade the cover so Scene B reads cleanly for the rest of the beat
+    at(INTRO_END_MS + 6000, () => cover.classList.add('fading'));
 
-    // (Scene A → Scene B handoff is now embedded in the cover choreography
-    //  above: shrink at 3.8s, swap at 4.6s, regrow at 4.8s, fade at 6.0s.)
-
-    // ── Stinger — "Pick one. That's the deal." scrambles in at 9.5s ──
+    // ── Stinger — "Pick one. That's the deal." scrambles in at 19.5s ──
     at(STINGER_MS, () => scrambleStinger(STINGER_TEXT, STINGER_HTML));
 
-    // ── Subtitle — "Enterprise marketing. Since forever." fades in at 11.5s ──
+    // ── Subtitle — "Enterprise marketing. Since forever." fades in at 21.5s ──
     at(FOOTER_MS, () => footer.classList.add('in'));
   }
 
@@ -145,8 +159,9 @@
     sceneB = section.querySelector('.scene-b');
     stinger = section.querySelector('.stinger');
     footer = section.querySelector('.footer-line');
-    h1 = section.querySelector('.cold-open-h1');
     sub = section.querySelector('.cold-open-sub');
+    intro = section.querySelector('.b1-intro-overlay');
+    aiBlock = section.querySelector('.ai-correction');
 
     // Watch for `.active` class toggle — drive enter/exit accordingly
     const obs = new MutationObserver(muts => {
