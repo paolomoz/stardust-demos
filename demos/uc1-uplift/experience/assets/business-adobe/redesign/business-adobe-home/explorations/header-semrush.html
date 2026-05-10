@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exploration — Header up + Semrush in hero</title>
+
+  <!-- Stardust tokens (untouched module CSS — page only adds NEW selectors) -->
+  <link rel="stylesheet" href="../../../target/runtime/styles/global/reset.css">
+  <link rel="stylesheet" href="../../../target/runtime/styles/global/grid.css">
+  <link rel="stylesheet" href="../../../target/runtime/styles/global/typography.css">
+  <link rel="stylesheet" href="../../../target/runtime/styles/nav.css">
+  <link rel="stylesheet" href="../../../target/runtime/styles/nav-offer.css">
+
+  <style>
+    :root {
+      --s2a-color-blue-900: #3b63fb;
+      --s2a-color-blue-1000: #274dea;
+      --acq-bg: #100726;
+      --acq-bg-edge: #1a0e3a;
+      --acq-purple: #8b68e8;
+      --acq-orange: #fe3600;
+    }
+    body {
+      background: #f3f3f3;
+      font-family: var(--font-body);
+      color: #1a1a1a;
+    }
+
+    /* ─── Exploration page chrome ─────────────────────────────────── */
+    .explore-doc {
+      max-width: 1400px; margin: 0 auto;
+      padding: 48px 32px 96px;
+    }
+    .explore-doc h1 {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: 32px; letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .explore-doc p.lead {
+      font-size: 15px; color: rgba(0,0,0,0.65); max-width: 70ch;
+      margin-bottom: 48px;
+    }
+    .variant {
+      margin-bottom: 64px;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.06);
+    }
+    .variant__head {
+      padding: 20px 28px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+    }
+    .variant__tag {
+      display: inline-block; padding: 2px 10px;
+      border-radius: 999px; background: #1a1a1a; color: #fff;
+      font-family: var(--font-body); font-weight: 700; font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+    .variant__title {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: 20px; letter-spacing: -0.02em;
+    }
+    .variant__why {
+      font-size: 13px; color: rgba(0,0,0,0.6);
+      flex-basis: 100%;
+    }
+    .variant__stage {
+      position: relative;
+      height: 720px;
+      overflow: hidden;
+      background: #0E0E10;
+      isolation: isolate;
+    }
+
+    /* gnav offset reset — header sits AT the top in all 3 variants */
+    .variant__stage #gnav { top: 0; }
+
+    /* sub-brand "for Business" + Get started CTA — same as main page */
+    .gnav-subbrand {
+      font-family: var(--font-body); font-size: 16px; font-weight: 700;
+      color: #1a1a1a; letter-spacing: -0.01em;
+      padding-left: 8px; margin-left: 4px;
+      border-left: 1px solid rgba(0,0,0,0.16);
+      align-self: center; line-height: 18px; white-space: nowrap;
+    }
+    .gnav-cta {
+      display: inline-flex; align-items: center; height: 32px;
+      padding: 0 14px; background: var(--s2a-color-blue-900); color: #fff;
+      border-radius: 999px;
+      font-family: var(--font-body); font-size: 13px; font-weight: 700;
+      transition: background 0.2s ease; margin-left: 4px;
+    }
+    .gnav-cta:hover { background: var(--s2a-color-blue-1000); }
+
+    /* Stage-local hero scaffold (page-level NEW selectors only — never module CSS) */
+    .stage-hero {
+      position: relative;
+      width: 100%; height: 100%;
+      padding: 96px 8.333% 0;
+      color: #fff;
+      display: flex; flex-direction: column;
+      background:
+        radial-gradient(ellipse at 0% 0%,  rgba(139,104,232,0.20), transparent 50%),
+        radial-gradient(ellipse at 100% 0%, rgba(254,54,0,0.18), transparent 55%),
+        #0E0E10;
+    }
+    .stage-hero__eyebrow {
+      font-family: var(--font-body); font-weight: 700;
+      font-size: 14px; letter-spacing: 0.08em; color: rgba(255,255,255,0.65);
+      margin-bottom: 16px;
+    }
+    .stage-hero__title {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: clamp(36px, 4.5vw, 64px); line-height: 0.98;
+      letter-spacing: -0.03em; max-width: 22ch;
+    }
+    .stage-hero__body {
+      font-family: var(--font-body); font-weight: 400;
+      font-size: 16px; line-height: 1.4;
+      color: rgba(255,255,255,0.78);
+      max-width: 56ch; margin-top: 16px;
+    }
+    .stage-hero__cta {
+      display: inline-flex; align-items: center; height: 40px;
+      padding: 0 22px; border-radius: 999px;
+      background: rgba(255,255,255,0.92); color: #0E0E10;
+      font-family: var(--font-body); font-size: 14px; font-weight: 700;
+      margin-top: 24px; align-self: flex-start;
+    }
+    .stage-hero__cta:hover { background: #fff; }
+
+    /* ────────────────────────────────────────────────────────────────
+       Adobe + Semrush lockup (placeholder — real CDN asset blocked)
+       ──────────────────────────────────────────────────────────────── */
+    .lockup {
+      display: inline-flex; align-items: center; gap: 10px;
+      color: #fff;
+    }
+    .lockup__adobe { display: inline-block; }
+    .lockup__plus  { color: rgba(255,255,255,0.55); font-weight: 400; font-size: 18px; }
+    .lockup__semrush {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: #fff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 800; font-size: 18px; letter-spacing: -0.02em;
+    }
+    .lockup__orb {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #FF7B33 0%, #E04F22 60%, #9C2A1B 100%);
+      box-shadow: 0 0 12px rgba(255,123,51,0.55);
+    }
+    .lockup--lg .lockup__semrush { font-size: 30px; }
+    .lockup--lg .lockup__orb { width: 30px; height: 30px; }
+
+    /* ════════════════════════════════════════════════════════════════
+       VARIANT A — Inline announcement chip above hero eyebrow
+       Compact pill at the top of the hero text. Lossy: only the
+       headline survives; CTAs become a single "Learn more →".
+       ════════════════════════════════════════════════════════════════ */
+    .vA-stage { padding-top: 88px; }
+    .vA-chip {
+      display: inline-flex; align-items: center; gap: 14px;
+      padding: 6px 6px 6px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.12);
+      margin-bottom: 24px;
+      align-self: flex-start;
+      font-family: var(--font-body);
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .vA-chip:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.24); }
+    .vA-chip__sep {
+      width: 1px; height: 14px; background: rgba(255,255,255,0.18);
+    }
+    .vA-chip__msg {
+      font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.85);
+    }
+    .vA-chip__msg strong { font-weight: 700; color: #fff; }
+    .vA-chip__arrow {
+      width: 24px; height: 24px;
+      border-radius: 999px; background: #fff; color: #0E0E10;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 12px;
+    }
+
+    /* ════════════════════════════════════════════════════════════════
+       VARIANT B — Full-width announcement panel inside hero (below copy)
+       Lossless: lockup, headline, description, both CTAs all preserved.
+       Sits as a second "row" in the hero, dark gradient panel.
+       ════════════════════════════════════════════════════════════════ */
+    .vB-stage { padding-bottom: 0; }
+    .vB-hero-text { flex: 1; padding-top: 80px; }
+    .vB-panel {
+      margin: 32px -8.333% 0;
+      padding: 28px 8.333%;
+      background:
+        radial-gradient(ellipse at 0% 50%, rgba(139,104,232,0.40), transparent 55%),
+        radial-gradient(ellipse at 100% 50%, rgba(254,54,0,0.30), transparent 60%),
+        #0c0820;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: grid; grid-template-columns: auto 1fr auto; gap: 32px;
+      align-items: center;
+    }
+    .vB-panel__lockup {}
+    .vB-panel__copy {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .vB-panel__head {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: 20px; line-height: 1.1; color: #fff;
+      letter-spacing: -0.01em;
+    }
+    .vB-panel__sub {
+      font-family: var(--font-body); font-weight: 400;
+      font-size: 14px; color: rgba(255,255,255,0.72);
+    }
+    .vB-panel__ctas { display: inline-flex; gap: 8px; flex-shrink: 0; }
+    .vB-panel__cta {
+      display: inline-flex; align-items: center; height: 32px;
+      padding: 0 14px; border-radius: 999px;
+      background: rgba(255,255,255,0.14); color: #fff;
+      backdrop-filter: blur(20px);
+      font-size: 13px; font-weight: 700;
+      transition: background 0.2s;
+    }
+    .vB-panel__cta:hover { background: rgba(255,255,255,0.24); }
+    .vB-panel__cta--primary {
+      background: #fff; color: #0E0E10;
+    }
+    .vB-panel__cta--primary:hover { background: #f3f3f3; }
+    @media (max-width: 1023px) {
+      .vB-panel { grid-template-columns: 1fr; gap: 16px; }
+    }
+
+    /* ════════════════════════════════════════════════════════════════
+       VARIANT C — Split hero: CX Enterprise on left, Semrush card on right
+       Two columns share the hero. Lossless and prominent.
+       ════════════════════════════════════════════════════════════════ */
+    .vC-stage { padding-top: 88px; }
+    .vC-grid {
+      display: grid; grid-template-columns: 1.4fr 1fr;
+      gap: 48px;
+      flex: 1;
+      align-items: center;
+    }
+    @media (max-width: 1023px) {
+      .vC-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+    .vC-card {
+      position: relative;
+      border-radius: 24px;
+      padding: 32px;
+      background:
+        radial-gradient(ellipse at 0% 0%, rgba(139,104,232,0.45), transparent 60%),
+        radial-gradient(ellipse at 100% 100%, rgba(254,54,0,0.30), transparent 60%),
+        #1a0e3a;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .vC-card::before {
+      content: '';
+      position: absolute; top: 0; bottom: 0; right: 0; width: 200px;
+      background-image: repeating-linear-gradient(115deg,
+        transparent 0px, transparent 10px,
+        rgba(255,255,255,0.05) 10px, rgba(255,255,255,0.05) 11px);
+      z-index: -1; pointer-events: none;
+    }
+    .vC-card__lockup { margin-bottom: 24px; }
+    .vC-card__head {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: 28px; line-height: 1.0; color: #fff;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .vC-card__body {
+      font-family: var(--font-body); font-weight: 400;
+      font-size: 14px; line-height: 1.4;
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 24px;
+    }
+    .vC-card__ctas { display: inline-flex; gap: 8px; flex-wrap: wrap; }
+    .vC-card__cta {
+      display: inline-flex; align-items: center; height: 36px;
+      padding: 0 16px; border-radius: 999px;
+      background: rgba(255,255,255,0.14); color: #fff;
+      backdrop-filter: blur(20px);
+      font-size: 13px; font-weight: 700;
+      transition: background 0.2s;
+    }
+    .vC-card__cta:hover { background: rgba(255,255,255,0.24); }
+    .vC-card__cta--primary {
+      background: #fff; color: #0E0E10;
+    }
+    .vC-card__cta--primary:hover { background: #f3f3f3; }
+  </style>
+</head>
+<body>
+
+<div class="explore-doc">
+  <h1>Header up + Adobe + Semrush in the hero — exploration</h1>
+  <p class="lead">
+    Three options for bringing the gnav to the top of the screen and folding the Adobe + Semrush acquisition announcement into the hero, instead of a separate strip above the gnav. All three keep the gnav contract intact and add only new page-level selectors (no module overrides — see <code>MODULE-CONTENT-RULES.md</code>).
+    <br><br>
+    <strong>Note:</strong> The real Adobe + Semrush SVG lockup at <code>business.adobe.com/fragments/homepage/media_…svg</code> is blocked by CDN bot-protection (HTTP/2 INTERNAL_ERROR; same as <code>PIPELINE.md</code> S8). The mocks below use a hand-built lockup approximation in the same horizontal arrangement. Once Playwright is wired up, the real asset drops in unchanged.
+  </p>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       VARIANT A — Announcement chip
+       ════════════════════════════════════════════════════════════════ -->
+  <article class="variant">
+    <div class="variant__head">
+      <span class="variant__tag">A</span>
+      <span class="variant__title">Announcement chip — compact, above the eyebrow</span>
+      <p class="variant__why">A clickable pill at the top of the hero text block. Quietest of the three: announces the news without competing with the headline. Loses the description and the second CTA — only the headline + a single "→" survive. Best when the announcement is supporting context, not the page's main message.</p>
+    </div>
+    <div class="variant__stage">
+
+      <!-- gnav (module markup, untouched) -->
+      <header id="gnav">
+        <div class="gnav-inner">
+          <div class="gnav-left">
+            <img src="../../../target/runtime/assets/adobe-logo.svg"       alt="Adobe" class="gnav-logo">
+            <img src="../../../target/runtime/assets/adobe-logo-black.svg" alt="Adobe" class="gnav-logo-black">
+            <span class="gnav-subbrand">for Business</span>
+            <nav class="gnav-links">
+              <a href="#" class="gnav-link">Products</a>
+              <a href="#" class="gnav-link">AI</a>
+              <a href="#" class="gnav-link">Industries</a>
+              <a href="#" class="gnav-link">Roles</a>
+              <a href="#" class="gnav-link">Resources</a>
+              <a href="#" class="gnav-link">Support</a>
+            </nav>
+          </div>
+          <div class="gnav-right">
+            <a href="#" class="gnav-signin">Sign In</a>
+            <a href="#" class="gnav-cta">Get started</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="stage-hero vA-stage">
+        <a href="#" class="vA-chip" aria-label="Adobe completes the acquisition of Semrush">
+          <span class="lockup">
+            <svg class="lockup__adobe" width="50" height="12" viewBox="0 0 67 16" fill="currentColor" aria-hidden="true">
+              <path d="M6.50596 0.460947H11.0612L17.4945 15.7644H12.6799L8.61236 5.60307L5.92489 12.2714H9.1208L10.3971 15.7644H0L6.50596 0.460947ZM22.8591 3.63636C23.326 3.63636 23.8344 3.67734 24.3429 3.80026V0.0102425H28.3689V15.0883C27.4454 15.4981 25.4532 16 23.4609 16C19.8499 16 16.7474 13.9718 16.7474 9.92574C16.7474 5.87964 19.7358 3.64661 22.8591 3.64661V3.63636ZM23.3675 12.7222C23.7411 12.7222 24.042 12.6504 24.3429 12.5583V7.0064C24.042 6.89373 23.7411 6.84251 23.3468 6.84251C22.029 6.84251 20.8046 7.80538 20.8046 9.83355C20.8046 11.8617 22.0497 12.7119 23.3675 12.7119V12.7222ZM35.539 3.63636C38.8905 3.63636 41.744 5.8694 41.744 9.80282C41.744 13.7362 38.9009 15.9693 35.539 15.9693C32.177 15.9693 29.3132 13.7362 29.3132 9.80282C29.3132 5.8694 32.1355 3.63636 35.539 3.63636ZM35.539 12.6607C36.6907 12.6607 37.7595 11.749 37.7595 9.80282C37.7595 7.85659 36.6907 6.94494 35.539 6.94494C34.3872 6.94494 33.3392 7.85659 33.3392 9.80282C33.3392 11.749 34.3353 12.6607 35.539 12.6607ZM42.709 0.0102425H46.7558V3.80026C47.2435 3.70807 47.7519 3.63636 48.2603 3.63636C51.4044 3.63636 54.3201 5.66453 54.3201 9.63893C54.3201 13.8387 51.2176 15.9693 47.5444 15.9693C45.9672 15.9693 43.9542 15.6517 42.709 15.0781V0V0.0102425ZM47.6378 12.7017C49.0282 12.7017 50.2941 11.7183 50.2941 9.69014C50.2941 7.79513 49.0489 6.90397 47.7 6.90397C47.3265 6.90397 47.0256 6.94494 46.7558 7.06786V12.548C46.9841 12.6402 47.285 12.7119 47.6378 12.7119V12.7017ZM61.1893 3.63636C64.2191 3.63636 67 5.55186 67 9.41357C67 9.93598 66.9793 10.4379 66.9066 10.9398H59.363C59.7781 12.2919 60.9817 12.927 62.4863 12.927C63.7107 12.927 64.8417 12.63 66.118 12.0871V15.1293C64.9351 15.7234 63.5239 15.9693 62.0712 15.9693C58.232 15.9693 55.2436 13.685 55.2436 9.80282C55.2436 5.92061 57.9518 3.63636 61.1893 3.63636ZM63.223 8.45071C63.0155 7.14981 62.1335 6.6274 61.2308 6.6274C60.328 6.6274 59.5913 7.18054 59.2904 8.45071H63.223Z"/>
+            </svg>
+            <span class="lockup__plus">+</span>
+            <span class="lockup__semrush">
+              <span class="lockup__orb"></span>Semrush
+            </span>
+          </span>
+          <span class="vA-chip__sep"></span>
+          <span class="vA-chip__msg"><strong>Adobe completes the acquisition of Semrush.</strong></span>
+          <span class="vA-chip__arrow">→</span>
+        </a>
+
+        <p class="stage-hero__eyebrow">ADOBE FOR BUSINESS</p>
+        <h1 class="stage-hero__title">Customer experience orchestration starts with Adobe CX Enterprise.</h1>
+        <p class="stage-hero__body">Deliver personalized, on-brand content and experiences across the entire customer lifecycle with Adobe's end-to-end agentic system for CXO.</p>
+        <a href="#" class="stage-hero__cta">Learn more</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       VARIANT B — Full-width announcement panel below hero copy
+       ════════════════════════════════════════════════════════════════ -->
+  <article class="variant">
+    <div class="variant__head">
+      <span class="variant__tag">B</span>
+      <span class="variant__title">Lockup panel — full-width band inside the hero</span>
+      <p class="variant__why">A second "row" in the hero. Keeps everything from the JSON: lockup, the acquisition headline, the description sentence, and both CTAs ("Learn about the product", "Read the announcement"). Most prominent of the three; reads as co-equal to the CX Enterprise headline. Best when the announcement is itself a primary message.</p>
+    </div>
+    <div class="variant__stage">
+
+      <header id="gnav">
+        <div class="gnav-inner">
+          <div class="gnav-left">
+            <img src="../../../target/runtime/assets/adobe-logo.svg"       alt="Adobe" class="gnav-logo">
+            <img src="../../../target/runtime/assets/adobe-logo-black.svg" alt="Adobe" class="gnav-logo-black">
+            <span class="gnav-subbrand">for Business</span>
+            <nav class="gnav-links">
+              <a href="#" class="gnav-link">Products</a>
+              <a href="#" class="gnav-link">AI</a>
+              <a href="#" class="gnav-link">Industries</a>
+              <a href="#" class="gnav-link">Roles</a>
+              <a href="#" class="gnav-link">Resources</a>
+              <a href="#" class="gnav-link">Support</a>
+            </nav>
+          </div>
+          <div class="gnav-right">
+            <a href="#" class="gnav-signin">Sign In</a>
+            <a href="#" class="gnav-cta">Get started</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="stage-hero vB-stage">
+        <div class="vB-hero-text">
+          <p class="stage-hero__eyebrow">ADOBE FOR BUSINESS</p>
+          <h1 class="stage-hero__title">Customer experience orchestration starts with Adobe CX Enterprise.</h1>
+          <p class="stage-hero__body">Deliver personalized, on-brand content and experiences across the entire customer lifecycle with Adobe's end-to-end agentic system for CXO.</p>
+          <a href="#" class="stage-hero__cta">Learn more</a>
+        </div>
+
+        <div class="vB-panel">
+          <span class="lockup vB-panel__lockup">
+            <svg class="lockup__adobe" width="60" height="14" viewBox="0 0 67 16" fill="currentColor" aria-hidden="true">
+              <path d="M6.50596 0.460947H11.0612L17.4945 15.7644H12.6799L8.61236 5.60307L5.92489 12.2714H9.1208L10.3971 15.7644H0L6.50596 0.460947ZM22.8591 3.63636C23.326 3.63636 23.8344 3.67734 24.3429 3.80026V0.0102425H28.3689V15.0883C27.4454 15.4981 25.4532 16 23.4609 16C19.8499 16 16.7474 13.9718 16.7474 9.92574C16.7474 5.87964 19.7358 3.64661 22.8591 3.64661V3.63636ZM23.3675 12.7222C23.7411 12.7222 24.042 12.6504 24.3429 12.5583V7.0064C24.042 6.89373 23.7411 6.84251 23.3468 6.84251C22.029 6.84251 20.8046 7.80538 20.8046 9.83355C20.8046 11.8617 22.0497 12.7119 23.3675 12.7119V12.7222ZM35.539 3.63636C38.8905 3.63636 41.744 5.8694 41.744 9.80282C41.744 13.7362 38.9009 15.9693 35.539 15.9693C32.177 15.9693 29.3132 13.7362 29.3132 9.80282C29.3132 5.8694 32.1355 3.63636 35.539 3.63636ZM35.539 12.6607C36.6907 12.6607 37.7595 11.749 37.7595 9.80282C37.7595 7.85659 36.6907 6.94494 35.539 6.94494C34.3872 6.94494 33.3392 7.85659 33.3392 9.80282C33.3392 11.749 34.3353 12.6607 35.539 12.6607ZM42.709 0.0102425H46.7558V3.80026C47.2435 3.70807 47.7519 3.63636 48.2603 3.63636C51.4044 3.63636 54.3201 5.66453 54.3201 9.63893C54.3201 13.8387 51.2176 15.9693 47.5444 15.9693C45.9672 15.9693 43.9542 15.6517 42.709 15.0781V0V0.0102425ZM47.6378 12.7017C49.0282 12.7017 50.2941 11.7183 50.2941 9.69014C50.2941 7.79513 49.0489 6.90397 47.7 6.90397C47.3265 6.90397 47.0256 6.94494 46.7558 7.06786V12.548C46.9841 12.6402 47.285 12.7119 47.6378 12.7119V12.7017ZM61.1893 3.63636C64.2191 3.63636 67 5.55186 67 9.41357C67 9.93598 66.9793 10.4379 66.9066 10.9398H59.363C59.7781 12.2919 60.9817 12.927 62.4863 12.927C63.7107 12.927 64.8417 12.63 66.118 12.0871V15.1293C64.9351 15.7234 63.5239 15.9693 62.0712 15.9693C58.232 15.9693 55.2436 13.685 55.2436 9.80282C55.2436 5.92061 57.9518 3.63636 61.1893 3.63636ZM63.223 8.45071C63.0155 7.14981 62.1335 6.6274 61.2308 6.6274C60.328 6.6274 59.5913 7.18054 59.2904 8.45071H63.223Z"/>
+            </svg>
+            <span class="lockup__plus">+</span>
+            <span class="lockup__semrush">
+              <span class="lockup__orb"></span>Semrush
+            </span>
+          </span>
+          <div class="vB-panel__copy">
+            <p class="vB-panel__head">Adobe completes the acquisition of Semrush.</p>
+            <p class="vB-panel__sub">Access the world's most powerful data for AI search optimization.</p>
+          </div>
+          <div class="vB-panel__ctas">
+            <a href="#" class="vB-panel__cta vB-panel__cta--primary">Learn about the product</a>
+            <a href="#" class="vB-panel__cta">Read the announcement</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       VARIANT C — Split hero card
+       ════════════════════════════════════════════════════════════════ -->
+  <article class="variant">
+    <div class="variant__head">
+      <span class="variant__tag">C</span>
+      <span class="variant__title">Split hero — Semrush as a side card</span>
+      <p class="variant__why">The hero divides into two columns: CX Enterprise headline + body + CTA on the left, a self-contained Semrush announcement card on the right with its own gradient background. Both messages get peer-level visual weight. Lossless: lockup, headline, description, both CTAs all preserved in the card. Best when both stories deserve the hero, not just one.</p>
+    </div>
+    <div class="variant__stage">
+
+      <header id="gnav">
+        <div class="gnav-inner">
+          <div class="gnav-left">
+            <img src="../../../target/runtime/assets/adobe-logo.svg"       alt="Adobe" class="gnav-logo">
+            <img src="../../../target/runtime/assets/adobe-logo-black.svg" alt="Adobe" class="gnav-logo-black">
+            <span class="gnav-subbrand">for Business</span>
+            <nav class="gnav-links">
+              <a href="#" class="gnav-link">Products</a>
+              <a href="#" class="gnav-link">AI</a>
+              <a href="#" class="gnav-link">Industries</a>
+              <a href="#" class="gnav-link">Roles</a>
+              <a href="#" class="gnav-link">Resources</a>
+              <a href="#" class="gnav-link">Support</a>
+            </nav>
+          </div>
+          <div class="gnav-right">
+            <a href="#" class="gnav-signin">Sign In</a>
+            <a href="#" class="gnav-cta">Get started</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="stage-hero vC-stage">
+        <div class="vC-grid">
+          <div>
+            <p class="stage-hero__eyebrow">ADOBE FOR BUSINESS</p>
+            <h1 class="stage-hero__title">Customer experience orchestration starts with Adobe CX Enterprise.</h1>
+            <p class="stage-hero__body">Deliver personalized, on-brand content and experiences across the entire customer lifecycle with Adobe's end-to-end agentic system for CXO.</p>
+            <a href="#" class="stage-hero__cta">Learn more</a>
+          </div>
+
+          <aside class="vC-card">
+            <span class="lockup lockup--lg vC-card__lockup">
+              <svg class="lockup__adobe" width="100" height="22" viewBox="0 0 67 16" fill="currentColor" aria-hidden="true">
+                <path d="M6.50596 0.460947H11.0612L17.4945 15.7644H12.6799L8.61236 5.60307L5.92489 12.2714H9.1208L10.3971 15.7644H0L6.50596 0.460947ZM22.8591 3.63636C23.326 3.63636 23.8344 3.67734 24.3429 3.80026V0.0102425H28.3689V15.0883C27.4454 15.4981 25.4532 16 23.4609 16C19.8499 16 16.7474 13.9718 16.7474 9.92574C16.7474 5.87964 19.7358 3.64661 22.8591 3.64661V3.63636ZM23.3675 12.7222C23.7411 12.7222 24.042 12.6504 24.3429 12.5583V7.0064C24.042 6.89373 23.7411 6.84251 23.3468 6.84251C22.029 6.84251 20.8046 7.80538 20.8046 9.83355C20.8046 11.8617 22.0497 12.7119 23.3675 12.7119V12.7222ZM35.539 3.63636C38.8905 3.63636 41.744 5.8694 41.744 9.80282C41.744 13.7362 38.9009 15.9693 35.539 15.9693C32.177 15.9693 29.3132 13.7362 29.3132 9.80282C29.3132 5.8694 32.1355 3.63636 35.539 3.63636ZM35.539 12.6607C36.6907 12.6607 37.7595 11.749 37.7595 9.80282C37.7595 7.85659 36.6907 6.94494 35.539 6.94494C34.3872 6.94494 33.3392 7.85659 33.3392 9.80282C33.3392 11.749 34.3353 12.6607 35.539 12.6607ZM42.709 0.0102425H46.7558V3.80026C47.2435 3.70807 47.7519 3.63636 48.2603 3.63636C51.4044 3.63636 54.3201 5.66453 54.3201 9.63893C54.3201 13.8387 51.2176 15.9693 47.5444 15.9693C45.9672 15.9693 43.9542 15.6517 42.709 15.0781V0V0.0102425ZM47.6378 12.7017C49.0282 12.7017 50.2941 11.7183 50.2941 9.69014C50.2941 7.79513 49.0489 6.90397 47.7 6.90397C47.3265 6.90397 47.0256 6.94494 46.7558 7.06786V12.548C46.9841 12.6402 47.285 12.7119 47.6378 12.7119V12.7017ZM61.1893 3.63636C64.2191 3.63636 67 5.55186 67 9.41357C67 9.93598 66.9793 10.4379 66.9066 10.9398H59.363C59.7781 12.2919 60.9817 12.927 62.4863 12.927C63.7107 12.927 64.8417 12.63 66.118 12.0871V15.1293C64.9351 15.7234 63.5239 15.9693 62.0712 15.9693C58.232 15.9693 55.2436 13.685 55.2436 9.80282C55.2436 5.92061 57.9518 3.63636 61.1893 3.63636ZM63.223 8.45071C63.0155 7.14981 62.1335 6.6274 61.2308 6.6274C60.328 6.6274 59.5913 7.18054 59.2904 8.45071H63.223Z"/>
+              </svg>
+              <span class="lockup__plus">+</span>
+              <span class="lockup__semrush">
+                <span class="lockup__orb"></span>Semrush
+              </span>
+            </span>
+            <h2 class="vC-card__head">Adobe completes the acquisition of Semrush.</h2>
+            <p class="vC-card__body">Access the world's most powerful data for AI search optimization.</p>
+            <div class="vC-card__ctas">
+              <a href="#" class="vC-card__cta vC-card__cta--primary">Learn about the product</a>
+              <a href="#" class="vC-card__cta">Read the announcement</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </article>
+
+</div>
+
+</body>
+</html>

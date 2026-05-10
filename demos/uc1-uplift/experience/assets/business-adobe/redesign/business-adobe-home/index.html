@@ -1,0 +1,1945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adobe for Business — Customer experience orchestration</title>
+  <meta name="description" content="Customer experience orchestration starts with Adobe CX Enterprise. Deliver personalized, on-brand content and experiences across the entire customer lifecycle with Adobe's end-to-end agentic system for CXO.">
+  <link rel="icon" type="image/svg+xml" href="../../target/runtime/assets/adobe-logo-red.svg">
+
+  <!-- Design system: tokens + globals -->
+  <link rel="stylesheet" href="../../target/runtime/styles/global/reset.css">
+  <link rel="stylesheet" href="../../target/runtime/styles/global/grid.css">
+  <link rel="stylesheet" href="../../target/runtime/styles/global/typography.css">
+  <link rel="stylesheet" href="../../target/runtime/styles/page.css">
+
+  <!-- Nav -->
+  <link rel="stylesheet" href="../../target/runtime/styles/nav.css">
+  <link rel="stylesheet" href="../../target/runtime/styles/mobile-nav.css">
+
+  <!-- Lenis CSS -->
+  <link rel="stylesheet" href="../../target/runtime/vendor/lenis.min.css">
+
+  <style>
+    /* ─── Page-specific tokens ───────────────────────────────────── */
+    :root {
+      --bizadobe-banner-bg: #100726;
+      --bizadobe-banner-edge: #1a0e3a;
+      --bizadobe-hero-bg: #0E0E10;
+      --bizadobe-card-coral: #FFE5D8;
+      --bizadobe-card-blue:  #C9E9FF;
+      --bizadobe-card-teal:  #E0F6FA;
+      --bizadobe-rainbow: linear-gradient(90deg,
+        #FE3600 0%, #FF7B02 16%, #FAD220 34%,
+        #81DA42 58%, #318EFF 81%, #8B68E8 100%);
+      --bizadobe-section-pad: 96px;
+    }
+    body { background: #fff; color: #2c2c2c; }
+
+    /* ─── GNAV — adapt to "Adobe for Business" sub-brand on white ── */
+    /* Override default light-on-dark behavior — page bg is white */
+    #gnav .gnav-inner { background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    #gnav .gnav-inner::before { display: none; } /* always opaque pill */
+    #gnav .gnav-link { color: #1a1a1a; }
+    #gnav .gnav-logo { display: none; }
+    #gnav .gnav-logo-black { display: block; }
+    #gnav .gnav-apps img { filter: brightness(0); }
+    #gnav .gnav-signin { color: #1a1a1a; border-color: rgba(0,0,0,0.7); }
+    .gnav-subbrand {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.01em;
+      padding-left: 8px;
+      margin-left: 4px;
+      border-left: 1px solid rgba(0,0,0,0.16);
+      white-space: nowrap;
+      align-self: center;
+      height: 18px;
+      line-height: 18px;
+    }
+    @media (max-width: 767px) { .gnav-subbrand { display: none; } }
+
+    .gnav-cta {
+      display: inline-flex; align-items: center; height: 32px;
+      padding: 0 14px; background: #1473E6; color: #fff;
+      border-radius: 16px; font-family: var(--font-body);
+      font-size: 13px; font-weight: 700;
+      text-decoration: none; white-space: nowrap;
+      transition: background 0.2s ease;
+      margin-left: 4px;
+    }
+    .gnav-cta:hover { background: #0F5CC3; }
+
+    /* ─── Acquisition banner (top of page) ───────────────────────── */
+    .acq-banner {
+      position: relative;
+      background:
+        radial-gradient(ellipse at bottom left,  rgba(139,104,232,0.35), transparent 50%),
+        radial-gradient(ellipse at bottom right, rgba(254,54,0,0.28),    transparent 55%),
+        var(--bizadobe-banner-bg);
+      color: #fff;
+      padding: 96px 24px 64px;
+      text-align: center;
+      overflow: hidden;
+      isolation: isolate;
+      margin-top: 72px;            /* clear gnav */
+    }
+    .acq-banner::before, .acq-banner::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0; width: 240px;
+      pointer-events: none;
+      background-image:
+        repeating-linear-gradient(115deg,
+          transparent 0px, transparent 12px,
+          rgba(255,255,255,0.04) 12px, rgba(255,255,255,0.04) 13px);
+      z-index: -1;
+    }
+    .acq-banner::before { left: 0; }
+    .acq-banner::after { right: 0; transform: scaleX(-1); }
+
+    .acq-logos {
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px;
+    }
+    .acq-logo-lockup {
+      height: 48px; width: auto; display: block;
+    }
+    @media (max-width: 767px) {
+      .acq-logo-lockup { height: 32px; }
+    }
+
+    .acq-headline {
+      font-family: var(--font-display);
+      font-weight: 900; font-size: 28px;
+      line-height: 1.15; letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .acq-body {
+      font-family: var(--font-body);
+      font-size: 14px; font-weight: 400;
+      color: rgba(255,255,255,0.75);
+      max-width: 56ch; margin: 0 auto 28px;
+    }
+    .acq-ctas { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+    .acq-btn {
+      display: inline-flex; align-items: center; height: 36px;
+      padding: 0 18px; border-radius: 999px;
+      font-family: var(--font-body); font-weight: 700; font-size: 13px;
+      text-decoration: none; white-space: nowrap;
+      border: 2px solid #fff;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .acq-btn--primary {
+      background: #fff;
+      color: #1a1a1a;
+    }
+    .acq-btn--primary:hover {
+      background: #e8e8e8;
+    }
+    .acq-btn--outline {
+      background: transparent;
+      color: #fff;
+    }
+    .acq-btn--outline:hover {
+      background: #fff;
+      color: #1a1a1a;
+    }
+
+    /* ─── Common section helpers ─────────────────────────────────── */
+    .section { padding: var(--bizadobe-section-pad) 0; }
+    .section-pad-x { padding-inline: var(--grid-margin, 24px); }
+
+    .section-eyebrow {
+      font-family: var(--font-body);
+      font-size: 14px; font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.5);
+      margin-bottom: 20px;
+    }
+    .section-eyebrow--invert { color: rgba(255,255,255,0.55); }
+
+    /* ─── Main hero (black) ──────────────────────────────────────── */
+    .hero {
+      background: var(--bizadobe-hero-bg);
+      color: #fff;
+      padding: 96px 0 80px;
+      border-radius: 0 0 32px 32px;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+    }
+    .hero-copy {
+      max-width: 880px;
+      margin: 0 auto 64px;
+      text-align: center;
+      padding-inline: var(--grid-margin, 24px);
+      position: relative;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-body); font-weight: 700;
+      font-size: 14px; letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(34px, 4.5vw, 56px);
+      line-height: 1.05; letter-spacing: -0.03em;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .hero-body {
+      font-family: var(--font-body);
+      font-size: 17px; line-height: 1.45;
+      color: rgba(255,255,255,0.78);
+      max-width: 60ch; margin: 0 auto 28px;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center;
+      height: 44px; padding: 0 22px;
+      background: #fff; color: #000;
+      border-radius: 999px;
+      font-family: var(--font-body); font-weight: 700; font-size: 14px;
+      text-decoration: none; white-space: nowrap;
+      transition: background 0.2s ease;
+    }
+    .hero-cta:hover { background: rgba(255,255,255,0.86); }
+
+    /* Hero 3-up product cards */
+    .hero-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      max-width: 1920px;
+      margin: 0 auto;
+      padding-inline: var(--grid-margin, 24px);
+    }
+    @media (max-width: 1023px) { .hero-cards { grid-template-columns: 1fr; } }
+
+    .hero-card {
+      position: relative;
+      border-radius: 16px;
+      padding: 28px;
+      min-height: 360px;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .hero-card--coral { background: linear-gradient(160deg, #FFD9C5 0%, #FFB791 60%, #E8845D 100%); }
+    .hero-card--blue  { background: linear-gradient(160deg, #BFD7FF 0%, #88B0FA 60%, #2C68C2 100%); }
+    .hero-card--teal  { background: linear-gradient(160deg, #DCF1F5 0%, #B6E0E5 50%, #FFCFA1 100%); }
+
+    .hero-card-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 22px; line-height: 1.05; letter-spacing: -0.02em;
+      color: #1a1a1a;
+      margin-bottom: 10px;
+    }
+    .hero-card-body {
+      font-family: var(--font-body);
+      font-size: 15px; line-height: 1.4;
+      color: rgba(0,0,0,0.7);
+      max-width: 30ch;
+      margin-bottom: 16px;
+    }
+    .hero-card-cta {
+      display: inline-flex; align-items: center;
+      height: 32px; padding: 0 16px;
+      background: rgba(255,255,255,0.8);
+      color: #000;
+      border-radius: 999px;
+      font-family: var(--font-body); font-weight: 700; font-size: 12px;
+      text-decoration: none; white-space: nowrap;
+      width: fit-content;
+      transition: background 0.2s ease;
+    }
+    .hero-card-cta:hover { background: #fff; }
+
+    /* Mock UI inside each hero card (positioned bottom-right) */
+    .hero-card-ui {
+      position: absolute;
+      bottom: 14px; right: 14px;
+      width: 62%; height: 56%;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.10);
+      overflow: hidden;
+      background: #fff;
+      transform: translateZ(0);
+    }
+    .hero-card-ui--lipstick {
+      background: #C13A2B;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-family: var(--font-display);
+    }
+    .hero-card-ui--lipstick::before {
+      content: '';
+      position: absolute; bottom: 0; right: 22%;
+      width: 40%; height: 78%;
+      background: linear-gradient(170deg, #FFE16D 0%, #FF6B3A 50%, #C13A2B 100%);
+      border-radius: 12px 12px 4px 4px;
+      box-shadow: 0 -6px 20px rgba(0,0,0,0.25) inset;
+    }
+    .hero-card-ui--lipstick::after {
+      content: '';
+      position: absolute; bottom: 6px; left: 12px;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 28px 4px 0 0 rgba(255,255,255,0.85), 56px 10px 0 0 rgba(255,255,255,0.7);
+    }
+
+    /* CX Coworker UI: campaign-performance + revenue/uplift cards */
+    .hero-card-ui--coworker {
+      background: linear-gradient(170deg, #fff 0%, #f5f5f5 100%);
+      padding: 12px;
+      display: flex; flex-direction: column; gap: 6px;
+      font-family: var(--font-body);
+      color: #1a1a1a;
+      font-size: 9px;
+      line-height: 1.2;
+    }
+    .ui-stat-row { display: flex; align-items: center; gap: 6px; padding: 4px 6px; background: rgba(0,0,0,0.04); border-radius: 6px; }
+    .ui-stat-row .ui-eyebrow { font-weight: 700; font-size: 7px; text-transform: uppercase; letter-spacing: 0.05em; color: rgba(0,0,0,0.6); flex: 1; }
+    .ui-stat-row .ui-num { font-family: var(--font-display); font-weight: 900; font-size: 13px; }
+    .ui-stat-row .ui-num--green { color: #2F7D3A; }
+    .ui-stat-row .ui-bar { width: 24px; height: 14px; border-radius: 2px; background: linear-gradient(180deg, #6E80FA 0%, #1E3FE2 100%); }
+    .ui-row-card {
+      background: #fff; padding: 6px; border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .ui-row-card .ui-eyebrow { font-size: 7px; font-weight: 700; color: rgba(0,0,0,0.55); }
+    .ui-row-card .ui-headline { font-family: var(--font-display); font-weight: 900; font-size: 11px; margin-top: 1px; }
+
+    /* CX Analytics UI: data + insights */
+    .hero-card-ui--analytics {
+      background: #fff;
+      padding: 10px;
+      display: flex; flex-direction: column; gap: 6px;
+      font-family: var(--font-body); color: #1a1a1a;
+      font-size: 9px;
+    }
+    .hero-card-ui--analytics .ui-cell {
+      padding: 6px 8px; border-radius: 6px;
+      background: rgba(0,0,0,0.04);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .hero-card-ui--analytics .ui-cell--lift { background: #B5F1B5; color: #1F6926; }
+    .hero-card-ui--analytics .ui-cell--rev { background: #FFE3D2; color: #8B3A1A; }
+    .hero-card-ui--analytics .ui-cell--big { background: #2C68C2; color: #fff; }
+    .hero-card-ui--analytics .ui-num { font-family: var(--font-display); font-weight: 900; font-size: 13px; line-height: 1; }
+    .hero-card-ui--analytics .ui-cell-label { font-weight: 700; font-size: 7px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .hero-card-ui--analytics .ui-callout {
+      background: #fff; color: #C13A2B; padding: 6px 8px;
+      border-radius: 999px; font-family: var(--font-display);
+      font-weight: 900; font-size: 14px; line-height: 1;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      transform: rotate(-3deg);
+    }
+
+    /* ─── Recent announcements ──────────────────────────────────── */
+    .announcements {
+      background: #F8F8F8;
+      padding: 96px var(--grid-margin, 24px);
+    }
+    .announcements-header {
+      margin: 0 auto 40px;
+      max-width: 1920px;
+      text-align: center;
+    }
+    .announcements-title {
+      display: block;            /* full-width so text-animator measures
+                                    against the full container, not the
+                                    shrink-to-fit flex item width */
+      width: 100%;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(28px, 3.5vw, 48px);
+      line-height: 1.0; letter-spacing: -0.03em;
+      color: #1a1a1a;
+    }
+    .announcements-track-wrap {
+      max-width: 1920px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .announcements-track {
+      display: flex; gap: 8px;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+    .announcement-card {
+      flex: 0 0 calc((100% - 16px) / 3);
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      display: flex; flex-direction: column; gap: 10px;
+      min-height: 200px;
+    }
+    @media (max-width: 1023px) { .announcement-card { flex: 0 0 calc((100% - 8px) / 2); } }
+    @media (max-width: 767px)  { .announcement-card { flex: 0 0 100%; } }
+    .announcement-eyebrow {
+      font-family: var(--font-body); font-weight: 700;
+      font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.55);
+    }
+    .announcement-headline {
+      font-family: var(--font-body);
+      font-weight: 700; font-size: 16px; line-height: 1.3;
+      color: #1a1a1a;
+      flex: 1;
+    }
+    .announcement-cta {
+      display: inline-flex; align-items: center;
+      height: 32px; padding: 0 14px;
+      background: transparent; color: #1a1a1a;
+      border: 1.5px solid #1a1a1a;
+      border-radius: 999px;
+      font-family: var(--font-body); font-weight: 700; font-size: 12px;
+      text-decoration: none; white-space: nowrap;
+      width: fit-content;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .announcement-cta:hover { background: #1a1a1a; color: #fff; }
+
+    .announcement-controls {
+      display: flex; gap: 8px; justify-content: center;
+      margin-top: 40px;
+    }
+    .announcement-arrow {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(0,0,0,0.18);
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      color: #1a1a1a;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+    .announcement-arrow:hover { background: #1a1a1a; border-color: #1a1a1a; color: #fff; }
+    .announcement-arrow:disabled {
+      opacity: 0.3; cursor: not-allowed;
+      background: #fff; border-color: rgba(0,0,0,0.12); color: #1a1a1a;
+    }
+    .announcement-arrow svg { width: 14px; height: 14px; }
+
+    /* ─── Business solutions ─────────────────────────────────────── */
+    .solutions { background: #F8F8F8; padding: 96px 0 0; }
+    .solutions-header {
+      max-width: 1200px; margin: 0 auto 56px;
+      text-align: center;
+      padding-inline: var(--grid-margin, 24px);
+    }
+    .solutions-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(28px, 3.5vw, 48px);
+      line-height: 1.05; letter-spacing: -0.03em;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+    }
+    .solutions-sub {
+      font-family: var(--font-body);
+      font-size: 17px; line-height: 1.45;
+      color: rgba(0,0,0,0.6);
+      max-width: 56ch; margin: 0 auto;
+    }
+    .solutions-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      max-width: 1920px; margin: 0 auto;
+      padding-inline: var(--grid-margin, 24px);
+    }
+    @media (max-width: 1023px) { .solutions-grid { grid-template-columns: 1fr; } }
+
+    /* ── Acrobat-feature-3up pattern (image-on-top, text-below) ──
+       Match: stardust/target/modules/acrobat-feature-3up.md  */
+    .solution-card {
+      display: flex; flex-direction: column;
+    }
+    .solution-card__asset {
+      aspect-ratio: 488 / 366;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .solution-card__asset img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Per-category backdrop tint behind the photo (visible at edges + as graded fill) */
+    .solution-card--brand      .solution-card__asset { background: var(--bizadobe-card-blue);  }
+    .solution-card--content    .solution-card__asset { background: var(--bizadobe-card-coral); }
+    .solution-card--engagement .solution-card__asset { background: var(--bizadobe-card-teal);  }
+
+    .solution-card__copy {
+      display: flex; flex-direction: column;
+      gap: 16px;
+      padding: 24px 24px 0;
+    }
+    .solution-card__title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 24px; line-height: 1.05; letter-spacing: -0.02em;
+      color: #1a1a1a;
+      margin: 0;
+    }
+    .solution-card__body {
+      font-family: var(--font-body);
+      font-size: 16px; line-height: 1.3; letter-spacing: 0.01em;
+      color: rgba(0,0,0,0.64);
+      margin: 0;
+    }
+    /* Chevron link (matches .acrobat-cta from modules/acrobat-feature-3up.md) */
+    .solution-card__cta {
+      display: inline-flex; align-items: center;
+      gap: 6px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 14px; line-height: 1.3;
+      color: #1a1a1a;
+      text-decoration: none;
+      white-space: nowrap;
+      width: fit-content;
+      transition: opacity 0.2s ease;
+    }
+    .solution-card__cta:hover { opacity: 0.7; }
+    .solution-card__cta svg { width: 6px; height: auto; transition: transform 0.2s ease; }
+    .solution-card__cta:hover svg { transform: translateX(2px); }
+
+    /* Rainbow divider */
+    .rainbow-divider {
+      height: 4px; width: 100%;
+      background: var(--bizadobe-rainbow);
+      margin-top: 96px;
+    }
+
+    /* ─── AI assistant search ────────────────────────────────────── */
+    .ai-search { background: #F8F8F8; padding: 96px 0 64px; }
+    .ai-search-inner {
+      max-width: 760px; margin: 0 auto;
+      text-align: center;
+      padding-inline: var(--grid-margin, 24px);
+    }
+    .ai-search-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(26px, 3vw, 40px);
+      line-height: 1.1; letter-spacing: -0.025em;
+      color: #1a1a1a;
+      margin-bottom: 14px;
+    }
+    .ai-search-sub {
+      font-family: var(--font-body);
+      font-size: 16px; line-height: 1.5;
+      color: rgba(0,0,0,0.6);
+      margin-bottom: 28px;
+    }
+    .ai-search-bar {
+      display: flex; align-items: center;
+      width: 100%;
+      height: 48px;
+      background: #fff;
+      border-radius: 999px;
+      border: 1.5px solid rgba(0,0,0,0.12);
+      padding: 0 8px 0 20px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s ease;
+    }
+    .ai-search-bar:focus-within { border-color: #1473E6; }
+    .ai-search-icon {
+      width: 16px; height: 16px;
+      flex-shrink: 0;
+      color: rgba(0,0,0,0.45);
+      margin-right: 12px;
+    }
+    .ai-search-input {
+      flex: 1; height: 100%;
+      background: transparent; border: none; outline: none;
+      font-family: var(--font-body); font-size: 15px;
+      color: #1a1a1a;
+    }
+    .ai-search-input::placeholder { color: rgba(0,0,0,0.45); }
+    .ai-search-send {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: #1a1a1a;
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s ease;
+    }
+    .ai-search-send:hover { background: #000; }
+    .ai-search-send svg { width: 14px; height: 14px; color: #fff; }
+
+    .ai-chips {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .ai-chip {
+      display: inline-flex; align-items: center;
+      height: 36px; padding: 0 16px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 999px;
+      font-family: var(--font-body); font-size: 13px;
+      color: #1a1a1a;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .ai-chip:hover { background: #f0f0f0; border-color: rgba(0,0,0,0.2); }
+
+    .ai-disclaimer {
+      font-family: var(--font-body); font-size: 11px;
+      color: rgba(0,0,0,0.5); line-height: 1.5;
+      max-width: 620px; margin: 0 auto;
+    }
+    .ai-disclaimer a { color: rgba(0,0,0,0.6); text-decoration: underline; }
+
+    /* ─── Explore products tabs ──────────────────────────────────── */
+    .explore { background: #F8F8F8; padding: 24px 0 96px; }
+    .explore-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(26px, 3vw, 40px);
+      line-height: 1.05; letter-spacing: -0.025em;
+      color: #1a1a1a;
+      text-align: center;
+      max-width: 1100px;       /* wide enough for "Explore all Adobe for Business products." on one line at desktop */
+      margin: 0 auto 32px;
+      padding-inline: var(--grid-margin, 24px);
+    }
+    .explore-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0; flex-wrap: wrap;
+      margin-bottom: 40px;
+      padding-inline: var(--grid-margin, 24px);
+    }
+    .explore-tabs-inner {
+      display: inline-flex;
+      background: rgba(0,0,0,0.06);
+      padding: 4px;
+      border-radius: 999px;
+      gap: 0;
+      max-width: 100%; overflow-x: auto;
+    }
+    .explore-tab {
+      display: inline-flex; align-items: center;
+      height: 36px; padding: 0 16px;
+      border: none; background: transparent;
+      border-radius: 999px;
+      font-family: var(--font-body); font-weight: 700; font-size: 13px;
+      color: rgba(0,0,0,0.6);
+      cursor: pointer; white-space: nowrap;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .explore-tab.active { background: #1a1a1a; color: #fff; }
+
+    .explore-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr 1fr;
+      gap: 8px;
+      max-width: 1920px;
+      margin: 0 auto;
+      padding-inline: var(--grid-margin, 24px);
+    }
+    @media (max-width: 1023px) {
+      .explore-grid { grid-template-columns: 1fr; }
+    }
+    /* [hidden] panes take no layout — explicit because display:grid overrides UA */
+    .explore-pane[hidden] { display: none; }
+    .explore-cell {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px;
+      display: flex; flex-direction: column;
+    }
+    .explore-cell--media {
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #FBF6EC 0%, #F0E1C7 100%);
+      position: relative;
+      min-height: 360px;
+      overflow: hidden;
+    }
+    .explore-media-img {
+      width: 84%; max-width: 460px;
+      border-radius: 12px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+    }
+    .explore-media-badge {
+      position: absolute; bottom: 20%; left: 12%;
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      background: #FF3A00;
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      font-family: var(--font-display);
+      font-weight: 900; font-size: 13px;
+      line-height: 1.05; letter-spacing: -0.02em;
+      padding: 16px;
+      transform: rotate(-8deg);
+      box-shadow: 0 8px 24px rgba(255,58,0,0.36);
+    }
+    .explore-media-pill {
+      position: absolute; top: 14%; right: 9%;
+      background: rgba(0,0,0,0.85);
+      color: #fff;
+      font-family: var(--font-body); font-weight: 700; font-size: 12px;
+      padding: 6px 12px; border-radius: 999px;
+      backdrop-filter: blur(8px);
+    }
+
+    .explore-eyebrow {
+      font-family: var(--font-body); font-weight: 700;
+      font-size: 12px; letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.55);
+      margin-bottom: 12px;
+    }
+    .explore-cell-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 24px; line-height: 1.05; letter-spacing: -0.02em;
+      color: #1a1a1a;
+      margin-bottom: 12px;
+    }
+    .explore-cell-body {
+      font-family: var(--font-body);
+      font-size: 14px; line-height: 1.5;
+      color: rgba(0,0,0,0.65);
+    }
+
+    .product-list { display: flex; flex-direction: column; gap: 0; }
+    .product-list-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      font-family: var(--font-body); font-size: 14px; font-weight: 500;
+      color: #1a1a1a;
+      text-decoration: none;
+    }
+    .product-list-item:last-child { border-bottom: none; }
+    .product-list-item:hover .product-list-name { text-decoration: underline; }
+    .product-mark {
+      width: 16px; height: 16px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, #FF3A00 0%, #C92B00 100%);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: #fff; font-family: var(--font-display); font-weight: 900; font-size: 9px;
+      flex-shrink: 0;
+    }
+    .product-list-name { flex: 1; }
+    .product-list-badge {
+      display: inline-flex; align-items: center;
+      height: 18px; padding: 0 8px;
+      background: #1a1a1a; color: #fff;
+      border-radius: 999px;
+      font-size: 9px; font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .explore-foot {
+      display: flex; justify-content: center;
+      margin-top: 28px;
+      padding-inline: var(--grid-margin, 24px);
+    }
+    .explore-foot-cta {
+      display: inline-flex; align-items: center;
+      height: 40px; padding: 0 22px;
+      background: transparent; color: #1a1a1a;
+      border: 1.5px solid #1a1a1a;
+      border-radius: 999px;
+      font-family: var(--font-body); font-weight: 700; font-size: 13px;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .explore-foot-cta:hover { background: #1a1a1a; color: #fff; }
+
+    /* ─── Customer story (Ford) ─────────────────────────────────── */
+    .story { background: #F8F8F8; padding: 96px 0; }
+    .story-grid {
+      display: grid; grid-template-columns: 1fr 1.2fr;
+      gap: 48px;
+      max-width: 1920px; margin: 0 auto;
+      padding-inline: var(--grid-margin, 24px);
+      align-items: center;
+    }
+    @media (max-width: 1023px) { .story-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+    .story-logo {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 60px; height: 24px;
+      border: 1.5px solid #003478;
+      border-radius: 999px;
+      color: #003478;
+      font-family: serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.02em;
+      margin-bottom: 28px;
+    }
+    .story-quote {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(24px, 2.6vw, 32px);
+      line-height: 1.15; letter-spacing: -0.02em;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+    }
+    .story-quote::before { content: '\201C'; }
+    .story-quote::after  { content: '\201D'; }
+    .story-attrib {
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: rgba(0,0,0,0.65);
+      margin-bottom: 20px;
+    }
+    .story-cta {
+      display: inline-flex; align-items: center;
+      height: 36px; padding: 0 18px;
+      background: transparent; color: #1a1a1a;
+      border: 1.5px solid #1a1a1a;
+      border-radius: 999px;
+      font-family: var(--font-body); font-weight: 700; font-size: 13px;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .story-cta:hover { background: #1a1a1a; color: #fff; }
+    .story-image-wrap {
+      background: #C9E9FF;
+      border-radius: 16px;
+      padding: 32px;
+      aspect-ratio: 4 / 3;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .story-image-frame {
+      background: #fff;
+      border-radius: 12px;
+      width: 100%; height: 78%;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+      overflow: hidden;
+      position: relative;
+    }
+    .story-image-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* "Approved assets" pill — top-left of the wrapper */
+    .story-image-tag {
+      position: absolute; top: 24px; left: 24px;
+      background: #fff; color: #1a1a1a;
+      font-family: var(--font-body); font-weight: 700; font-size: 11px;
+      padding: 6px 12px 6px 24px; border-radius: 999px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+      z-index: 4;
+    }
+    .story-image-tag::before {
+      content: ''; position: absolute;
+      left: 8px; top: 50%; transform: translateY(-50%);
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #2F7D3A;
+    }
+    .story-image-tag::after {
+      content: ''; position: absolute;
+      left: 11px; top: 50%; transform: translateY(-65%) rotate(-45deg);
+      width: 4px; height: 2px;
+      border-bottom: 1.5px solid #fff;
+      border-left: 1.5px solid #fff;
+    }
+    /* "From the Road" callout — top-right */
+    .story-image-overlay-pill {
+      position: absolute; top: 24px; right: 24px;
+      background: #fff; color: #1a1a1a;
+      font-family: var(--font-display); font-weight: 900;
+      font-size: 12px; letter-spacing: -0.01em;
+      padding: 8px 14px; border-radius: 999px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      z-index: 4;
+    }
+    /* Reaction count chip — over the image */
+    .story-image-react {
+      position: absolute; top: 30%; left: 12%;
+      background: #fff; border-radius: 999px;
+      padding: 6px 12px;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-body); font-weight: 700; font-size: 12px;
+      color: #1a1a1a;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      z-index: 4;
+    }
+    .story-image-react::before {
+      content: ''; width: 14px; height: 14px;
+      background: #FF3A00;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 14s-5-3-5-7a3 3 0 0 1 5-2 3 3 0 0 1 5 2c0 4-5 7-5 7Z' fill='black'/%3E%3C/svg%3E") no-repeat center / contain;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 14s-5-3-5-7a3 3 0 0 1 5-2 3 3 0 0 1 5 2c0 4-5 7-5 7Z' fill='black'/%3E%3C/svg%3E") no-repeat center / contain;
+    }
+    /* Sticky-note overlay — bottom-right */
+    .story-image-note {
+      position: absolute; bottom: 16%; right: 8%;
+      width: 88px; height: 88px;
+      background: #FFE066;
+      transform: rotate(6deg);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      padding: 10px;
+      font-family: var(--font-body);
+      font-size: 9px; font-weight: 700;
+      color: #5a4500;
+      line-height: 1.25;
+      z-index: 4;
+    }
+    /* Mini thumbnail strip — bottom of frame */
+    .story-image-strip {
+      position: absolute; bottom: 8%; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 4px;
+      padding: 6px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      z-index: 4;
+    }
+    .story-image-strip span {
+      display: block; width: 24px; height: 18px;
+      border-radius: 3px;
+    }
+    .story-image-strip span:nth-child(1) { background: linear-gradient(135deg, #C13A2B, #6e1d10); border: 1.5px solid #1a1a1a; }
+    .story-image-strip span:nth-child(2) { background: linear-gradient(135deg, #2C68C2, #143a78); }
+    .story-image-strip span:nth-child(3) { background: linear-gradient(135deg, #2F7D3A, #1c4d22); }
+    .story-image-strip span:nth-child(4) { background: linear-gradient(135deg, #FFE066, #c4a800); }
+
+    /* ─── Brand logos ────────────────────────────────────────────── */
+    .brands { background: #fff; padding: 96px 0; }
+    .brands-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(26px, 3vw, 40px);
+      line-height: 1.05; letter-spacing: -0.025em;
+      color: #1a1a1a;
+      text-align: center;
+      max-width: 1000px; margin: 0 auto 48px;
+      padding-inline: var(--grid-margin, 24px);
+    }
+    .brands-row {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 32px; flex-wrap: wrap;
+      max-width: 1400px; margin: 0 auto 40px;
+      padding-inline: var(--grid-margin, 24px);
+    }
+    .brand-logo {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 36px;
+      color: rgba(0, 0, 0, 0.55);
+      flex: 0 0 auto;
+      filter: grayscale(1);
+      transition: color 0.2s ease, filter 0.2s ease;
+    }
+    .brand-logo:hover { color: rgba(0, 0, 0, 0.85); filter: grayscale(0); }
+    .brand-logo svg { display: block; height: 100%; width: auto; max-width: 160px; }
+    @media (max-width: 767px) {
+      .brands-row { gap: 32px; justify-content: center; }
+      .brand-logo { height: 28px; }
+    }
+
+    .brands-foot { display: flex; justify-content: center; }
+    .brands-cta {
+      display: inline-flex; align-items: center;
+      height: 36px; padding: 0 18px;
+      background: transparent; color: #1a1a1a;
+      border: 1.5px solid #1a1a1a;
+      border-radius: 999px;
+      font-family: var(--font-body); font-weight: 700; font-size: 13px;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .brands-cta:hover { background: #1a1a1a; color: #fff; }
+
+    /* ─── Bottom CTA ─────────────────────────────────────────────── */
+    .bottom-cta {
+      background: #0E0E10;
+      padding: 96px 0;
+      border-radius: 32px 32px 0 0;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+    }
+    .bottom-cta-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 48px;
+      max-width: 1920px; margin: 0 auto;
+      padding-inline: var(--grid-margin, 24px);
+      align-items: center;
+    }
+    @media (max-width: 1023px) {
+      .bottom-cta-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+    .bottom-cta-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(28px, 4vw, 56px);
+      line-height: 1.0; letter-spacing: -0.03em;
+      color: #fff;
+      max-width: 22ch;
+      margin-bottom: 28px;
+    }
+    .bottom-cta-btn {
+      display: inline-flex; align-items: center;
+      height: 44px; padding: 0 22px;
+      background: #fff; color: #000;
+      border-radius: 999px;
+      font-family: var(--font-body); font-weight: 700; font-size: 14px;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .bottom-cta-btn:hover { background: rgba(255,255,255,0.86); }
+
+    .bottom-cta-portrait {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      max-width: 480px;
+      width: 100%;
+      justify-self: end;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #2a2a2a;
+    }
+    @media (max-width: 1023px) { .bottom-cta-portrait { justify-self: center; } }
+    .bottom-cta-portrait img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      filter: contrast(1.05) saturate(1.1);
+    }
+    .bottom-cta-portrait::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(255,58,0,0.25) 0%, transparent 50%, rgba(0,0,0,0.4) 100%);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+    .bottom-cta-overlay-stat {
+      position: absolute;
+      top: 24px; left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.85);
+      color: #fff; backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 16px 20px;
+      display: flex; align-items: center; gap: 12px;
+      font-family: var(--font-body);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    .bottom-cta-overlay-stat::before {
+      content: ''; width: 32px; height: 32px;
+      border-radius: 50%;
+      background: conic-gradient(#FF3A00 0deg 280deg, rgba(255,255,255,0.2) 280deg 360deg);
+    }
+    .bottom-cta-overlay-stat-num {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: 22px; line-height: 1; color: #fff;
+    }
+    .bottom-cta-overlay-stat-label { font-size: 11px; color: rgba(255,255,255,0.65); }
+    .bottom-cta-overlay-stat-eyebrow {
+      font-family: var(--font-body); font-weight: 700;
+      font-size: 10px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.85);
+      display: block; margin-bottom: 4px;
+    }
+    .bottom-cta-overlay-action {
+      position: absolute;
+      bottom: 40px; left: 50%;
+      transform: translateX(-50%);
+      background: #FF3A00; color: #fff;
+      border-radius: 999px;
+      padding: 12px 22px;
+      font-family: var(--font-body); font-weight: 700; font-size: 13px;
+      box-shadow: 0 8px 24px rgba(255,58,0,0.45);
+      display: inline-flex; align-items: center; gap: 8px;
+      white-space: nowrap;
+    }
+    .bottom-cta-overlay-action::before {
+      content: ''; width: 14px; height: 14px;
+      background: #fff;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 1v14M1 8h14' stroke='black' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E") no-repeat center / contain;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 1v14M1 8h14' stroke='black' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E") no-repeat center / contain;
+    }
+    .bottom-cta-portrait-frame {
+      position: absolute; inset: 8%;
+      border: 6px solid #FF3A00;
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────────── */
+    footer.footer {
+      background: #0E0E10;
+      color: rgba(255,255,255,0.7);
+      padding: 64px 0 24px;
+    }
+    .footer-inner {
+      max-width: 1920px; margin: 0 auto;
+      padding-inline: var(--grid-margin, 24px);
+    }
+    .footer-cols {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 32px 24px;
+      padding-bottom: 48px;
+    }
+    @media (max-width: 1023px) { .footer-cols { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 767px)  { .footer-cols { grid-template-columns: repeat(2, 1fr); } }
+    .footer-col-title {
+      font-family: var(--font-body); font-weight: 700;
+      font-size: 13px; color: #fff;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col li a {
+      font-family: var(--font-body); font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .footer-col li a:hover { color: #fff; }
+
+    .footer-bottom {
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-legal {
+      display: flex; gap: 18px; flex-wrap: wrap;
+      font-family: var(--font-body); font-size: 11px;
+      color: rgba(255,255,255,0.5);
+    }
+    .footer-legal a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    .footer-legal a:hover { color: rgba(255,255,255,0.8); }
+    .footer-social { display: flex; gap: 12px; align-items: center; }
+    .footer-social a {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 11px;
+      transition: background 0.15s ease;
+    }
+    .footer-social a:hover { background: rgba(255,255,255,0.18); color: #fff; }
+
+    /* ─── Initial state for reveal items ─────────────────────────── */
+    .anim-enter {
+      opacity: 0;
+      transform: translateY(40px);
+      will-change: opacity, transform;
+    }
+
+    /* ─── Reduced motion ─────────────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      /* Resolve all reveal items to their final state */
+      .anim-enter { opacity: 1 !important; transform: none !important; }
+      [data-ta] .ta-line-inner,
+      [data-ta-unit] { transform: none !important; opacity: 1 !important; }
+      /* Disable Lenis-driven smooth scroll smoothness; native scroll is fine */
+      html { scroll-behavior: auto; }
+      /* Eliminate transitions that read as animation rather than feedback */
+      .announcements-track,
+      .stories__track,
+      .tutorial__track { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════════════════════
+       GNAV — top pill, "Adobe for Business" sub-brand
+       ════════════════════════════════════════════════════════════ -->
+  <header id="gnav">
+    <div class="gnav-inner">
+      <div class="gnav-left">
+        <img src="../../target/runtime/assets/adobe-logo-black.svg" alt="Adobe" class="gnav-logo-black">
+        <span class="gnav-subbrand">for Business</span>
+        <button id="mobileNavToggle" class="gnav-hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+        <nav class="gnav-links">
+          <a href="#" class="gnav-link" id="gnavProducts">Products
+            <span class="gnav-chevron"><svg width="8" height="5" viewBox="0 0 8 5" fill="none" aria-hidden="true"><path d="M1 1L4 4L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a href="#" class="gnav-link">AI
+            <span class="gnav-chevron"><svg width="8" height="5" viewBox="0 0 8 5" fill="none" aria-hidden="true"><path d="M1 1L4 4L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a href="#" class="gnav-link">Industries
+            <span class="gnav-chevron"><svg width="8" height="5" viewBox="0 0 8 5" fill="none" aria-hidden="true"><path d="M1 1L4 4L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a href="#" class="gnav-link">Roles
+            <span class="gnav-chevron"><svg width="8" height="5" viewBox="0 0 8 5" fill="none" aria-hidden="true"><path d="M1 1L4 4L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a href="#" class="gnav-link">Resources
+            <span class="gnav-chevron"><svg width="8" height="5" viewBox="0 0 8 5" fill="none" aria-hidden="true"><path d="M1 1L4 4L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a href="#" class="gnav-link">Support
+            <span class="gnav-chevron"><svg width="8" height="5" viewBox="0 0 8 5" fill="none" aria-hidden="true"><path d="M1 1L4 4L7 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a href="#" class="gnav-cta">Get started</a>
+        </nav>
+      </div>
+      <div class="gnav-right">
+        <button class="gnav-apps" aria-label="Apps">
+          <img src="../../target/runtime/assets/icons/S2_Icon_AppsAll_20_N.svg" alt="">
+        </button>
+        <a href="#" class="gnav-signin" aria-label="Sign in">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="7" cy="4.5" r="2.5"/>
+            <path d="M2 12c0-2.5 2.2-4.5 5-4.5s5 2 5 4.5"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ACQUISITION BANNER — Adobe + Semrush
+       ════════════════════════════════════════════════════════════ -->
+  <section class="acq-banner" data-ta-group>
+    <div class="acq-logos" data-ta-unit>
+      <img class="acq-logo-lockup"
+           src="assets/adobe-semrush-acq.svg"
+           alt="Adobe + Semrush"
+           width="801" height="61">
+    </div>
+    <h1 class="acq-headline" data-ta>Adobe completes the acquisition of Semrush.</h1>
+    <p class="acq-body" data-ta>Access the world's most powerful data for AI search optimization.</p>
+    <div class="acq-ctas" data-ta-unit>
+      <a href="/products/semrush" class="acq-btn acq-btn--primary">Learn about the product</a>
+      <a href="https://news.adobe.com/news/2026/04/adobe-completes-semrush-acquisition" class="acq-btn acq-btn--outline">Read the announcement</a>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       MAIN HERO — Adobe CX Enterprise + 3 product cards
+       ════════════════════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-copy" data-ta-group>
+      <p class="hero-eyebrow" data-ta>Adobe for Business</p>
+      <h2 class="hero-title" data-ta>Customer experience orchestration<br>starts with Adobe CX Enterprise.</h2>
+      <p class="hero-body" data-ta>Deliver personalized, on-brand content and experiences across the entire customer lifecycle with Adobe's end-to-end agentic system for CXO.</p>
+      <div data-ta-unit><a href="#" class="hero-cta">Learn more</a></div>
+    </div>
+
+    <div class="hero-cards">
+      <article class="hero-card hero-card--coral anim-enter">
+        <h3 class="hero-card-title">Adobe Brand Intelligence</h3>
+        <p class="hero-card-body">Create content with a continuously learning, agentic system that understands your full brand identity.</p>
+        <a href="#" class="hero-card-cta">Learn more</a>
+        <div class="hero-card-ui hero-card-ui--lipstick"></div>
+      </article>
+
+      <article class="hero-card hero-card--blue anim-enter">
+        <h3 class="hero-card-title">Adobe CX Enterprise Coworker</h3>
+        <p class="hero-card-body">Execute complex, cross-system workflows using an AI agent that understands your business context.</p>
+        <a href="#" class="hero-card-cta">Learn more</a>
+        <div class="hero-card-ui hero-card-ui--coworker">
+          <div class="ui-row-card">
+            <div class="ui-eyebrow">Identify at-risk</div>
+            <div class="ui-headline">customers and launch a retention experience</div>
+          </div>
+          <div class="ui-row-card" style="background:#1a1a1a; color:#fff;">
+            <div class="ui-eyebrow" style="color:rgba(255,255,255,0.55)">Churn risk detected</div>
+            <div class="ui-headline" style="color:#fff;">Auto-route to retention agent</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="hero-card hero-card--teal anim-enter">
+        <h3 class="hero-card-title">Adobe CX Analytics</h3>
+        <p class="hero-card-body">Bring your customer experience and enterprise data together, delivering fast insights and activation at scale.</p>
+        <a href="#" class="hero-card-cta">Learn more</a>
+        <div class="hero-card-ui hero-card-ui--analytics">
+          <div class="ui-cell ui-cell--big" style="justify-content:space-between;">
+            <span class="ui-cell-label">Campaign performance</span>
+            <span class="ui-num" style="font-size:11px">↑</span>
+          </div>
+          <div style="display:flex; gap:6px;">
+            <div class="ui-cell ui-cell--rev" style="flex:1; flex-direction:column; align-items:flex-start; gap:2px;">
+              <span class="ui-num">$2.3M</span>
+              <span class="ui-cell-label">Revenue</span>
+            </div>
+            <div class="ui-cell ui-cell--lift" style="flex:1; flex-direction:column; align-items:flex-start; gap:2px;">
+              <span class="ui-num">5.2%</span>
+              <span class="ui-cell-label">Lift</span>
+            </div>
+          </div>
+          <div class="ui-callout">Seriously<br>no peeking.</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       RECENT ANNOUNCEMENTS — 3-up carousel of 6
+       ════════════════════════════════════════════════════════════ -->
+  <section class="announcements">
+    <div class="announcements-header" data-ta-group>
+      <h2 class="announcements-title" data-ta>Recent announcements.</h2>
+    </div>
+
+    <div class="announcements-track-wrap">
+      <div class="announcements-track" id="announcementsTrack">
+        <article class="announcement-card anim-enter">
+          <p class="announcement-eyebrow">Adobe acquires Semrush</p>
+          <p class="announcement-headline">Access the world's most powerful data for AI search optimization.</p>
+          <a href="#" class="announcement-cta">Learn more</a>
+        </article>
+        <article class="announcement-card anim-enter">
+          <p class="announcement-eyebrow">CX Maturity Index</p>
+          <p class="announcement-headline">Evaluate your organization's readiness for the age of AI-powered customer experience orchestration.</p>
+          <a href="#" class="announcement-cta">Start now</a>
+        </article>
+        <article class="announcement-card anim-enter">
+          <p class="announcement-eyebrow">Product Innovation</p>
+          <p class="announcement-headline">Adobe Engagement Intelligence optimizes customer journeys with goal-driven, decisioning intelligence.</p>
+          <a href="#" class="announcement-cta">Learn more</a>
+        </article>
+        <article class="announcement-card anim-enter">
+          <p class="announcement-eyebrow">Partner News</p>
+          <p class="announcement-headline">Adobe and NVIDIA power AI-first creative intelligence at scale.</p>
+          <a href="#" class="announcement-cta">Learn more</a>
+        </article>
+        <article class="announcement-card anim-enter">
+          <p class="announcement-eyebrow">Product Release</p>
+          <p class="announcement-headline">Turn your best content into campaigns with Adobe GenStudio for Content Marketing.</p>
+          <a href="#" class="announcement-cta">Learn more</a>
+        </article>
+        <article class="announcement-card anim-enter">
+          <p class="announcement-eyebrow">Partner News</p>
+          <p class="announcement-headline">Adobe and Microsoft expand agentic innovation partnership.</p>
+          <a href="#" class="announcement-cta">Learn more</a>
+        </article>
+      </div>
+    </div>
+
+    <div class="announcement-controls">
+      <button class="announcement-arrow" id="annPrev" aria-label="Previous">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7.5 2L3.5 6L7.5 10"/></svg>
+      </button>
+      <button class="announcement-arrow" id="annNext" aria-label="Next">
+        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.5 2L8.5 6L4.5 10"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       BUSINESS SOLUTIONS — 3-up bento with photos
+       ════════════════════════════════════════════════════════════ -->
+  <section class="solutions">
+    <div class="solutions-header" data-ta-group>
+      <h2 class="solutions-title" data-ta>Business solutions from Adobe — the customer experience orchestration leader.</h2>
+      <p class="solutions-sub" data-ta>Adobe solutions bring together best-in-class products to help drive business growth.</p>
+    </div>
+
+    <div class="solutions-grid">
+      <article class="solution-card solution-card--brand anim-enter">
+        <div class="solution-card__asset">
+          <img src="assets/solutions/brand-visibility.png" alt="">
+        </div>
+        <div class="solution-card__copy">
+          <h3 class="solution-card__title">Brand visibility</h3>
+          <p class="solution-card__body">Optimize visibility and engagement to ensure your brand is discoverable to both humans and AI agents.</p>
+          <a href="#" class="solution-card__cta">Learn more
+            <svg viewBox="0 0 6 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1L5 6L1 11"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="solution-card solution-card--content anim-enter">
+        <div class="solution-card__asset">
+          <img src="assets/solutions/content-supply-chain.png" alt="">
+        </div>
+        <div class="solution-card__copy">
+          <h3 class="solution-card__title">Content supply chain</h3>
+          <p class="solution-card__body">Transform and optimize your content supply chain through connected workflows and the power of AI.</p>
+          <a href="#" class="solution-card__cta">Learn more
+            <svg viewBox="0 0 6 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1L5 6L1 11"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="solution-card solution-card--engagement anim-enter">
+        <div class="solution-card__asset">
+          <img src="assets/solutions/customer-engagement.png" alt="">
+        </div>
+        <div class="solution-card__copy">
+          <h3 class="solution-card__title">Customer engagement</h3>
+          <p class="solution-card__body">Scale personalization with connected data, insights, audiences, and journeys on an agentic experience platform.</p>
+          <a href="#" class="solution-card__cta">Learn more
+            <svg viewBox="0 0 6 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 1L5 6L1 11"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <div class="rainbow-divider"></div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       AI ASSISTANT SEARCH (Adobe Brand Concierge)
+       ════════════════════════════════════════════════════════════ -->
+  <section class="ai-search">
+    <div class="ai-search-inner" data-ta-group>
+      <h2 class="ai-search-title" data-ta>How can Adobe help your business today?</h2>
+      <p class="ai-search-sub" data-ta>Ask Adobe Brand Concierge to learn about products, features, and business solutions.</p>
+
+      <div class="ai-search-bar anim-enter">
+        <svg class="ai-search-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="7" cy="7" r="5"/><path d="M14 14L10.5 10.5"/>
+        </svg>
+        <input class="ai-search-input" type="text" placeholder="Explore what's possible">
+        <button class="ai-search-send" aria-label="Send">
+          <svg viewBox="0 0 16 16" fill="none">
+            <path d="M2 8L14 8M9 3L14 8L9 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="ai-chips anim-enter">
+        <button class="ai-chip">How do I modernize my content workflow?</button>
+        <button class="ai-chip">What are the benefits of using CXO agents?</button>
+        <button class="ai-chip">What is Adobe CX Enterprise?</button>
+        <button class="ai-chip">Talk to an expert about CXO products.</button>
+      </div>
+
+      <p class="ai-disclaimer">
+        Use of this beta AI chatbot is subject to Adobe's <a href="#">Privacy Policy</a>. Don't share sensitive data. AI responses are not your Content, may be inaccurate, and any offers provided are non-binding. <a href="#">Generative AI Terms</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       EXPLORE PRODUCTS — tabs + 3-column grid
+       ════════════════════════════════════════════════════════════ -->
+  <section class="explore">
+    <div data-ta-group>
+      <h2 class="explore-title" data-ta>Explore all Adobe for Business products.</h2>
+    </div>
+
+    <div class="explore-tabs">
+      <div class="explore-tabs-inner">
+        <button class="explore-tab active" data-tab="ai">AI &amp; agents</button>
+        <button class="explore-tab" data-tab="content">Content &amp; workflows</button>
+        <button class="explore-tab" data-tab="creativity">Creativity &amp; design</button>
+        <button class="explore-tab" data-tab="data">Data &amp; analytics</button>
+        <button class="explore-tab" data-tab="campaigns">Campaigns</button>
+        <button class="explore-tab" data-tab="documents">Documents</button>
+      </div>
+    </div>
+
+    <!-- Pane: AI & agents (default) -->
+    <div class="explore-grid explore-pane" data-pane="ai">
+      <div class="explore-cell anim-enter">
+        <p class="explore-eyebrow">AI &amp; agents</p>
+        <h3 class="explore-cell-title">AI at Adobe.</h3>
+        <p class="explore-cell-body">Give your teams the productivity tools and always-on insights to deliver true personalization at scale with Adobe's AI solutions.</p>
+      </div>
+      <div class="explore-cell explore-cell--media anim-enter">
+        <img class="explore-media-img" src="assets/products/optimize-for-llms.png" alt="Optimize for LLMs UI screenshot">
+        <span class="explore-media-badge">Optimize<br>for LLMs</span>
+        <span class="explore-media-pill">2K mentions</span>
+      </div>
+      <div class="explore-cell anim-enter">
+        <p class="explore-eyebrow">Explore products</p>
+        <div class="product-list">
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Brand Intelligence</span><span class="product-list-badge">NEW</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Experience Platform Agent Orchestrator</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">LLM Optimizer</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Brand Concierge</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Experience Manager Sites Optimizer</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Journey Optimizer Experimentation Accelerator</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pane: Content & workflows -->
+    <div class="explore-grid explore-pane" data-pane="content" hidden>
+      <div class="explore-cell anim-enter">
+        <p class="explore-eyebrow">Content &amp; workflows</p>
+        <h3 class="explore-cell-title">Content at scale.</h3>
+        <p class="explore-cell-body">Connect your content supply chain through unified workflows that move ideas from brief to multi-channel activation in days, not weeks.</p>
+      </div>
+      <div class="explore-cell explore-cell--media anim-enter" style="background: linear-gradient(180deg,#FFE9D6 0%,#F0CDA4 100%);">
+        <img class="explore-media-img" src="assets/products/optimize-for-llms.png" alt="GenStudio editor UI">
+        <span class="explore-media-badge" style="background:#1A4D7A;">GenStudio<br>editor</span>
+        <span class="explore-media-pill">4K assets</span>
+      </div>
+      <div class="explore-cell anim-enter">
+        <p class="explore-eyebrow">Explore products</p>
+        <div class="product-list">
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">GenStudio for Content Marketing</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Workfront</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Experience Manager Assets</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Experience Manager Sites</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Asset Insights</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Content Authority</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pane: Creativity & design -->
+    <div class="explore-grid explore-pane" data-pane="creativity" hidden>
+      <div class="explore-cell anim-enter">
+        <p class="explore-eyebrow">Creativity &amp; design</p>
+        <h3 class="explore-cell-title">The creative platform.</h3>
+        <p class="explore-cell-body">Industry-leading apps and AI models give creative teams the tools to design, edit, and produce on every surface.</p>
+      </div>
+      <div class="explore-cell explore-cell--media anim-enter" style="background: linear-gradient(160deg,#E8DCFF 0%,#FFD9C5 60%,#FFE16D 100%);">
+        <img class="explore-media-img" src="assets/products/optimize-for-llms.png" alt="Firefly UI">
+        <span class="explore-media-badge" style="background:#8B68E8;">Firefly</span>
+        <span class="explore-media-pill">8.4B generations</span>
+      </div>
+      <div class="explore-cell anim-enter">
+        <p class="explore-eyebrow">Explore products</p>
+        <div class="product-list">
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Photoshop</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Illustrator</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Premiere Pro</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Firefly Enterprise</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">InDesign</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Substance 3D</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pane: Data & analytics -->
+    <div class="explore-grid explore-pane" data-pane="data" hidden>
+      <div class="explore-cell anim-enter">
+        <p class="explore-eyebrow">Data &amp; analytics</p>
+        <h3 class="explore-cell-title">Insight at the speed of decisions.</h3>
+        <p class="explore-cell-body">Unify behavioral data, content performance, and customer signals into actionable insights for every stakeholder.</p>
+      </div>
+      <div class="explore-cell explore-cell--media anim-enter" style="background: linear-gradient(180deg,#DCF1F5 0%,#B6E0E5 100%);">
+        <img class="explore-media-img" src="assets/products/optimize-for-llms.png" alt="Customer Journey Analytics UI">
+        <span class="explore-media-badge" style="background:#1F6973;">Journey<br>Analytics</span>
+        <span class="explore-media-pill">220M signals</span>
+      </div>
+      <div class="explore-cell anim-enter">
+        <p class="explore-eyebrow">Explore products</p>
+        <div class="product-list">
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Customer Journey Analytics</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Real-Time CDP</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Adobe Analytics</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Mix Modeler</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Audience Manager</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Marketo Measure</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pane: Campaigns -->
+    <div class="explore-grid explore-pane" data-pane="campaigns" hidden>
+      <div class="explore-cell anim-enter">
+        <p class="explore-eyebrow">Campaigns</p>
+        <h3 class="explore-cell-title">Campaigns that adapt.</h3>
+        <p class="explore-cell-body">Plan, execute, and measure cross-channel campaigns that respond to customer behavior in real time.</p>
+      </div>
+      <div class="explore-cell explore-cell--media anim-enter" style="background: linear-gradient(180deg,#BFD7FF 0%,#88B0FA 100%);">
+        <img class="explore-media-img" src="assets/products/optimize-for-llms.png" alt="Journey Optimizer UI">
+        <span class="explore-media-badge" style="background:#FF3A00;">Journey<br>Optimizer</span>
+        <span class="explore-media-pill">12 channels</span>
+      </div>
+      <div class="explore-cell anim-enter">
+        <p class="explore-eyebrow">Explore products</p>
+        <div class="product-list">
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Adobe Journey Optimizer</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Marketo Engage</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Campaign</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Audience Manager</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Target</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Workfront</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pane: Documents -->
+    <div class="explore-grid explore-pane" data-pane="documents" hidden>
+      <div class="explore-cell anim-enter">
+        <p class="explore-eyebrow">Documents</p>
+        <h3 class="explore-cell-title">Document workflows.</h3>
+        <p class="explore-cell-body">AI-powered PDF tools and signature workflows that turn documents into business outcomes.</p>
+      </div>
+      <div class="explore-cell explore-cell--media anim-enter" style="background: linear-gradient(180deg,#FFE5D8 0%,#FFCFA1 100%);">
+        <img class="explore-media-img" src="assets/products/optimize-for-llms.png" alt="Acrobat AI UI">
+        <span class="explore-media-badge" style="background:#C13A2B;">Acrobat<br>AI</span>
+        <span class="explore-media-pill">70+ tools</span>
+      </div>
+      <div class="explore-cell anim-enter">
+        <p class="explore-eyebrow">Explore products</p>
+        <div class="product-list">
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Acrobat Pro</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Acrobat Sign</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Document Cloud</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Acrobat Reader</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">PDF Services</span></a>
+          <a href="#" class="product-list-item"><span class="product-mark">A</span><span class="product-list-name">Acrobat Studio</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="explore-foot">
+      <a href="#" class="explore-foot-cta">Explore all products</a>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FORD CUSTOMER STORY
+       ════════════════════════════════════════════════════════════ -->
+  <section class="story">
+    <div class="story-grid">
+      <div data-ta-group>
+        <div class="story-logo" data-ta-unit>Ford</div>
+        <p class="story-quote" data-ta>Our Adobe solutions haven't just made us faster. They've given us the time to be more creative, more strategic, and better at connecting with diverse audiences through the stories we tell.</p>
+        <p class="story-attrib" data-ta>Jordan Mammo, Managing Editor, Ford From the Road</p>
+        <div data-ta-unit><a href="#" class="story-cta">Read story</a></div>
+      </div>
+      <div class="story-image-wrap anim-enter">
+        <span class="story-image-tag">Approved assets</span>
+        <span class="story-image-overlay-pill">From the Road</span>
+        <span class="story-image-react">127</span>
+        <div class="story-image-frame">
+          <img src="assets/story/ford-from-the-road.png" alt="Ford From the Road editorial UI">
+        </div>
+        <span class="story-image-strip"><span></span><span></span><span></span><span></span></span>
+        <div class="story-image-note">Use this hero<br>for Q3 launch</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       BRAND LOGOS
+       ════════════════════════════════════════════════════════════ -->
+  <section class="brands">
+    <div data-ta-group>
+      <h2 class="brands-title" data-ta>Adobe is transforming the world's biggest brands.</h2>
+    </div>
+    <div class="brands-row anim-enter">
+      <span class="brand-logo" title="Coca-Cola" aria-label="Coca-Cola">
+        <svg viewBox="0 0 200 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img">
+          <text x="100" y="30" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-weight="700" font-size="32" letter-spacing="-1">Coca-Cola</text>
+        </svg>
+      </span>
+      <span class="brand-logo" title="Qualcomm" aria-label="Qualcomm">
+        <svg viewBox="0 0 200 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img">
+          <text x="100" y="28" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="800" font-size="22" letter-spacing="-0.5">QUALCOMM</text>
+          <path d="M62 13.5q0-3 3-3t3 3v4q0 1.5-0.7 2.5l1.5 1.5-1.4 1.4-1.5-1.5q-0.9 0.6-1.9 0.6-3 0-3-3v-5z" fill="currentColor" opacity="0.85"/>
+        </svg>
+      </span>
+      <span class="brand-logo" title="Premier League" aria-label="Premier League">
+        <svg viewBox="0 0 200 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img">
+          <path d="M22 8 L26 5 L30 8 L34 5 L38 8 L36 14 L24 14 L22 8 Z" fill="currentColor"/>
+          <path d="M24 16 L36 16 L34 22 L26 22 Z" fill="currentColor"/>
+          <text x="48" y="18" font-family="Helvetica, Arial, sans-serif" font-style="italic" font-weight="800" font-size="13" letter-spacing="-0.2">Premier</text>
+          <text x="48" y="32" font-family="Helvetica, Arial, sans-serif" font-style="italic" font-weight="800" font-size="13" letter-spacing="-0.2">League</text>
+        </svg>
+      </span>
+      <span class="brand-logo" title="Prudential" aria-label="Prudential">
+        <svg viewBox="0 0 200 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img">
+          <polygon points="14,28 22,8 30,28" fill="currentColor"/>
+          <polygon points="22,8 26,18 18,18" fill="rgba(255,255,255,0.65)"/>
+          <text x="40" y="28" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="22" letter-spacing="0.5">Prudential</text>
+        </svg>
+      </span>
+      <span class="brand-logo" title="Cisco" aria-label="Cisco">
+        <svg viewBox="0 0 200 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img">
+          <g fill="currentColor">
+            <rect x="56"  y="12" width="2" height="6"/>
+            <rect x="62"  y="9"  width="2" height="12"/>
+            <rect x="68"  y="6"  width="2" height="18"/>
+            <rect x="74"  y="9"  width="2" height="12"/>
+            <rect x="80"  y="12" width="2" height="6"/>
+
+            <rect x="118" y="12" width="2" height="6"/>
+            <rect x="124" y="9"  width="2" height="12"/>
+            <rect x="130" y="6"  width="2" height="18"/>
+            <rect x="136" y="9"  width="2" height="12"/>
+            <rect x="142" y="12" width="2" height="6"/>
+          </g>
+          <text x="100" y="36" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="400" font-size="11" letter-spacing="3">CISCO</text>
+        </svg>
+      </span>
+      <span class="brand-logo" title="The Home Depot" aria-label="The Home Depot">
+        <svg viewBox="0 0 200 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img">
+          <rect x="6" y="6" width="28" height="28" fill="currentColor" rx="2"/>
+          <rect x="10" y="10" width="20" height="20" fill="rgba(255,255,255,0.8)"/>
+          <rect x="13" y="13" width="14" height="14" fill="currentColor"/>
+          <text x="44" y="18" font-family="Helvetica, Arial, sans-serif" font-weight="800" font-size="12" letter-spacing="0.5">THE HOME</text>
+          <text x="44" y="32" font-family="Helvetica, Arial, sans-serif" font-weight="800" font-size="12" letter-spacing="1">DEPOT</text>
+        </svg>
+      </span>
+    </div>
+    <div class="brands-foot anim-enter">
+      <a href="#" class="brands-cta">Read more stories</a>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       BOTTOM CTA
+       ════════════════════════════════════════════════════════════ -->
+  <section class="bottom-cta">
+    <div class="bottom-cta-grid">
+      <div data-ta-group>
+        <h2 class="bottom-cta-title" data-ta>Let's talk about what Adobe for Business can do for you.</h2>
+        <div data-ta-unit><a href="#" class="bottom-cta-btn">Get started</a></div>
+      </div>
+      <div class="bottom-cta-portrait anim-enter">
+        <img src="assets/cta/portrait.png" alt="Adobe for Business customer engagement portrait">
+        <div class="bottom-cta-portrait-frame"></div>
+        <div class="bottom-cta-overlay-stat">
+          <div>
+            <span class="bottom-cta-overlay-stat-eyebrow">Brand score</span>
+            <span class="bottom-cta-overlay-stat-num">2,480</span>
+            <span class="bottom-cta-overlay-stat-label">Engagement</span>
+          </div>
+        </div>
+        <div class="bottom-cta-overlay-action">Create customer journey</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-cols">
+        <div class="footer-col">
+          <p class="footer-col-title">Contact us</p>
+          <ul>
+            <li><a href="#">Request a demo</a></li>
+          </ul>
+          <p class="footer-col-title" style="margin-top:32px">Our solutions</p>
+          <ul>
+            <li><a href="#">Customer engagement</a></li>
+            <li><a href="#">Content supply chain</a></li>
+            <li><a href="#">Brand visibility</a></li>
+            <li><a href="#">B2B CX orchestration</a></li>
+            <li><a href="#">AI for business</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Large &amp; medium business</p>
+          <ul>
+            <li><a href="#">Adobe products</a></li>
+            <li><a href="#">Adobe Analytics</a></li>
+            <li><a href="#">Adobe Express</a></li>
+            <li><a href="#">Adobe Firefly Enterprise Solutions</a></li>
+            <li><a href="#">Acrobat Sign</a></li>
+            <li><a href="#">Acrobat Studio</a></li>
+            <li><a href="#">Brand Intelligence</a></li>
+            <li><a href="#">Creative Cloud</a></li>
+            <li><a href="#">Experience Manager</a></li>
+            <li><a href="#">Real-Time CDP</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Individuals &amp; small business</p>
+          <ul>
+            <li><a href="#">Explore all products</a></li>
+            <li><a href="#">Adobe Express</a></li>
+            <li><a href="#">Adobe Firefly</a></li>
+            <li><a href="#">Adobe Stock</a></li>
+            <li><a href="#">Acrobat Reader</a></li>
+            <li><a href="#">Creative Cloud</a></li>
+            <li><a href="#">Illustrator</a></li>
+            <li><a href="#">Photoshop</a></li>
+            <li><a href="#">Premiere</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Resources &amp; support</p>
+          <ul>
+            <li><a href="#">Resource center</a></li>
+            <li><a href="#">Customer success stories</a></li>
+            <li><a href="#">Adobe for Business blog</a></li>
+            <li><a href="#">Experience Cloud support</a></li>
+            <li><a href="#">Creative Cloud support</a></li>
+            <li><a href="#">Community forums</a></li>
+            <li><a href="#">Development forums</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Adobe</p>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Overview</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">Newsroom</a></li>
+            <li><a href="#">Corporate responsibility</a></li>
+            <li><a href="#">Investor Relations</a></li>
+            <li><a href="#">Supply chain</a></li>
+            <li><a href="#">Trust Center</a></li>
+            <li><a href="#">Adobe for All</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <p class="footer-col-title">Region</p>
+          <ul>
+            <li><a href="#">English (US)</a></li>
+          </ul>
+          <p class="footer-col-title" style="margin-top:24px">Connect</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Twitter">x</a>
+            <a href="#" aria-label="Instagram">ig</a>
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="YouTube">yt</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <span>&copy; 2026 Adobe. All rights reserved.</span>
+          <a href="#">Privacy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Cookie preferences</a>
+          <a href="#">Do not sell or share my personal information</a>
+          <a href="#">AdChoices</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SCROLL STACK + ANIMATIONS
+       ════════════════════════════════════════════════════════════ -->
+  <script src="../../target/runtime/vendor/lenis.min.js"></script>
+  <script src="../../target/runtime/vendor/gsap.min.js"></script>
+  <script src="../../target/runtime/vendor/ScrollTrigger.min.js"></script>
+
+  <script>
+    // Detect reduced-motion preference once. Used to short-circuit
+    // every JS-driven animation on the page.
+    window.__reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Lenis smooth scroll + GSAP ticker integration — skipped under reduced motion.
+    (function () {
+      if (window.__reducedMotion) return;
+      var lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0);
+      window.__lenis = lenis;
+    }());
+
+    // Nav scroll state — works with or without Lenis.
+    (function () {
+      var gnav = document.getElementById('gnav');
+      function update(e) {
+        var y = e ? e.scroll : window.scrollY;
+        gnav.classList.toggle('gnav--scrolled', y > 40);
+      }
+      if (window.__lenis) window.__lenis.on('scroll', update);
+      else window.addEventListener('scroll', update, { passive: true });
+    }());
+  </script>
+
+  <!-- Text animator (GSAP scrubbed line cascades on every [data-ta-group]).
+       The shipped script doesn't honor reduced-motion; we early-bail it. -->
+  <script>
+    if (!window.__reducedMotion) {
+      var s = document.createElement('script');
+      s.src = '../../target/runtime/scripts/text-animate.js';
+      document.body.appendChild(s);
+    }
+  </script>
+
+  <!-- Stagger reveal — fade + slide-up on .anim-enter via Lenis-driven rAF.
+       Extracted from bizpro-hub.html lines 2416-2642. -->
+  <script src="../../target/runtime/scripts/stagger-reveal.js"></script>
+
+  <!-- Recent announcements carousel (3-up, paged, no infinite-loop) -->
+  <script>
+    (function () {
+      var track = document.getElementById('announcementsTrack');
+      var prev  = document.getElementById('annPrev');
+      var next  = document.getElementById('annNext');
+      if (!track || !prev || !next) return;
+
+      var idx = 0;
+      function perPage() {
+        return window.innerWidth >= 1024 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
+      }
+      function maxIdx() {
+        return Math.max(0, track.children.length - perPage());
+      }
+      function step() {
+        var max = maxIdx();
+        if (idx > max) idx = max;
+        if (idx < 0) idx = 0;
+        var card = track.querySelector('.announcement-card');
+        var w = card ? card.offsetWidth + 8 : 320;
+        track.style.transform = 'translateX(' + (-idx * w) + 'px)';
+        prev.disabled = idx === 0;
+        next.disabled = idx === max;
+      }
+      prev.addEventListener('click', function () { idx--; step(); });
+      next.addEventListener('click', function () { idx++; step(); });
+      window.addEventListener('resize', step, { passive: true });
+      step();
+    }());
+  </script>
+
+  <!-- Tabs — swap visible pane on click -->
+  <script>
+    (function () {
+      document.querySelectorAll('.explore-tab').forEach(function (t) {
+        t.addEventListener('click', function () {
+          document.querySelectorAll('.explore-tab').forEach(function (x) { x.classList.remove('active'); });
+          t.classList.add('active');
+          var name = t.getAttribute('data-tab');
+          document.querySelectorAll('.explore-pane').forEach(function (p) {
+            if (p.getAttribute('data-pane') === name) p.removeAttribute('hidden');
+            else p.setAttribute('hidden', '');
+          });
+        });
+      });
+    }());
+  </script>
+
+  <!-- AI chips: copy chip text into search input -->
+  <script>
+    (function () {
+      var input = document.querySelector('.ai-search-input');
+      document.querySelectorAll('.ai-chip').forEach(function (c) {
+        c.addEventListener('click', function () {
+          if (input) { input.value = c.textContent.trim(); input.focus(); }
+        });
+      });
+    }());
+  </script>
+
+</body>
+</html>

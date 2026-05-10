@@ -212,6 +212,45 @@ h2 {
   transform: translateY(-3px);
 }
 
+/* Beat 3 — reveal iframe of the redesigned business-adobe page.
+   Layered: iframe full-bleed under a fade-in/fade-out title overlay.
+*/
+section.reveal-beat {
+  padding: 0;
+  align-items: stretch; /* override flex centering */
+}
+.reveal-iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: 0;
+  background: var(--bg);
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 1100ms var(--ease-out-quart), transform 1500ms var(--ease-out-quart);
+}
+section.reveal-beat.active .reveal-iframe {
+  opacity: 1;
+  transform: scale(1);
+}
+.reveal-overlay {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2;
+  background: rgba(10, 10, 10, 0.96);
+  pointer-events: none;
+  /* Phase A: near-opaque so the wrapper headline owns the screen.
+     Phase B: smooth fade-out so the iframe takes over. */
+  animation: revealOverlayFade 5s 2.4s var(--ease-out-quart) forwards;
+  animation-play-state: paused;
+}
+section.reveal-beat.active .reveal-overlay {
+  animation-play-state: running;
+}
+@keyframes revealOverlayFade {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
 /* Cards — used by trap, ongoing, etc. */
 .card {
   background: var(--surface);
