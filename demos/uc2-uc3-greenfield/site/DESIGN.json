@@ -1,0 +1,273 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:direct",
+    "writtenAt": "2026-05-11T00:00:00Z",
+    "readArtifacts": [
+      "stardust/current/DESIGN.json",
+      "stardust/current/_brand-extraction.json",
+      "stardust/current/PRODUCT.md"
+    ],
+    "synthesizedInputs": [
+      "resolved direction (Mode A — brand-faithful, single variant)",
+      "user freeform intent: rooted, irreverent, hand-made. Saturday night and Sunday morning at the same time."
+    ],
+    "stardustVersion": "0.3.0",
+    "scope": "target — machine-readable mirror of DESIGN.md + extensions (divergence audit, voice, iaPriorities, narrative)"
+  },
+  "schemaVersion": 2,
+  "name": "Holler & Hymn",
+  "description": "Single-maker Appalachian botanical-liqueur house — target visual system",
+  "colors": {
+    "hymnal-black":    "#1a1410",
+    "barn-rust":       "#7e1d12",
+    "gilt-gold":       "#d4a45c",
+    "rhody-green":     "#3e5a3e",
+    "bulletin-cream":  "#e8d8b8",
+    "hellfire-neon":   "#f04a26",
+    "ink":             "#1a1410",
+    "surface-cream":   "#e8d8b8",
+    "surface-black":   "#1a1410",
+    "text-primary":    "#1a1410",
+    "text-on-dark":    "#e8d8b8",
+    "text-mute":       "#5a4a3e",
+    "border-neutral":  "#c8b89a",
+    "accent-rust":     "#7e1d12",
+    "accent-gold":     "#d4a45c"
+  },
+  "typography": {
+    "display":     { "fontFamily": "'Saloon', 'Camp Type', 'Knockout', sans-serif", "fontSize": "72px", "fontWeight": 800, "lineHeight": "1.05", "letterSpacing": "-0.01em", "textTransform": "uppercase" },
+    "headline":    { "fontFamily": "'Saloon', 'Camp Type', 'Knockout', sans-serif", "fontSize": "48px", "fontWeight": 800, "lineHeight": "1.1",  "letterSpacing": "0",        "textTransform": "uppercase" },
+    "title":       { "fontFamily": "'Sentinel', 'Bookman', 'Cycles', serif",       "fontSize": "32px", "fontWeight": 600, "lineHeight": "1.2",  "letterSpacing": "0" },
+    "subtitle":    { "fontFamily": "'Sentinel', 'Bookman', 'Cycles', serif",       "fontSize": "22px", "fontWeight": 500, "lineHeight": "1.3" },
+    "body":        { "fontFamily": "'Sentinel', 'Bookman', 'Cycles', serif",       "fontSize": "17px", "fontWeight": 400, "lineHeight": "1.55" },
+    "body-strong": { "fontFamily": "'Sentinel', 'Bookman', 'Cycles', serif",       "fontSize": "17px", "fontWeight": 700, "lineHeight": "1.55" },
+    "label":       { "fontFamily": "'IBM Plex Mono', 'Courier New', monospace",    "fontSize": "12px", "fontWeight": 400, "letterSpacing": "0.08em", "textTransform": "uppercase" },
+    "numerals":    { "fontFamily": "'IBM Plex Mono', 'Courier New', monospace",    "fontSize": "14px", "fontWeight": 500 }
+  },
+  "rounded": { "none": "0px", "sm": "2px", "md": "4px", "lg": "8px", "pill": "9999px" },
+  "spacing": {
+    "xxs":  "4px",
+    "xs":   "8px",
+    "sm":   "12px",
+    "md":   "20px",
+    "lg":   "32px",
+    "xl":   "56px",
+    "xxl":  "96px",
+    "xxxl": "160px",
+    "sectionPadding": {
+      "desktop": "64px",
+      "tablet":  "48px",
+      "mobile":  "32px",
+      "tier":    "balanced",
+      "hardFloorActive": true,
+      "hardFloorReason": "home page has 7 sections; multi-audience hard floor (≤64px / ≥40px) per intent-dimensions.md § 4"
+    }
+  },
+  "components": {
+    "button-primary":   { "backgroundColor": "{colors.barn-rust}",      "textColor": "{colors.bulletin-cream}", "rounded": "{rounded.sm}", "padding": "14px 28px", "border": "1px solid {colors.barn-rust}" },
+    "button-secondary": { "backgroundColor": "transparent",             "textColor": "{colors.hymnal-black}",   "rounded": "{rounded.sm}", "padding": "14px 28px", "border": "1px solid {colors.hymnal-black}" },
+    "card":             { "backgroundColor": "{colors.bulletin-cream}", "textColor": "{colors.hymnal-black}",   "rounded": "{rounded.sm}", "padding": "28px",     "border": "1px solid {colors.border-neutral}" },
+    "input":            { "backgroundColor": "{colors.bulletin-cream}", "textColor": "{colors.hymnal-black}",   "rounded": "{rounded.sm}", "padding": "12px 16px","border": "1px solid {colors.border-neutral}", "focusBorder": "2px solid {colors.barn-rust}" },
+    "badge":            { "backgroundColor": "{colors.hellfire-neon}",  "textColor": "{colors.hymnal-black}",   "rounded": "{rounded.pill}", "padding": "4px 12px" },
+    "link":             { "textColor": "{colors.barn-rust}",            "textDecoration": "underline",          "textUnderlineOffset": "0.2em" }
+  },
+  "extensions": {
+    "register": "brand",
+    "colorMeta": {
+      "tokenCount": 6,
+      "namingPolicy": "brand-native (no Primary/Secondary/Alarm/Warning/Shadow/Brand as sole role names)",
+      "loadBearing": ["hymnal-black", "bulletin-cream", "barn-rust"],
+      "quarantined": [
+        { "token": "rhody-green", "rule": "botanical-context surfaces only (the-still / foraging map / deep-product descriptions)" },
+        { "token": "hellfire-neon", "rule": "one-glance accents only — at most one instance per visible viewport; never as body text; never as dominant element on hymnal-black surface" }
+      ],
+      "forbidden": ["#000000 (pure black)", "purple", "magenta", "beige/sage Kinfolk substitutes"]
+    },
+    "typographyMeta": {
+      "tier": "3-tier hybrid",
+      "tierAssignments": {
+        "display": "hand-lettered revival-tent — all-caps only, never title case",
+        "body":    "hymnal serif — reading text only, never at display sizes",
+        "mono":    "typewriter / IBM Selectric — numerals, dates, ABV, addresses, micro-labels"
+      },
+      "displayCharacterReferences": ["1940s revival-tent posters", "Appalachian state-fair signage", "hand-painted plywood roadside signs (US-25 north of Asheville)"],
+      "bodyCharacterReferences": ["old hardcover hymnal page", "Sentinel / Bookman / Cycles family"],
+      "monoCharacterReferences": ["IBM Selectric typewriter"],
+      "scaleRatio": 1.333
+    },
+    "shadows": [],
+    "motion": {
+      "policy": "flat-by-conviction",
+      "reducedMotionContract": true,
+      "allowedTransitions": ["opacity", "color", "background-color", "border-color"],
+      "forbidden": ["box-shadow animation", "transform on scroll (parallax)", "elastic-easing", "any animation longer than 600ms"]
+    },
+    "breakpoints": {
+      "mobile":  { "max": "639px" },
+      "tablet":  { "min": "640px",  "max": "1023px" },
+      "desktop": { "min": "1024px" }
+    },
+    "divergence": {
+      "mode": "Mode A — brand-faithful (signal-strong, no rebrand signal in phrase)",
+      "seed": {
+        "decade":          { "value": "1940s revival-tent × 1970s outlaw country", "picked_by": "anchor-reference: BRAND.md cultural references (1940s revival-tent posters, early-70s outlaw country album sleeves)" },
+        "craft":           { "value": "hand-painted plywood signage / wood-block print", "picked_by": "anchor-reference: BRAND.md imagery direction Lane 3 (label art) + hand-painted roadside signage references" },
+        "register_flavor": { "value": "Memoir × Tabloid (two-register alternation)",  "picked_by": "brand-native: the holler × hymn duality is the central tension, Memoir-adjacent on hymn side / Tabloid-adjacent on holler side" },
+        "ground_family":   { "value": "two-register alternation (bulletin-cream + hymnal-black)", "picked_by": "user-constraint (Mode A inheritance)", "override": "brand-faithful" }
+      },
+      "font_deck": { "name": "brand-inherited", "picked_by": "user-constraint", "tiers": ["hand-lettered display", "hymnal serif", "IBM Plex Mono"] },
+      "palette":   { "source": "inherited from _brand-extraction.json", "picked_by": "user-constraint", "tokens": ["hymnal-black", "barn-rust", "gilt-gold", "rhody-green", "bulletin-cream", "hellfire-neon"] },
+      "anchors": [
+        { "anchor": "BRAND.md cultural references", "implies": ["decade", "craft"] },
+        { "anchor": "BRAND.md central tension (holler × hymn)", "implies": ["register_flavor", "ground_family"] }
+      ],
+      "brand_faithful_inversions": [
+        { "retain": "hymnal-black #1a1410 over pure #000000",                  "reason": "brand-faithful — old-leather-Bible brown-black is the brand's character; pure black is digital, not the register" },
+        { "retain": "barn-rust #7e1d12 as primary display",                    "reason": "brand-faithful — decade seed roll (1970s outlaw) could have suggested a brighter rust; captured token preserved" },
+        { "retain": "two-register ground-family alternation",                  "reason": "Mode C ground-family override — brand-native two-mode pattern is load-bearing; seed roll yields" },
+        { "retain": "hand-lettered display over standard sans-serif",          "reason": "brand-faithful — captured face character (revival-tent / state-fair signage) is the brand's distinctive mark" },
+        { "retain": "hymnal serif body over neutral text serif",                "reason": "brand-faithful — old-hymnbook-page register is part of the duality" },
+        { "retain": "IBM-Selectric mono as numerals tier",                     "reason": "brand-faithful — typewriter-mono = literalism rule is part of the voice" }
+      ],
+      "antiToolboxAudit": {
+        "checked": [
+          "Generic-2026-SaaS silhouette",
+          "Editorial-register vocabulary on non-editorial brand (with Hymns-page exception declared)",
+          "Fabricated content (no invented stats / awards / customer logos)",
+          "Hero text on photographic background without contrast scrim",
+          "Generic role names in palette (forbidden, brand-native used)",
+          "Centered SaaS hero with dual-CTA pair (forbidden)",
+          "C-cliff overshoot (n/a — single variant)",
+          "Anonymous middle variant (n/a — single variant)",
+          "Variant homogeneity (n/a — single variant)"
+        ],
+        "hits": [],
+        "result": "clean — all checked, none required removal"
+      }
+    },
+    "componentStyle": {
+      "buttons": {
+        "primary":   { "background": "#7e1d12", "color": "#e8d8b8", "borderRadius": "2px", "padding": "14px 28px", "fontFamily": "'IBM Plex Mono', monospace", "fontWeight": 500, "textTransform": "uppercase", "letterSpacing": "0.08em", "hoverDelta": "background → #5e1408" },
+        "secondary": { "background": "transparent", "color": "#1a1410", "borderRadius": "2px", "padding": "14px 28px", "border": "1px solid #1a1410", "fontFamily": "'IBM Plex Mono', monospace", "fontWeight": 500, "textTransform": "uppercase", "letterSpacing": "0.08em" },
+        "ghost":     null
+      },
+      "dualCTAPattern": null,
+      "cards":         { "background": "#e8d8b8", "borderRadius": "2px", "padding": "28px", "shadow": null, "border": "1px solid #c8b89a" },
+      "inputs":        { "background": "#e8d8b8", "borderRadius": "2px", "padding": "12px 16px", "border": "1px solid #c8b89a", "focusBorder": "2px solid #7e1d12" }
+    },
+    "systemComponentRoles": {
+      "site-header":        { "purpose": "primary brand nav surface, age-gate clears here", "positionClass": "site-wide top", "ground": "bulletin-cream" },
+      "site-footer":        { "purpose": "direct contact + site links + legal",             "positionClass": "site-wide bottom", "ground": "hymnal-black" },
+      "age-gate-modal":     { "purpose": "21+ verification before any content",             "positionClass": "modal full-viewport", "constraints": "focusable modal not dismissable banner; keyboard-navigable; irreversible no-exit" },
+      "two-register-section": { "purpose": "the page's scroll rhythm — bulletin / revival alternation", "positionClass": "stacked", "constraint": "every section commits to one mode; blending forbidden" },
+      "find-a-pew-band":    { "purpose": "primary CTA band for stockists / visit",          "positionClass": "section-break before footer", "ground": "hymnal-black" },
+      "hand-painted-card":  { "purpose": "per-product card on bottles + home featured",     "positionClass": "grid item", "constraint": "the painted artifact is the imagery; no separate label component" },
+      "hand-painted-ornament": { "purpose": "decorative section-break mark",                "positionClass": "between sections", "constraint": "no two identical per page" }
+    },
+    "voice": {
+      "narrator": "first-person singular (Wendell Greene)",
+      "register": "plainspoken declaratives; specifics over modifiers; numbers and proper nouns over adjectives",
+      "do": [
+        "First-person singular (Wendell). Never 'we' / 'our team'.",
+        "Plainspoken declaratives. Periods. Short sentences.",
+        "Specifics over adjectives — forty miles, 2019, twenty-seven herbs, the preacher's shed.",
+        "Sacred/profane wordplay sparingly — lands on product names and label art; restrained in Wendell's narration.",
+        "Set numerals in typewriter mono — literalism is the brand's truth-claim."
+      ],
+      "dont": [
+        "we / our team / passionate / crafted / curated / purveyors / lifestyle / artisanal / award-winning / finest / unparalleled",
+        "adjective stacks of three or more",
+        "exclamation-heavy marketing-warm copy",
+        "cocktail-jargon snobbery",
+        "doormat-country slang ('y'all means all')",
+        "editorial-register vocabulary outside the Hymns page (atelier, the studio, mise-en-place, the journal, dispatches, the bulletin)"
+      ],
+      "examples": {
+        "do": [
+          "Saturday night sin. Sunday morning hymn. Both in one bottle.",
+          "Made by hand. From a to z.",
+          "Foraged inside forty miles.",
+          "Nothing bought in a jug.",
+          "Twenty-seven herbs, eleven labels, one preacher's shed.",
+          "If you find one in a bar in Asheville, the bartender probably knows me.",
+          "I'll pour four spirits. I'll tell you about each one."
+        ],
+        "dont": [
+          "Our passionate team of artisans crafts each bottle with care.",
+          "Award-winning, small-batch, hand-curated botanical liqueurs.",
+          "Y'all means all.",
+          "An aromatic compound profile of vanilla orchid and crushed velvet."
+        ]
+      },
+      "rules": [
+        "Voice cheek lives in product names and label art, not in Wendell's narration.",
+        "Sacred/profane wordplay is restrained — each instance must land; never every section.",
+        "Numbers prove literalism; use them in place of adjectives.",
+        "First-person singular everywhere except the legal/utility footer.",
+        "Voice 7.2 (no exclamations in chrome) is in effect — exclamation marks are restricted to product labels where they belong (the cheek lives in the labels)."
+      ]
+    },
+    "iaPriorities": [
+      {
+        "signal": "audience-routing (light)",
+        "evidence": "home renders two distinct audience CTAs in the first viewport: 'FIND A PEW' (stockist lookup for locals/bartenders) and 'BOOK A SATURDAY TASTING' (visit booking for visitors). Below trigger threshold (>2 audience tracks), but recorded as soft-preserve.",
+        "preserveAs": "first-viewport, both CTAs visible",
+        "scope": "home"
+      }
+    ],
+    "brandTokens": {
+      "--hh-hymnal-black":   "#1a1410",
+      "--hh-barn-rust":      "#7e1d12",
+      "--hh-gilt-gold":      "#d4a45c",
+      "--hh-rhody-green":    "#3e5a3e",
+      "--hh-bulletin-cream": "#e8d8b8",
+      "--hh-hellfire-neon":  "#f04a26"
+    }
+  },
+  "narrative": {
+    "northStar": "Revival-tent poster meets apothecary cabinet drawer — Saturday night sin and Sunday morning hymn at full volume on top of each other. The ampersand is the design.",
+    "overview": "Holler & Hymn is a single-maker Appalachian botanical-liqueur house. The visual system has two alternating registers — bulletin mode (cream surface, hymnal-black text) and revival mode (hymnal-black surface, bulletin-cream text) — sharing six brand tokens and three typographic tiers. Mode A inheritance pins palette and type to the captured brand surface; the resolved direction crystallizes the holler × hymn duality at full volume.",
+    "keyCharacteristics": [
+      "Six brand tokens; three (hymnal-black, bulletin-cream, barn-rust) doing most of the work",
+      "Two-register alternating sections — same tokens, inverted surfaces",
+      "Three-tier type hierarchy: hand-lettered display + hymnal serif body + typewriter mono numerals",
+      "All-caps display headlines (title case forbidden for display)",
+      "Hand-painted bottle labels as the dominant imagery motif",
+      "Hand-imperfection preserved in label art and section ornaments",
+      "Flat — no shadows, no gradients, no glassmorphism; painterly imperfection is the only depth",
+      "Density: balanced (64px desktop section padding); multi-audience hard floor honored"
+    ],
+    "rules": [
+      "The Two-Register Alternation Rule: every section commits to bulletin or revival; never blended.",
+      "The Hellfire-Neon Restraint Rule: at most one hellfire-neon instance per visible viewport.",
+      "The No-Pure-Black Rule: #000000 is forbidden; hymnal-black #1a1410 is the darkest color in the system.",
+      "The Botanical-Quarantine Rule: rhody-green #3e5a3e appears only on botanical-context content.",
+      "The All-Caps Display Rule: display headlines are always all-caps.",
+      "The Numerals-as-Proof Rule: numbers are set in typewriter mono — literalism is the brand's truth-claim.",
+      "The Hymnal-Serif-Only-For-Reading Rule: hymnal serif body face never appears at display sizes.",
+      "Voice 7.2 (no exclamations in chrome) — exclamations live on product labels only.",
+      "IA-priority preservation: audience-routing CTAs stay in the first viewport on home."
+    ],
+    "dos": [
+      "Preserve the two-register alternation as the page's scroll rhythm.",
+      "Keep hand-painted assets rough — irregular registration, slight paint imperfections, ink density variation.",
+      "Restrain hellfire-neon to one glance per viewport.",
+      "Set numerals in typewriter mono.",
+      "Use brand-native role names in palette.",
+      "Preserve IA priority — audience-routing CTAs stay above the fold on home."
+    ],
+    "donts": [
+      "Introduce a gradient, drop shadow, or glassmorphism effect.",
+      "Set hand-lettered display in title case.",
+      "Use rhody-green outside botanical-context content.",
+      "Default to pure #000000.",
+      "Invent a sage or beige surface.",
+      "Add a fourth typographic tier.",
+      "Render the centered SaaS-hero silhouette.",
+      "Use editorial-register vocabulary (atelier, the studio, mise-en-place, the journal, dispatches, the bulletin) outside the Hymns page.",
+      "Fabricate content (invented stats, awards, customer logos, dollar amounts, dates).",
+      "Place hero text on photographic background without ≥ 4.5:1 contrast.",
+      "Add purple or magenta anywhere."
+    ]
+  }
+}

@@ -1,9 +1,9 @@
 {
   "_provenance": {
-    "writtenBy": "stardust:seed + stardust:brief (hand-authored, proof-of-concept)",
+    "writtenBy": "stardust:direct (updated; initial bootstrap by stardust:seed + stardust:brief hand-authored)",
     "writtenAt": "2026-05-11T00:00:00Z",
     "stardustVersion": "0.3.0",
-    "scope": "greenfield bootstrap — no extract was run; state.json hand-authored to mark the 9 pages as 'extracted' so /stardust:direct, /stardust:prototype, and /stardust:migrate can run against the hand-authored current/. This file is the proof-of-concept output of the future /stardust:seed + /stardust:brief commands, which would write this themselves.",
+    "scope": "pipeline state — initial bootstrap was hand-authored as proof-of-concept for /stardust:seed + /stardust:brief; this update written by /stardust:direct",
     "synthesizedInputs": [
       "../brand/BRAND.md",
       "../briefing/SITE-BRIEF.md",
@@ -19,15 +19,40 @@
     "totalDiscovered": 9,
     "crawled": 9
   },
-  "direction": null,
+  "direction": {
+    "resolvedAt": "2026-05-11T00:00:00Z",
+    "phrase": "rooted, irreverent, hand-made. Saturday night and Sunday morning at the same time.",
+    "directionFile": "stardust/direction.md",
+    "variantMode": "single",
+    "variants": [
+      {
+        "id": "single",
+        "name": "Holler & Hymn (resolved)",
+        "role": "single-variant brand-faithful crystallization",
+        "tagline": "Saturday night sin. Sunday morning hymn. Both in one bottle.",
+        "designFile": "DESIGN.md",
+        "designJsonFile": "DESIGN.json",
+        "groundFamily": "two-register alternation (bulletin-cream + hymnal-black)",
+        "fontDeck": "brand-inherited (hand-lettered display + hymnal serif + IBM Plex Mono)",
+        "typeScale": "1.333 perfect-fourth"
+      }
+    ],
+    "mode": "Mode A (brand-faithful) — palette + 3-tier type pinned; decade/craft/register-flavor rolled (anchored by BRAND.md cultural references); Mode C ground-family override (two-register pattern brand-native)",
+    "pinnedColors": ["#1a1410", "#7e1d12", "#d4a45c", "#3e5a3e", "#e8d8b8", "#f04a26"],
+    "improvementsListPath": null,
+    "improvementsListSkippedReason": "greenfield — current/ is hand-authored as the brand's desired target, not a captured deployment to fix. There is no execution gap to close."
+  },
   "pages": [
     {
       "slug": "home",
       "url": "https://hollerandhymn.com/",
       "title": "Holler & Hymn — botanical liqueurs from Wolfpen Holler, NC",
       "type": "landing",
-      "status": "extracted",
-      "history": [{ "status": "extracted", "at": "2026-05-11T00:00:00Z" }],
+      "status": "directed",
+      "history": [
+        { "status": "extracted", "at": "2026-05-11T00:00:00Z" },
+        { "status": "directed",  "at": "2026-05-11T00:00:00Z" }
+      ],
       "stale": false,
       "staleReason": null,
       "currentStatePath": "stardust/current/pages/home.json",
@@ -39,8 +64,11 @@
       "url": "https://hollerandhymn.com/the-holler",
       "title": "The Holler — Wendell Greene · Holler & Hymn",
       "type": "static",
-      "status": "extracted",
-      "history": [{ "status": "extracted", "at": "2026-05-11T00:00:00Z" }],
+      "status": "directed",
+      "history": [
+        { "status": "extracted", "at": "2026-05-11T00:00:00Z" },
+        { "status": "directed",  "at": "2026-05-11T00:00:00Z" }
+      ],
       "stale": false,
       "staleReason": null,
       "currentStatePath": "stardust/current/pages/the-holler.json",
@@ -52,8 +80,11 @@
       "url": "https://hollerandhymn.com/the-still",
       "title": "The Still — process · Holler & Hymn",
       "type": "article",
-      "status": "extracted",
-      "history": [{ "status": "extracted", "at": "2026-05-11T00:00:00Z" }],
+      "status": "directed",
+      "history": [
+        { "status": "extracted", "at": "2026-05-11T00:00:00Z" },
+        { "status": "directed",  "at": "2026-05-11T00:00:00Z" }
+      ],
       "stale": false,
       "staleReason": null,
       "currentStatePath": "stardust/current/pages/the-still.json",
@@ -65,8 +96,11 @@
       "url": "https://hollerandhymn.com/the-bottles",
       "title": "The Bottles — six bottles, four categories · Holler & Hymn",
       "type": "listing",
-      "status": "extracted",
-      "history": [{ "status": "extracted", "at": "2026-05-11T00:00:00Z" }],
+      "status": "directed",
+      "history": [
+        { "status": "extracted", "at": "2026-05-11T00:00:00Z" },
+        { "status": "directed",  "at": "2026-05-11T00:00:00Z" }
+      ],
       "stale": false,
       "staleReason": null,
       "currentStatePath": "stardust/current/pages/the-bottles.json",
@@ -78,8 +112,11 @@
       "url": "https://hollerandhymn.com/hymns",
       "title": "Hymns — recipes and cocktails · Holler & Hymn",
       "type": "article",
-      "status": "extracted",
-      "history": [{ "status": "extracted", "at": "2026-05-11T00:00:00Z" }],
+      "status": "directed",
+      "history": [
+        { "status": "extracted", "at": "2026-05-11T00:00:00Z" },
+        { "status": "directed",  "at": "2026-05-11T00:00:00Z" }
+      ],
       "stale": false,
       "staleReason": null,
       "currentStatePath": "stardust/current/pages/hymns.json",
@@ -91,8 +128,11 @@
       "url": "https://hollerandhymn.com/pews",
       "title": "Pews — where to find Holler & Hymn",
       "type": "listing",
-      "status": "extracted",
-      "history": [{ "status": "extracted", "at": "2026-05-11T00:00:00Z" }],
+      "status": "directed",
+      "history": [
+        { "status": "extracted", "at": "2026-05-11T00:00:00Z" },
+        { "status": "directed",  "at": "2026-05-11T00:00:00Z" }
+      ],
       "stale": false,
       "staleReason": null,
       "currentStatePath": "stardust/current/pages/pews.json",
@@ -104,8 +144,11 @@
       "url": "https://hollerandhymn.com/visit",
       "title": "Visit the barn — Saturday tastings · Holler & Hymn",
       "type": "static",
-      "status": "extracted",
-      "history": [{ "status": "extracted", "at": "2026-05-11T00:00:00Z" }],
+      "status": "directed",
+      "history": [
+        { "status": "extracted", "at": "2026-05-11T00:00:00Z" },
+        { "status": "directed",  "at": "2026-05-11T00:00:00Z" }
+      ],
       "stale": false,
       "staleReason": null,
       "currentStatePath": "stardust/current/pages/visit.json",
@@ -117,8 +160,11 @@
       "url": "https://hollerandhymn.com/the-catalog",
       "title": "The Catalog — free PDF · Holler & Hymn",
       "type": "static",
-      "status": "extracted",
-      "history": [{ "status": "extracted", "at": "2026-05-11T00:00:00Z" }],
+      "status": "directed",
+      "history": [
+        { "status": "extracted", "at": "2026-05-11T00:00:00Z" },
+        { "status": "directed",  "at": "2026-05-11T00:00:00Z" }
+      ],
       "stale": false,
       "staleReason": null,
       "currentStatePath": "stardust/current/pages/the-catalog.json",
@@ -130,8 +176,11 @@
       "url": "https://hollerandhymn.com/contact",
       "title": "Contact — Wendell · Holler & Hymn",
       "type": "static",
-      "status": "extracted",
-      "history": [{ "status": "extracted", "at": "2026-05-11T00:00:00Z" }],
+      "status": "directed",
+      "history": [
+        { "status": "extracted", "at": "2026-05-11T00:00:00Z" },
+        { "status": "directed",  "at": "2026-05-11T00:00:00Z" }
+      ],
       "stale": false,
       "staleReason": null,
       "currentStatePath": "stardust/current/pages/contact.json",

@@ -1,21 +1,21 @@
 # `current/` — hand-authored proof-of-concept
 
-> Holler & Hymn's "current state" — but there is no current site. This folder is the artifact a real `/stardust:extract` would have produced if a Holler & Hymn site existed to crawl. Hand-authored from `../brand/BRAND.md` + `../briefing/SITE-BRIEF.md` + `../briefing/CONTENT.md` as the proof-of-concept output of the future `/stardust:seed` (brand half) + `/stardust:brief` (briefing half) commands.
+> Holler & Hymn's "current state" — but there is no current site. This folder is the artifact a real `/stardust:extract` would have produced if a Holler & Hymn site existed to crawl. Hand-authored from `../../brand/BRAND.md` + `../../briefing/SITE-BRIEF.md` + `../../briefing/CONTENT.md` as the proof-of-concept output of the future `/stardust:seed` (brand half) + `/stardust:brief` (briefing half) commands.
 
 ## What's here
 
 | File | Real-command equivalent | Source of authoring |
 |---|---|---|
-| `PRODUCT.md`              | `/stardust:brief` | `briefing/SITE-BRIEF.md` + `briefing/CONTENT.md` |
-| `DESIGN.md`               | `/stardust:seed`  | `brand/BRAND.md` |
-| `DESIGN.json`             | `/stardust:seed`  | `brand/BRAND.md` (machine-readable mirror of DESIGN.md) |
-| `_brand-extraction.json`  | `/stardust:seed`  | `brand/BRAND.md` (consolidated brand surface) |
-| `_extract-summary.json`   | `/stardust:seed`+`/stardust:brief` | the page list from `briefing/CONTENT.md` |
-| `pages/<slug>.json` × 9   | `/stardust:brief` | `briefing/CONTENT.md` per-page beats |
+| `PRODUCT.md`              | `/stardust:brief` | `../../briefing/SITE-BRIEF.md` + `../../briefing/CONTENT.md` |
+| `DESIGN.md`               | `/stardust:seed`  | `../../brand/BRAND.md` |
+| `DESIGN.json`             | `/stardust:seed`  | `../../brand/BRAND.md` (machine-readable mirror of DESIGN.md) |
+| `_brand-extraction.json`  | `/stardust:seed`  | `../../brand/BRAND.md` (consolidated brand surface) |
+| `_extract-summary.json`   | `/stardust:seed`+`/stardust:brief` | the page list from `../../briefing/CONTENT.md` |
+| `pages/<slug>.json` × 9   | `/stardust:brief` | `../../briefing/CONTENT.md` per-page beats |
 | `assets/logo.svg`         | `/stardust:seed`  | placeholder typographic stand-in pending Gemini |
 | `assets/favicon.svg`      | `/stardust:seed`  | placeholder |
 | `assets/screenshots/`     | n/a               | greenfield — no source pages to screenshot |
-| `assets/media/`           | n/a               | imagery arrives from Gemini 3 Pro Image Preview |
+| `assets/images/`          | n/a               | imagery arrives from Gemini 3 Pro Image Preview |
 
 ## Self-referential provenance
 
