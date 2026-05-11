@@ -90,7 +90,7 @@ current/
     └── media/                 ← seed-supplied or pending
 ```
 
-Reference output written by hand: `demos/uc2-uc3-greenfield/site/current/`. Treat as the worked-example schema until the commands are implemented.
+Reference output written by hand: `demos/uc2-uc3-greenfield/site/stardust/current/`. Treat as the worked-example schema until the commands are implemented.
 
 ### Schema deltas — greenfield vs. extract
 
@@ -255,7 +255,7 @@ Downstream `direct` and `prototype` MUST NOT paraphrase these — the page loses
 
 ### Reference-output-as-spec
 
-A worked example of the output schema in `demos/uc2-uc3-greenfield/site/current/` is more useful as an implementer's spec than any abstract description. When implementing the commands, run them against the worked-example inputs and diff the output against the worked-example outputs — anywhere they diverge is a decision worth recording. The artifacts are the test fixtures.
+A worked example of the output schema in `demos/uc2-uc3-greenfield/site/stardust/current/` is more useful as an implementer's spec than any abstract description. When implementing the commands, run them against the worked-example inputs and diff the output against the worked-example outputs — anywhere they diverge is a decision worth recording. The artifacts are the test fixtures.
 
 ### Forward-compatible provenance contract
 
@@ -304,7 +304,7 @@ Hand-authored artifacts use the same `_provenance.writtenBy` field name and the 
 ## Reference materials
 
 - **Worked example, input side:** `demos/uc2-uc3-greenfield/site/brand/BRAND.md`, `demos/uc2-uc3-greenfield/site/briefing/SITE-BRIEF.md`, `demos/uc2-uc3-greenfield/site/briefing/CONTENT.md`.
-- **Worked example, output side:** `demos/uc2-uc3-greenfield/site/current/` (12 files: `PRODUCT.md`, `DESIGN.md`, `DESIGN.json`, `_brand-extraction.json`, `_extract-summary.json`, `README.md`, 9× `pages/*.json`, plus 2 placeholder SVGs in `assets/`).
+- **Worked example, output side:** `demos/uc2-uc3-greenfield/site/stardust/current/` (12 files: `PRODUCT.md`, `DESIGN.md`, `DESIGN.json`, `_brand-extraction.json`, `_extract-summary.json`, `README.md`, 9× `pages/*.json`, plus 2 placeholder SVGs in `assets/`).
 - **Schema reference (real extract output):** `/Users/paolo/excat/tmp/migrate-frescopa/stardust/current/`.
 - **Demo where these commands are named on screen:** `demos/uc2-uc3-greenfield/script.md` beat 5 + `README.md` narration outline.
 - **Use-case framing:** `context/use-cases.md` UC2 and UC3 sections (both reference the commands).

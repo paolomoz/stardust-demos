@@ -10,31 +10,42 @@ site/
 ├── brand/
 │   ├── BRAND.md                    — source brand definition (locked: HOLLER & HYMN)
 │   └── brand-alternates.md         — Whippoorwill + High Lonesome, saved for future use
-├── briefing/                       — content briefing (per-page direction; will become UC3's brief.pdf)
-└── assets/
-    ├── logo/                       — Gemini-generated logo variants (user-driven)
-    └── images/                     — Gemini-generated brand imagery (user-driven)
-```
-
-Once Stardust runs against the brand, expect additional folders:
-
-```
-├── current/                        — placeholder site that /stardust:extract crawls
-├── target/                         — PRODUCT.md, DESIGN.md, DESIGN.json after /stardust:direct
-└── redesign/                       — prototype pages after /stardust:prototype
+├── briefing/
+│   ├── SITE-BRIEF.md               — one-page narrative brief
+│   └── CONTENT.md                  — per-page content briefs (9 pages)
+├── assets/
+│   └── gemini-prompts.md           — Gemini 3 Pro Image Preview prompt pack (preamble + logo + 3 imagery lanes)
+└── stardust/                       — Stardust working folder (the CLI runs from this directory's parent)
+    ├── state.json                  — pipeline state (hand-authored as proof-of-concept for seed+brief)
+    ├── current/                    — the "current state" — hand-authored equivalent of an extract artifact
+    │   ├── README.md
+    │   ├── PRODUCT.md
+    │   ├── DESIGN.md
+    │   ├── DESIGN.json
+    │   ├── _brand-extraction.json
+    │   ├── _extract-summary.json
+    │   ├── pages/*.json            — 9 page descriptors
+    │   └── assets/
+    │       ├── logo.svg            — typographic placeholder until Gemini lands
+    │       ├── favicon.svg
+    │       ├── images/             — Gemini-generated brand imagery (drops here)
+    │       └── screenshots/        — empty (greenfield — nothing to capture)
+    ├── target/                     — created by /stardust:direct (PRODUCT.md, DESIGN.md, DESIGN.json, direction.md)
+    └── prototypes/                 — created by /stardust:prototype (per-page renderings)
 ```
 
 ## Build order
 
 1. **Brand definition** (`brand/BRAND.md`) — locked. Becomes the input to the would-be `/stardust:seed`.
 2. **Content briefing** (`briefing/SITE-BRIEF.md` + `briefing/CONTENT.md`) — direction for each page on the site. Becomes the input to the would-be `/stardust:brief`.
-3. **Logo + brand imagery** (`assets/`) — generated externally with Gemini 3 Pro Image Preview, dropped in here.
-4. **Hand-authored `current/`** — instead of building a placeholder site + crawling it with `/stardust:extract`, we author `current/{PRODUCT.md,DESIGN.md,DESIGN.json,pages/*.json,assets/}` directly from the brand + briefing documents. This is the proof-of-concept output of `/stardust:seed` + `/stardust:brief`. Provenance comments in each file call out the would-be commands. Schema mirrors a real `extract` artifact.
-5. **Stardust direction** (`/stardust:direct`) — produces `target/PRODUCT.md`, `target/DESIGN.md`, `target/DESIGN.json` from a short intent phrase + the hand-authored `current/`.
-6. **Stardust prototype** (`/stardust:prototype`) per page — produces `redesign/<page>.html`.
-7. **Brief reverse-engineered** — once `target/PRODUCT.md` exists, derive UC3's `brief.pdf` from it so brief → site reads internally consistent in the demo.
+3. **Logo + brand imagery** (`assets/gemini-prompts.md` → external Gemini session → drop into `stardust/current/assets/`).
+4. **Hand-authored `stardust/current/`** — instead of building a placeholder site + crawling it with `/stardust:extract`, we author `current/{PRODUCT.md,DESIGN.md,DESIGN.json,pages/*.json,assets/}` directly from the brand + briefing documents. This is the proof-of-concept output of `/stardust:seed` + `/stardust:brief`. Provenance comments in each file call out the would-be commands. Schema mirrors a real `extract` artifact.
+5. **Hand-authored `stardust/state.json`** — bootstraps the Stardust pipeline. Marks all 9 pages `status: "extracted"` so `/stardust:direct` will run.
+6. **Stardust direction** (`/stardust:direct`) — run from `site/` as cwd. Produces `stardust/target/PRODUCT.md`, `stardust/target/DESIGN.md`, `stardust/target/DESIGN.json`, and `stardust/direction.md` from a short intent phrase + the hand-authored `current/`.
+7. **Stardust prototype** (`/stardust:prototype`) per page — produces `stardust/prototypes/<slug>.html`.
+8. **Brief reverse-engineered** — once `target/PRODUCT.md` exists, derive UC3's `brief.pdf` from it so brief → site reads internally consistent in the demo.
 
-The generated site is iframed by the demo at `demos/uc2-uc3-greenfield/experience/` beats 4 and 6.
+The generated site (the `stardust/prototypes/*.html` files) is iframed by the demo at `demos/uc2-uc3-greenfield/experience/` beats 4 and 6.
 
 ## Why this build order is itself part of the demo
 

@@ -3,8 +3,8 @@
 > Self-contained prompt pack for image generation in a fresh Gemini session. Paste the **session preamble** once at the top of the session. Then run the **logo prompt** first; iterate until a strong variant lands; then move through the **three imagery lanes**.
 >
 > Drop the final selected images into:
-> - `site/current/assets/logo.svg` (replace the typographic placeholder)
-> - `site/current/assets/media/<filename>.{jpg,png}` (per the page JSON `media.images[].src` paths)
+> - `site/stardust/current/assets/logo.svg` (replace the typographic placeholder)
+> - `site/stardust/current/assets/images/<filename>.{jpg,png}` (per the page JSON `media.images[].src` paths)
 
 ---
 
@@ -89,7 +89,7 @@ ASPECT 1:1, 1024×1024 or larger. After I pick a favorite, I'll ask you to produ
 **Iteration notes:**
 - Pick the strongest variant from the 6. Ask Gemini to produce 4 refinements of that variant.
 - Once locked, request: inverted (cream on hymnal-black), ampersand-only favicon crop, and a clean-vector version for SVG export.
-- Save final to `site/current/assets/logo.svg` (export from Gemini's chosen format).
+- Save final to `site/stardust/current/assets/logo.svg` (export from Gemini's chosen format).
 
 ---
 
@@ -203,30 +203,30 @@ EXECUTION NOTES
 - **Generate 6 variants per request the first time, then 4 refinements of the strongest, then iterate.** Lock the asset with a small set; don't open-ended-iterate.
 - **When Gemini drifts toward "luxe-craft," paste the anti-patterns block again** as a corrective. Sometimes the brand register resets between turns.
 - **For all photographic-realism prompts, append: "no Adobe-Stock luxe-craft styling, no AI-perfect-craft lighting, no people unless explicitly named in the prompt."** Gemini's defaults trend toward styled human-in-the-shot.
-- **Save final selections to `site/current/assets/`** in the filenames expected by `pages/*.json` `media.images[].src` paths.
+- **Save final selections to `site/stardust/current/assets/`** in the filenames expected by `pages/*.json` `media.images[].src` paths.
 
 ## Final asset checklist
 
 Match `pages/*.json` `media.images[]` `src` paths verbatim:
 
-- `site/current/assets/logo.svg`
-- `site/current/assets/favicon.svg`
-- `site/current/assets/images/maker-portrait.jpg` (a)
-- `site/current/assets/images/wolfpen-landscape.jpg` (b)
-- `site/current/assets/images/copper-still.jpg` (c)
-- `site/current/assets/images/mason-jar-shelf.jpg` (d)
-- `site/current/assets/images/foraging-hands.jpg` (e)
-- `site/current/assets/images/preacher-shed.jpg` (f)
-- `site/current/assets/images/kitchen-hymnal.jpg` (g)
-- `site/current/assets/images/barn-golden-hour.jpg` (Lane 1, for the visit page)
-- `site/current/assets/images/tasting-bench.jpg` (Lane 1, for the visit page)
-- `site/current/assets/images/catalog-mockup.jpg` (Lane 2, for the catalog page)
-- `site/current/assets/images/hymns-page-header.jpg` (Lane 2, for the hymns page)
-- `site/current/assets/images/label-pass-the-plate.png` (l)
-- `site/current/assets/images/label-tent-revival.png` (m)
-- `site/current/assets/images/label-the-backslider.png` (n)
-- `site/current/assets/images/label-deacons-draught.png` (similar to l, with deacon-collar-undone illustration)
-- `site/current/assets/images/label-drink-ye-all-of-it.png` (o)
-- `site/current/assets/images/label-the-no-show.png` (similar to l, with empty-pew-with-hat illustration)
-- `site/current/assets/images/asheville-bar.jpg` (p)
-- `site/current/assets/images/hymns-page-header.jpg` already listed
+- `site/stardust/current/assets/logo.svg`
+- `site/stardust/current/assets/favicon.svg`
+- `site/stardust/current/assets/images/maker-portrait.jpg` (a)
+- `site/stardust/current/assets/images/wolfpen-landscape.jpg` (b)
+- `site/stardust/current/assets/images/copper-still.jpg` (c)
+- `site/stardust/current/assets/images/mason-jar-shelf.jpg` (d)
+- `site/stardust/current/assets/images/foraging-hands.jpg` (e)
+- `site/stardust/current/assets/images/preacher-shed.jpg` (f)
+- `site/stardust/current/assets/images/kitchen-hymnal.jpg` (g)
+- `site/stardust/current/assets/images/barn-golden-hour.jpg` (Lane 1, for the visit page)
+- `site/stardust/current/assets/images/tasting-bench.jpg` (Lane 1, for the visit page)
+- `site/stardust/current/assets/images/catalog-mockup.jpg` (Lane 2, for the catalog page)
+- `site/stardust/current/assets/images/hymns-page-header.jpg` (Lane 2, for the hymns page)
+- `site/stardust/current/assets/images/label-pass-the-plate.png` (l)
+- `site/stardust/current/assets/images/label-tent-revival.png` (m)
+- `site/stardust/current/assets/images/label-the-backslider.png` (n)
+- `site/stardust/current/assets/images/label-deacons-draught.png` (similar to l, with deacon-collar-undone illustration)
+- `site/stardust/current/assets/images/label-drink-ye-all-of-it.png` (o)
+- `site/stardust/current/assets/images/label-the-no-show.png` (similar to l, with empty-pew-with-hat illustration)
+- `site/stardust/current/assets/images/asheville-bar.jpg` (p)
+- `site/stardust/current/assets/images/hymns-page-header.jpg` already listed
