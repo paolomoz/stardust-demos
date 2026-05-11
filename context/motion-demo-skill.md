@@ -156,6 +156,48 @@ The principle: a designer briefs intent, Stardust resolves to tokens. Demoing th
 
 For VP+ audiences, the question after "this looks great" is always "and then what?" Reserve ~14s near the end to answer: the product as a continuous capability, not a one-time event. Walk-out line is a compression: *"Not a project. A capability."* (UC1) or equivalent. This is usually the strongest beat in the cut.
 
+### Seam beat as VP-level payoff (alternative back-half)
+
+When the demo covers use cases the product does not yet fully ship, the seam itself can carry the back-half payoff — provided you frame it as **reach**, not gap. ~14–16s near the end: name what's missing today, then name the next commands on screen. The audience reads it as "the surface is about to expand," which for a VP is a stronger signal than "completed feature."
+
+Pattern (UC2+UC3 greenfield):
+1. *Today: a hand-edited entry.* — the current limitation, in one short line.
+2. *Tomorrow: the front door types itself.* — the bridge.
+3. Preview commands type in a terminal frame (`/stardust:from-direction`, `/stardust:from-brief`).
+4. A small *"shipping."* chip in brand accent colour.
+5. Full-frame line: *"Stardust is going to start anywhere."* (or product-equivalent).
+
+This replaces UC1's ongoing-capability beat for use cases where the seams are the story. Compatible with the "show the seam, don't hide it" rule from this project's CLAUDE.md — the demo *is* the roadmap signal.
+
+### Multi-use-case demo as "two ways in, one destination"
+
+When two related use cases each have their own input modality but share the rest of the pipeline, run them as **two front doors converging on one rail** rather than as two separate flows shown in sequence. UC2+UC3 sit together because both are greenfield (no source site); they differ only at the entry. Structure:
+
+- **Cold open** establishes the shared constraint ("no source site").
+- **Two parallel path beats** show each input modality resolving to the shared mid-pipeline format (DESIGN tokens / PRODUCT surface).
+- **A converge beat** shows the two streams merging into the shared `prototype → migrate` rail. The merge is a beat — small visual handshake, not a fade.
+- **Result is one artifact**, not two — the audience sees the same destination from both starting points. Reinforces "the product meets you where you are."
+
+Risk: 90s is tight for two paths. Keep each path beat ≤ 20s and lean on the wrapper's grammar to carry continuity.
+
+### Series-continuous wrappers
+
+When building a demo in a series (UC1, then UC2+UC3, then UCn), keep the **outer wrapper identical** and let the **inner artifact change**. Outer continuity makes the series read as one body of work; inner novelty earns each demo its own slot. Concretely:
+
+- Reuse `tokens.css`, `base.css`, `motion.css`, `controller.js`, particles, cursor glow, cover screen, starfield bookend.
+- New: per-beat CSS/JS modules, per-beat layouts, the inner artifact.
+- Reuse the series-close line; vary the walk-out line per demo.
+
+UC1 → UC2+UC3 share Adobe Piñata wrapper + starfield bookend + `extract → direct → prototype → migrate` rail. UC2+UC3 varies the rail by dimming `extract` and lighting two alternative front doors — same grammar, different routing.
+
+### Brief reverse-engineered from PRODUCT.md
+
+When a demo needs to show "brief → site" but the toolchain runs site → product surface (the reverse direction), build the real site first, then **reverse-engineer the brief from the real `PRODUCT.md`** so the brief shown on screen would, if a `/stardust:from-brief` command existed, produce that site. The mapping shown is internally consistent even though the production order is inverted. Keeps the visible artifact honest while sidestepping the missing pipeline step.
+
+### Inner-brand contrast as series statement
+
+When demoing the same toolchain across multiple use cases, **deliberately pick inner brands at opposite ends of a register spectrum** so the series reads as "the toolchain spans the spectrum." UC1 uses an enterprise marketing target (high-volume, templated, business-facing); UC2+UC3 uses an artisan brand (small, brand-led, human-led). Same outer wrapper, opposite inner registers — the contrast lands "Stardust handles anything in between" without narration.
+
 ### "Real but separate hints of the system running"
 
 Even when montaging from existing artifacts, record 1–2 short fresh inserts (terminal prompt, file-tree blip) and seed them through the cut. Plants authenticity beats. Keeps "built with the working product" honest without re-running the full pipeline.
@@ -430,6 +472,18 @@ When the demo needs real artifacts (live-site captures, terminal-running videos,
 Placeholders should look intentional, not broken. A boxed wireframe with an "EXTRACT — capture pending" label reads better than a missing-asset hole.
 
 ## Source demos this draft is based on
+
+- `demos/uc2-uc3-greenfield/` — UC2 + UC3 combined, 90s text-only HTML, **scoped** (README + script locked; experience build pending).
+  - **Brand sources**: outer wrapper reused verbatim from UC1 (Adobe Piñata). Inner artifact is an invented artisan brand, built for real by running Stardust against a private reference and feeding in externally-generated imagery.
+  - **Structural pivot vs. UC1**: two front doors (UC2 direction-led, UC3 brief-led) converging on one shared `prototype → migrate` rail. Replaces UC1's "ongoing capability" payoff with a **seam beat** that names the upcoming `/stardust:from-direction` and `/stardust:from-brief` commands.
+  - **Walk-out line**: *"One prompt · one website."* (whitepaper). **Series-close** matches UC1: *"Ship the demo before the deck."*
+  - **Beat inventory** (planned):
+    - **Beat 1** (10s) — Cold open. Pipeline diagram with `extract` dimmed; two inputs (asset bundle + brief.pdf) hover where the URL would go. *"What if there's nothing to extract?"*
+    - **Beat 2** (20s) — Direction path. Designer workbench: logo + swatches + mood images + voice notes. Intent phrase types. `DESIGN.json` resolves with the real tokens from the generated artisan brand.
+    - **Beat 3** (20s) — Brief path. `brief.pdf` lands. Stardust parses → `PRODUCT.md` + `DESIGN.md` + page list materialise. Brief content reverse-engineered from the real PRODUCT.md.
+    - **Beat 4** (12s) — Converge. Two front-door arrows merge into `prototype → migrate`. Live iframes of the generated artisan site bloom in a loose editorial grid.
+    - **Beat 5** (16s) — The seam (payoff). *"Today: a hand-edited entry. Tomorrow: the front door types itself."* `/stardust:from-direction` and `/stardust:from-brief` type in a terminal frame with a "shipping" chip.
+    - **Beat 6** (12s) — Lands in AEM + walk-out. Same starfield bookend as beat 1.
 
 - `demos/uc1-uplift/` — UC1, business.adobe.com uplift, ~110s text-only HTML, Adobe-branded wrapper.
   - **Brand sources**: hybrid. Cover (beat 1 splash) and close (beat 6) use the **Stardust** identity (ink-deep navy + dust cream + amber gold; pixel-star logo; `brief + seed = star` operator tagline). Mid-demo wrapper uses **reference replication** of `~/Desktop/preso/AI Factory Piñata — Adobe.html` (translate-Y page-wrap navigator, Adobe red accent on near-black, Adobe Clean type). The two brand surfaces bookend each other.
