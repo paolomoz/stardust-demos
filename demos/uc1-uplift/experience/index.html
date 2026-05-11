@@ -489,86 +489,122 @@
       <header class="b5-header">
         <div class="b5-eyebrow">The Ongoing Capability</div>
         <h2 class="b5-headline">
-          <span class="h-line-1">Not a project.</span>
+          <span class="h-line-1">Not just a 1 off project.</span>
           <span class="h-line-2">A capability.</span>
         </h2>
       </header>
 
-      <div class="b5-gallery" aria-hidden="true">
-        <div class="b5-mock" style="--i:0">
-          <div class="b5-mock-chrome">
-            <span class="b5-dot"></span><span class="b5-dot"></span><span class="b5-dot"></span>
-            <span class="b5-url">business.adobe.com / customer-story</span>
+      <div class="b5-split" aria-hidden="true">
+
+        <!-- Left: symbolic page-tree (CMS-like, not a literal AEM clone) -->
+        <aside class="b5-tree">
+          <div class="b5-tree-chrome">
+            <span class="b5-tree-mark">Adobe</span>
+            <span class="b5-tree-ctx">Experience Manager · Pages</span>
           </div>
-          <div class="b5-mock-viewport">
-            <iframe class="b5-mock-frame"
-              src="./assets/business-adobe/redesign/explorations/content-block-vocabulary.html"
-              data-fragment="#b-customer"
-              loading="lazy" tabindex="-1"
-              sandbox="allow-scripts allow-same-origin"></iframe>
+          <ul class="b5-tree-list">
+            <li class="b5-tree-item" data-i="0">
+              <span class="b5-tree-icon"></span>
+              <span class="b5-tree-name">Customer story</span>
+              <span class="b5-tree-path">/customer-story</span>
+            </li>
+            <li class="b5-tree-item" data-i="1">
+              <span class="b5-tree-icon"></span>
+              <span class="b5-tree-name">Black Friday</span>
+              <span class="b5-tree-path">/black-friday</span>
+            </li>
+            <li class="b5-tree-item" data-i="2">
+              <span class="b5-tree-icon"></span>
+              <span class="b5-tree-name">Pricing update</span>
+              <span class="b5-tree-path">/pricing</span>
+            </li>
+            <li class="b5-tree-item" data-i="3">
+              <span class="b5-tree-icon"></span>
+              <span class="b5-tree-name">Webinar series</span>
+              <span class="b5-tree-path">/webinar</span>
+            </li>
+            <li class="b5-tree-item" data-i="4">
+              <span class="b5-tree-icon"></span>
+              <span class="b5-tree-name">Case study</span>
+              <span class="b5-tree-path">/whitepaper</span>
+            </li>
+          </ul>
+        </aside>
+
+        <!-- Right: stacking deck — cards slide in one by one, each landing
+             on top of the prior with a slight cascading offset + rotation. -->
+        <div class="b5-deck">
+          <div class="b5-card" data-i="0">
+            <div class="b5-card-chrome">
+              <span class="b5-dot"></span><span class="b5-dot"></span><span class="b5-dot"></span>
+              <span class="b5-url">business.adobe.com / customer-story</span>
+            </div>
+            <div class="b5-card-viewport">
+              <iframe class="b5-card-frame"
+                src="./assets/business-adobe/redesign/explorations/content-block-vocabulary.html"
+                data-fragment="#b-customer"
+                loading="lazy" tabindex="-1"
+                sandbox="allow-scripts allow-same-origin"></iframe>
+            </div>
           </div>
-          <div class="b5-mock-label">Customer story</div>
+
+          <div class="b5-card" data-i="1">
+            <div class="b5-card-chrome">
+              <span class="b5-dot"></span><span class="b5-dot"></span><span class="b5-dot"></span>
+              <span class="b5-url">business.adobe.com / black-friday</span>
+            </div>
+            <div class="b5-card-viewport">
+              <iframe class="b5-card-frame"
+                src="./assets/business-adobe/redesign/explorations/content-block-vocabulary.html"
+                data-fragment="#b-blackfriday"
+                loading="lazy" tabindex="-1"
+                sandbox="allow-scripts allow-same-origin"></iframe>
+            </div>
+          </div>
+
+          <div class="b5-card" data-i="2">
+            <div class="b5-card-chrome">
+              <span class="b5-dot"></span><span class="b5-dot"></span><span class="b5-dot"></span>
+              <span class="b5-url">business.adobe.com / pricing</span>
+            </div>
+            <div class="b5-card-viewport">
+              <iframe class="b5-card-frame"
+                src="./assets/business-adobe/redesign/explorations/content-block-vocabulary.html"
+                data-fragment="#b-pricing"
+                loading="lazy" tabindex="-1"
+                sandbox="allow-scripts allow-same-origin"></iframe>
+            </div>
+          </div>
+
+          <div class="b5-card" data-i="3">
+            <div class="b5-card-chrome">
+              <span class="b5-dot"></span><span class="b5-dot"></span><span class="b5-dot"></span>
+              <span class="b5-url">business.adobe.com / webinar</span>
+            </div>
+            <div class="b5-card-viewport">
+              <iframe class="b5-card-frame"
+                src="./assets/business-adobe/redesign/explorations/content-block-vocabulary.html"
+                data-fragment="#b-webinar"
+                loading="lazy" tabindex="-1"
+                sandbox="allow-scripts allow-same-origin"></iframe>
+            </div>
+          </div>
+
+          <div class="b5-card" data-i="4">
+            <div class="b5-card-chrome">
+              <span class="b5-dot"></span><span class="b5-dot"></span><span class="b5-dot"></span>
+              <span class="b5-url">business.adobe.com / whitepaper</span>
+            </div>
+            <div class="b5-card-viewport">
+              <iframe class="b5-card-frame"
+                src="./assets/business-adobe/redesign/explorations/content-block-vocabulary.html"
+                data-fragment="#b-whitepaper"
+                loading="lazy" tabindex="-1"
+                sandbox="allow-scripts allow-same-origin"></iframe>
+            </div>
+          </div>
         </div>
 
-        <div class="b5-mock" style="--i:1">
-          <div class="b5-mock-chrome">
-            <span class="b5-dot"></span><span class="b5-dot"></span><span class="b5-dot"></span>
-            <span class="b5-url">business.adobe.com / black-friday</span>
-          </div>
-          <div class="b5-mock-viewport">
-            <iframe class="b5-mock-frame"
-              src="./assets/business-adobe/redesign/explorations/content-block-vocabulary.html"
-              data-fragment="#b-blackfriday"
-              loading="lazy" tabindex="-1"
-              sandbox="allow-scripts allow-same-origin"></iframe>
-          </div>
-          <div class="b5-mock-label">Black Friday</div>
-        </div>
-
-        <div class="b5-mock" style="--i:2">
-          <div class="b5-mock-chrome">
-            <span class="b5-dot"></span><span class="b5-dot"></span><span class="b5-dot"></span>
-            <span class="b5-url">business.adobe.com / pricing</span>
-          </div>
-          <div class="b5-mock-viewport">
-            <iframe class="b5-mock-frame"
-              src="./assets/business-adobe/redesign/explorations/content-block-vocabulary.html"
-              data-fragment="#b-pricing"
-              loading="lazy" tabindex="-1"
-              sandbox="allow-scripts allow-same-origin"></iframe>
-          </div>
-          <div class="b5-mock-label">Pricing update</div>
-        </div>
-
-        <div class="b5-mock" style="--i:3">
-          <div class="b5-mock-chrome">
-            <span class="b5-dot"></span><span class="b5-dot"></span><span class="b5-dot"></span>
-            <span class="b5-url">business.adobe.com / webinar</span>
-          </div>
-          <div class="b5-mock-viewport">
-            <iframe class="b5-mock-frame"
-              src="./assets/business-adobe/redesign/explorations/content-block-vocabulary.html"
-              data-fragment="#b-webinar"
-              loading="lazy" tabindex="-1"
-              sandbox="allow-scripts allow-same-origin"></iframe>
-          </div>
-          <div class="b5-mock-label">Webinar series</div>
-        </div>
-
-        <div class="b5-mock" style="--i:4">
-          <div class="b5-mock-chrome">
-            <span class="b5-dot"></span><span class="b5-dot"></span><span class="b5-dot"></span>
-            <span class="b5-url">business.adobe.com / whitepaper</span>
-          </div>
-          <div class="b5-mock-viewport">
-            <iframe class="b5-mock-frame"
-              src="./assets/business-adobe/redesign/explorations/content-block-vocabulary.html"
-              data-fragment="#b-whitepaper"
-              loading="lazy" tabindex="-1"
-              sandbox="allow-scripts allow-same-origin"></iframe>
-          </div>
-          <div class="b5-mock-label">Case study</div>
-        </div>
       </div>
 
       <footer class="b5-bottom">
