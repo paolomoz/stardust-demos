@@ -15,7 +15,7 @@
   const SECTION_ID = 'b3';
 
   // Stage 1
-  const STAGE1_VIDEO_PLAY_AT_MS = 9000;   // 3s before STAGE2_AT_MS
+  const STAGE1_VIDEO_PLAY_AT_MS = 6000;   // 6s before STAGE2_AT_MS
   const STAGE2_AT_MS            = 12000;  // hand off to merged stage 2
 
   // Stage 2 scroll trigger — fires 9.4s after the stage-2 active class is
@@ -24,7 +24,9 @@
   // enter() time is STAGE2_AT_MS + 900 + 9400 = 22300ms.
   const SCROLL_TRIGGER_MS       = 22300;
   const SCROLL_DURATION_S       = 7;
-  const SCROLL_TARGET_F         = 0.5;
+  // 0.3 of maxScroll (was 0.5). Same 7s window, ~40% slower velocity so
+  // the audience can actually read the sections going past.
+  const SCROLL_TARGET_F         = 0.3;
 
   let section, stages = [], video, scrollIframe, started = false;
   let timeouts = [];
@@ -38,9 +40,31 @@
   const STAGE_FADE_MS      = 400;
   const STAGE_DARK_HOLD_MS = 500;
 
+  // The "fully clipped away" end state of the diagonal wipe — matches
+  // the 100% keyframe of @keyframes b3-clip-wipe (beat3.css).
+  const WIPE_CLIPPED = 'polygon(100% 0, 100% 0, 100% 100%, 108% 100%)';
+
+  function freezeWipeLayers(stageEl) {
+    // When a stage loses .b3-stage-active, the CSS animation that drove
+    // its OLD/top/mid layer's clip-path stops applying — so the clip-path
+    // reverts to the element's default (fully visible) and the OLD page
+    // flashes back into view during the 0.4s fade-out. Pin the clipped
+    // state inline before removing the class to suppress that flash.
+    if (!stageEl) return;
+    stageEl.querySelectorAll('.b3-old, .b3-layer-top, .b3-layer-mid')
+      .forEach(el => { el.style.clipPath = WIPE_CLIPPED; });
+  }
+
+  function clearWipeFreeze() {
+    if (!section) return;
+    section.querySelectorAll('.b3-old, .b3-layer-top, .b3-layer-mid')
+      .forEach(el => { el.style.clipPath = ''; });
+  }
+
   function setActiveStage(idx) {
     const curIdx = stages.findIndex(s => s.classList.contains('b3-stage-active'));
     if (curIdx >= 0 && curIdx !== idx) {
+      freezeWipeLayers(stages[curIdx]);
       stages[curIdx].classList.remove('b3-stage-active');
       if (idx >= 0) {
         timeouts.push(setTimeout(() => {
@@ -57,6 +81,7 @@
 
   function reset() {
     setActiveStage(-1);
+    clearWipeFreeze();
     if (video) { try { video.pause(); video.currentTime = 0; } catch (_) {} }
     if (scrollIframe) {
       try {
