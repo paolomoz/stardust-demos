@@ -1,8 +1,18 @@
-/* beat6.css — Math, not mysticism. (8s) — the close
-   Mask vocabulary: pipeline strip lights up sequentially (extract → direct →
-   prototype → migrate), each cell turning red as it activates. Then the
-   headline mask-reveals from a center vertical wipe (clip-path inset both
-   sides shrinking to 0). Final beat — sign-off.
+/* beat6.css — "The demo you just watched." (12s) — the close
+   Mask vocabulary: zoom-out reveal. Splash lands full-screen with the
+   Stardust title; on a hold, the whole title card scales + translates
+   into a SLICC artifact thumbnail; the SLICC chrome materializes around
+   it; chat thread streams in (direct + prototype); signature lands.
+   Animation is CSS-only, triggered by `.b6.active`.
+
+   Timing constants (relative to .b6.active being applied):
+     0.0s — splash visible full-screen (title mask-reveals, sub fades in)
+     2.0s — hold complete; splash starts shrinking toward the thumb slot
+     2.0–3.7s — splash zoom-out (1.7s)
+     2.5s — SLICC shell fades in around the shrinking splash
+     3.6s — art-head + signature fade in
+     4.4s onwards — chat messages stagger in (4 × 350ms)
+     6.0s+ — hold on the final state until the beat ends (~12s)
 */
 
 #b6 {
@@ -10,124 +20,489 @@
   align-items: stretch;
   position: relative;
   overflow: hidden;
+  background: #060a14; /* ink-deep — same as cover */
 }
 
-#b6 .b6-stage {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column; gap: 2.4rem;
-  padding: 5rem 2rem;
-}
-
-/* Pipeline strip — 4 cells, each fills with red sequentially */
-#b6 .b6-pipeline {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 4px;
-  width: min(900px, 88vw);
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.6s var(--ease-out-quart) 0.1s, transform 0.6s var(--ease-out-quart) 0.1s;
-}
-#b6.active .b6-pipeline { opacity: 1; transform: translateY(0); }
-
-#b6 .b6-step {
-  position: relative;
-  height: 56px;
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--ff-mono);
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--dim);
+/* ── Background: starfield + amber nebula (mirrors the cover) ──
+   Sits behind everything, revealed in the padding around the shell. */
+#b6 .b6-sky {
+  position: absolute; inset: 0; z-index: 0;
   overflow: hidden;
-  transition: color 0.3s, border-color 0.3s;
+  pointer-events: none;
 }
-#b6 .b6-step::before {
-  content: '';
+#b6 .b6-starfield {
   position: absolute; inset: 0;
-  background: var(--red);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.5s var(--ease-out-quart);
+  width: 100%; height: 100%;
+  opacity: 0.85;
+  animation: b6-stars-drift 80s linear infinite alternate;
+}
+@keyframes b6-stars-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-40px, -18px, 0); }
+}
+#b6 .b6-nebula {
+  position: absolute;
+  width: 130%; height: 70%;
+  top: 22%; left: -15%;
+  background: radial-gradient(ellipse 50% 45% at 50% 50%,
+    rgba(232,185,94,0.16) 0%,
+    rgba(232,185,94,0.07) 35%,
+    transparent 70%);
+  filter: blur(20px);
+  mix-blend-mode: screen;
+  animation: b6-nebula-drift 32s ease-in-out infinite alternate;
+}
+#b6 .b6-nebula-2 {
+  width: 90%; height: 55%;
+  top: 38%; left: 28%;
+  background: radial-gradient(ellipse 55% 40% at 50% 50%,
+    rgba(255,217,138,0.10) 0%,
+    rgba(232,185,94,0.04) 40%,
+    transparent 75%);
+  animation: b6-nebula2-drift 44s ease-in-out infinite alternate;
+}
+@keyframes b6-nebula-drift  { to { transform: translate(60px, -30px) scale(1.05); } }
+@keyframes b6-nebula2-drift { to { transform: translate(-50px, 25px) scale(0.95); } }
+
+#b6 .b6-cloud {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  mix-blend-mode: screen;
+  opacity: 0.25;
+  pointer-events: none;
+}
+#b6 .b6-cloud-1 {
+  width: 720px; height: 360px;
+  left: -120px; top: 32%;
+  background: radial-gradient(ellipse, rgba(245,240,230,0.20) 0%, transparent 65%);
+  animation: b6-cloud1-drift 50s ease-in-out infinite alternate;
+}
+#b6 .b6-cloud-2 {
+  width: 640px; height: 320px;
+  right: -100px; top: 48%;
+  background: radial-gradient(ellipse, rgba(245,240,230,0.16) 0%, transparent 65%);
+  animation: b6-cloud2-drift 58s ease-in-out infinite alternate;
+}
+@keyframes b6-cloud1-drift { to { transform: translate(120px, -40px); } }
+@keyframes b6-cloud2-drift { to { transform: translate(-100px, 50px); } }
+
+#b6 .b6-grain {
+  position: absolute; inset: 0;
   z-index: 0;
-}
-#b6 .b6-step span {
-  position: relative;
-  z-index: 1;
-  transition: color 0.3s;
-}
-
-/* Sequential activation */
-#b6.active .b6-step:nth-child(1)::before { transform: scaleX(1); transition-delay: 0.4s; }
-#b6.active .b6-step:nth-child(2)::before { transform: scaleX(1); transition-delay: 0.85s; }
-#b6.active .b6-step:nth-child(3)::before { transform: scaleX(1); transition-delay: 1.30s; }
-#b6.active .b6-step:nth-child(4)::before { transform: scaleX(1); transition-delay: 1.75s; }
-
-/* When activated, the step's text becomes white */
-#b6.active .b6-step:nth-child(1) span { color: #fff; transition-delay: 0.65s; }
-#b6.active .b6-step:nth-child(2) span { color: #fff; transition-delay: 1.10s; }
-#b6.active .b6-step:nth-child(3) span { color: #fff; transition-delay: 1.55s; }
-#b6.active .b6-step:nth-child(4) span { color: #fff; transition-delay: 2.00s; }
-#b6.active .b6-step                     { border-color: rgba(235, 16, 0, 0.40); }
-
-/* Hairline arrow between cells */
-#b6 .b6-step + .b6-step::after {
-  content: '→';
-  position: absolute; left: -14px; top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--ff-mono);
-  color: var(--dim);
-  font-size: 0.9rem;
-  z-index: 2;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96  0 0 0 0 0.94  0 0 0 0 0.90  0 0 0 0.12 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
+  opacity: 0.45;
+  mix-blend-mode: overlay;
+  pointer-events: none;
 }
 
-/* Headline — mask-reveals after the pipeline lights up */
-#b6 .b6-title {
+/* ── 1 · SPLASH — starts full-screen, scales down to the thumbnail.
+   The keyframe animates `top`/`left`/`width`/`height` so the type and
+   contents reflow into the smaller box smoothly. */
+#b6 .b6-splash {
+  position: absolute;
+  top: 56px; left: 0;
+  width: 100vw;
+  height: calc(100vh - 56px);
+  z-index: 20;
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+  /* Base navy — the internal sky layer paints stars + nebula on top.
+     Same look at full-screen and at thumbnail size. */
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(232,185,94,0.06) 0%, transparent 60%),
+    linear-gradient(180deg, #060a14 0%, #0a1024 100%);
+  border: 1px solid transparent;
+  border-radius: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Splash-internal sky uses the same .b6-sky / .b6-nebula / .b6-cloud
+   styles defined at the section level (position: absolute inset:0). It
+   sits behind the title; the title etc. naturally stack above it. */
+#b6 .b6-splash-sky { z-index: 0; }
+#b6 .b6-splash-title,
+#b6 .b6-splash-sub,
+#b6 .b6-thumb-badge,
+#b6 .b6-thumb-meta { position: relative; z-index: 2; }
+#b6.active .b6-splash {
+  animation: b6-zoom-out 1.7s cubic-bezier(0.7, 0, 0.18, 1) 2s forwards;
+}
+@keyframes b6-zoom-out {
+  0%   {
+    top: 56px; left: 0;
+    width: 100vw; height: calc(100vh - 56px);
+    border-radius: 0;
+    border-color: transparent;
+    box-shadow: none;
+  }
+  100% {
+    top: 312px; left: 656px;
+    width: 560px; height: 350px;
+    border-radius: 8px;
+    border-color: rgba(232,185,94,0.20);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 60px rgba(232,185,94,0.08);
+  }
+}
+
+/* Title — set in the Stardust wordmark style (lowercase, display font,
+   weight 600). Mask-reveals from center on .b6.active. When the splash
+   shrinks, the type scales down via font-size transition. */
+#b6 .b6-splash-title {
   font-family: var(--ff-display);
-  font-weight: 800;
-  font-size: clamp(3rem, 7.2vw, 6.4rem);
-  letter-spacing: -0.035em;
-  line-height: 0.95;
-  text-align: center;
+  font-weight: 600;
+  font-size: clamp(3rem, 12vw, 11rem);
+  letter-spacing: -0.025em;
+  line-height: 0.92;
   color: var(--text);
+  text-transform: lowercase;
   /* clip from both sides toward the center, then expand outward */
   clip-path: inset(0 50% 0 50%);
-  transition: clip-path 1.0s cubic-bezier(0.2, 0.7, 0.1, 1) 2.5s;
+  transition:
+    clip-path 1.0s cubic-bezier(0.2, 0.7, 0.1, 1) 0.2s,
+    font-size 1.7s cubic-bezier(0.7, 0, 0.18, 1) 2s;
 }
-#b6.active .b6-title { clip-path: inset(0 0 0 0); }
-#b6 .b6-title .red { color: var(--red); }
+#b6.active .b6-splash-title {
+  clip-path: inset(0 0 0 0);
+  font-size: 4.4rem;
+}
 
-#b6 .b6-sub {
+#b6 .b6-splash-sub {
   font-family: var(--ff-mono);
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.20em;
   color: var(--muted);
   text-align: center;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.6s var(--ease-out-quart) 4.0s, transform 0.6s var(--ease-out-quart) 4.0s;
-}
-#b6.active .b6-sub { opacity: 1; transform: translateY(0); }
-
-/* Stardust mark — final logo moment */
-#b6 .b6-mark {
-  font-family: var(--ff-display);
-  font-weight: 800;
-  font-size: 1.1rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--red);
   margin-top: 1rem;
   opacity: 0;
-  transition: opacity 0.6s var(--ease-out-quart) 5.0s;
+  transform: translateY(8px);
+  transition:
+    opacity 0.6s var(--ease-out-quart) 1.2s,
+    transform 0.6s var(--ease-out-quart) 1.2s,
+    font-size 1.7s cubic-bezier(0.7, 0, 0.18, 1) 2s,
+    margin-top 1.7s cubic-bezier(0.7, 0, 0.18, 1) 2s;
 }
-#b6.active .b6-mark { opacity: 1; }
+#b6.active .b6-splash-sub {
+  opacity: 1; transform: translateY(0);
+  font-size: 0.62rem; margin-top: 0.6rem;
+}
+#b6 .b6-splash-sub .red { color: var(--red); }
+
+/* Thumb decorations — only visible once the splash has shrunk. */
+#b6 .b6-thumb-badge,
+#b6 .b6-thumb-meta {
+  position: absolute; top: 12px;
+  font-family: var(--ff-mono); font-size: 0.58rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+  transition-delay: 3.5s;
+}
+#b6.active .b6-thumb-badge,
+#b6.active .b6-thumb-meta { opacity: 1; }
+#b6 .b6-thumb-badge {
+  left: 12px;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 9px;
+  background: rgba(232,185,94,0.14);
+  border: 1px solid rgba(232,185,94,0.30);
+  border-radius: 999px;
+  color: #ffd98a;
+}
+#b6 .b6-thumb-badge .dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: #ffd98a;
+  animation: b6-pulse 1.6s ease-in-out infinite;
+}
+@keyframes b6-pulse { 50% { opacity: 0.35; } }
+#b6 .b6-thumb-meta {
+  right: 12px;
+  color: rgba(255,255,255,0.40);
+}
+
+/* ── 2 · SLICC shell — fades in around the splash. */
+#b6 .b6-shell {
+  position: absolute; top: 7rem; left: 3vw; right: 3vw; bottom: 3rem;
+  z-index: 10;          /* above sky/grain, below the splash */
+  display: flex; flex-direction: column;
+  background: #0d0d10;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 36px 80px rgba(0,0,0,0.55);
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.985);
+  transition: opacity 0.9s ease-out 2.5s, transform 0.9s ease-out 2.5s;
+}
+#b6.active .b6-shell { opacity: 1; transform: scale(1); }
+
+/* Top bar */
+#b6 .b6-topbar {
+  display: flex; align-items: center; gap: 1.4rem;
+  height: 48px;
+  padding: 0 1rem;
+  background: #16161b;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--ff-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+#b6 .b6-brand { display: flex; align-items: center; gap: 0.5rem; }
+#b6 .b6-icon  { width: 22px; height: 22px; }
+#b6 .b6-mark {
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+  color: #ffd98a;
+  text-transform: none;
+}
+#b6 .b6-project {
+  display: flex; align-items: center; gap: 0.4rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.10em;
+  text-transform: none;
+  font-size: 0.72rem;
+  font-family: var(--ff-mono);
+}
+#b6 .b6-crumb-cur { color: var(--text); font-weight: 500; }
+#b6 .b6-crumb-sep { color: rgba(255,255,255,0.25); }
+#b6 .b6-status {
+  margin-left: auto;
+  display: flex; align-items: center; gap: 0.5rem;
+  color: rgba(255,255,255,0.45);
+  font-size: 0.6rem;
+}
+#b6 .b6-status-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #2dd57a;
+  box-shadow: 0 0 8px rgba(45,213,122,0.55);
+  animation: b6-status-pulse 2s ease-in-out infinite;
+}
+@keyframes b6-status-pulse { 50% { opacity: 0.45; } }
+
+/* Main area */
+#b6 .b6-main {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: minmax(360px, 32%) 1fr;
+  min-height: 0;
+}
+
+/* Chat */
+#b6 .b6-chat {
+  display: flex; flex-direction: column;
+  border-right: 1px solid var(--border);
+  background: #101015;
+  min-height: 0;
+}
+#b6 .b6-thread {
+  flex: 1 1 auto;
+  padding: 1.2rem 1.1rem 0.6rem;
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.9rem;
+  overflow: hidden;
+  font-family: var(--ff-display);
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+#b6 .b6-msg {
+  display: flex; align-items: flex-start; gap: 0.55rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.45s var(--ease-out-quart), transform 0.45s var(--ease-out-quart);
+}
+#b6.active .b6-msg[data-msg="1"] { transition-delay: 4.4s; }
+#b6.active .b6-msg[data-msg="2"] { transition-delay: 4.75s; }
+#b6.active .b6-msg[data-msg="3"] { transition-delay: 5.10s; }
+#b6.active .b6-msg[data-msg="4"] { transition-delay: 5.45s; }
+#b6.active .b6-msg { opacity: 1; transform: translateY(0); }
+
+#b6 .b6-av {
+  flex: 0 0 auto;
+  min-width: 28px; height: 22px;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 4px;
+  font-family: var(--ff-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.55);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+#b6 .b6-av-slicc {
+  background: rgba(232,185,94,0.12);
+  color: #ffd98a;
+  font-weight: 700;
+}
+#b6 .b6-bubble {
+  flex: 1 1 auto;
+  color: rgba(255,255,255,0.88);
+  word-break: break-word;
+}
+#b6 .b6-msg-user .b6-bubble {
+  font-family: var(--ff-mono);
+  font-size: 0.78rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 6px;
+  padding: 6px 10px;
+}
+#b6 .b6-cmd, #b6 .b6-cmd b { color: #ffd98a; }
+#b6 .b6-cmd b { font-weight: 700; }
+#b6 .b6-msg-agent .b6-bubble {
+  color: rgba(245,240,230,0.85);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+#b6 .b6-bubble em {
+  color: #ffd98a;
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Input */
+#b6 .b6-input {
+  flex: 0 0 auto;
+  display: flex; align-items: center; gap: 0.55rem;
+  padding: 0.85rem 1rem;
+  border-top: 1px solid var(--border);
+  background: rgba(0,0,0,0.30);
+  font-family: var(--ff-mono);
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.32);
+}
+#b6 .b6-glyph { color: #ffd98a; font-weight: 700; }
+#b6 .b6-input-placeholder { color: rgba(255,255,255,0.30); }
+#b6 .b6-input-caret {
+  width: 7px; height: 14px;
+  background: rgba(255,255,255,0.30);
+  margin-left: auto;
+  animation: b6-caret 0.85s steps(2, start) infinite;
+}
+@keyframes b6-caret { 50% { opacity: 0; } }
+
+/* Artifact panel */
+#b6 .b6-artifact {
+  position: relative;
+  background: #0a0a0d;
+  padding: 1.6rem 1.6rem;
+  display: flex; flex-direction: column;
+  min-height: 0;
+}
+#b6 .b6-art-head {
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center; column-gap: 0.9rem; row-gap: 0.3rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.5s ease-out 3.6s;
+}
+#b6.active .b6-art-head { opacity: 1; }
+#b6 .b6-art-tag {
+  font-family: var(--ff-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: #ffd98a;
+  background: rgba(232,185,94,0.10);
+  border: 1px solid rgba(232,185,94,0.25);
+  padding: 4px 8px;
+  border-radius: 3px;
+  justify-self: start;
+}
+#b6 .b6-art-meta {
+  font-family: var(--ff-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.10em;
+  color: rgba(255,255,255,0.40);
+  justify-self: end;
+}
+#b6 .b6-art-head h3 {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-family: var(--ff-display);
+  font-weight: 700;
+  font-size: 1.55rem;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+#b6 .b6-thumb-wrap {
+  flex: 1 1 auto;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 1.6rem;
+}
+/* The thumbnail "slot" is invisible — the splash lands here as it
+   shrinks. Reserves 560×350 so the splash @keyframes end-state and the
+   layout slot line up; the panel then fits art-head + thumb + signature
+   without overflow. */
+#b6 .b6-thumb-slot {
+  width: min(560px, 78%);
+  aspect-ratio: 16 / 10;
+}
+
+#b6 .b6-sig {
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.7s ease-out 3.7s, transform 0.7s ease-out 3.7s;
+}
+#b6.active .b6-sig { opacity: 1; transform: translateY(0); }
+#b6 .b6-sig-tag {
+  font-family: var(--ff-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.40);
+}
+#b6 .b6-sig-line {
+  font-family: var(--ff-display);
+  font-weight: 400;
+  font-size: 1.35rem;
+  letter-spacing: -0.005em;
+  color: var(--text);
+}
+/* "stardust" set lowercase in the same wordmark style used on the cover */
+#b6 .b6-sig-line .b6-wordmark {
+  font-family: var(--ff-display);
+  font-weight: 500;
+  font-size: 1.9rem;
+  letter-spacing: -0.025em;
+  color: #f5f0e6;
+  text-transform: lowercase;
+  vertical-align: -0.04em;
+}
+#b6 .b6-sig-hex {
+  font-family: var(--ff-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.20em;
+  color: rgba(255,255,255,0.30);
+}
+#b6 .b6-sig-stats {
+  display: flex; gap: 1.4rem;
+  font-family: var(--ff-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.45);
+  margin-top: 0.4rem;
+}
+#b6 .b6-sig-stats b { color: #ffd98a; font-weight: 500; }
 
 @media (prefers-reduced-motion: reduce) {
   #b6 *, #b6 *::before { transition: none !important; animation: none !important; }
-  #b6 .b6-title { clip-path: inset(0 0 0 0); }
+  #b6 .b6-splash-title { clip-path: inset(0 0 0 0); }
+  #b6 .b6-shell, #b6 .b6-art-head, #b6 .b6-sig, #b6 .b6-msg { opacity: 1; transform: none; }
 }

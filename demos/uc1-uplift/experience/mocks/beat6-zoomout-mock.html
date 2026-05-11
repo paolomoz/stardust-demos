@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Beat 6 · Zoom-out reveal mock</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #16161b;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.16);
+    --text: #f5f0e6;
+    --muted: rgba(245,240,230,0.55);
+    --dim: rgba(245,240,230,0.30);
+    --amber: #e8b95e;
+    --amber-soft: #ffd98a;
+    --red: #eb1000;
+    --ink: #0a1024;
+    --ink-deep: #060a14;
+    --ff-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --ff-mono: ui-monospace, "SF Mono", monospace;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    height: 100%; background: var(--bg); color: var(--text);
+    font-family: var(--ff-display);
+    overflow: hidden;
+  }
+
+  /* ── Top nav (matches the live demo) ── */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 56px; z-index: 100;
+    display: flex; align-items: center;
+    padding: 0 3rem;
+    background: rgba(7,9,15,0.85);
+    border-bottom: 1px solid rgba(235,16,0,0.18);
+  }
+  .nav-logo {
+    font-family: var(--ff-display); font-weight: 800; font-size: 1rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .nav-logo .red { color: var(--red); }
+  .nav-logo .sep { color: rgba(255,255,255,0.30); font-weight: 400; }
+  .nav-rail {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+    background: linear-gradient(90deg, var(--red), #ff5a3d);
+  }
+
+  /* ── Beat 6 SLICC app shell ── */
+  .b6-final {
+    position: absolute; inset: 7rem 3vw 3rem;
+    display: flex; flex-direction: column;
+    background: #0d0d10;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 36px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(232,185,94,0.08);
+    overflow: hidden;
+  }
+
+  /* SLICC top bar */
+  .b6-topbar {
+    display: flex; align-items: center; gap: 1.4rem;
+    height: 48px;
+    padding: 0 1rem;
+    background: #16161b;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--ff-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .b6-brand { display: flex; align-items: center; gap: 0.5rem; }
+  .b6-icon { width: 22px; height: 22px; }
+  .b6-mark {
+    font-family: var(--ff-display); font-weight: 700; font-size: 0.92rem;
+    letter-spacing: 0.08em; color: var(--amber-soft); text-transform: none;
+  }
+  .b6-project {
+    display: flex; align-items: center; gap: 0.4rem;
+    color: var(--dim); font-size: 0.72rem;
+    letter-spacing: 0.10em; text-transform: none;
+    font-family: var(--ff-mono);
+  }
+  .b6-project .crumb-cur { color: var(--text); font-weight: 500; }
+  .b6-project .crumb-sep { color: rgba(255,255,255,0.25); }
+  .b6-status {
+    margin-left: auto;
+    display: flex; align-items: center; gap: 0.5rem;
+    color: var(--dim); font-size: 0.6rem;
+  }
+  .b6-status-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #2dd57a; box-shadow: 0 0 8px rgba(45,213,122,0.55);
+  }
+
+  /* Main: chat left + artifact right */
+  .b6-main {
+    flex: 1 1 auto;
+    display: grid;
+    grid-template-columns: minmax(360px, 32%) 1fr;
+    min-height: 0;
+  }
+
+  /* Left: chat thread */
+  .b6-chat {
+    display: flex; flex-direction: column;
+    border-right: 1px solid var(--border);
+    background: #101015;
+    min-height: 0;
+  }
+  .b6-thread {
+    flex: 1 1 auto;
+    padding: 1.2rem 1.1rem 0.6rem;
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.9rem;
+    overflow: hidden;
+    font-size: 0.86rem; line-height: 1.45;
+  }
+  .b6-msg { display: flex; align-items: flex-start; gap: 0.55rem; }
+  .b6-av {
+    flex: 0 0 auto;
+    min-width: 28px; height: 22px;
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0 6px; border-radius: 4px;
+    background: rgba(255,255,255,0.06);
+    font-family: var(--ff-mono); font-size: 0.58rem;
+    letter-spacing: 0.14em; color: rgba(255,255,255,0.55);
+    text-transform: uppercase; margin-top: 2px;
+  }
+  .b6-av-slicc { background: rgba(232,185,94,0.12); color: var(--amber-soft); font-weight: 700; }
+  .b6-bubble { flex: 1 1 auto; color: rgba(255,255,255,0.88); word-break: break-word; }
+  .b6-msg-user .b6-bubble {
+    font-family: var(--ff-mono); font-size: 0.78rem;
+    color: rgba(255,255,255,0.92);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 6px; padding: 6px 10px;
+  }
+  .b6-cmd b { color: var(--amber-soft); font-weight: 700; }
+  .b6-cmd { color: var(--amber-soft); }
+  .b6-msg-agent .b6-bubble {
+    color: rgba(245,240,230,0.85); font-size: 0.82rem; line-height: 1.5;
+  }
+  .b6-bubble em { color: var(--amber-soft); font-style: normal; font-weight: 600; }
+
+  /* Input bar */
+  .b6-input {
+    flex: 0 0 auto;
+    display: flex; align-items: center; gap: 0.55rem;
+    padding: 0.85rem 1rem;
+    border-top: 1px solid var(--border);
+    background: rgba(0,0,0,0.30);
+    font-family: var(--ff-mono); font-size: 0.78rem;
+    color: rgba(255,255,255,0.32);
+  }
+  .b6-input .glyph { color: var(--amber-soft); font-weight: 700; }
+  .b6-input .placeholder { color: rgba(255,255,255,0.30); }
+  .b6-input .caret {
+    width: 7px; height: 14px; background: rgba(255,255,255,0.30);
+    margin-left: auto;
+  }
+
+  /* Right: artifact panel — contains the demo thumbnail and the
+     "made with stardust" signature. */
+  .b6-artifact {
+    position: relative;
+    background: #0a0a0d;
+    padding: 1.6rem 1.6rem;
+    display: flex; flex-direction: column;
+    min-height: 0;
+  }
+  .b6-art-head {
+    flex: 0 0 auto;
+    display: grid; grid-template-columns: auto auto; align-items: center;
+    column-gap: 0.9rem; row-gap: 0.3rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+  }
+  .b6-tag {
+    font-family: var(--ff-mono); font-size: 0.62rem;
+    letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--amber-soft); background: rgba(232,185,94,0.10);
+    border: 1px solid rgba(232,185,94,0.25);
+    padding: 4px 8px; border-radius: 3px; justify-self: start;
+  }
+  .b6-meta {
+    font-family: var(--ff-mono); font-size: 0.62rem;
+    letter-spacing: 0.10em; color: rgba(255,255,255,0.40);
+    justify-self: end;
+  }
+  .b6-art-head h3 {
+    grid-column: 1 / -1;
+    font-family: var(--ff-display); font-weight: 700;
+    font-size: 1.55rem; letter-spacing: -0.02em; color: var(--text);
+  }
+
+  /* The demo thumbnail */
+  .b6-thumb-wrap {
+    flex: 1 1 auto;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1.6rem;
+  }
+  .b6-thumb {
+    position: relative;
+    width: min(720px, 92%);
+    aspect-ratio: 16 / 10;
+    background: #060a14;
+    border-radius: 8px;
+    border: 1px solid rgba(232,185,94,0.20);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 60px rgba(232,185,94,0.06);
+    overflow: hidden;
+  }
+  /* Stand-in for the demo thumbnail content: a tiny screenshot-style
+     snapshot of beat 6's "Stardust" final state, plus a play badge. */
+  .b6-thumb-frame {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    background:
+      radial-gradient(ellipse at 50% 50%, rgba(232,185,94,0.10) 0%, transparent 60%),
+      linear-gradient(180deg, #060a14 0%, #0a1024 100%);
+  }
+  .b6-thumb-frame .stardust-title {
+    font-family: var(--ff-display); font-weight: 800;
+    font-size: clamp(3rem, 7vw, 5.6rem);
+    letter-spacing: -0.04em; line-height: 0.9; color: var(--text);
+  }
+  .b6-thumb-frame .stardust-sub {
+    font-family: var(--ff-mono); font-size: 0.78rem;
+    letter-spacing: 0.20em; text-transform: uppercase;
+    color: var(--muted); margin-top: 1rem;
+  }
+  .b6-thumb-frame .stardust-sub .red { color: var(--red); }
+  /* Play badge */
+  .b6-thumb-badge {
+    position: absolute; top: 14px; left: 14px;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 10px;
+    background: rgba(232,185,94,0.14);
+    border: 1px solid rgba(232,185,94,0.30);
+    border-radius: 999px;
+    font-family: var(--ff-mono); font-size: 0.58rem;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber-soft);
+  }
+  .b6-thumb-badge .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--amber-soft);
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse { 50% { opacity: 0.35; } }
+  .b6-thumb-meta {
+    position: absolute; top: 14px; right: 14px;
+    font-family: var(--ff-mono); font-size: 0.58rem;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.40);
+  }
+
+  /* Signature row below the thumbnail */
+  .b6-sig {
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    text-align: center;
+  }
+  .b6-sig-tag {
+    font-family: var(--ff-mono); font-size: 0.62rem;
+    letter-spacing: 0.20em; text-transform: uppercase;
+    color: rgba(255,255,255,0.40);
+  }
+  .b6-sig-line {
+    font-family: var(--ff-display); font-weight: 700;
+    font-size: 1.3rem; letter-spacing: -0.01em; color: var(--text);
+  }
+  .b6-sig-line .amber { color: var(--amber-soft); }
+  .b6-sig-hex {
+    font-family: var(--ff-mono); font-size: 0.66rem;
+    letter-spacing: 0.20em; color: rgba(255,255,255,0.30);
+  }
+  .b6-sig-stats {
+    display: flex; gap: 1.4rem;
+    font-family: var(--ff-mono); font-size: 0.66rem;
+    letter-spacing: 0.14em; color: rgba(255,255,255,0.45);
+    margin-top: 0.4rem;
+  }
+  .b6-sig-stats b { color: var(--amber-soft); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">
+    <span class="red">Adobe</span><span class="sep">|</span>Stardust × business.adobe.com
+  </div>
+  <div class="nav-rail"></div>
+</nav>
+
+<!-- Final state (after the zoom-out): the demo is one of SLICC's artifacts -->
+<div class="b6-final">
+
+  <header class="b6-topbar">
+    <div class="b6-brand">
+      <svg class="b6-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M 7 12 L 17 12 L 12 22 Z" fill="#c9822d"/>
+        <path d="M 8 14 L 16 14" stroke="#7a4f1a" stroke-width="0.6" stroke-linecap="round"/>
+        <path d="M 9 16 L 15 16" stroke="#7a4f1a" stroke-width="0.6" stroke-linecap="round"/>
+        <path d="M 10 18 L 14 18" stroke="#7a4f1a" stroke-width="0.6" stroke-linecap="round"/>
+        <circle cx="12" cy="9.5" r="5" fill="#ffd98a"/>
+        <circle cx="10.5" cy="7.5" r="1.2" fill="#ffeec9"/>
+        <circle cx="11" cy="11" r="0.5" fill="#e8b95e"/>
+        <circle cx="13" cy="10" r="0.5" fill="#c9822d"/>
+        <circle cx="13.5" cy="12" r="0.5" fill="#e8b95e"/>
+      </svg>
+      <span class="b6-mark">SLICC</span>
+    </div>
+    <div class="b6-project">
+      <span>workspace</span>
+      <span class="crumb-sep">/</span>
+      <span class="crumb-cur">uc1-uplift-demo</span>
+    </div>
+    <div class="b6-status">
+      <span class="b6-status-dot"></span><span>running Stardust v0.3</span>
+    </div>
+  </header>
+
+  <div class="b6-main">
+
+    <!-- Chat thread: the prompts that "built" the demo -->
+    <aside class="b6-chat">
+      <div class="b6-thread">
+
+        <div class="b6-msg b6-msg-user">
+          <span class="b6-av">You</span>
+          <div class="b6-bubble"><span class="b6-cmd">/stardust:<b>direct</b></span> "make a 2-minute cinematic uplift demo for AEM exec rooms"</div>
+        </div>
+        <div class="b6-msg b6-msg-agent">
+          <span class="b6-av b6-av-slicc">S</span>
+          <div class="b6-bubble">Six beats, on Adobe brand. <em>Cold open</em> → <em>turn</em> → <em>pipeline</em> → <em>reveal</em> → <em>AEM</em> → <em>capability</em>. 116 seconds.</div>
+        </div>
+
+        <div class="b6-msg b6-msg-user">
+          <span class="b6-av">You</span>
+          <div class="b6-bubble"><span class="b6-cmd">/stardust:<b>prototype</b></span></div>
+        </div>
+        <div class="b6-msg b6-msg-agent">
+          <span class="b6-av b6-av-slicc">S</span>
+          <div class="b6-bubble">Generated. Cinematic motion, 4-step pipeline montage, three stacked redesigns of business.adobe.com. Live preview on the right.</div>
+        </div>
+
+        <div class="b6-msg b6-msg-user">
+          <span class="b6-av">You</span>
+          <div class="b6-bubble"><span class="b6-cmd">/stardust:<b>ship</b></span></div>
+        </div>
+        <div class="b6-msg b6-msg-agent">
+          <span class="b6-av b6-av-slicc">S</span>
+          <div class="b6-bubble">Done. The demo you just watched <em>is</em> the prototype.</div>
+        </div>
+
+      </div>
+      <div class="b6-input">
+        <span class="glyph">›</span>
+        <span class="placeholder">Ask SLICC something…</span>
+        <span class="caret"></span>
+      </div>
+    </aside>
+
+    <!-- Artifact: the demo as a thumbnail + signature -->
+    <main class="b6-artifact">
+      <header class="b6-art-head">
+        <span class="b6-tag">prototype · this demo</span>
+        <span class="b6-meta">uc1-uplift · 116s · 6 beats</span>
+        <h3>The demo you just watched.</h3>
+      </header>
+
+      <div class="b6-thumb-wrap">
+
+        <div class="b6-thumb" aria-label="thumbnail of the demo">
+          <div class="b6-thumb-badge"><span class="dot"></span>looping</div>
+          <div class="b6-thumb-meta">uc1-uplift / index.html</div>
+          <div class="b6-thumb-frame">
+            <div class="stardust-title">Stardust</div>
+            <div class="stardust-sub"><span class="red">Math,</span> not mysticism.</div>
+          </div>
+        </div>
+
+        <div class="b6-sig">
+          <span class="b6-sig-tag">signature</span>
+          <div class="b6-sig-line">made with <span class="amber">Stardust</span></div>
+          <div class="b6-sig-hex">md5(uc1-uplift|2026-05-11) · a3f7 c92e b1d4 8a0c</div>
+          <div class="b6-sig-stats">
+            <span><b>1</b> prompt</span>
+            <span><b>4</b> hours</span>
+            <span><b>0</b> designers</span>
+            <span><b>6</b> beats</span>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</div>
+
+</body>
+</html>

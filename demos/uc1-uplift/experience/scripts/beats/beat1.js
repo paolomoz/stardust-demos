@@ -9,14 +9,18 @@
   const SECTION_ID = 'b1';
   const TOTAL_MS = 24000;
 
-  // ── Intro (0:00–0:10) — "Stardust / AI design. On brand." with AI→Unique correction ──
-  const AI_CORRECT_MS = 4000;        // marker strikes "AI" + writes "Unique" above
-  const INTRO_FADE_OUT_MS = 9000;    // intro fades out
-  const INTRO_END_MS = 10000;        // original timeline begins (cover hole opens)
+  // ── Stardust splash + immediate reveal ──
+  // The Stardust cover is the splash AND the mask. Pressing Space should
+  // give instant feedback, so the polygon hole begins opening within
+  // ~300ms of the cue fading — not on a long delay. The cover's content
+  // (wordmark, quotes, logo) stays in place around the hole as the Adobe
+  // scenes appear through it.
+  const INTRO_FADE_OUT_MS = 200;   // press-Space cue fades right away
+  const INTRO_END_MS      = 300;   // scene-a goes .visible, hole begins ~280ms later
 
-  // ── Cold open + trap (timings relative to INTRO_END_MS) ──
-  const STINGER_MS = INTRO_END_MS + 9500;   // "Pick one. That's the deal." scrambles in
-  const FOOTER_MS  = INTRO_END_MS + 11500;  // "Enterprise marketing. Since forever." fades in
+  // ── Cold open + trap (absolute timings into beat 1) ──
+  const STINGER_MS = 8000;   // "Pick one. That's the deal." scrambles in
+  const FOOTER_MS  = 11000;  // "Enterprise marketing. Since forever." fades in
 
   const STINGER_TEXT = "Pick one. That's the deal.";
   const STINGER_HTML = "Pick one. That's <span class=\"red\">the deal.</span>";
@@ -76,20 +80,14 @@
     clearTimers();
     reset(section);
 
-    // ── Scene 0 · Stardust intro overlay (0:00–0:10) ──
-    // Intro is already .visible from page-load splash; mark .started so the
-    // press-space cue fades out now that the user has begun.
+    // ── Stardust cover stays in place ──
+    // Mark .started immediately so the press-Space cue fades away the
+    // moment the user has begun.
     if (intro) intro.classList.add('started');
 
-    // 4.0s — red marker strikes "AI" and writes "Unique" handwritten above
-    at(AI_CORRECT_MS, () => {
-      if (aiBlock) aiBlock.classList.add('struck');
-    });
-
-    // 9.0s — intro fades out
-    at(INTRO_FADE_OUT_MS, () => intro && intro.classList.add('leaving'));
-
-    // 10.0s — Scene A becomes visible (still hidden behind the cover until hole opens)
+    // ~0.3s — scene-a goes .visible behind the cover; the polygon hole
+    //         opens ~280ms later, so the audience sees an immediate
+    //         reaction to the keypress.
     at(INTRO_END_MS, () => sceneA.classList.add('visible'));
 
     // 10.28s — first opening: hole grows on Scene A → H1 emerges
@@ -151,6 +149,76 @@
     clearTimers();
   }
 
+  // Stardust-palette starfield: paints onto the b1-starfield canvas.
+  // Deterministic seed so the field is identical across reloads but still
+  // feels random. Three layers: distant dim dust → medium → bright glow.
+  function paintStarfield(canvas) {
+    if (!canvas || !canvas.getContext) return;
+    const W = canvas.width, H = canvas.height;
+    const ctx = canvas.getContext('2d');
+    // Simple seeded RNG (Mulberry32) so positions don't shift between runs.
+    let s = 1337;
+    const rng = () => {
+      s |= 0; s = (s + 0x6D2B79F5) | 0;
+      let t = Math.imul(s ^ (s >>> 15), 1 | s);
+      t = t + Math.imul(t ^ (t >>> 7), 61 | t) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+
+    ctx.clearRect(0, 0, W, H);
+
+    // Layer 1 — distant tiny stars (dim dust)
+    for (let i = 0; i < 260; i++) {
+      const x = rng() * W;
+      const y = rng() * H;
+      const r = rng() * 0.7 + 0.25;
+      ctx.globalAlpha = 0.25 + rng() * 0.35;
+      ctx.fillStyle = '#f5f0e6';
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Layer 2 — medium stars (brighter dust)
+    for (let i = 0; i < 90; i++) {
+      const x = rng() * W;
+      const y = rng() * H;
+      const r = rng() * 1.1 + 0.7;
+      ctx.globalAlpha = 0.55 + rng() * 0.35;
+      ctx.fillStyle = '#f6efe2';
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Layer 3 — a handful of bright "anchor" stars with soft glow, tinted
+    // warm amber so they tie into the Stardust palette.
+    for (let i = 0; i < 14; i++) {
+      const x = rng() * W;
+      const y = rng() * H;
+      const r = rng() * 1.4 + 1.4;
+      // Glow halo
+      const halo = ctx.createRadialGradient(x, y, 0, x, y, r * 8);
+      const amber = rng() < 0.45;
+      halo.addColorStop(0,    amber ? 'rgba(255,217,138,0.85)' : 'rgba(245,240,230,0.9)');
+      halo.addColorStop(0.35, amber ? 'rgba(232,185,94,0.32)'  : 'rgba(245,240,230,0.30)');
+      halo.addColorStop(1,    'rgba(245,240,230,0)');
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = halo;
+      ctx.beginPath();
+      ctx.arc(x, y, r * 8, 0, Math.PI * 2);
+      ctx.fill();
+      // Bright core
+      ctx.fillStyle = '#fff8e6';
+      ctx.globalAlpha = 0.95;
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.globalAlpha = 1;
+  }
+
   function init() {
     const section = document.getElementById(SECTION_ID);
     if (!section) return;
@@ -164,6 +232,12 @@
     sub = section.querySelector('.cold-open-sub');
     intro = section.querySelector('.b1-intro-overlay');
     aiBlock = section.querySelector('.ai-correction');
+
+    // Paint the Stardust nebula starfield on the cover. Beat 6 uses the
+    // same sky behind its SLICC shell — paint both canvases here so the
+    // background reads as the same surface bookending the demo.
+    paintStarfield(section.querySelector('.b1-starfield'));
+    document.querySelectorAll('.b6-starfield').forEach(paintStarfield);
 
     // Show the intro overlay immediately on page load — it's the splash
     // screen, visible before the user presses Space. The full beat-1

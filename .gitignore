@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Large recording artifacts — kept locally, not in git
+demos/*/recording/*.mp4
+demos/*/recording/*.mov
+demos/*/recording/*.webm
+
+# Editor / OS
+*.swp
+*~

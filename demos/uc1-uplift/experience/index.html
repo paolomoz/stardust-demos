@@ -32,44 +32,124 @@
 <div id="page-wrap">
 
   <!-- BEAT 1 · 0:00–0:24 · Stardust intro + Cold open + Trap -->
-  <section class="beat" id="b1" data-duration="24000">
+  <section class="beat" id="b1" data-duration="15000">
 
-    <!-- SCENE 0 · 0:00–0:10 — Stardust intro title overlay (sits ABOVE the page-tile cover) -->
+    <!-- Stardust identity cover — IS the reveal mask. Both the cover
+         visual (gradient + content + logo) and the polygon-hole mask
+         live inside a single SVG, so scene-a / scene-b are revealed
+         THROUGH the Stardust cover via the same beat1.js timeline.
+         Centered "press Space" cue lives outside the SVG so the hole
+         doesn't cut it. -->
     <div class="b1-intro-overlay" aria-hidden="true">
-      <div class="b1-intro">
-        <div class="b1-intro-eyebrow">Adobe × Stardust</div>
-        <h1 class="b1-intro-title">Stardust</h1>
-        <p class="b1-intro-tagline">
-          <span class="ai-correction">
-            <span class="ai-original">AI</span>
-            <svg class="ai-scribble" viewBox="0 0 100 30" preserveAspectRatio="none" aria-hidden="true">
-              <path class="scribble-stroke s1" d="M 3 9 C 22 23, 48 4, 72 18 S 94 9, 98 16" pathLength="100"/>
-              <path class="scribble-stroke s2" d="M 5 22 C 26 6, 52 25, 76 10 S 94 22, 97 13" pathLength="100"/>
-            </svg>
-            <span class="ai-replacement">
-              Unique
-              <svg class="ai-circle" viewBox="0 0 220 90" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M 14 52 C 6 24, 62 8, 118 10 C 178 12, 215 28, 210 58 C 204 80, 145 88, 84 85 C 33 81, 0 68, 8 46 L 22 32" pathLength="100"/>
-              </svg>
-            </span>
-          </span>
-          design. On brand.
-        </p>
-        <div class="b1-intro-cue">Press <kbd>Space</kbd> to begin</div>
-      </div>
+
+      <svg class="reveal-cover" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <mask id="reveal-mask">
+            <rect width="1440" height="900" fill="white"/>
+            <polygon class="reveal-hole"
+                     points="720,450 720,450 720,450 720,450 720,450"
+                     fill="black"/>
+          </mask>
+          <radialGradient id="b1-logo-bg" cx="50%" cy="50%" r="70%">
+            <stop offset="0" stop-color="#151e42"/>
+            <stop offset="1" stop-color="#08101f"/>
+          </radialGradient>
+          <filter id="b1-grain" x="0" y="0" width="100%" height="100%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+            <feColorMatrix values="0 0 0 0 0.96
+                                   0 0 0 0 0.94
+                                   0 0 0 0 0.90
+                                   0 0 0 0.08 0"/>
+          </filter>
+        </defs>
+
+        <g mask="url(#reveal-mask)">
+          <!-- One full-bleed HTML poster (shader bg + logo + wordmark + quotes
+               + corner codes), so the polygon-hole cuts cleanly through it all. -->
+          <foreignObject x="0" y="0" width="1440" height="900">
+            <div xmlns="http://www.w3.org/1999/xhtml" class="b1-cover-poster">
+
+              <!-- Stardust-brand nebula: starfield canvas + amber-tinted
+                   nebula glow + faint wispy clouds. Drifts slowly. -->
+              <div class="b1-sky" aria-hidden="true">
+                <canvas class="b1-starfield" width="1440" height="900"></canvas>
+                <div class="b1-nebula"></div>
+                <div class="b1-nebula b1-nebula-2"></div>
+                <div class="b1-cloud b1-cloud-1"></div>
+                <div class="b1-cloud b1-cloud-2"></div>
+              </div>
+              <div class="b1-grain" aria-hidden="true"></div>
+              <div class="b1-rule" aria-hidden="true"></div>
+
+              <!-- Corner hex codes (Stardust identity tic) -->
+              <span class="b1-code b1-code-tl">a3f7</span>
+              <span class="b1-code b1-code-tr">c92e</span>
+              <span class="b1-code b1-code-bl">b1d4</span>
+              <span class="b1-code b1-code-br">8a0c</span>
+
+              <!-- Top meta strip -->
+              <div class="b1-meta-top">
+                <span class="b1-meta-mark"><b>Adobe</b> · UC1 Uplift</span>
+                <span class="b1-meta-version">stardust <b>v0.3</b></span>
+              </div>
+
+              <!-- Pixel-star logo (native SVG, small, top-left of content) -->
+              <div class="b1-logo-wrap">
+                <svg class="b1-logo" viewBox="0 0 280 280" aria-hidden="true">
+                  <rect width="280" height="280" rx="28" fill="url(#b1-logo-bg)"/>
+                  <g fill="#e8b95e">
+                    <rect x="128" y="34"  width="24" height="24"/>
+                    <rect x="128" y="62"  width="24" height="24" opacity="0.7"/>
+                    <rect x="128" y="90"  width="24" height="24" opacity="0.5"/>
+                    <rect x="128" y="166" width="24" height="24" opacity="0.5"/>
+                    <rect x="128" y="194" width="24" height="24" opacity="0.7"/>
+                    <rect x="128" y="222" width="24" height="24"/>
+                    <rect x="34"  y="128" width="24" height="24"/>
+                    <rect x="62"  y="128" width="24" height="24" opacity="0.7"/>
+                    <rect x="90"  y="128" width="24" height="24" opacity="0.5"/>
+                    <rect x="166" y="128" width="24" height="24" opacity="0.5"/>
+                    <rect x="194" y="128" width="24" height="24" opacity="0.7"/>
+                    <rect x="222" y="128" width="24" height="24"/>
+                  </g>
+                  <rect x="118" y="118" width="44" height="44" fill="#ffd98a"/>
+                  <g fill="#e8b95e" opacity="0.6">
+                    <rect x="82"  y="82"  width="18" height="18"/>
+                    <rect x="180" y="82"  width="18" height="18"/>
+                    <rect x="82"  y="180" width="18" height="18"/>
+                    <rect x="180" y="180" width="18" height="18"/>
+                  </g>
+                </svg>
+              </div>
+
+              <!-- "uplift this website." sits above the wordmark, the prompt
+                   the demo answers — small mono with amber highlight. -->
+              <p class="b1-quote b1-quote-3">&ldquo;<em>uplift</em> this website.&rdquo;</p>
+
+              <!-- The hero wordmark — huge, dominant. -->
+              <h1 class="b1-wordmark">stardust</h1>
+
+              <!-- Whitepaper pull — primary thesis just below the wordmark. -->
+              <p class="b1-quote b1-quote-1">The library was a <em>workaround</em>.</p>
+
+              <!-- Bottom-left tag — operator-style tagline -->
+              <div class="b1-tagline">brief<span class="b1-op">+</span>seed<span class="b1-op">=</span>star</div>
+
+            </div>
+          </foreignObject>
+        </g>
+      </svg>
+
+      <div class="b1-intro-cue">Press <kbd>Space</kbd> to begin</div>
     </div>
 
     <!-- SCENE A · 0:10–0:15 — cold open -->
     <div class="scene scene-a">
-      <div class="cold-open-eyebrow">Cold Open</div>
       <h1 class="cold-open-h1">business.adobe.com has hundreds of pages.</h1>
-      <p class="cold-open-sub">They share <span class="red">twelve</span> templates.</p>
+      <p class="cold-open-sub">They all share <span class="red">a few</span> templates.</p>
     </div>
 
     <!-- SCENE B · 0:05–0:14 — the trap -->
     <div class="scene scene-b">
-      <div class="trap-eyebrow">Pick one. That's the deal.</div>
-
       <div class="trap-cols">
         <div class="trap-col trap-col-l">
           <div class="label">Every page unique</div>
@@ -226,39 +306,12 @@
       <div class="footer-line">Enterprise marketing. Since forever.</div>
     </div>
 
-    <!-- Shared reveal cover: sits above both scenes, grows + shrinks + regrows
-         the polygon hole to reveal A, transition to B, then reveal B. -->
-    <svg class="reveal-cover" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <defs>
-        <pattern id="page-tile" x="0" y="0" width="240" height="180" patternUnits="userSpaceOnUse">
-          <rect width="240" height="180" fill="#0e0e0e"/>
-          <rect x="8" y="8" width="6" height="6" fill="#eb1000"/>
-          <rect x="20" y="10" width="60" height="2" fill="rgba(255,255,255,0.18)"/>
-          <rect x="200" y="10" width="32" height="2" fill="rgba(255,255,255,0.10)"/>
-          <rect x="8" y="22" width="224" height="64" fill="#1a1a1a"/>
-          <rect x="14" y="34" width="80" height="3" fill="rgba(235,16,0,0.45)"/>
-          <rect x="14" y="44" width="200" height="3" fill="rgba(255,255,255,0.20)"/>
-          <rect x="14" y="52" width="160" height="3" fill="rgba(255,255,255,0.12)"/>
-          <rect x="8" y="96" width="108" height="56" fill="#161616"/>
-          <rect x="124" y="96" width="108" height="56" fill="#161616"/>
-          <rect x="8" y="160" width="100" height="2" fill="rgba(255,255,255,0.08)"/>
-          <rect x="120" y="160" width="80" height="2" fill="rgba(255,255,255,0.08)"/>
-          <line x1="0" y1="179" x2="240" y2="179" stroke="rgba(235,16,0,0.18)" stroke-width="1"/>
-        </pattern>
-        <mask id="reveal-mask">
-          <rect width="1440" height="900" fill="white"/>
-          <polygon class="reveal-hole"
-                   points="720,450 720,450 720,450 720,450 720,450"
-                   fill="black"/>
-        </mask>
-      </defs>
-      <rect class="reveal-cover-fill" width="1440" height="900" fill="url(#page-tile)" mask="url(#reveal-mask)"/>
-    </svg>
+    <!-- (Stardust cover SVG with polygon mask lives inside .b1-intro-overlay above) -->
 
   </section>
 
   <!-- BEAT 2 · 0:14–0:46 · The turn + 4-beat pipeline montage -->
-  <section class="beat" id="b2" data-duration="32000">
+  <section class="beat" id="b2" data-duration="34000">
 
     <!-- SCENE · The Turn — bold question revealed by a red-slab + scanline wipe -->
     <div class="b2-turn">
@@ -270,88 +323,186 @@
       <div class="b2-scanline" aria-hidden="true"></div>
     </div>
 
-    <!-- SCENE · Pipeline montage (0:20–0:46) — 4 sub-beats × ~6.5s each.
-         Each sub-beat has a captioned video frame for the actual agent
-         executing the corresponding Stardust command (3-5s each).
-         Real recordings will replace the placeholders. -->
-    <div class="b2-pipeline">
-      <div class="b2-pipeline-rail"><i></i></div>
+    <!-- SCENE · SLICC web app (0:20–0:46) — full-app shell with top bar,
+         chat thread on the left, artifact panel on the right. Each step
+         types a prompt, SLICC streams a flowing response, and the
+         artifact panel swaps to that step's output (one at a time —
+         the previous artifact fades out as the new one fades in). -->
+    <div class="b2-slicc-app">
 
-      <article class="b2-step" data-step="extract">
-        <div class="b2-step-meta">
-          <span class="b2-step-num">01</span>
-          <span class="b2-step-cmd">/stardust:extract https://business.adobe.com</span>
+      <!-- ─── Top bar: brand · project · status ─── -->
+      <header class="b2-slicc-topbar">
+        <div class="b2-slicc-brand">
+          <svg class="b2-slicc-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M 7 12 L 17 12 L 12 22 Z" fill="#c9822d"/>
+            <path d="M 8 14 L 16 14" stroke="#7a4f1a" stroke-width="0.6" stroke-linecap="round"/>
+            <path d="M 9 16 L 15 16" stroke="#7a4f1a" stroke-width="0.6" stroke-linecap="round"/>
+            <path d="M 10 18 L 14 18" stroke="#7a4f1a" stroke-width="0.6" stroke-linecap="round"/>
+            <circle cx="12" cy="9.5" r="5" fill="#ffd98a"/>
+            <circle cx="10.5" cy="7.5" r="1.2" fill="#ffeec9"/>
+            <circle cx="11" cy="11" r="0.5" fill="#e8b95e"/>
+            <circle cx="13" cy="10" r="0.5" fill="#c9822d"/>
+            <circle cx="13.5" cy="12" r="0.5" fill="#e8b95e"/>
+          </svg>
+          <span class="b2-slicc-mark">SLICC</span>
         </div>
-        <h3 class="b2-step-title">Extract.</h3>
-        <p class="b2-step-cap">Capture brand surface.</p>
-        <div class="b2-step-frame" data-pending="extract-recording">
-          <video class="b2-step-video" muted autoplay loop playsinline preload="metadata">
-            <!-- TODO: replace with 3-5s capture of /stardust:extract running -->
-          </video>
-          <div class="b2-step-placeholder">
-            <span class="ph-eyebrow">Recording pending</span>
-            <span class="ph-line">Terminal: agent executes</span>
-            <span class="ph-cmd">/stardust:extract https://business.adobe.com</span>
-          </div>
+        <div class="b2-slicc-project">
+          <span class="b2-slicc-crumb">workspace</span>
+          <span class="b2-slicc-crumb-sep">/</span>
+          <span class="b2-slicc-crumb">business.adobe.com</span>
         </div>
-      </article>
+        <div class="b2-slicc-status">
+          <span class="b2-status-dot"></span>
+          <span>running Stardust v0.3</span>
+        </div>
+      </header>
 
-      <article class="b2-step" data-step="direct">
-        <div class="b2-step-meta">
-          <span class="b2-step-num">02</span>
-          <span class="b2-step-cmd">/stardust:direct "feel modern. cinematic, confident. let motion carry it."</span>
-        </div>
-        <h3 class="b2-step-title">Direct.</h3>
-        <p class="b2-step-cap">Designer briefs intent. Stardust resolves to tokens.</p>
-        <div class="b2-step-frame" data-pending="direct-recording">
-          <video class="b2-step-video" muted autoplay loop playsinline preload="metadata">
-            <!-- TODO: replace with 3-5s capture of /stardust:direct running -->
-          </video>
-          <div class="b2-step-placeholder">
-            <span class="ph-eyebrow">Recording pending</span>
-            <span class="ph-line">Agent compiles intent → DESIGN.json</span>
-            <span class="ph-cmd">register · voice · palette · type</span>
-          </div>
-        </div>
-      </article>
+      <!-- ─── Main: chat + artifact ─── -->
+      <div class="b2-slicc-main">
 
-      <article class="b2-step" data-step="prototype">
-        <div class="b2-step-meta">
-          <span class="b2-step-num">03</span>
-          <span class="b2-step-cmd">/stardust:prototype</span>
-        </div>
-        <h3 class="b2-step-title">Prototype.</h3>
-        <p class="b2-step-cap">Variants per page across viewports.</p>
-        <div class="b2-step-frame" data-pending="prototype-recording">
-          <video class="b2-step-video" muted autoplay loop playsinline preload="metadata">
-            <!-- TODO: replace with 3-5s capture of /stardust:prototype running -->
-          </video>
-          <div class="b2-step-placeholder">
-            <span class="ph-eyebrow">Recording pending</span>
-            <span class="ph-line">Three hero variants per page</span>
-            <span class="ph-cmd">desktop · tablet · mobile</span>
-          </div>
-        </div>
-      </article>
+        <!-- Left: chat thread (messages stack from bottom) + input at the
+             bottom where each prompt types in before "submitting" up to
+             the thread. -->
+        <aside class="b2-slicc-chat">
+          <div class="b2-chat-thread" aria-live="polite"></div>
 
-      <article class="b2-step" data-step="migrate">
-        <div class="b2-step-meta">
-          <span class="b2-step-num">04</span>
-          <span class="b2-step-cmd">/stardust:migrate</span>
-        </div>
-        <h3 class="b2-step-title">Migrate.</h3>
-        <p class="b2-step-cap">Deployable static HTML. No build step.</p>
-        <div class="b2-step-frame" data-pending="migrate-recording">
-          <video class="b2-step-video" muted autoplay loop playsinline preload="metadata">
-            <!-- TODO: replace with 3-5s capture of /stardust:migrate running -->
-          </video>
-          <div class="b2-step-placeholder">
-            <span class="ph-eyebrow">Recording pending</span>
-            <span class="ph-line">stardust/migrated/</span>
-            <span class="ph-cmd">home.html · products.html · …</span>
+          <div class="b2-chat-input" aria-hidden="true">
+            <span class="b2-chat-prompt-glyph">›</span>
+            <span class="b2-chat-input-text"></span>
+            <span class="b2-chat-input-caret"></span>
+            <span class="b2-chat-input-placeholder">Ask SLICC something…</span>
           </div>
-        </div>
-      </article>
+        </aside>
+
+        <!-- Right: full-panel artifact (one step visible at a time) -->
+        <main class="b2-slicc-artifact">
+
+          <!-- Artifact 1 · Extract — simplified brand extraction summary -->
+          <article class="b2-art" data-step="1">
+            <header class="b2-art-head">
+              <span class="b2-art-tag">extract</span>
+              <h3>Brand surface · business.adobe.com</h3>
+              <span class="b2-art-meta">12 templates · 1,200 pages · stardust/brand-extract.json</span>
+            </header>
+            <div class="b2-art-body b2-art-extract">
+              <section>
+                <h4>Palette</h4>
+                <div class="b2-art-swatches">
+                  <span class="b2-art-sw" style="--c:#eb1000"><i>#eb1000</i></span>
+                  <span class="b2-art-sw" style="--c:#0e0e0e"><i>#0e0e0e</i></span>
+                  <span class="b2-art-sw" style="--c:#1a1a1a"><i>#1a1a1a</i></span>
+                  <span class="b2-art-sw" style="--c:#ffffff"><i>#ffffff</i></span>
+                  <span class="b2-art-sw" style="--c:#5b7bff"><i>#5b7bff</i></span>
+                  <span class="b2-art-sw" style="--c:#888888"><i>#888888</i></span>
+                </div>
+              </section>
+              <section>
+                <h4>Type</h4>
+                <div class="b2-art-type">
+                  <div><span class="b2-art-k">display</span> <span class="b2-art-v">Adobe Clean · 800</span></div>
+                  <div><span class="b2-art-k">body</span> <span class="b2-art-v">Adobe Clean · 400</span></div>
+                </div>
+              </section>
+              <section>
+                <h4>Voice tokens</h4>
+                <div class="b2-art-chips">
+                  <span class="b2-art-chip">enterprise</span>
+                  <span class="b2-art-chip">corporate</span>
+                  <span class="b2-art-chip">trusted</span>
+                  <span class="b2-art-chip">technical</span>
+                </div>
+              </section>
+              <section>
+                <h4>Structure</h4>
+                <div class="b2-art-struct">
+                  <div class="b2-art-block b2-block-hero">hero</div>
+                  <div class="b2-art-block b2-block-cols">3-col</div>
+                  <div class="b2-art-block b2-block-announce">announcement</div>
+                  <div class="b2-art-block b2-block-footer">footer</div>
+                </div>
+              </section>
+            </div>
+          </article>
+
+          <!-- Artifact 2 · Direct — design brief summary, partially visual -->
+          <article class="b2-art" data-step="2">
+            <header class="b2-art-head">
+              <span class="b2-art-tag">direct</span>
+              <h3>Design brief · feel modern. cinematic.</h3>
+              <span class="b2-art-meta">stardust/direction.md · design.json</span>
+            </header>
+            <div class="b2-art-body b2-art-direct">
+              <blockquote class="b2-art-brief">
+                <span class="b2-art-brief-mark">"</span>feel modern. cinematic. let motion carry it.<span class="b2-art-brief-mark">"</span>
+              </blockquote>
+
+              <section>
+                <h4>Movements</h4>
+                <ul class="b2-art-moves">
+                  <li><span class="b2-mv-axis">register</span><s>enterprise</s><span class="b2-mv-arrow">→</span><span class="b2-mv-to">editorial</span></li>
+                  <li><span class="b2-mv-axis">density</span><s>corporate</s><span class="b2-mv-arrow">→</span><span class="b2-mv-to">spacious</span></li>
+                  <li><span class="b2-mv-axis">motion</span><s>static</s><span class="b2-mv-arrow">→</span><span class="b2-mv-to">cinematic</span></li>
+                  <li><span class="b2-mv-axis">ground</span><s>light</s><span class="b2-mv-arrow">→</span><span class="b2-mv-to">ink-deep</span></li>
+                </ul>
+              </section>
+
+              <section>
+                <h4>New palette</h4>
+                <div class="b2-art-swatches">
+                  <span class="b2-art-sw" style="--c:#060a14"><i>ink-deep</i></span>
+                  <span class="b2-art-sw" style="--c:#0a1024"><i>ink</i></span>
+                  <span class="b2-art-sw" style="--c:#1a1338"><i>aubergine</i></span>
+                  <span class="b2-art-sw" style="--c:#eb1000"><i>signal</i></span>
+                  <span class="b2-art-sw" style="--c:#ffd98a"><i>amber-soft</i></span>
+                  <span class="b2-art-sw" style="--c:#f5f0e6"><i>dust</i></span>
+                </div>
+              </section>
+
+              <section>
+                <h4>Type ladder</h4>
+                <div class="b2-art-typeladder">
+                  <span style="font-size:38px;font-weight:800;letter-spacing:-0.03em;">Display 88</span>
+                  <span style="font-size:22px;font-weight:600;letter-spacing:-0.015em;">Headline 32</span>
+                  <span style="font-size:14px;color:rgba(255,255,255,0.7);">Body 16 · SF Pro Display + SF Mono</span>
+                </div>
+              </section>
+            </div>
+          </article>
+
+          <!-- Artifact 3 & 4 share the same iframe; step 4 overlays
+               WYSIWYG editing affordances on top. -->
+          <article class="b2-art b2-art-iframe-wrap" data-step="3">
+            <header class="b2-art-head">
+              <span class="b2-art-tag b2-tag-step3">prototype</span>
+              <span class="b2-art-tag b2-tag-step4">migrate · authorable in AEM</span>
+              <h3 class="b2-art-h3-step3">Prototype · AEM Sites</h3>
+              <h3 class="b2-art-h3-step4">Authorable in AEM</h3>
+              <span class="b2-art-meta">redesign/business-adobe-sites/index.html</span>
+            </header>
+            <div class="b2-art-body b2-art-frame">
+              <iframe class="b2-art-iframe"
+                src="./assets/business-adobe/redesign/business-adobe-sites/index.html"
+                title="Stardust prototype · AEM Sites"
+                loading="lazy"
+                sandbox="allow-scripts allow-same-origin"
+                tabindex="-1"></iframe>
+
+              <!-- WYSIWYG overlay (visible at step 4) -->
+              <div class="b2-edit-ring" aria-hidden="true"></div>
+              <div class="b2-edit-tag">Hero · Title</div>
+              <div class="b2-edit-toolbar" aria-hidden="true">
+                <span class="b2-tool"><b>B</b></span>
+                <span class="b2-tool"><i>I</i></span>
+                <span class="b2-tool"><u>U</u></span>
+                <span class="b2-tool-sep"></span>
+                <span class="b2-tool">H1</span>
+                <span class="b2-tool">¶</span>
+              </div>
+            </div>
+          </article>
+
+        </main>
+      </div>
     </div>
 
   </section>
@@ -427,7 +578,6 @@
 
         <!-- Headline overlay — appears 2s after the bolder iframe starts scrolling -->
         <div class="b3-overlay">
-          <div class="tag">The Reveal</div>
           <h2>Same brand. <span class="red">New surface.</span></h2>
           <p>Every page its own page — the rules held.</p>
         </div>
@@ -444,7 +594,6 @@
        fully authorable in AEM on day one. -->
   <section class="beat" id="b4" data-duration="8000">
     <div class="b4-stage">
-      <div class="b4-eyebrow">Where it lands</div>
       <h2 class="b4-title">Lands in <span class="red">AEM.</span></h2>
 
       <div class="b4-canvas">
@@ -487,9 +636,8 @@
     <div class="b5-stage">
 
       <header class="b5-header">
-        <div class="b5-eyebrow">The Ongoing Capability</div>
         <h2 class="b5-headline">
-          <span class="h-line-1">Not just a 1 off project.</span>
+          <span class="h-line-1">Not a project.</span>
           <span class="h-line-2">A capability.</span>
         </h2>
       </header>
@@ -609,29 +757,123 @@
 
       <footer class="b5-bottom">
         <p class="b5-sub">New launches. New campaigns. New regions. Same rules.</p>
-        <span class="b5-team-size">Team size: unchanged</span>
       </footer>
     </div>
   </section>
 
-  <!-- BEAT 6 · 1:22–1:30 · Math, not mysticism. — the close
-       Mask: pipeline strip lights up sequentially (extract → direct → prototype
-       → migrate), then headline mask-reveals from center via clip-path. -->
-  <section class="beat" id="b6" data-duration="8000">
-    <div class="b6-stage">
-      <div class="b6-pipeline" aria-hidden="true">
-        <div class="b6-step"><span>Extract</span></div>
-        <div class="b6-step"><span>Direct</span></div>
-        <div class="b6-step"><span>Prototype</span></div>
-        <div class="b6-step"><span>Migrate</span></div>
-      </div>
+  <!-- BEAT 6 · 1:22–1:34 · "The demo you just watched."
+       Mask vocabulary: zoom-out reveal. The Stardust title lands full-
+       screen, then the whole title card shrinks into a SLICC artifact
+       thumbnail; the SLICC chrome materializes around it, chat thread
+       streams in (direct + prototype), signature lands underneath. The
+       audience realizes this demo itself was made with Stardust. -->
+  <section class="beat" id="b6" data-duration="12000">
 
-      <h1 class="b6-title"><span class="red">Math,</span> not mysticism.</h1>
-
-      <p class="b6-sub">Ship the demo before the deck.</p>
-
-      <div class="b6-mark">Stardust</div>
+    <!-- Background: same Stardust-brand starfield + amber nebula as the
+         opening cover, sitting behind both the splash and the SLICC shell.
+         Revealed in the padding area once the splash shrinks. -->
+    <div class="b6-sky" aria-hidden="true">
+      <canvas class="b6-starfield" width="1440" height="900"></canvas>
+      <div class="b6-nebula"></div>
+      <div class="b6-nebula b6-nebula-2"></div>
+      <div class="b6-cloud b6-cloud-1"></div>
+      <div class="b6-cloud b6-cloud-2"></div>
     </div>
+    <div class="b6-grain" aria-hidden="true"></div>
+
+    <!-- Splash: starts full-screen, scales + translates into the
+         thumbnail slot inside the artifact panel. Carries its own sky
+         layer (duplicate of the section-level sky) so when the splash
+         shrinks, the thumbnail still reads as the same starfield-backed
+         "demo we just watched" frame. -->
+    <div class="b6-splash">
+      <div class="b6-sky b6-splash-sky" aria-hidden="true">
+        <canvas class="b6-starfield" width="1440" height="900"></canvas>
+        <div class="b6-nebula"></div>
+        <div class="b6-nebula b6-nebula-2"></div>
+        <div class="b6-cloud b6-cloud-1"></div>
+        <div class="b6-cloud b6-cloud-2"></div>
+      </div>
+      <h1 class="b6-splash-title">stardust</h1>
+      <p class="b6-splash-sub"><span class="red">Math,</span> not mysticism.</p>
+      <span class="b6-thumb-badge"><span class="dot"></span>looping</span>
+      <span class="b6-thumb-meta">uc1-uplift / index.html</span>
+    </div>
+
+    <!-- SLICC shell: fades in around the splash as it shrinks. -->
+    <div class="b6-shell">
+      <header class="b6-topbar">
+        <div class="b6-brand">
+          <svg class="b6-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M 7 12 L 17 12 L 12 22 Z" fill="#c9822d"/>
+            <path d="M 8 14 L 16 14" stroke="#7a4f1a" stroke-width="0.6" stroke-linecap="round"/>
+            <path d="M 9 16 L 15 16" stroke="#7a4f1a" stroke-width="0.6" stroke-linecap="round"/>
+            <path d="M 10 18 L 14 18" stroke="#7a4f1a" stroke-width="0.6" stroke-linecap="round"/>
+            <circle cx="12" cy="9.5" r="5" fill="#ffd98a"/>
+            <circle cx="10.5" cy="7.5" r="1.2" fill="#ffeec9"/>
+            <circle cx="11" cy="11" r="0.5" fill="#e8b95e"/>
+            <circle cx="13" cy="10" r="0.5" fill="#c9822d"/>
+            <circle cx="13.5" cy="12" r="0.5" fill="#e8b95e"/>
+          </svg>
+          <span class="b6-mark">SLICC</span>
+        </div>
+        <div class="b6-project">
+          <span>workspace</span>
+          <span class="b6-crumb-sep">/</span>
+          <span class="b6-crumb-cur">uc1-uplift-demo</span>
+        </div>
+        <div class="b6-status">
+          <span class="b6-status-dot"></span><span>running Stardust v0.3</span>
+        </div>
+      </header>
+
+      <div class="b6-main">
+
+        <aside class="b6-chat">
+          <div class="b6-thread">
+            <div class="b6-msg b6-msg-user" data-msg="1">
+              <span class="b6-av">You</span>
+              <div class="b6-bubble"><span class="b6-cmd">/stardust:<b>direct</b></span> "make a 2-minute cinematic uplift demo for AEM exec rooms"</div>
+            </div>
+            <div class="b6-msg b6-msg-agent" data-msg="2">
+              <span class="b6-av b6-av-slicc">S</span>
+              <div class="b6-bubble">Six beats, on Adobe brand. <em>Cold open</em> → <em>turn</em> → <em>pipeline</em> → <em>reveal</em> → <em>AEM</em> → <em>capability</em>. 116 seconds.</div>
+            </div>
+            <div class="b6-msg b6-msg-user" data-msg="3">
+              <span class="b6-av">You</span>
+              <div class="b6-bubble"><span class="b6-cmd">/stardust:<b>prototype</b></span></div>
+            </div>
+            <div class="b6-msg b6-msg-agent" data-msg="4">
+              <span class="b6-av b6-av-slicc">S</span>
+              <div class="b6-bubble">Done. The demo you just watched <em>is</em> the prototype.</div>
+            </div>
+          </div>
+          <div class="b6-input" aria-hidden="true">
+            <span class="b6-glyph">›</span>
+            <span class="b6-input-placeholder">Ask SLICC something…</span>
+            <span class="b6-input-caret"></span>
+          </div>
+        </aside>
+
+        <main class="b6-artifact">
+          <header class="b6-art-head">
+            <span class="b6-art-tag">prototype · this demo</span>
+            <span class="b6-art-meta">uc1-uplift · 116s · 6 beats</span>
+            <h3>The demo you just watched.</h3>
+          </header>
+          <div class="b6-thumb-wrap">
+            <div class="b6-thumb-slot" aria-hidden="true"><!-- splash lands here --></div>
+            <div class="b6-sig">
+              <span class="b6-sig-tag">signature</span>
+              <div class="b6-sig-line">made with <span class="b6-wordmark">stardust</span></div>
+              <div class="b6-sig-hex">md5(uc1-uplift|2026-05-11) · a3f7 c92e b1d4 8a0c</div>
+            </div>
+          </div>
+        </main>
+
+      </div>
+    </div>
+
   </section>
 
 </div>
@@ -652,6 +894,7 @@
 
 <!-- Per-beat timelines -->
 <script src="./scripts/beats/beat1.js"></script>
+<script src="./scripts/beats/beat2.js"></script>
 <script src="./scripts/beats/beat3.js"></script>
 <script src="./scripts/beats/beat4.js"></script>
 <script src="./scripts/beats/beat5.js"></script>

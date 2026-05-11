@@ -9,102 +9,324 @@
     var(--bg);
 }
 
-/* ── SCENE 0 · Stardust intro title overlay ──
-   Sits ABOVE the page-tile cover for the first 10s of beat 1. */
+/* ── SCENE 0 · Stardust identity cover — bold poster + reveal mask ──
+   The cover content lives inside an SVG foreignObject so the polygon
+   hole cuts through everything in one shape. Composition is poster-
+   style: huge "stardust" wordmark, three whitepaper quotes positioned
+   off-axis, animated CSS-shader background, corner hex codes.        */
 #b1 .b1-intro-overlay {
+  --stardust-ink:        #060a14;
+  --stardust-ink-soft:   #0a1024;
+  --stardust-ink-mid:    #141b3a;
+  --stardust-dust:       #f5f0e6;
+  --stardust-amber:      #e8b95e;
+  --stardust-amber-soft: #ffd98a;
+
   position: absolute; inset: 0;
-  z-index: 10; /* above .reveal-cover (z-index 5) */
-  display: flex; align-items: center; justify-content: center;
-  flex-direction: column;
+  z-index: 5; /* above scenes; the cue is z-index 11 inside */
   pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.9s var(--ease-out-quart);
-}
-#b1 .b1-intro-overlay.visible { opacity: 1; }
-#b1 .b1-intro-overlay.leaving { opacity: 0; transition-duration: 0.9s; }
-
-#b1 .b1-intro {
-  display: flex; flex-direction: column; align-items: center;
-  text-align: center;
-  padding: 0 2rem;
-  max-width: min(1100px, 92vw);
 }
 
-#b1 .b1-intro-eyebrow {
+#b1 .b1-intro-overlay .reveal-cover {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+}
+
+/* ── Poster container inside foreignObject ── */
+#b1 .b1-cover-poster {
+  position: relative;
+  width: 1440px; height: 900px;
+  background: var(--stardust-ink);
+  color: var(--stardust-dust);
+  font-family: var(--ff-display);
+  overflow: hidden;
+}
+
+/* ── Stardust nebula background — sparse starfield + amber nebula glow
+   on the Stardust palette. Subtle, slow drift; reads as deep space
+   tinted with the brand's gold (no purple/pink). ── */
+#b1 .b1-sky {
+  position: absolute; inset: 0;
+  overflow: hidden;
+}
+
+/* Starfield: pixel-precise points drawn by JS onto the canvas. Slow
+   parallax-style horizontal drift to feel alive without distracting. */
+#b1 .b1-starfield {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  opacity: 0.85;
+  animation: b1-stars-drift 80s linear infinite alternate;
+}
+@keyframes b1-stars-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-40px, -18px, 0); }
+}
+
+/* Nebula glow band (amber, very subtle). Two ellipses crossing the canvas. */
+#b1 .b1-nebula {
+  position: absolute;
+  width: 130%; height: 70%;
+  top: 22%; left: -15%;
+  background: radial-gradient(ellipse 50% 45% at 50% 50%,
+    rgba(232,185,94,0.16) 0%,
+    rgba(232,185,94,0.07) 35%,
+    transparent 70%);
+  filter: blur(20px);
+  mix-blend-mode: screen;
+  animation: b1-nebula-drift 32s ease-in-out infinite alternate;
+}
+#b1 .b1-nebula-2 {
+  width: 90%; height: 55%;
+  top: 38%; left: 28%;
+  background: radial-gradient(ellipse 55% 40% at 50% 50%,
+    rgba(255,217,138,0.10) 0%,
+    rgba(232,185,94,0.04) 40%,
+    transparent 75%);
+  animation: b1-nebula2-drift 44s ease-in-out infinite alternate;
+}
+@keyframes b1-nebula-drift {
+  to { transform: translate(60px, -30px) scale(1.05); }
+}
+@keyframes b1-nebula2-drift {
+  to { transform: translate(-50px, 25px) scale(0.95); }
+}
+
+/* Faint dust clouds — cream tint, very low opacity, very slow drift. */
+#b1 .b1-cloud {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  mix-blend-mode: screen;
+  opacity: 0.25;
+}
+#b1 .b1-cloud-1 {
+  width: 720px; height: 360px;
+  left: -120px; top: 32%;
+  background: radial-gradient(ellipse, rgba(245,240,230,0.20) 0%, transparent 65%);
+  animation: b1-cloud1-drift 50s ease-in-out infinite alternate;
+}
+#b1 .b1-cloud-2 {
+  width: 640px; height: 320px;
+  right: -100px; top: 48%;
+  background: radial-gradient(ellipse, rgba(245,240,230,0.16) 0%, transparent 65%);
+  animation: b1-cloud2-drift 58s ease-in-out infinite alternate;
+}
+@keyframes b1-cloud1-drift {
+  to { transform: translate(120px, -40px); }
+}
+@keyframes b1-cloud2-drift {
+  to { transform: translate(-100px, 50px); }
+}
+
+#b1 .b1-grain {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.96  0 0 0 0 0.94  0 0 0 0 0.90  0 0 0 0.12 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
+  opacity: 0.45;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+#b1 .b1-rule {
+  position: absolute;
+  left: 5%; right: 5%;
+  top: 110px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(245,240,230,0.18) 25%, rgba(245,240,230,0.18) 75%, transparent);
+}
+
+/* ── Corner hex codes (echo of stardust identity) ── */
+#b1 .b1-code {
+  position: absolute;
   font-family: var(--ff-mono);
-  font-size: 0.81rem;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  color: rgba(245,240,230,0.32);
+  pointer-events: none;
+}
+#b1 .b1-code-tl { top: 56px;  left: 56px; }
+#b1 .b1-code-tr { top: 56px;  right: 56px; }
+#b1 .b1-code-bl { bottom: 56px; left: 56px; }
+#b1 .b1-code-br { bottom: 56px; right: 56px; }
+
+/* ── Top meta strip (Adobe · UC1 Uplift   /   stardust v0.3) ── */
+#b1 .b1-meta-top {
+  position: absolute;
+  top: 60px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; align-items: center; gap: 56px;
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
+  color: rgba(245,240,230,0.5);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-out-quart) 0.20s;
+}
+#b1 .b1-meta-top b { color: var(--stardust-amber); font-weight: 500; }
+#b1 .b1-intro-overlay.visible .b1-meta-top { opacity: 1; }
+
+/* ── Pixel-star logo — aligned with the wordmark, on the right.
+   No tilt; gentle vertical bob (~10px) on a slow loop. ── */
+#b1 .b1-logo-wrap {
+  position: absolute;
+  /* Vertically centered on the wordmark (wordmark top: 280, font-size 280, line-height 0.86 → ~240 tall.
+     Centerline ≈ 280 + 120 = 400. Logo is 280 tall, so top ≈ 400 - 140 = 260.) */
+  top: 260px;
+  right: 110px;
+  width: 280px; height: 280px;
+  opacity: 0;
+  transition: opacity 0.9s var(--ease-out-quart) 0.6s,
+              transform 0.9s var(--ease-out-quart) 0.6s;
+  filter: drop-shadow(0 30px 50px rgba(0,0,0,0.55));
+}
+#b1 .b1-logo { width: 100%; height: 100%; display: block; border-radius: 28px; }
+#b1 .b1-intro-overlay.visible .b1-logo-wrap {
+  opacity: 1;
+  animation: b1-logo-float 5.5s ease-in-out 1.5s infinite alternate;
+}
+@keyframes b1-logo-float {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-12px); }
+}
+
+/* ── HERO wordmark — huge, dominant, center-left ── */
+#b1 .b1-wordmark {
+  position: absolute;
+  top: 280px;
+  left: 80px;
+  margin: 0;
+  font-family: var(--ff-display);
+  font-weight: 600;
+  font-size: 280px;
+  letter-spacing: -0.045em;
+  line-height: 0.86;
+  color: var(--stardust-dust);
+  text-rendering: geometricPrecision;
+  opacity: 0;
+  transform: translateY(40px) scale(0.97);
+  transition: opacity 0.9s var(--ease-out-quart) 0.35s,
+              transform 0.9s var(--ease-out-quart) 0.35s;
+  /* Subtle amber emboss to peel it off the navy */
+  text-shadow:
+    0 0 80px rgba(232,185,94,0.10),
+    0 4px 0 rgba(0,0,0,0.20);
+}
+#b1 .b1-intro-overlay.visible .b1-wordmark { opacity: 1; transform: translateY(0) scale(1); }
+
+/* ── Whitepaper quotes (off-axis poster collage) ── */
+#b1 .b1-quote {
+  position: absolute;
+  margin: 0;
+  font-family: var(--ff-display);
+  font-weight: 500;
+  color: var(--stardust-dust);
+  letter-spacing: -0.018em;
+  line-height: 1.05;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s var(--ease-out-quart), transform 0.8s var(--ease-out-quart);
+}
+#b1 .b1-quote em {
+  color: var(--stardust-amber);
+  font-style: italic;
+  font-weight: 500;
+}
+#b1 .b1-intro-overlay.visible .b1-quote { opacity: 1; transform: translateY(0); }
+
+/* "The library was a workaround." — primary, large, just below wordmark */
+#b1 .b1-quote-1 {
+  bottom: 200px;
+  left: 90px;
+  font-size: 64px;
+  max-width: 16ch;
+  transition-delay: 1.0s, 1.0s;
+}
+
+/* "uplift this website." — sits ABOVE the wordmark (the prompt the demo
+   answers). Mono, with amber-highlighted "uplift" pill. */
+#b1 .b1-quote-3 {
+  top: 218px;
+  left: 96px;
+  font-family: var(--ff-mono);
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  color: rgba(245,240,230,0.78);
+  max-width: none;
+  transition-delay: 0.7s, 0.7s;
+}
+#b1 .b1-quote-3 em {
+  color: var(--stardust-amber);
+  font-style: normal;
+  background: rgba(232,185,94,0.10);
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+/* ── Operator tagline bottom-left ── */
+#b1 .b1-tagline {
+  position: absolute;
+  bottom: 90px;
+  left: 90px;
+  font-family: var(--ff-mono);
+  font-size: 16px;
   letter-spacing: 0.18em;
-  color: var(--red2);
-  margin-bottom: 1.2rem;
+  color: rgba(245,240,230,0.55);
   opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.6s var(--ease-out-quart) 0.1s, transform 0.6s var(--ease-out-quart) 0.1s;
+  transition: opacity 0.7s var(--ease-out-quart) 1.6s;
 }
-#b1 .b1-intro-overlay.visible .b1-intro-eyebrow { opacity: 1; transform: translateY(0); }
-
-#b1 .b1-intro-title {
-  font-family: var(--ff-display);
-  font-weight: 800;
-  font-size: clamp(4rem, 12vw, 11rem);
-  letter-spacing: -0.04em;
-  line-height: 0.9;
-  color: var(--text);
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.9s var(--ease-out-quart) 0.25s, transform 0.9s var(--ease-out-quart) 0.25s;
+#b1 .b1-op {
+  color: var(--stardust-amber);
+  padding: 0 0.5em;
 }
-#b1 .b1-intro-overlay.visible .b1-intro-title { opacity: 1; transform: translateY(0); }
+#b1 .b1-intro-overlay.visible .b1-tagline { opacity: 1; }
 
-#b1 .b1-intro-tagline {
-  font-family: var(--ff-display);
-  font-weight: 700;
-  font-size: clamp(1.5rem, 2.8vw, 2.4rem);
-  letter-spacing: -0.005em;
-  color: var(--muted);
-  margin-top: 1.6rem;
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.7s var(--ease-out-quart) 1.4s, transform 0.7s var(--ease-out-quart) 1.4s;
-}
-#b1 .b1-intro-overlay.visible .b1-intro-tagline { opacity: 1; transform: translateY(0); }
-
-/* Press-Space-to-begin cue — visible while waiting for user gesture, hides once demo starts */
+/* Press-Space-to-begin cue — floats over the seam between the two halves
+   so it stays centered while the cover is closed; fades out the moment
+   the demo starts. Sits in front of both halves (z-index 11) so it
+   doesn't get torn by the split. */
 #b1 .b1-intro-cue {
+  position: absolute;
+  bottom: 9vh;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  z-index: 11;
   font-family: var(--ff-mono);
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--muted);
-  margin-top: 2.6rem;
+  letter-spacing: 0.20em;
+  color: rgba(245, 240, 230, 0.55);
   padding: 0.65rem 1.4rem;
-  border: 1px solid var(--border2);
+  border: 1px solid rgba(232, 185, 94, 0.30);
   border-radius: 4px;
+  background: rgba(6, 10, 20, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   display: inline-flex; align-items: center; gap: 0.6rem;
   pointer-events: auto;
   cursor: pointer;
   opacity: 0;
-  transform: translateY(8px);
   transition: opacity 0.6s var(--ease-out-quart) 2s, transform 0.6s var(--ease-out-quart) 2s;
 }
 #b1 .b1-intro-overlay.visible .b1-intro-cue {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
   animation: cuePulse 2.4s ease-in-out 2.7s infinite;
 }
 #b1 .b1-intro-overlay.started .b1-intro-cue {
   opacity: 0;
-  transform: translateY(-4px);
+  transform: translateX(-50%) translateY(-4px);
   transition: opacity 0.35s ease-out, transform 0.35s ease-out;
   animation: none;
 }
 #b1 .b1-intro-cue kbd {
   font-family: var(--ff-mono);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border2);
+  background: rgba(232, 185, 94, 0.10);
+  border: 1px solid rgba(232, 185, 94, 0.35);
   border-radius: 3px;
   padding: 2px 8px;
-  color: var(--text);
+  color: var(--stardust-amber);
 }
 @keyframes cuePulse {
   0%, 100% { opacity: 1; }
@@ -215,13 +437,12 @@
 
 @media (prefers-reduced-motion: reduce) {
   #b1 .b1-intro-overlay,
-  #b1 .b1-intro-eyebrow,
-  #b1 .b1-intro-title,
-  #b1 .b1-intro-tagline,
-  #b1 .ai-scribble .scribble-stroke,
-  #b1 .ai-replacement,
-  #b1 .ai-original,
-  #b1 .ai-circle path {
+  #b1 .b1-cover-half,
+  #b1 .b1-cover-eyebrow,
+  #b1 .b1-cover-wordmark,
+  #b1 .b1-cover-tagline,
+  #b1 .b1-cover-sub,
+  #b1 .b1-cover-logo {
     transition: none;
   }
 }

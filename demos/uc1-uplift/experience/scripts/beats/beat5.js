@@ -30,6 +30,20 @@
   function at(d, fn) { timeouts.push(setTimeout(fn, d)); }
 
   // ─── iframe fragment scroll ─────────────────────────────────────
+  // Beat-5 iframes all load the same content-block-vocabulary.html but
+  // are supposed to display different blocks (#b-customer, #b-blackfriday,
+  // …). We scrollTo() inside each iframe to bring its target block to
+  // the top. Two timing hazards keep resetting that scroll:
+  //   1. The card-entry CSS transforms relayout the iframe.
+  //   2. Lazy iframes can load AFTER beat 5 enters viewport, so a one-
+  //      shot scroll on `load` may fire before the iframe's document has
+  //      a measurable height.
+  // Cheapest robust fix: keep correcting scrollY as long as beat 5 is
+  // active. The check is one read + one write per iframe per second.
+
+  let scrollGuardInterval = null;
+  let iframesArmed = false;
+
   function targetOffsetFor(ifr) {
     try {
       const id = ifr.dataset.fragment?.replace(/^#/, '');
@@ -37,35 +51,41 @@
       return t ? t.offsetTop : null;
     } catch (_) { return null; }
   }
-  function applyScroll(ifr) {
-    const top = targetOffsetFor(ifr);
-    if (top == null) return;
-    try { ifr.contentWindow.scrollTo(0, top); } catch (_) {}
-    document.body.scrollTop = 0;
-  }
-  function startScrollWatchdog(ifr) {
-    let attempts = 0;
-    const tick = () => {
-      attempts++;
-      if (attempts > 20) return;
+
+  function correctScrolls() {
+    const ifrs = document.querySelectorAll('#b5 iframe[data-fragment]');
+    ifrs.forEach(ifr => {
       const want = targetOffsetFor(ifr);
-      if (want != null) {
-        let cur = 0;
-        try { cur = ifr.contentWindow?.scrollY ?? 0; } catch (_) {}
-        if (Math.abs(cur - want) > 1) applyScroll(ifr);
+      if (want == null) return;
+      let cur = 0;
+      try { cur = ifr.contentWindow?.scrollY ?? 0; } catch (_) {}
+      if (Math.abs(cur - want) > 1) {
+        try { ifr.contentWindow.scrollTo(0, want); } catch (_) {}
       }
-      setTimeout(tick, 300);
-    };
-    setTimeout(tick, 100);
+    });
+    // Belt-and-braces: keep the parent body anchored.
+    if (document.body.scrollTop) document.body.scrollTop = 0;
   }
-  function armIframe(ifr) {
-    applyScroll(ifr);
-    startScrollWatchdog(ifr);
+
+  function startScrollGuard() {
+    if (scrollGuardInterval) return;
+    correctScrolls();
+    scrollGuardInterval = setInterval(correctScrolls, 750);
   }
-  function applyFragments() {
+  function stopScrollGuard() {
+    if (scrollGuardInterval) {
+      clearInterval(scrollGuardInterval);
+      scrollGuardInterval = null;
+    }
+  }
+
+  function armIframes() {
+    if (iframesArmed) return;
+    iframesArmed = true;
     document.querySelectorAll('iframe[data-fragment]').forEach(ifr => {
-      if (ifr.contentDocument?.readyState === 'complete') armIframe(ifr);
-      else ifr.addEventListener('load', () => armIframe(ifr), { once: true });
+      const fire = () => { correctScrolls(); };
+      if (ifr.contentDocument?.readyState === 'complete') fire();
+      else ifr.addEventListener('load', fire); // not `once` — handle reloads
     });
   }
 
@@ -76,21 +96,22 @@
     // Reset state
     treeItems.forEach(li => li.classList.remove('is-active', 'is-done'));
     cards.forEach(c => c.classList.remove('is-in'));
+    // Begin guarding iframe scroll positions while beat 5 is on stage.
+    startScrollGuard();
 
     STEPS_AT_MS.forEach((delay, i) => {
       at(delay, () => {
         if (!started) return;
-        // Mark prior as done, highlight current
         treeItems.forEach((li, j) => {
           li.classList.toggle('is-active', j === i);
           if (j < i) li.classList.add('is-done');
         });
-        // Slide in the matching card
         cards[i]?.classList.add('is-in');
+        // Each card entrance can relayout the iframe; nudge scroll again.
+        correctScrolls();
       });
     });
 
-    // After the last step, leave the last item active + the rest marked done
     at(STEPS_AT_MS[STEPS_AT_MS.length - 1] + 800, () => {
       if (!started) return;
       treeItems.forEach((li, j) => {
@@ -102,6 +123,7 @@
   function exit() {
     started = false;
     clearTimers();
+    stopScrollGuard();
     treeItems?.forEach(li => li.classList.remove('is-active', 'is-done'));
     cards?.forEach(c => c.classList.remove('is-in'));
   }
@@ -125,9 +147,9 @@
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => { applyFragments(); init(); });
+    document.addEventListener('DOMContentLoaded', () => { armIframes(); init(); });
   } else {
-    applyFragments();
+    armIframes();
     init();
   }
 })();

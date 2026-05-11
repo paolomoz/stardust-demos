@@ -24,7 +24,7 @@
   // Beat 4 lands in AEM              8s
   // Beat 5 ongoing capability       14s
   // Beat 6 math + close              8s
-  const BEAT_DURATIONS_MS = [24000, 32000, 30000, 8000, 14000, 8000];
+  const BEAT_DURATIONS_MS = [15000, 34000, 30000, 8000, 14000, 12000];
   const TRANSITION_MS = 900; // matches CSS #page-wrap transition
 
   const wrap = document.getElementById('page-wrap');
