@@ -1,0 +1,61 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one deploy at a time; cancel any in-flight build superseded by a new push.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Stage site
+        run: |
+          mkdir -p _site/uplift
+          # Mount the UC1 demo's experience folder at /uplift/
+          cp -R demos/uc1-uplift/experience/. _site/uplift/
+
+          # Simple root index redirecting to the demo
+          cat > _site/index.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <title>Stardust demos</title>
+            <meta http-equiv="refresh" content="0; url=./uplift/">
+            <style>body{font-family:system-ui,sans-serif;background:#0a0a0a;color:#f5f0e6;padding:3rem;}a{color:#e8b95e;}</style>
+          </head>
+          <body>
+            <p>Redirecting to <a href="./uplift/">UC1 Uplift demo</a>…</p>
+          </body>
+          </html>
+          HTML
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
