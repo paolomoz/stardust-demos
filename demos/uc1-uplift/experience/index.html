@@ -437,43 +437,45 @@
   </section>
 
   <!-- BEAT 4 · 1:00–1:08 · Lands in AEM
-       Mask: vertical slide-up. Stardust output frame slides up; AEM
-       authoring frame revealed underneath with hover-edit affordance. -->
+       The bolder redesign iframe + a WYSIWYG editing overlay: the hero
+       title is "selected" (red highlight ring + component tag + floating
+       rich-text toolbar), then live-edited (delete + retype). The edit
+       is the proof — Stardust output isn't a static deliverable, it's
+       fully authorable in AEM on day one. -->
   <section class="beat" id="b4" data-duration="8000">
     <div class="b4-stage">
       <div class="b4-eyebrow">Where it lands</div>
       <h2 class="b4-title">Lands in <span class="red">AEM.</span></h2>
 
-      <div class="b4-frames" aria-hidden="true">
-        <span class="b4-caption-top">stardust/migrated/ → aem author</span>
+      <div class="b4-canvas">
+        <iframe
+          class="b4-iframe"
+          src="./assets/business-adobe/redesign/business-adobe-sites/index-bolder.html"
+          title="AEM Sites — bolder redesign (authorable view)"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin"
+          tabindex="-1"></iframe>
 
-        <!-- Top frame: Stardust output (will slide up) -->
-        <div class="b4-frame-stardust">
-          <div class="mock-header"></div>
-          <div class="mock-body">
-            <div class="mock-hero"></div>
-            <div class="mock-cols"><i></i><i></i><i></i></div>
-          </div>
+        <!-- Component label: appears anchored to the selected element -->
+        <div class="b4-component-label" aria-hidden="true">Hero · Title</div>
+
+        <!-- Floating rich-text toolbar -->
+        <div class="b4-toolbar" aria-hidden="true">
+          <button class="b4-tool" tabindex="-1"><b>B</b></button>
+          <button class="b4-tool" tabindex="-1"><i>I</i></button>
+          <button class="b4-tool" tabindex="-1"><u>U</u></button>
+          <span class="b4-tool-sep"></span>
+          <button class="b4-tool" tabindex="-1">H1</button>
+          <button class="b4-tool" tabindex="-1">¶</button>
+          <span class="b4-tool-sep"></span>
+          <button class="b4-tool" tabindex="-1">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07L11.71 5.24"/>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07L12.29 18.76"/>
+            </svg>
+          </button>
         </div>
-
-        <!-- Bottom frame: AEM authoring view (revealed) -->
-        <div class="b4-frame-aem">
-          <div class="aem-toolbar">
-            <span class="aem-mark">Adobe</span>
-            <span class="aem-ctx">Experience Manager · home</span>
-            <span class="aem-spacer"></span>
-            <span class="aem-pill">Published</span>
-          </div>
-          <div class="aem-page">
-            <div class="aem-block aem-hero"></div>
-            <div class="aem-cols"><i></i><i></i><i></i></div>
-          </div>
-        </div>
-
-        <span class="b4-caption-bot">authorable on day one</span>
       </div>
-
-      <p class="b4-sub">in-page edits · scheduling · drafts</p>
     </div>
   </section>
 
@@ -615,6 +617,7 @@
 <!-- Per-beat timelines -->
 <script src="./scripts/beats/beat1.js"></script>
 <script src="./scripts/beats/beat3.js"></script>
+<script src="./scripts/beats/beat4.js"></script>
 <script src="./scripts/beats/beat5.js"></script>
 
 <script src="./scripts/controller.js"></script>
