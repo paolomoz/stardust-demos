@@ -28,16 +28,25 @@ UC2 and UC3 are partially supported — when a demo hits a seam in the pipeline,
 - `context/use-cases.md` — UC1/UC2/UC3 detail and where the seams are.
 - `context/references.md` — every external URL.
 - `context/motion-demo-skill.md` — **living draft of a future skill** that codifies how we build demos here. Update it as we go (see below).
+- `context/stardust-seed-brief-skill.md` — **living draft of a future skill** for `/stardust:seed` + `/stardust:brief` (the greenfield-entry commands named in UC2+UC3's seam beat). Maintain on the same cadence as `motion-demo-skill.md`.
 
-## Maintain `context/motion-demo-skill.md` during build
+## Maintain the living-draft skill files during build
 
-This doc is the seed for an eventual Claude Code skill that codifies "build a cinematic, motion-driven HTML demo." Update it inline whenever you:
+Two docs grow inline as we work; both are seeds for eventual Claude Code skills.
+
+**`context/motion-demo-skill.md`** — codifies "build a cinematic, motion-driven HTML demo." Update whenever you:
 
 - **Lock a decision** worth reusing (length, beat structure, brand layering, naming surface, audience tailoring)
 - **Define a reusable pattern** (controller logic, cover screen, page-per-beat architecture, walk-out line)
 - **Hit a gotcha** (bot detection, autoplay policy, browser quirk, pipeline order)
 
-Update during the work, not at the end — value compounds when the entry is fresh and specific. After the first 1–2 demos ship, the doc should be ready to lift into a SKILL.md.
+**`context/stardust-seed-brief-skill.md`** — codifies the `/stardust:seed` + `/stardust:brief` greenfield-entry commands. Update whenever you:
+
+- **Lock a schema decision** (input doc shape, output `current/` field, mapping rule from BRAND.md → DESIGN.json, etc.)
+- **Define a reusable pattern** (`pending: true` markers, `bgMode` sectioning, verbatim-noun guarantee, …)
+- **Hit a gotcha** doing the hand-authoring work that an implementation would also hit
+
+Update during the work, not at the end — value compounds when the entry is fresh and specific. After the first 1–2 brands / demos ship, each doc should be ready to lift into a `SKILL.md`.
 
 ## Disambiguations (do not confuse)
 
