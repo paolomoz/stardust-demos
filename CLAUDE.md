@@ -42,7 +42,7 @@ Update during the work, not at the end — value compounds when the entry is fre
 ## Disambiguations (do not confuse)
 
 - **"Snowflake"** in this project = `ai-ecoverse/snowflake`, the AEM EDS bridge. **Not** the cloud data warehouse.
-- **Stardust v0.3.0** is a complete refactor. The pre-v0.3.0 "greenfield" tool is preserved separately and is **not** the current pipeline. UC3 (from-brief) sits closer to the legacy greenfield idea but should be demoed against the current toolchain.
+- **Stardust v0.3.0** is a complete refactor. The pre-v0.3.0 "greenfield" tool is preserved separately and is **not** the current pipeline. UC3 (brief-led, see `/stardust:brief` in the seam beat of the UC2+UC3 demo) sits closer to the legacy greenfield idea but should be demoed against the current toolchain.
 - **SLICC does not run Claude Code.** SLICC is a browser-native agent. The bridge is the `slicc-handoff` skill (Claude-Code side) that pushes work into a SLICC browser session. For demo recording, SLICC is the camera target, Claude Code runs Stardust off-camera.
 - **Stardust is built on `impeccable`.** Design opinions live in `impeccable`; Stardust is workflow + structure. If the user asks "where did the design choice come from," the answer is usually impeccable.
 

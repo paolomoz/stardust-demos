@@ -25,7 +25,7 @@ Hold one beat longer than feels comfortable. The two inputs pulse gently.
 
 ---
 
-## 00:10 – 00:30 · UC2 — THE DIRECTION PATH
+## 00:10 – 00:30 · UC2 — THE BRAND PATH (seed)
 
 **Visual:** the right side of the screen fades. The asset bundle on the left expands to centre stage, taking the full frame. Cards deal themselves out across a designer's workbench:
 
@@ -50,7 +50,7 @@ Then the resolution happens: a thin column slides in from the right and `DESIGN.
 
 ---
 
-## 00:30 – 00:50 · UC3 — THE BRIEF PATH
+## 00:30 – 00:50 · UC3 — THE BRIEFING PATH (brief)
 
 **Visual:** the workbench wipes out with a top-to-bottom scan (a fresh mask — not reused from any UC1 beat or from beat 2). On the empty frame, `brief.pdf` lands centre, large, with weight — like a folder hitting a table.
 
@@ -59,8 +59,8 @@ The PDF opens. A few real lines of brief prose are visible: the brand's premise,
 Then Stardust parses it. Lines from the document lift off as tokens and migrate to three new columns sliding in from below:
 
 - **PRODUCT.md** — a short list: positioning, audience, voice, ambition.
-- **DESIGN.md** — register, mood words, temperature, motion register.
 - **Page list** — `home / atelier / objects / story / press / contact` (or whatever the real generated site's pages are; align after the site is built).
+- **Content inventory** — per-page beats: headings, sections, CTAs, links.
 
 Page-list items materialise with a sequential left-to-right cascade — same pacing-as-message rule, here saying "process / pipeline / time-as-direction."
 
@@ -74,7 +74,7 @@ Page-list items materialise with a sequential left-to-right cascade — same pac
 
 **Visual:** the three columns from beat 3 and the `DESIGN.json` column from beat 2 reappear at the edges of the frame, all at quarter-opacity. The centre clears.
 
-The UC1 pipeline diagram returns from beat 1, but now with two front-door arrows feeding in from the left side where `extract` used to live: one labelled *direction*, one labelled *brief*. They merge into `prototype → migrate`. The merge is a beat — a small visual handshake, not a fade.
+The UC1 pipeline diagram returns from beat 1, but now with two front-door arrows feeding in from the left side where `extract` used to live: one labelled *the brand*, one labelled *the briefing*. They merge into `prototype → migrate`. The merge is a beat — a small visual handshake, not a fade.
 
 `prototype → migrate` lights up. Pages of the generated artisan site bloom out one by one across a grid: home, atelier, objects, story, press, contact. (Live iframes — same pattern as UC1's beat 3 reveal.) The grid is loose and editorial, matching the brand's register — not a uniform thumbnail wall.
 
@@ -90,14 +90,14 @@ The UC1 pipeline diagram returns from beat 1, but now with two front-door arrows
 
 **On screen, in two short hits:**
 
-> Today: a hand-edited entry.
-> Tomorrow: the front door types itself.
+> Today: hand-authored.
+> Tomorrow: it types itself.
 
 Beat. Then a small terminal frame slides up from the bottom of the screen and types — actually types, terminal-grade, slow enough to read — two commands in sequence:
 
 ```
-/stardust:from-direction
-/stardust:from-brief
+/stardust:seed
+/stardust:brief
 ```
 
 A small chip appears alongside, in Adobe red:
@@ -112,7 +112,7 @@ The dashed outlines on the two front-door arrows solidify as the commands finish
 
 (Tiny line beneath, optional — A/B during build:)
 
-> *Direction in. Brief in. Site out.*
+> *Brand in. Brief in. Site out.*
 
 ---
 
@@ -165,10 +165,10 @@ Imagery used in beat 2's "designer assets" is generated externally and fed in as
 | Beat | Source artifact |
 |---|---|
 | 1 — Cold open | UC1's pipeline-diagram primitives + the Stardust starfield canvas, reused from `uc1-uplift/experience/`. New: the two-input animation (asset bundle + brief.pdf). |
-| 2 — Direction | `assets/brand-images/*.{png,jpg}` (generated), the invented brand's logo (generated), the artisan brand's real DESIGN tokens from `assets/artisan-site/DESIGN.json`. |
-| 3 — Brief | `assets/brief.pdf` (reverse-engineered from the brand's PRODUCT.md), the brand's real PRODUCT.md / DESIGN.md / page list from `assets/artisan-site/`. |
+| 2 — Brand (seed) | `assets/brand-images/*.{png,jpg}` (generated), the invented brand's logo (generated), the artisan brand's real DESIGN tokens from `assets/artisan-site/DESIGN.json`. |
+| 3 — Briefing (brief) | `assets/brief.pdf` (reverse-engineered from the brand's PRODUCT.md), the brand's real PRODUCT.md / page list / per-page content inventory from `assets/artisan-site/`. |
 | 4 — Converge | Live iframes of `assets/artisan-site/<page>.html` for each page of the generated site. |
-| 5 — Seam | New typewriter inserts of `/stardust:from-direction` and `/stardust:from-brief`. Either recorded in a terminal frame or rendered as HTML typewriter (same pattern as UC1's beat 2 prompt typing). |
+| 5 — Seam | New typewriter inserts of `/stardust:seed` and `/stardust:brief`. Either recorded in a terminal frame or rendered as HTML typewriter (same pattern as UC1's beat 2 prompt typing). |
 | 6 — AEM landing + close | AEM authoring view (TBD — may be a still). Same starfield bookend from beat 1, reused. |
 
 ### Music and pacing
@@ -183,7 +183,7 @@ Same as UC1. "Lands in AEM" is technically AEM ingesting Stardust output via the
 
 ### Naming surface — note on the future commands
 
-`/stardust:from-direction` and `/stardust:from-brief` are **named on screen**. This is deliberate and breaks the usual "only product + destination" rule because the entire point of beat 5 is to make the upcoming product surface visible. The override is approved within this beat only — production notes can also use these names; nothing outside beat 5 should.
+`/stardust:seed` and `/stardust:brief` are **named on screen**. This is deliberate and breaks the usual "only product + destination" rule because the entire point of beat 5 is to make the upcoming product surface visible. The override is approved within this beat only — production notes can also use these names; nothing outside beat 5 should.
 
 ### Why this script differs structurally from UC1
 

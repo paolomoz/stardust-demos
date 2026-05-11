@@ -163,7 +163,7 @@ When the demo covers use cases the product does not yet fully ship, the seam its
 Pattern (UC2+UC3 greenfield):
 1. *Today: a hand-edited entry.* — the current limitation, in one short line.
 2. *Tomorrow: the front door types itself.* — the bridge.
-3. Preview commands type in a terminal frame (`/stardust:from-direction`, `/stardust:from-brief`).
+3. Preview commands type in a terminal frame (`/stardust:seed`, `/stardust:brief`).
 4. A small *"shipping."* chip in brand accent colour.
 5. Full-frame line: *"Stardust is going to start anywhere."* (or product-equivalent).
 
@@ -192,7 +192,7 @@ UC1 → UC2+UC3 share Adobe Piñata wrapper + starfield bookend + `extract → d
 
 ### Brief reverse-engineered from PRODUCT.md
 
-When a demo needs to show "brief → site" but the toolchain runs site → product surface (the reverse direction), build the real site first, then **reverse-engineer the brief from the real `PRODUCT.md`** so the brief shown on screen would, if a `/stardust:from-brief` command existed, produce that site. The mapping shown is internally consistent even though the production order is inverted. Keeps the visible artifact honest while sidestepping the missing pipeline step.
+When a demo needs to show "brief → site" but the toolchain runs site → product surface (the reverse direction), build the real site first, then **reverse-engineer the brief from the real `PRODUCT.md`** so the brief shown on screen would, if a `/stardust:brief` command existed, produce that site. The mapping shown is internally consistent even though the production order is inverted. Keeps the visible artifact honest while sidestepping the missing pipeline step.
 
 ### Inner-brand contrast as series statement
 
@@ -475,14 +475,14 @@ Placeholders should look intentional, not broken. A boxed wireframe with an "EXT
 
 - `demos/uc2-uc3-greenfield/` — UC2 + UC3 combined, 90s text-only HTML, **scoped** (README + script locked; experience build pending).
   - **Brand sources**: outer wrapper reused verbatim from UC1 (Adobe Piñata). Inner artifact is an invented artisan brand, built for real by running Stardust against a private reference and feeding in externally-generated imagery.
-  - **Structural pivot vs. UC1**: two front doors (UC2 direction-led, UC3 brief-led) converging on one shared `prototype → migrate` rail. Replaces UC1's "ongoing capability" payoff with a **seam beat** that names the upcoming `/stardust:from-direction` and `/stardust:from-brief` commands.
+  - **Structural pivot vs. UC1**: two complementary entries (UC2 = brand from assets + intent, UC3 = briefing from a written brief) converging on one shared `current/` → `prototype → migrate` rail. Replaces UC1's "ongoing capability" payoff with a **seam beat** that names the upcoming `/stardust:seed` and `/stardust:brief` commands.
   - **Walk-out line**: *"One prompt · one website."* (whitepaper). **Series-close** matches UC1: *"Ship the demo before the deck."*
   - **Beat inventory** (planned):
     - **Beat 1** (10s) — Cold open. Pipeline diagram with `extract` dimmed; two inputs (asset bundle + brief.pdf) hover where the URL would go. *"What if there's nothing to extract?"*
     - **Beat 2** (20s) — Direction path. Designer workbench: logo + swatches + mood images + voice notes. Intent phrase types. `DESIGN.json` resolves with the real tokens from the generated artisan brand.
     - **Beat 3** (20s) — Brief path. `brief.pdf` lands. Stardust parses → `PRODUCT.md` + `DESIGN.md` + page list materialise. Brief content reverse-engineered from the real PRODUCT.md.
     - **Beat 4** (12s) — Converge. Two front-door arrows merge into `prototype → migrate`. Live iframes of the generated artisan site bloom in a loose editorial grid.
-    - **Beat 5** (16s) — The seam (payoff). *"Today: a hand-edited entry. Tomorrow: the front door types itself."* `/stardust:from-direction` and `/stardust:from-brief` type in a terminal frame with a "shipping" chip.
+    - **Beat 5** (16s) — The seam (payoff). *"Today: hand-authored. Tomorrow: it types itself."* `/stardust:seed` and `/stardust:brief` type in a terminal frame with a "shipping" chip.
     - **Beat 6** (12s) — Lands in AEM + walk-out. Same starfield bookend as beat 1.
 
 - `demos/uc1-uplift/` — UC1, business.adobe.com uplift, ~110s text-only HTML, Adobe-branded wrapper.

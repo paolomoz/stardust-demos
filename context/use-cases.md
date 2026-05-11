@@ -30,7 +30,7 @@ Today the pipeline assumes you have a site to extract. For a designer-led "new d
 **Inputs:** brand assets (logo, palette intent, voice notes), designer's direction phrase, hand edits to `DESIGN.md`.
 **Outputs:** prototypes that reflect the designer's intent; the path to deployable HTML or EDS is the same as UC1.
 **Narration angle:** "Designer in the loop. Stardust as instrument, not author."
-**What a future-state demo would need:** a `/stardust:from-direction` (or similar) entry point that skips extract; or a stronger `--rebrand` story that builds `current/` from designer inputs alone. Worth flagging in narration as the upcoming capability.
+**What a future-state demo would need:** a `/stardust:seed` entry point that builds the brand half of `current/` (DESIGN.md, DESIGN.json, brand surface) from designer inputs alone — no crawl required. Worth flagging in narration as the upcoming capability. The UC2+UC3 demo names this command on screen.
 
 ## UC3 — Generate a new site from a brief (Markdown / PDF / other)
 
@@ -45,7 +45,7 @@ The pre-v0.3.0 "greenfield" tool covered something close to this; it's preserved
 **Inputs:** brief document (md/PDF), optional reference images.
 **Outputs:** a multi-page site with no prior brand to inherit from.
 **Narration angle:** "From document to deployable site." Best-suited to startup/launch storyline.
-**What a future-state demo would need:** a `/stardust:from-brief` entry point that ingests the brief, picks pages, seeds `current/` synthetically. Like UC2, this is part of the demo's *story* — show the seam, not hide it.
+**What a future-state demo would need:** a `/stardust:brief` entry point that ingests the brief, picks pages, produces the briefing half of `current/` (PRODUCT.md, page list, per-page content inventory). Like UC2, this is part of the demo's *story* — show the seam, not hide it. The UC2+UC3 demo names this command on screen alongside `/stardust:seed`.
 
 ## Cross-cutting concerns for any demo
 

@@ -47,14 +47,14 @@ Target: **90s** (locked). Same upper-edge text-only kinetic budget as UC1, justi
 2. **UC2 — Direction path.** Designer's assets drop in (logo, swatches, a few mood images, voice notes). A short intent phrase types. `DESIGN.json` resolves on screen — tokens, surface temperatures, register.
 3. **UC3 — Brief path.** `brief.pdf` lands. Stardust parses to `PRODUCT.md` + `DESIGN.md` + a page list, which spreads across the frame.
 4. **Converge.** Two streams merge into `prototype → migrate`. Pages bloom into a grid of the actual generated site.
-5. **The seam (the payoff).** *"Today: a hand-edited entry."* Then `/stardust:from-direction` and `/stardust:from-brief` type as preview commands. Tag: *shipping.* This is the VP-level moment.
+5. **The seam (the payoff).** *"Today: hand-authored."* Then `/stardust:seed` and `/stardust:brief` type as preview commands. Tag: *shipping.* This is the VP-level moment.
 6. **Lands in AEM + walk-out.** AEM authoring frame. Walk-out: *"One prompt · one website."* Series-close: *"Ship the demo before the deck."*
 
 Beat-by-beat in `script.md`.
 
 ### Why the seam beat is the key (instead of UC1's ongoing-capability beat)
 
-UC1's payoff was about repetition: "the uplift is just the start." UC2+UC3's payoff is about **reach**: today Stardust starts from extract; tomorrow it starts from anything. Naming the next two commands on screen — `/stardust:from-direction`, `/stardust:from-brief` — is the moment a VP sees the *product surface* expand. It is also the demo's load-bearing roadmap signal, per `CLAUDE.md` ("show the seam, don't hide it").
+UC1's payoff was about repetition: "the uplift is just the start." UC2+UC3's payoff is about **reach**: today Stardust starts from extract; tomorrow it starts from anything. Naming the next two commands on screen — `/stardust:seed` (the brand, from assets + intent) and `/stardust:brief` (the briefing, from a written brief) — is the moment a VP sees the *product surface* expand. The two commands are **complementary halves** of what `extract` produces from a real site: seed delivers the design system; brief delivers the product surface and page inventory. Together they produce `current/`. It is also the demo's load-bearing roadmap signal, per `CLAUDE.md` ("show the seam, don't hide it").
 
 ## Build approach: HTML-first, MP4 as artifact
 
@@ -90,7 +90,7 @@ Two surfaces stay separated, same pattern as UC1.
 - **Outer — the wrapper.** Adobe-branded, Piñata grammar. Reuse UC1's `tokens.css`, `base.css`, `motion.css`, `controller.js`, `particles.js`, `cursor-glow.js` verbatim. Per-beat CSS/JS modules are new.
 - **Inner — the generated site.** A new invented artisan brand, built for real with Stardust against a private reference (kept out of repo and off-screen). Renders live in iframe at Beat 4 (converge) and Beat 6 (Lands in AEM).
 
-The artisan brand's identity, voice, page list, and DESIGN tokens are produced by the actual Stardust pipeline. Imagery is generated separately and fed in as brand assets. The brief shown in UC3 is **reverse-engineered from the brand's real PRODUCT.md** so the brief→site mapping shown on screen is internally consistent: if `/stardust:from-brief` existed, this brief would produce that site.
+The artisan brand's identity, voice, page list, and DESIGN tokens are produced by the actual Stardust pipeline. Imagery is generated separately and fed in as brand assets. The brief shown in UC3 is **reverse-engineered from the brand's real PRODUCT.md** so the brief→site mapping shown on screen is internally consistent: if `/stardust:brief` existed, this brief would produce that site.
 
 ### What we hand-wire on top of the UC1 wrapper
 
@@ -98,7 +98,7 @@ The artisan brand's identity, voice, page list, and DESIGN tokens are produced b
 - Beat 2 designer-asset card stack + intent-phrase typewriter
 - Beat 3 brief-document prop + page-list materialise animation
 - Beat 4 live iframe of the generated artisan site + grid spread
-- Beat 5 preview-command typewriter for `/stardust:from-direction` and `/stardust:from-brief` with a *"shipping"* tag
+- Beat 5 preview-command typewriter for `/stardust:seed` and `/stardust:brief` with a *"shipping"* tag
 - Beat 6 AEM authoring frame for an artisan-site page (or screenshot if live AEM frame is impractical)
 - Music bed (separate cue from UC1; same editorial-restrained register, different melody)
 
@@ -144,7 +144,7 @@ Beats may be inlined as `<section>`s in `index.html` rather than separate files 
 - ❌ **Generated artisan site** — produced by running Stardust against an invented brand. Lives under `assets/artisan-site/`. Iframed at beat 4 and beat 6.
 - ❌ **Brand imagery** — generated externally (image model). Used as drop-in assets in Beat 2 (the designer's mood pile).
 - ❌ **Brief PDF** — `brief.pdf`. Reverse-engineered from the brand's real PRODUCT.md after the site is built, so brief→site is internally consistent.
-- ❌ **Preview-command typewriter inserts** — short clips of `/stardust:from-direction` and `/stardust:from-brief` typing in a terminal frame. ~1.5s each.
+- ❌ **Preview-command typewriter inserts** — short clips of `/stardust:seed` and `/stardust:brief` typing in a terminal frame. ~1.5s each.
 - ❌ **AEM authoring frame for an artisan-site page** — same constraint as UC1; may be a single still if live capture is impractical.
 - ❌ **Music bed** — same editorial-restrained register as UC1; new melody. Resolves on the converge (beat 4), gains weight on the seam beat (beat 5), lands quiet on the walk-out (beat 6).
 - ✅ **Wrapper plumbing** — all of UC1's `tokens.css`, `base.css`, `motion.css`, `controller.js`, `particles.js`, `cursor-glow.js`, the starfield, the cover screen, the press-to-begin gesture. Reuse as-is.
