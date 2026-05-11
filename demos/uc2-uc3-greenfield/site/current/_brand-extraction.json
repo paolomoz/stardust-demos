@@ -1,0 +1,79 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:seed (hand-authored, proof-of-concept)",
+    "writtenAt": "2026-05-11T00:00:00Z",
+    "synthesizedInputs": [
+      "demos/uc2-uc3-greenfield/site/brand/BRAND.md"
+    ],
+    "stardustVersion": "0.3.0",
+    "notes": [
+      "consolidated brand surface — hand-authored from BRAND.md",
+      "logo at assets/logo.svg is a placeholder; real artifact arrives from Gemini 3 Pro Image Preview generation",
+      "palette is six brand tokens from BRAND.md; no captured-color reduction needed (greenfield)",
+      "no source URL — synthesized field set to null"
+    ]
+  },
+  "site": {
+    "name": "Holler & Hymn",
+    "tagline": "Saturday night sin. Sunday morning hymn. Both in one bottle.",
+    "originUrl": null,
+    "intent": "Single-maker Appalachian botanical-liqueur house. Wolfpen Holler, Madison County, NC. Wendell Greene."
+  },
+  "logo": {
+    "source": "synthesized",
+    "sourceSelector": null,
+    "localPath": "stardust/current/assets/logo.svg",
+    "format": "svg",
+    "intrinsicWidth": 800,
+    "intrinsicHeight": 800,
+    "synthesized": true,
+    "synthesizedBasis": "BRAND.md logo direction — round seal OR stacked wordmark OR apothecary panel; ampersand-centered; hand-lettered revival-tent typography on Sunday-bulletin cream; rust-red on cream OR cream on hymnal-black",
+    "pendingExternalGen": "Gemini 3 Pro Image Preview — see BRAND.md logo prompt seed"
+  },
+  "palette": [
+    { "role": "surface-light",   "value": "#e8d8b8", "name": "bulletin-cream", "usedAs": ["page-ground (bulletin mode)", "text on dark surfaces"] },
+    { "role": "surface-dark",    "value": "#1a1410", "name": "hymnal-black",   "usedAs": ["page-ground (revival mode)", "body text on cream"] },
+    { "role": "primary-display", "value": "#7e1d12", "name": "barn-rust",      "usedAs": ["display headlines", "primary CTA fill", "hand-lettered marks"] },
+    { "role": "secondary",       "value": "#d4a45c", "name": "gilt-gold",      "usedAs": ["hymnal-edge accents", "decorative rules", "gilded initial caps"] },
+    { "role": "tertiary-botanical","value": "#3e5a3e","name": "rhody-green",   "usedAs": ["botanical-context sections only (the-still, foraging)"] },
+    { "role": "accent-irreverence","value": "#f04a26","name": "hellfire-neon", "usedAs": ["one-per-viewport accent: chips, single ornaments"] }
+  ],
+  "typography": {
+    "display":   { "fontFamily": "'Saloon', 'Camp Type', 'Knockout', sans-serif", "role": "hand-lettered revival-tent — all-caps display only" },
+    "body":      { "fontFamily": "'Sentinel', 'Bookman', 'Cycles', serif",       "role": "hymnal serif — reading text" },
+    "mono":      { "fontFamily": "'IBM Plex Mono', 'Courier New', monospace",    "role": "typewriter / almanac — numerals, labels, micro-copy" }
+  },
+  "voice": {
+    "register": "brand",
+    "narrator": "first-person singular (Wendell Greene)",
+    "anchorPhrases": [
+      "Saturday night sin. Sunday morning hymn. Both in one bottle.",
+      "Made by hand. From a to z.",
+      "Foraged inside forty miles.",
+      "Nothing bought in a jug.",
+      "Twenty-seven herbs, eleven labels, one preacher's shed."
+    ],
+    "tensionMove": "the holler × the hymn — Saturday-night outlaw + Sunday-morning revival, both at full volume, the ampersand is the brand"
+  },
+  "imageryLanes": [
+    { "lane": "1 — place / forage / process", "description": "photographic-realistic, golden-hour WNC mountain holler, copper still, foraging hands, mason jars, weathered tin roof" },
+    { "lane": "2 — hymnal / revival / heritage", "description": "still-life photographs, worn leather hymnal, Sunday bulletin typography, brass-edged pages, folding chair, wooden pew" },
+    { "lane": "3 — label art / jukebox / bar", "description": "hand-painted bottle labels with dripping ink, mid-century jukebox typography, matchbook art, tent-revival flyers, vintage country-music sleeves" }
+  ],
+  "antiReferences": [
+    "Kinfolk / Cereal-Magazine luxe-minimal-craft (beige, sage, charcoal, generous white space, serif italic)",
+    "Brooklyn industrial-craft (Edison bulb, subway tile, Helvetica-on-blackboard)",
+    "Wes Anderson costume-craft (symmetrical pastel, Futura, postcard-Italian-summer)",
+    "Etsy folk-craft (hand-drawn fern in dusty rose)",
+    "Generic country / farm signage (Y'all means all)",
+    "Modern craft-beer label vernacular (illustration-heavy can wraps, all-caps fashion-foundry display)"
+  ],
+  "brandTokens": {
+    "--hh-hymnal-black":   "#1a1410",
+    "--hh-barn-rust":      "#7e1d12",
+    "--hh-gilt-gold":      "#d4a45c",
+    "--hh-rhody-green":    "#3e5a3e",
+    "--hh-bulletin-cream": "#e8d8b8",
+    "--hh-hellfire-neon":  "#f04a26"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:seed + stardust:brief (hand-authored, proof-of-concept)",
+    "writtenAt": "2026-05-11T00:00:00Z",
+    "synthesizedInputs": [
+      "demos/uc2-uc3-greenfield/site/brand/BRAND.md",
+      "demos/uc2-uc3-greenfield/site/briefing/SITE-BRIEF.md",
+      "demos/uc2-uc3-greenfield/site/briefing/CONTENT.md"
+    ],
+    "stardustVersion": "0.3.0",
+    "scope": "summary of the synthesized page set — no crawl performed; pages authored directly from brand + briefing documents"
+  },
+  "successes": [
+    { "slug": "home",         "url": "https://hollerandhymn.com/",            "source": "synthesized", "originDoc": "CONTENT.md#1-home" },
+    { "slug": "the-holler",   "url": "https://hollerandhymn.com/the-holler",  "source": "synthesized", "originDoc": "CONTENT.md#2-the-holler" },
+    { "slug": "the-still",    "url": "https://hollerandhymn.com/the-still",   "source": "synthesized", "originDoc": "CONTENT.md#3-the-still" },
+    { "slug": "the-bottles",  "url": "https://hollerandhymn.com/the-bottles", "source": "synthesized", "originDoc": "CONTENT.md#4-the-bottles" },
+    { "slug": "hymns",        "url": "https://hollerandhymn.com/hymns",       "source": "synthesized", "originDoc": "CONTENT.md#5-hymns" },
+    { "slug": "pews",         "url": "https://hollerandhymn.com/pews",        "source": "synthesized", "originDoc": "CONTENT.md#6-pews" },
+    { "slug": "visit",        "url": "https://hollerandhymn.com/visit",       "source": "synthesized", "originDoc": "CONTENT.md#7-visit" },
+    { "slug": "the-catalog",  "url": "https://hollerandhymn.com/the-catalog", "source": "synthesized", "originDoc": "CONTENT.md#8-the-catalog" },
+    { "slug": "contact",      "url": "https://hollerandhymn.com/contact",     "source": "synthesized", "originDoc": "CONTENT.md#9-contact" }
+  ],
+  "failures": []
+}

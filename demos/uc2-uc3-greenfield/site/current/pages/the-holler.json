@@ -1,0 +1,69 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:seed + stardust:brief (hand-authored, proof-of-concept)",
+    "writtenAt": "2026-05-11T00:00:00Z",
+    "source": "synthesized — no source URL; greenfield brand",
+    "finalUrl": "https://hollerandhymn.com/the-holler",
+    "synthesizedInputs": [
+      "demos/uc2-uc3-greenfield/site/brand/BRAND.md#the-maker",
+      "demos/uc2-uc3-greenfield/site/briefing/CONTENT.md#2-the-holler"
+    ],
+    "stardustVersion": "0.3.0"
+  },
+  "slug": "the-holler",
+  "meta": {
+    "finalUrl": "https://hollerandhymn.com/the-holler",
+    "title": "The Holler — Wendell Greene · Holler & Hymn",
+    "description": "I grew up in a hollow outside Asheville where my grandmother kept a still in the smokehouse and a hymnal on the kitchen table. We never thought of them as different things.",
+    "og": { "title": "The Holler — Wendell Greene", "description": "The maker, the place, the smokehouse, the hymnal.", "image": "/assets/og-the-holler.jpg", "type": "article", "siteName": "Holler & Hymn" },
+    "themeColor": { "light": "#e8d8b8", "dark": "#1a1410" }
+  },
+  "headings": [
+    { "level": 1, "text": "THE HOLLER", "fontFamily": "'Saloon', sans-serif", "fontWeight": "800", "fontSize": "96px", "color": "#7e1d12", "domPath": "main > section.hero > h1" },
+    { "level": 2, "text": "I grew up here. I still do.", "fontFamily": "'Sentinel', serif", "fontWeight": "500", "fontSize": "32px", "color": "#1a1410", "domPath": "main > section.hero > p" },
+    { "level": 2, "text": "ORIGIN", "fontFamily": "'Saloon', sans-serif", "fontWeight": "800", "fontSize": "32px", "color": "#7e1d12", "domPath": "main > section.origin > h2" },
+    { "level": 2, "text": "WOLFPEN HOLLER", "fontFamily": "'Saloon', sans-serif", "fontWeight": "800", "fontSize": "48px", "color": "#e8d8b8", "domPath": "main > section.place > h2" },
+    { "level": 2, "text": "THE SMOKEHOUSE AND THE HYMNAL", "fontFamily": "'Saloon', sans-serif", "fontWeight": "800", "fontSize": "32px", "color": "#7e1d12", "domPath": "main > section.anchor > h2" },
+    { "level": 2, "text": "WHY NOW", "fontFamily": "'Saloon', sans-serif", "fontWeight": "800", "fontSize": "32px", "color": "#e8d8b8", "domPath": "main > section.why > h2" }
+  ],
+  "landmarks": [
+    { "tag": "header", "role": "header", "id": null, "className": "site-header", "childCount": 2, "visibleText": "HOLLER & HYMN  ·  HOME · THE HOLLER · THE STILL · THE BOTTLES · HYMNS · PEWS · VISIT  ·  VISIT THE BARN", "bgColor": "#e8d8b8", "textColor": "#1a1410" },
+    { "tag": "nav", "role": "nav", "id": "nav-primary", "className": "nav-primary", "childCount": 7, "visibleText": "HOME · THE HOLLER · THE STILL · THE BOTTLES · HYMNS · PEWS · VISIT", "bgColor": "#e8d8b8", "textColor": "#1a1410" },
+    { "tag": "main", "role": "main", "id": null, "className": "page-the-holler", "childCount": 5, "visibleText": "Hero · Origin · Wolfpen Holler · Smokehouse and Hymnal · Why Now", "bgColor": "transparent", "textColor": "#1a1410" },
+    { "tag": "footer", "role": "footer", "id": null, "className": "site-footer", "childCount": 3, "visibleText": "DIRECT CONTACT · SITE · LEGAL", "bgColor": "#1a1410", "textColor": "#e8d8b8" }
+  ],
+  "sections": [
+    { "tag": "section", "className": "hero",   "bgMode": "bulletin", "bgColor": "#e8d8b8", "colorMode": "#1a1410", "childTextSnippet": "THE HOLLER. I grew up here. I still do. [Wendell portrait — pearl-snap shirt, no smile, real.]" },
+    { "tag": "section", "className": "origin", "bgMode": "bulletin", "bgColor": "#e8d8b8", "colorMode": "#1a1410", "childTextSnippet": "I grew up in a hollow outside Asheville where my grandmother kept a still in the smokehouse and a hymnal on the kitchen table. We never thought of them as different things. The botanicals come from the same woods that grew the rhododendron my grandfather got married under. The recipes come from the same Sunday afternoons that grew the hymns. Everything in these bottles is foraged or grown within forty miles of my barn. Nothing is bought in a jug. The labels are painted by hand, by me, in a shed I bought off a dead preacher. — Wendell" },
+    { "tag": "section", "className": "place",  "bgMode": "revival", "bgColor": "#1a1410", "colorMode": "#e8d8b8", "childTextSnippet": "Wolfpen Holler — Madison County, NC. Forty minutes outside Asheville. Mars Hill on the south edge. Pisgah on the east. The Tennessee line on the north. Rhododendron understory. Sourwood blossom in late June. [Landscape image.]" },
+    { "tag": "section", "className": "anchor", "bgMode": "bulletin", "bgColor": "#e8d8b8", "colorMode": "#1a1410", "childTextSnippet": "We never thought of them as different things. The smokehouse was where the still lived. The kitchen was where the hymnal lived. Both got used every week." },
+    { "tag": "section", "className": "why",    "bgMode": "revival", "bgColor": "#1a1410", "colorMode": "#e8d8b8", "childTextSnippet": "Started in 2019 because nobody else was making this. The kit came from a man in Tennessee. He drew me a diagram on the back of a feed-store receipt. I still have the receipt." }
+  ],
+  "ctas": [
+    { "label": "SEE THE STILL",     "href": "/the-still",   "bgColor": "#7e1d12",     "color": "#e8d8b8", "fontFamily": "'IBM Plex Mono', monospace", "fontWeight": "500", "borderRadius": "2px", "padding": "14px 28px" },
+    { "label": "BOOK A VISIT",      "href": "/visit",       "bgColor": "transparent", "color": "#e8d8b8", "fontFamily": "'IBM Plex Mono', monospace", "fontWeight": "500", "borderRadius": "2px", "padding": "14px 28px", "border": "1px solid #e8d8b8" }
+  ],
+  "links": [
+    { "label": "Home", "href": "/", "hrefAbs": "https://hollerandhymn.com/", "external": false },
+    { "label": "The Still", "href": "/the-still", "hrefAbs": "https://hollerandhymn.com/the-still", "external": false },
+    { "label": "The Bottles", "href": "/the-bottles", "hrefAbs": "https://hollerandhymn.com/the-bottles", "external": false },
+    { "label": "Visit", "href": "/visit", "hrefAbs": "https://hollerandhymn.com/visit", "external": false }
+  ],
+  "media": {
+    "images": [
+      { "src": "/assets/images/maker-portrait.jpg",   "alt": "Wendell Greene, pearl-snap shirt, no smile, real", "intent": "lane-1 portrait",  "pending": true },
+      { "src": "/assets/images/wolfpen-landscape.jpg","alt": "Wolfpen Holler in late-June mist",                "intent": "lane-1 landscape", "pending": true },
+      { "src": "/assets/images/kitchen-hymnal.jpg",   "alt": "Worn leather hymnal on a kitchen table",          "intent": "lane-2 still-life","pending": true }
+    ],
+    "svgs": [],
+    "videos": [],
+    "iframes": [],
+    "cssBackgrounds": []
+  },
+  "forms": [],
+  "widgets": { "dialogs": 0, "accordions": 0, "tablists": 0 },
+  "body": { "bgColor": "#e8d8b8", "color": "#1a1410", "fontFamily": "'Sentinel', serif", "fontSize": "17px" },
+  "logoCandidates": [{ "kind": "img", "src": "/assets/logo.svg", "alt": "Holler & Hymn", "width": 800, "height": 800 }],
+  "appleTouch": null,
+  "favicon": "/assets/favicon.svg"
+}

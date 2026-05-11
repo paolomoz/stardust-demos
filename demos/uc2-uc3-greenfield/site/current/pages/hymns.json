@@ -1,0 +1,66 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:seed + stardust:brief (hand-authored, proof-of-concept)",
+    "writtenAt": "2026-05-11T00:00:00Z",
+    "source": "synthesized — no source URL; greenfield brand",
+    "finalUrl": "https://hollerandhymn.com/hymns",
+    "synthesizedInputs": [
+      "demos/uc2-uc3-greenfield/site/briefing/CONTENT.md#5-hymns"
+    ],
+    "stardustVersion": "0.3.0"
+  },
+  "slug": "hymns",
+  "meta": {
+    "finalUrl": "https://hollerandhymn.com/hymns",
+    "title": "Hymns — recipes and cocktails · Holler & Hymn",
+    "description": "Five ways to drink it. Pick your pew. Cocktail recipes using Holler & Hymn amari, bitters, cordials, and aperitivi.",
+    "og": { "title": "Hymns — recipes", "description": "Five ways to drink it.", "image": "/assets/og-hymns.jpg", "type": "article", "siteName": "Holler & Hymn" },
+    "themeColor": { "light": "#e8d8b8", "dark": "#1a1410" }
+  },
+  "headings": [
+    { "level": 1, "text": "HYMNS", "fontFamily": "'Saloon', sans-serif", "fontWeight": "800", "fontSize": "96px", "color": "#7e1d12", "domPath": "main > section.hero > h1" },
+    { "level": 2, "text": "Five ways to drink it. Pick your pew.", "fontFamily": "'Sentinel', serif", "fontWeight": "500", "fontSize": "26px", "color": "#1a1410" },
+    { "level": 2, "text": "THE WAYFARING STRANGER",        "fontFamily": "'Saloon', sans-serif", "fontWeight": "800", "fontSize": "36px", "color": "#7e1d12" },
+    { "level": 2, "text": "I SAW THE LIGHT",                "fontFamily": "'Saloon', sans-serif", "fontWeight": "800", "fontSize": "36px", "color": "#7e1d12" },
+    { "level": 2, "text": "SUNDAY MORNING COMING DOWN",     "fontFamily": "'Saloon', sans-serif", "fontWeight": "800", "fontSize": "36px", "color": "#7e1d12" },
+    { "level": 2, "text": "THE FOLSOM OLD-FASHIONED",       "fontFamily": "'Saloon', sans-serif", "fontWeight": "800", "fontSize": "36px", "color": "#7e1d12" },
+    { "level": 2, "text": "THE NO-SHOW SPRITZ",             "fontFamily": "'Saloon', sans-serif", "fontWeight": "800", "fontSize": "36px", "color": "#7e1d12" }
+  ],
+  "landmarks": [
+    { "tag": "header", "role": "header", "className": "site-header", "visibleText": "HOLLER & HYMN · nav", "bgColor": "#e8d8b8", "textColor": "#1a1410" },
+    { "tag": "nav", "role": "nav", "className": "nav-primary", "visibleText": "HOME · THE HOLLER · THE STILL · THE BOTTLES · HYMNS · PEWS · VISIT", "bgColor": "#e8d8b8", "textColor": "#1a1410" },
+    { "tag": "main", "role": "main", "className": "page-hymns", "visibleText": "Hero · 5 cocktails", "bgColor": "transparent", "textColor": "#1a1410" },
+    { "tag": "footer", "role": "footer", "className": "site-footer", "visibleText": "DIRECT CONTACT · SITE · LEGAL", "bgColor": "#1a1410", "textColor": "#e8d8b8" }
+  ],
+  "sections": [
+    { "tag": "section", "className": "hero",                "bgMode": "bulletin", "bgColor": "#e8d8b8", "colorMode": "#1a1410", "childTextSnippet": "HYMNS. Five ways to drink it. Pick your pew." },
+    { "tag": "section", "className": "wayfaring-stranger",  "bgMode": "bulletin", "bgColor": "#e8d8b8", "colorMode": "#1a1410", "childTextSnippet": "THE WAYFARING STRANGER. 1.5 oz TENT REVIVAL · 1 oz bourbon · 0.5 oz bitter orange · 2 dashes DRINK YE ALL OF IT (aromatic). Stir over ice. Strain neat. Drink alone. Note: Sad." },
+    { "tag": "section", "className": "i-saw-the-light",     "bgMode": "revival",  "bgColor": "#1a1410", "colorMode": "#e8d8b8", "childTextSnippet": "I SAW THE LIGHT. 1.5 oz PASS THE PLATE · 1.5 oz Lillet Blanc · 3 oz soda · lemon twist. Build in a tall glass. Note: Drink it on a porch before the heat of the day. Don't talk much." },
+    { "tag": "section", "className": "sunday-morning",      "bgMode": "bulletin", "bgColor": "#e8d8b8", "colorMode": "#1a1410", "childTextSnippet": "SUNDAY MORNING COMING DOWN. 1.5 oz THE BACKSLIDER · 4 oz cold black coffee · 0.5 oz heavy cream (floated). Build over ice. Note: Slow. Kristofferson would approve." },
+    { "tag": "section", "className": "folsom-old-fashioned", "bgMode": "revival", "bgColor": "#1a1410", "colorMode": "#e8d8b8", "childTextSnippet": "THE FOLSOM OLD-FASHIONED. 1.5 oz DEACON'S DRAUGHT · 1.5 oz rye · 1 drop DRINK YE ALL OF IT (aromatic) · expressed orange peel. Stir over ice. Strain over one large rock. Note: For when you have to look someone in the eye." },
+    { "tag": "section", "className": "no-show-spritz",      "bgMode": "bulletin", "bgColor": "#e8d8b8", "colorMode": "#1a1410", "childTextSnippet": "THE NO-SHOW SPRITZ. 3 oz THE NO-SHOW · 3 oz dry sparkling wine · 1 oz soda · grapefruit peel. Build over ice. Note: For the pew you didn't sit in." }
+  ],
+  "ctas": [
+    { "label": "SEE THE BOTTLES", "href": "/the-bottles", "bgColor": "#7e1d12",     "color": "#e8d8b8", "fontFamily": "'IBM Plex Mono', monospace", "fontWeight": "500", "borderRadius": "2px", "padding": "14px 28px" },
+    { "label": "FIND A PEW",      "href": "/pews",        "bgColor": "transparent", "color": "#1a1410", "fontFamily": "'IBM Plex Mono', monospace", "fontWeight": "500", "borderRadius": "2px", "padding": "14px 28px", "border": "1px solid #1a1410" }
+  ],
+  "links": [
+    { "label": "The Bottles", "href": "/the-bottles", "hrefAbs": "https://hollerandhymn.com/the-bottles", "external": false },
+    { "label": "Pews",        "href": "/pews",        "hrefAbs": "https://hollerandhymn.com/pews", "external": false }
+  ],
+  "media": {
+    "images": [
+      { "src": "/assets/images/hymns-page-header.jpg", "alt": "Hand-set hymnal-style page header reading HYMNS", "intent": "lane-2 still-life", "pending": true }
+    ],
+    "svgs": [{ "intent": "hand-painted decorative rule between cocktails" }],
+    "videos": [],
+    "iframes": [],
+    "cssBackgrounds": []
+  },
+  "forms": [],
+  "widgets": { "dialogs": 0, "accordions": 0, "tablists": 0 },
+  "body": { "bgColor": "#e8d8b8", "color": "#1a1410", "fontFamily": "'Sentinel', serif", "fontSize": "17px" },
+  "logoCandidates": [{ "kind": "img", "src": "/assets/logo.svg", "alt": "Holler & Hymn", "width": 800, "height": 800 }],
+  "appleTouch": null,
+  "favicon": "/assets/favicon.svg"
+}

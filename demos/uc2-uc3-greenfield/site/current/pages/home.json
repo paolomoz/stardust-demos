@@ -1,0 +1,93 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:seed + stardust:brief (hand-authored, proof-of-concept)",
+    "writtenAt": "2026-05-11T00:00:00Z",
+    "source": "synthesized — no source URL; greenfield brand",
+    "finalUrl": "https://hollerandhymn.com/",
+    "synthesizedInputs": [
+      "demos/uc2-uc3-greenfield/site/brand/BRAND.md",
+      "demos/uc2-uc3-greenfield/site/briefing/CONTENT.md#1-home"
+    ],
+    "stardustVersion": "0.3.0"
+  },
+  "slug": "home",
+  "meta": {
+    "finalUrl": "https://hollerandhymn.com/",
+    "title": "Holler & Hymn — botanical liqueurs from Wolfpen Holler, NC",
+    "description": "Saturday night sin. Sunday morning hymn. Both in one bottle. Small-batch Appalachian botanical liqueurs hand-made by Wendell Greene in Madison County, North Carolina.",
+    "og": { "title": "Holler & Hymn", "description": "Saturday night sin. Sunday morning hymn. Both in one bottle.", "image": "/assets/og-home.jpg", "type": "website", "siteName": "Holler & Hymn" },
+    "themeColor": { "light": "#e8d8b8", "dark": "#1a1410" }
+  },
+  "headings": [
+    { "level": 1, "text": "HOLLER & HYMN", "fontFamily": "'Saloon', 'Camp Type', 'Knockout', sans-serif", "fontWeight": "800", "fontSize": "120px", "lineHeight": "1.0", "letterSpacing": "-0.01em", "color": "#e8d8b8", "domPath": "main > section.hero > h1" },
+    { "level": 2, "text": "Saturday night sin. Sunday morning hymn. Both in one bottle.", "fontFamily": "'Sentinel', serif", "fontWeight": "500", "fontSize": "28px", "lineHeight": "1.3", "color": "#e8d8b8", "domPath": "main > section.hero > p.tagline" },
+    { "level": 2, "text": "MADE BY HAND. FROM A TO Z.", "fontFamily": "'Saloon', sans-serif", "fontWeight": "800", "fontSize": "48px", "letterSpacing": "0", "color": "#7e1d12", "domPath": "main > section.maker > h2" },
+    { "level": 2, "text": "WOLFPEN HOLLER, MADISON COUNTY", "fontFamily": "'Saloon', sans-serif", "fontWeight": "800", "fontSize": "48px", "color": "#e8d8b8", "domPath": "main > section.the-holler > h2" },
+    { "level": 2, "text": "THE STILL", "fontFamily": "'Saloon', sans-serif", "fontWeight": "800", "fontSize": "48px", "color": "#7e1d12", "domPath": "main > section.the-still > h2" },
+    { "level": 2, "text": "SIX BOTTLES. FOUR CATEGORIES.", "fontFamily": "'Saloon', sans-serif", "fontWeight": "800", "fontSize": "48px", "color": "#e8d8b8", "domPath": "main > section.bottles > h2" },
+    { "level": 3, "text": "PASS THE PLATE", "fontFamily": "'Saloon', sans-serif", "fontWeight": "800", "fontSize": "32px", "color": "#7e1d12", "domPath": "main > section.bottles > .card[1] > h3" },
+    { "level": 3, "text": "TENT REVIVAL", "fontFamily": "'Saloon', sans-serif", "fontWeight": "800", "fontSize": "32px", "color": "#7e1d12", "domPath": "main > section.bottles > .card[2] > h3" },
+    { "level": 3, "text": "THE BACKSLIDER", "fontFamily": "'Saloon', sans-serif", "fontWeight": "800", "fontSize": "32px", "color": "#7e1d12", "domPath": "main > section.bottles > .card[3] > h3" },
+    { "level": 2, "text": "FIND A PEW", "fontFamily": "'Saloon', sans-serif", "fontWeight": "800", "fontSize": "48px", "color": "#7e1d12", "domPath": "main > section.pews > h2" }
+  ],
+  "landmarks": [
+    { "tag": "header", "role": "header", "id": null, "className": "site-header", "childCount": 2, "visibleText": "HOLLER & HYMN  ·  HOME · THE HOLLER · THE STILL · THE BOTTLES · HYMNS · PEWS · VISIT  ·  VISIT THE BARN", "bgColor": "#e8d8b8", "textColor": "#1a1410", "borderRadius": "0px" },
+    { "tag": "nav", "role": "nav", "id": "nav-primary", "className": "nav-primary", "childCount": 7, "visibleText": "HOME · THE HOLLER · THE STILL · THE BOTTLES · HYMNS · PEWS · VISIT", "bgColor": "#e8d8b8", "textColor": "#1a1410" },
+    { "tag": "main", "role": "main", "id": null, "className": "page-home", "childCount": 6, "visibleText": "Hero · Maker · The Holler · The Still · The Bottles · Find a Pew", "bgColor": "transparent", "textColor": "#1a1410" },
+    { "tag": "footer", "role": "footer", "id": null, "className": "site-footer", "childCount": 3, "visibleText": "DIRECT CONTACT · wendell@hollerandhymn.com · +1 828 555 0143 · @hollerandhymn · SITE · Home · The Holler · The Still · The Bottles · Hymns · Pews · Visit · LEGAL · Age-verified 21+ · Privacy · Shipping", "bgColor": "#1a1410", "textColor": "#e8d8b8" }
+  ],
+  "sections": [
+    { "tag": "section", "className": "hero", "bgMode": "revival", "bgColor": "#1a1410", "colorMode": "#e8d8b8", "childTextSnippet": "HOLLER & HYMN. Saturday night sin. Sunday morning hymn. Both in one bottle. FIND A PEW · BOOK A SATURDAY TASTING" },
+    { "tag": "section", "className": "maker", "bgMode": "bulletin", "bgColor": "#e8d8b8", "colorMode": "#1a1410", "childTextSnippet": "Made by hand. From a to z. I grew up in a hollow outside Asheville where my grandmother kept a still in the smokehouse and a hymnal on the kitchen table. We never thought of them as different things. — Wendell" },
+    { "tag": "section", "className": "the-holler", "bgMode": "revival", "bgColor": "#1a1410", "colorMode": "#e8d8b8", "childTextSnippet": "Wolfpen Holler, Madison County. Forty minutes outside Asheville. Rhododendron understory, sourwood blossom in late June. The botanicals come from the same woods that grew the rhododendron my grandfather got married under. → THE HOLLER" },
+    { "tag": "section", "className": "the-still", "bgMode": "bulletin", "bgColor": "#e8d8b8", "colorMode": "#1a1410", "childTextSnippet": "The Still. Everything in this bottle was within forty miles of my barn three weeks ago. Built the still in 2019 from a kit. → THE STILL" },
+    { "tag": "section", "className": "bottles", "bgMode": "revival", "bgColor": "#1a1410", "colorMode": "#e8d8b8", "childTextSnippet": "Six bottles. Four categories. Every label painted by hand. PASS THE PLATE · TENT REVIVAL · THE BACKSLIDER → THE BOTTLES" },
+    { "tag": "section", "className": "pews", "bgMode": "bulletin", "bgColor": "#e8d8b8", "colorMode": "#1a1410", "childTextSnippet": "Find a pew. If you're in Asheville, try these. Sermon Bar — Lexington Ave · The Backslider Tavern — RAD · Little Jumbo — downtown · Bull and Beggar — RAD → ALL PEWS" }
+  ],
+  "ctas": [
+    { "label": "FIND A PEW",          "href": "/pews",      "bgColor": "#7e1d12", "color": "#e8d8b8", "fontFamily": "'IBM Plex Mono', monospace", "fontWeight": "500", "borderRadius": "2px", "padding": "14px 28px" },
+    { "label": "BOOK A SATURDAY TASTING", "href": "/visit", "bgColor": "transparent", "color": "#e8d8b8", "fontFamily": "'IBM Plex Mono', monospace", "fontWeight": "500", "borderRadius": "2px", "padding": "14px 28px", "border": "1px solid #e8d8b8" },
+    { "label": "READ THE STORY",      "href": "/the-holler","bgColor": "transparent", "color": "#e8d8b8", "fontFamily": "'IBM Plex Mono', monospace", "fontWeight": "500", "borderRadius": "2px", "padding": "10px 20px", "border": "1px solid #e8d8b8" },
+    { "label": "SEE THE STILL",       "href": "/the-still", "bgColor": "transparent", "color": "#1a1410", "fontFamily": "'IBM Plex Mono', monospace", "fontWeight": "500", "borderRadius": "2px", "padding": "10px 20px", "border": "1px solid #1a1410" },
+    { "label": "ALL SIX BOTTLES",     "href": "/the-bottles", "bgColor": "#7e1d12", "color": "#e8d8b8", "fontFamily": "'IBM Plex Mono', monospace", "fontWeight": "500", "borderRadius": "2px", "padding": "14px 28px" },
+    { "label": "DOWNLOAD THE CATALOG","href": "/the-catalog", "bgColor": "transparent", "color": "#1a1410", "fontFamily": "'IBM Plex Mono', monospace", "fontWeight": "500", "borderRadius": "2px", "padding": "10px 20px", "border": "1px solid #1a1410" }
+  ],
+  "links": [
+    { "label": "Home",        "href": "/",            "hrefAbs": "https://hollerandhymn.com/",            "external": false },
+    { "label": "The Holler",  "href": "/the-holler",  "hrefAbs": "https://hollerandhymn.com/the-holler",  "external": false },
+    { "label": "The Still",   "href": "/the-still",   "hrefAbs": "https://hollerandhymn.com/the-still",   "external": false },
+    { "label": "The Bottles", "href": "/the-bottles", "hrefAbs": "https://hollerandhymn.com/the-bottles", "external": false },
+    { "label": "Hymns",       "href": "/hymns",       "hrefAbs": "https://hollerandhymn.com/hymns",       "external": false },
+    { "label": "Pews",        "href": "/pews",        "hrefAbs": "https://hollerandhymn.com/pews",        "external": false },
+    { "label": "Visit",       "href": "/visit",       "hrefAbs": "https://hollerandhymn.com/visit",       "external": false },
+    { "label": "The Catalog", "href": "/the-catalog", "hrefAbs": "https://hollerandhymn.com/the-catalog", "external": false },
+    { "label": "Contact",     "href": "/contact",     "hrefAbs": "https://hollerandhymn.com/contact",     "external": false },
+    { "label": "Shop",        "href": "https://hollerandhymn.shop/", "hrefAbs": "https://hollerandhymn.shop/", "external": true },
+    { "label": "Instagram",   "href": "https://instagram.com/hollerandhymn", "hrefAbs": "https://instagram.com/hollerandhymn", "external": true }
+  ],
+  "media": {
+    "images": [
+      { "src": "/assets/logo.svg",                   "alt": "Holler & Hymn",                                 "intent": "logo",            "naturalW": 800,  "naturalH": 800 },
+      { "src": "/assets/images/maker-portrait.jpg",  "alt": "Wendell Greene in pearl-snap shirt, no smile",  "intent": "lane-1 portrait", "naturalW": 1600, "naturalH": 2000, "pending": true },
+      { "src": "/assets/images/wolfpen-landscape.jpg","alt": "Wolfpen Holler in late-June mist",             "intent": "lane-1 landscape","naturalW": 2000, "naturalH": 1200, "pending": true },
+      { "src": "/assets/images/copper-still.jpg",    "alt": "Copper still in dim barn light",                "intent": "lane-1 process",  "naturalW": 1400, "naturalH": 1400, "pending": true },
+      { "src": "/assets/images/label-pass-the-plate.png", "alt": "PASS THE PLATE hand-painted bottle label", "intent": "lane-3 label",    "naturalW": 600,  "naturalH": 900,  "pending": true },
+      { "src": "/assets/images/label-tent-revival.png",   "alt": "TENT REVIVAL hand-painted bottle label",   "intent": "lane-3 label",    "naturalW": 600,  "naturalH": 900,  "pending": true },
+      { "src": "/assets/images/label-the-backslider.png", "alt": "THE BACKSLIDER hand-painted bottle label", "intent": "lane-3 label",    "naturalW": 600,  "naturalH": 900,  "pending": true }
+    ],
+    "svgs": [
+      { "intent": "hand-painted ampersand ornament between sections", "inHeader": false }
+    ],
+    "videos": [],
+    "iframes": [],
+    "cssBackgrounds": []
+  },
+  "forms": [],
+  "widgets": { "dialogs": 1, "accordions": 0, "tablists": 0 },
+  "body": { "bgColor": "#e8d8b8", "color": "#1a1410", "fontFamily": "'Sentinel', 'Bookman', 'Cycles', serif", "fontSize": "17px", "htmlBg": "#e8d8b8" },
+  "logoCandidates": [
+    { "kind": "img", "src": "/assets/logo.svg", "alt": "Holler & Hymn", "width": 800, "height": 800 }
+  ],
+  "appleTouch": null,
+  "favicon": "/assets/favicon.svg"
+}
