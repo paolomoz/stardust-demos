@@ -387,34 +387,15 @@
         <div class="b3-label after">After</div>
       </div>
 
-      <!-- ─── STAGE 2 (12-17s) · AEM Sites — first redesign ──────────
-           OLD AEM Sites screenshot → diagonal wipe → NEW redesigned
-           AEM Sites page (no scroll, hold on hero). -->
+      <!-- ─── STAGE 2 (12-30s) · AEM Sites — two-wipe sequence ───────
+           The first-redesign iframe is a single shared element: revealed
+           by wipe 1 (clipping the AEM Sites OLD screenshot above it),
+           then itself clipped away by wipe 2 to reveal the bolder
+           variant underneath. No fade between the two wipes — the
+           audience watches the same redesign get replaced live. -->
       <div class="b3-pass" data-stage="2">
-        <div class="b3-layer b3-new">
-          <iframe
-            class="b3-frame b3-frame-iframe"
-            src="./assets/business-adobe/redesign/business-adobe-sites/index.html"
-            title="AEM Sites — redesigned"
-            loading="lazy"
-            sandbox="allow-scripts allow-same-origin"
-            tabindex="-1"></iframe>
-        </div>
-        <div class="b3-layer b3-old">
-          <img
-            class="b3-frame b3-frame-img"
-            src="./assets/business-adobe-old/business-adobe-sites-live.png"
-            alt="business.adobe.com/products/experience-manager/sites — current"
-            width="3456" height="12465">
-        </div>
-        <div class="b3-wipe-line" aria-hidden="true"></div>
-      </div>
-
-      <!-- ─── STAGE 3 (17-30s) · AEM Sites — bolder ──────────────────
-           Stage 2's redesign becomes the OLD; bolder variant is the NEW.
-           Wipe → 1s pause → scroll begins → +2s overlay for 5s. -->
-      <div class="b3-pass" data-stage="3">
-        <div class="b3-layer b3-new">
+        <!-- Bottom layer · revealed by wipe 2 -->
+        <div class="b3-layer b3-layer-final">
           <iframe
             class="b3-frame b3-frame-iframe b3-frame-iframe-scroll"
             src="./assets/business-adobe/redesign/business-adobe-sites/index-bolder.html"
@@ -423,7 +404,8 @@
             sandbox="allow-scripts allow-same-origin"
             tabindex="-1"></iframe>
         </div>
-        <div class="b3-layer b3-old">
+        <!-- Middle layer · revealed by wipe 1, clipped away by wipe 2 -->
+        <div class="b3-layer b3-layer-mid">
           <iframe
             class="b3-frame b3-frame-iframe"
             src="./assets/business-adobe/redesign/business-adobe-sites/index.html"
@@ -432,9 +414,18 @@
             sandbox="allow-scripts allow-same-origin"
             tabindex="-1"></iframe>
         </div>
-        <div class="b3-wipe-line" aria-hidden="true"></div>
+        <!-- Top layer · clipped away by wipe 1 -->
+        <div class="b3-layer b3-layer-top">
+          <img
+            class="b3-frame b3-frame-img"
+            src="./assets/business-adobe-old/business-adobe-sites-live.png"
+            alt="business.adobe.com/products/experience-manager/sites — current"
+            width="3456" height="12465">
+        </div>
+        <div class="b3-wipe-line b3-wipe-1" aria-hidden="true"></div>
+        <div class="b3-wipe-line b3-wipe-2" aria-hidden="true"></div>
 
-        <!-- Headline overlay — appears 2s after Stage 3 scroll begins, holds 5s -->
+        <!-- Headline overlay — appears 2s after the bolder iframe starts scrolling -->
         <div class="b3-overlay">
           <div class="tag">The Reveal</div>
           <h2>Same brand. <span class="red">New surface.</span></h2>

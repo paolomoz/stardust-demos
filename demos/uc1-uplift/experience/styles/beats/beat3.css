@@ -22,12 +22,15 @@
   inset: 0;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.25s linear, visibility 0s linear 0.25s;
+  /* 0.4s opacity transition. Sequencing (out → dark → in) is owned by
+     beat3.js so we get a real blank moment between pages, instead of a
+     cross-fade where both pages are visible at half-opacity. */
+  transition: opacity 0.4s ease, visibility 0s linear 0.4s;
 }
 #b3 .b3-pass.b3-stage-active {
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.25s linear, visibility 0s;
+  transition: opacity 0.4s ease, visibility 0s;
 }
 
 /* The two layers — both full-bleed, with their iframe content scrolling
@@ -66,29 +69,43 @@
   background: #0a0a0a;
 }
 
-/* Bottom layer: the redesigned page (always visible underneath) */
+/* Stage 1 layers — homepage video underneath, OLD screenshot on top. */
 #b3 .b3-new { z-index: 1; }
 #b3 .b3-new .b3-frame { background: var(--bg); }
-
-/* Top layer: the OLD page — clip-path animates a diagonal sweep L→R.
-   Each stage gets its own wipe duration / delay so they trigger when
-   their stage activates. */
 #b3 .b3-old {
   z-index: 2;
   clip-path: polygon(-8% 0, 100% 0, 100% 100%, 0% 100%);
 }
-
 /* Stage 1 wipe: 9.5s after a 1.2s hold (homepage gets the most time) */
 #b3 .b3-pass[data-stage="1"].b3-stage-active .b3-old {
   animation: b3-clip-wipe 9.5s cubic-bezier(0.45, 0, 0.55, 1) 1.2s forwards;
 }
-/* Stage 2 wipe: 4s after a 0.5s hold (faster — second comparison) */
-#b3 .b3-pass[data-stage="2"].b3-stage-active .b3-old {
-  animation: b3-clip-wipe 4s cubic-bezier(0.45, 0, 0.55, 1) 0.5s forwards;
+
+/* Stage 2 (merged) layers — three stacked, two sequential clip-path wipes.
+   Bottom: bolder iframe (final). Middle: first redesign (revealed by wipe 1,
+   clipped by wipe 2). Top: AEM Sites OLD screenshot (clipped by wipe 1). */
+#b3 .b3-layer-final { z-index: 1; }
+#b3 .b3-layer-final .b3-frame { background: var(--bg); }
+#b3 .b3-layer-mid {
+  z-index: 2;
+  clip-path: polygon(-8% 0, 100% 0, 100% 100%, 0% 100%);
 }
-/* Stage 3 wipe: 4s after a 0.5s hold (faster — third comparison) */
-#b3 .b3-pass[data-stage="3"].b3-stage-active .b3-old {
-  animation: b3-clip-wipe 4s cubic-bezier(0.45, 0, 0.55, 1) 0.5s forwards;
+#b3 .b3-layer-mid .b3-frame { background: var(--bg); }
+#b3 .b3-layer-top {
+  z-index: 3;
+  clip-path: polygon(-8% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+/* Stage 2 wipe 1: clips top layer (AEM Sites OLD) → reveals first redesign.
+   Animation-delay (0.4s) lets the pass-level fade-in finish first. */
+#b3 .b3-pass[data-stage="2"].b3-stage-active .b3-layer-top {
+  animation: b3-clip-wipe 3.5s cubic-bezier(0.45, 0, 0.55, 1) 0.4s forwards;
+}
+/* Stage 2 wipe 2: clips middle layer (first redesign) → reveals bolder.
+   Delay 4.9s = 0.4s fade-in + 3.5s wipe 1 + 1s hold so the audience
+   registers the first redesign before it gets replaced. */
+#b3 .b3-pass[data-stage="2"].b3-stage-active .b3-layer-mid {
+  animation: b3-clip-wipe 3.5s cubic-bezier(0.45, 0, 0.55, 1) 4.9s forwards;
 }
 
 @keyframes b3-clip-wipe {
@@ -96,23 +113,10 @@
   100% { clip-path: polygon(100% 0, 100% 0, 100% 100%, 108%  100%); }
 }
 
-/* Stage 1 (homepage) OLD image scrolls via translateY for the 12s it's on screen */
-#b3 .b3-pass[data-stage="1"].b3-stage-active .b3-frame-img {
-  animation: b3-scroll-img 12s linear forwards;
-}
-@keyframes b3-scroll-img {
-  from { transform: translateY(0); }
-  to   { transform: translateY(-2000px); }
-}
-
-/* Stage 2 (AEM Sites) OLD image — slower scroll over its 5s on screen */
-#b3 .b3-pass[data-stage="2"].b3-stage-active .b3-frame-img {
-  animation: b3-scroll-img-2 5s linear forwards;
-}
-@keyframes b3-scroll-img-2 {
-  from { transform: translateY(0); }
-  to   { transform: translateY(-600px); }
-}
+/* OLD pages stay static. Their tall screenshots reveal only the top
+   viewport-worth of the page, which is what the audience reads as
+   "this is the live business.adobe.com page today". The redesigned
+   side scrolls (Stage 3 only) — that contrast is the point. */
 
 /* Iframes for stage 2/3 — full-bleed, no scrollbars */
 #b3 .b3-frame-iframe {
@@ -146,11 +150,12 @@
 #b3 .b3-pass[data-stage="1"].b3-stage-active .b3-wipe-line {
   animation: b3-line-sweep 9.5s cubic-bezier(0.45, 0, 0.55, 1) 1.2s forwards;
 }
-#b3 .b3-pass[data-stage="2"].b3-stage-active .b3-wipe-line {
-  animation: b3-line-sweep 4s cubic-bezier(0.45, 0, 0.55, 1) 0.5s forwards;
+/* Stage 2 has two wipe-lines, each tracking its own clip-path animation. */
+#b3 .b3-pass[data-stage="2"].b3-stage-active .b3-wipe-1 {
+  animation: b3-line-sweep 3.5s cubic-bezier(0.45, 0, 0.55, 1) 0.4s forwards;
 }
-#b3 .b3-pass[data-stage="3"].b3-stage-active .b3-wipe-line {
-  animation: b3-line-sweep 4s cubic-bezier(0.45, 0, 0.55, 1) 0.5s forwards;
+#b3 .b3-pass[data-stage="2"].b3-stage-active .b3-wipe-2 {
+  animation: b3-line-sweep 3.5s cubic-bezier(0.45, 0, 0.55, 1) 4.9s forwards;
 }
 @keyframes b3-line-sweep {
   0%   { opacity: 0;  left: -8px; }
@@ -192,9 +197,10 @@
   padding: 2rem 1rem 3.5rem;
 }
 
-/* Dark gradient backdrop — fades in WITH the headline (same 7.5s delay
-   into Stage 3 active = 2s after scroll begins). Scoped to stage 3 so
-   it doesn't transition during stage 1 and pre-stamp itself visible. */
+/* Dark gradient backdrop — fades in with the headline. The overlay lives
+   inside stage 2 (merged) and the timings below are relative to when the
+   stage-2 active class is added: wipe 2 ends ~8.4s, scroll begins ~9.4s,
+   overlay appears ~11.4s (2s after scroll). */
 #b3 .b3-overlay::before {
   content: '';
   position: absolute;
@@ -206,10 +212,10 @@
     transparent 100%);
   z-index: -1;
   opacity: 0;
-  transition: opacity 0.6s var(--ease-out-quart) 7.5s;
+  transition: opacity 0.6s var(--ease-out-quart) 11.4s;
   will-change: opacity;
 }
-#b3 .b3-pass[data-stage="3"].b3-stage-active .b3-overlay::before { opacity: 1; }
+#b3 .b3-pass[data-stage="2"].b3-stage-active .b3-overlay::before { opacity: 1; }
 #b3 .b3-overlay .tag {
   font-family: var(--ff-mono);
   font-size: 0.78rem;
@@ -222,10 +228,10 @@
   margin-bottom: 0.6rem;
   opacity: 0;
   transform: translate3d(0, 8px, 0);
-  transition: opacity 0.5s var(--ease-out-quart) 7.5s, transform 0.5s var(--ease-out-quart) 7.5s;
+  transition: opacity 0.5s var(--ease-out-quart) 11.4s, transform 0.5s var(--ease-out-quart) 11.4s;
   will-change: opacity, transform;
 }
-#b3 .b3-pass[data-stage="3"].b3-stage-active .b3-overlay .tag {
+#b3 .b3-pass[data-stage="2"].b3-stage-active .b3-overlay .tag {
   opacity: 1; transform: translate3d(0, 0, 0);
 }
 
@@ -239,10 +245,10 @@
   margin: 0;
   opacity: 0;
   transform: translate3d(0, 20px, 0);
-  transition: opacity 0.6s var(--ease-out-quart) 7.8s, transform 0.6s var(--ease-out-quart) 7.8s;
+  transition: opacity 0.6s var(--ease-out-quart) 11.7s, transform 0.6s var(--ease-out-quart) 11.7s;
   will-change: opacity, transform;
 }
-#b3 .b3-pass[data-stage="3"].b3-stage-active .b3-overlay h2 {
+#b3 .b3-pass[data-stage="2"].b3-stage-active .b3-overlay h2 {
   opacity: 1; transform: translate3d(0, 0, 0);
 }
 #b3 .b3-overlay h2 .red { color: var(--red); }
@@ -254,14 +260,19 @@
   margin-top: 0.6rem;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
   opacity: 0;
-  transition: opacity 0.5s var(--ease-out-quart) 8.2s;
+  transition: opacity 0.5s var(--ease-out-quart) 12.1s;
   will-change: opacity;
 }
-#b3 .b3-pass[data-stage="3"].b3-stage-active .b3-overlay p { opacity: 1; }
-#b3.active .b3-overlay p { opacity: 1; }
+#b3 .b3-pass[data-stage="2"].b3-stage-active .b3-overlay p { opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
-  #b3.active .b3-frame, #b3.active .b3-old, #b3.active .b3-wipe-line { animation: none; }
+  #b3.active .b3-frame,
+  #b3.active .b3-old,
+  #b3.active .b3-layer-top,
+  #b3.active .b3-layer-mid,
+  #b3.active .b3-wipe-line { animation: none; }
   #b3.active .b3-frame-img { transform: none; }
-  #b3.active .b3-old { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
+  #b3.active .b3-old,
+  #b3.active .b3-layer-top,
+  #b3.active .b3-layer-mid { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
 }
