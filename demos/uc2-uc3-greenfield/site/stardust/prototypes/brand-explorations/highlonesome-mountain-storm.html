@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<!-- Palette variant of highlonesome-mountain.html · Storm — cooler greys, steel, deeper spruces · generated 2026-05-12 by /tmp/make-exploration-palettes.py -->
+<!--
+  Brand exploration: HIGH LONESOME
+  Direction: MOUNTAIN PHOTOGRAPHIC — cinematic landscape-led, thin large-scale serif, painterly
+  Tagline: "One voice in a wide place."
+  Source brand spec: site/brand/brand-alternates.md § Alternate C
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>High Lonesome — bottled bluegrass · WNC · Storm</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Cormorant+Infant:ital,wght@0,300;0,400;1,300;1,400&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ridge-dusk:        #2a3848;
+      --ridge-dawn:        #3a4858;
+      --bone-fiddle:       #b8c4c8;
+      --hymnbook-oxblood:  #6a4a3a;
+      --spruce-dark:       #2a3838;
+      --spruce-mid:        #4a5860;
+      --mist-cream:        #d8d4d0;
+      --hymnal-red:        #8a4a4a;
+      --gilt:              #98a4a8;
+      --night-deep:        #1a2028;
+      --font-display: 'Playfair Display','EB Garamond','Georgia',serif;
+      --font-body:    'Cormorant Infant','Georgia',serif;
+      --font-mono:    'IBM Plex Mono','Courier New',monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { font-family: var(--font-body); font-size: 19px; line-height: 1.55; color: var(--mist-cream); background: var(--ridge-dusk); overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { margin: 0; font-weight: normal; }
+    p, ul { margin: 0; padding: 0; list-style: none; }
+    img, svg { display: block; max-width: 100%; height: auto; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+
+    /* Top — minimal serif strip */
+    .top { padding: 24px 0; }
+    .top .container { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
+    .mark { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 24px; color: var(--mist-cream); letter-spacing: 0.01em; }
+    .top nav { display: flex; gap: 28px; flex-wrap: wrap; }
+    .top nav a { font-family: var(--font-body); font-style: italic; font-size: 16px; color: var(--bone-fiddle); transition: color 200ms; }
+    .top nav a:hover { color: var(--mist-cream); }
+
+    /* HERO — full-bleed atmospheric */
+    .hero { position: relative; min-height: 96vh; padding: 96px 0 120px; display: flex; align-items: flex-end; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(180deg, var(--night-deep) 0%, rgba(42,56,72,0.6) 38%, rgba(74,88,96,0.5) 70%, rgba(42,56,72,0.92) 100%),
+        radial-gradient(ellipse at 24% 30%, rgba(184,196,200,0.16) 0%, transparent 36%),
+        radial-gradient(ellipse at 78% 65%, rgba(152,164,168,0.12) 0%, transparent 32%);
+      pointer-events: none;
+    }
+    /* mountain silhouettes */
+    .hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 36%;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 360' preserveAspectRatio='none'><path d='M 0 360 L 0 220 L 80 180 L 160 200 L 240 150 L 320 195 L 420 130 L 520 200 L 620 160 L 720 220 L 820 170 L 920 230 L 1020 180 L 1140 240 L 1260 200 L 1360 260 L 1440 230 L 1440 360 Z' fill='%2336424a'/><path d='M 0 360 L 0 280 L 100 250 L 200 270 L 320 220 L 440 280 L 560 240 L 680 290 L 820 250 L 960 300 L 1100 270 L 1240 310 L 1440 280 L 1440 360 Z' fill='%232a3a2e' opacity='0.85'/><path d='M 0 360 L 0 320 L 160 300 L 320 320 L 480 310 L 640 330 L 800 315 L 960 330 L 1140 320 L 1320 335 L 1440 325 L 1440 360 Z' fill='%23181f23' opacity='0.9'/></svg>");
+      background-size: cover; background-repeat: no-repeat; background-position: bottom; pointer-events: none;
+    }
+    .hero .container { position: relative; z-index: 1; max-width: 1140px; }
+    .hero .where-marker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--bone-fiddle); margin-bottom: 32px; }
+    .hero .where-marker .dot { display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--hymnal-red); margin: 0 8px 2px; vertical-align: middle; }
+
+    .hero h1 { font-family: var(--font-display); font-weight: 400; font-style: italic; font-size: clamp(80px, 13vw, 192px); color: var(--mist-cream); line-height: 0.95; letter-spacing: -0.015em; margin-bottom: 28px; max-width: 12ch; text-shadow: 0 0 40px rgba(0,0,0,0.4); }
+    .hero h1 .high { color: var(--bone-fiddle); }
+    .hero .tagline { font-family: var(--font-body); font-style: italic; font-size: clamp(22px, 2.5vw, 32px); color: var(--mist-cream); margin-bottom: 56px; max-width: 24em; line-height: 1.4; }
+    .hero .tagline em { color: var(--hymnal-red); font-style: italic; font-weight: 500; }
+    .hero .ctas { display: flex; gap: 32px; align-items: baseline; flex-wrap: wrap; }
+    .hero .cta-primary { display: inline-block; font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 24px; color: var(--ridge-dusk); background: var(--bone-fiddle); padding: 16px 36px 18px; transition: background-color 200ms; }
+    .hero .cta-primary:hover { background: var(--mist-cream); }
+    .hero .cta-secondary { font-family: var(--font-body); font-style: italic; font-size: 17px; color: var(--bone-fiddle); border-bottom: 1px solid currentColor; padding-bottom: 3px; }
+
+    /* The maker — single voice in a wide place */
+    .voice { padding: 160px 0 140px; background: var(--ridge-dawn); position: relative; }
+    .voice::before { content: ""; position: absolute; inset: 0;
+      background-image: radial-gradient(ellipse at 50% 30%, rgba(184,196,200,0.10) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .voice .container { position: relative; text-align: center; max-width: 880px; }
+    .voice .marker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gilt); margin-bottom: 32px; }
+    .voice blockquote { font-family: var(--font-display); font-weight: 400; font-style: italic; font-size: clamp(32px, 4.4vw, 56px); line-height: 1.2; color: var(--mist-cream); margin: 0 auto 64px; max-width: 24em; }
+    .voice blockquote em { color: var(--bone-fiddle); }
+    .voice .signature-block { display: inline-flex; align-items: baseline; gap: 18px; font-family: var(--font-display); }
+    .voice .signature { font-style: italic; font-weight: 500; font-size: 32px; color: var(--bone-fiddle); }
+    .voice .role { font-family: var(--font-body); font-style: italic; color: var(--mist-cream); font-size: 17px; }
+    .voice .readmore { display: block; margin-top: 56px; font-family: var(--font-body); font-style: italic; color: var(--bone-fiddle); font-size: 17px; border-bottom: 1px solid currentColor; padding-bottom: 3px; }
+
+    /* Side B — gaps and balds (combined place + still cinematic) */
+    .gaps { position: relative; padding: 0; min-height: 80vh; background: var(--spruce-dark); display: flex; align-items: center; overflow: hidden; }
+    .gaps::before { content: ""; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(135deg, rgba(42,56,72,0.4) 0%, transparent 50%, rgba(58,58,46,0.4) 100%),
+        radial-gradient(ellipse at 30% 60%, rgba(152,164,168,0.18) 0%, transparent 40%),
+        radial-gradient(ellipse at 70% 40%, rgba(184,196,200,0.10) 0%, transparent 36%);
+      pointer-events: none;
+    }
+    /* misty horizontal bands */
+    .gaps::after { content: ""; position: absolute; left: 0; right: 0; top: 30%; height: 14%;
+      background: linear-gradient(180deg, transparent 0%, rgba(216,212,208,0.10) 50%, transparent 100%);
+      pointer-events: none;
+    }
+    .gaps .container { position: relative; display: grid; grid-template-columns: 1fr; gap: 56px; align-items: center; padding: 120px 40px; }
+    @media (min-width: 900px) { .gaps .container { grid-template-columns: 5fr 7fr; gap: 96px; } }
+    .gaps .marker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--bone-fiddle); margin-bottom: 24px; }
+    .gaps h2 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(56px, 7vw, 104px); color: var(--mist-cream); line-height: 0.95; margin-bottom: 36px; max-width: 10ch; }
+    .gaps h2 em { color: var(--bone-fiddle); }
+    .gaps p { font-family: var(--font-body); font-style: italic; font-size: 22px; line-height: 1.55; color: var(--mist-cream); max-width: 26em; margin-bottom: 28px; }
+    .gaps p em { color: var(--hymnal-red); font-weight: 500; }
+    .gaps .links { display: flex; flex-direction: column; gap: 12px; }
+    .gaps .links a { font-family: var(--font-body); font-style: italic; font-size: 17px; color: var(--bone-fiddle); border-bottom: 1px solid currentColor; padding-bottom: 3px; align-self: flex-start; }
+    .gaps .vista { position: relative; aspect-ratio: 4 / 5; background: var(--night-deep); border: 1px solid rgba(184,196,200,0.16); display: flex; align-items: center; justify-content: center; padding: 24px; }
+    .gaps .vista .label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gilt); text-align: center; }
+    .gaps .vista .label .aux { display: block; margin-top: 6px; font-size: 9px; color: var(--bone-fiddle); }
+
+    /* Bottle posters — three vertical sections */
+    .bottle-poster { position: relative; min-height: 86vh; display: flex; align-items: center; overflow: hidden; padding: 120px 0; }
+    .bottle-poster.b1 { background: var(--night-deep); }
+    .bottle-poster.b1::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(ellipse at 70% 35%, rgba(106,128,154,0.30) 0%, transparent 50%), radial-gradient(ellipse at 20% 80%, rgba(184,196,200,0.08) 0%, transparent 36%); pointer-events: none; }
+    .bottle-poster.b2 { background: var(--spruce-dark); }
+    .bottle-poster.b2::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(ellipse at 25% 50%, rgba(184,196,200,0.15) 0%, transparent 40%), radial-gradient(ellipse at 80% 30%, rgba(138,74,74,0.10) 0%, transparent 36%); pointer-events: none; }
+    .bottle-poster.b3 { background: var(--ridge-dusk); }
+    .bottle-poster.b3::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(ellipse at 60% 50%, rgba(106,74,58,0.20) 0%, transparent 45%), radial-gradient(ellipse at 25% 30%, rgba(152,164,168,0.12) 0%, transparent 35%); pointer-events: none; }
+    .bottle-poster .container { position: relative; display: grid; grid-template-columns: 1fr; gap: 56px; align-items: center; }
+    @media (min-width: 900px) { .bottle-poster .container { grid-template-columns: 1fr 1fr; gap: 96px; } }
+    .bottle-poster .label-card { aspect-ratio: 4 / 5; max-width: 380px; margin: 0 auto; background: rgba(216,212,208,0.04); border: 1px solid rgba(184,196,200,0.24); display: flex; align-items: center; justify-content: center; padding: 24px; }
+    .bottle-poster .label-card p { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gilt); text-align: center; }
+    .bottle-poster .copy .track { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--bone-fiddle); margin-bottom: 16px; }
+    .bottle-poster .copy h3 { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(56px, 7vw, 96px); color: var(--mist-cream); line-height: 0.95; margin-bottom: 28px; max-width: 11ch; }
+    .bottle-poster .copy h3 em { color: var(--bone-fiddle); }
+    .bottle-poster .copy .descr { font-family: var(--font-body); font-style: italic; font-size: 22px; line-height: 1.5; color: var(--mist-cream); margin-bottom: 28px; max-width: 24em; }
+    .bottle-poster .copy .meta { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bone-fiddle); line-height: 2; margin-bottom: 24px; }
+    .bottle-poster .copy .buy { font-family: var(--font-body); font-style: italic; font-size: 17px; color: var(--mist-cream); border-bottom: 1px solid var(--hymnal-red); padding-bottom: 3px; display: inline-block; }
+
+    /* Footer — colophon */
+    .colophon { background: var(--night-deep); color: var(--mist-cream); padding: 96px 0 64px; border-top: 1px solid var(--hymnal-red); }
+    .colophon .container { display: grid; grid-template-columns: 1fr; gap: 32px; max-width: 1100px; }
+    @media (min-width: 820px) { .colophon .container { grid-template-columns: repeat(3, 1fr); gap: 56px; } }
+    .colophon h3 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--bone-fiddle); margin-bottom: 14px; }
+    .colophon p, .colophon a { font-family: var(--font-body); font-size: 17px; line-height: 1.7; color: var(--mist-cream); display: block; }
+    .colophon a:hover { color: var(--bone-fiddle); }
+    .colophon em { font-style: italic; color: var(--bone-fiddle); }
+    .colophon .signature-name { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 30px; color: var(--bone-fiddle); line-height: 1; margin-bottom: 8px; }
+    .colophon .rule { grid-column: 1 / -1; margin-top: 56px; padding-top: 32px; border-top: 1px solid rgba(184,196,200,0.16); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gilt); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.001ms !important; } }
+    a:focus-visible { outline: 2px solid var(--bone-fiddle); outline-offset: 4px; }
+  </style>
+</head>
+<body>
+
+  <header class="top">
+    <div class="container">
+      <a href="/" class="mark">High Lonesome</a>
+      <nav>
+        <a href="/" aria-current="page">Home</a>
+        <a href="/the-song">The Song</a>
+        <a href="/the-gaps">The Gaps</a>
+        <a href="/the-still">The Still</a>
+        <a href="/the-bottle">The Bottle</a>
+        <a href="/shop">Shop</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container">
+        <p class="where-marker">Hot Springs, NC <span class="dot"></span> elev. 4,140 ft <span class="dot"></span> elev. high lonesome</p>
+        <h1><span class="high">High</span> Lonesome</h1>
+        <p class="tagline">"One <em>voice</em> in a wide place." Bottled bluegrass from a barn ten miles past anywhere.</p>
+        <div class="ctas">
+          <a href="/shop" class="cta-primary">Visit the Shop</a>
+          <a href="/the-song" class="cta-secondary">read the maker's song →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="voice">
+      <div class="container">
+        <p class="marker">Track 02 — The Song</p>
+        <blockquote>"There's a thing in old-time music called the high lonesome sound. It's not <em>sad</em> exactly. It's the sound of one voice in a wide place."</blockquote>
+        <p class="signature-block">
+          <span class="signature">— Sadie Greene</span>
+          <span class="role">sole proprietor · sings while she works</span>
+        </p>
+        <a href="/the-song" class="readmore">read the song in full →</a>
+      </div>
+    </section>
+
+    <section class="gaps">
+      <div class="container">
+        <div>
+          <p class="marker">Track 03 — Side B</p>
+          <h2><em>The Gaps</em> &amp; the Still.</h2>
+          <p>Forty miles outside Asheville. The gaps run cold even in July. The still is a copper kit a man in Tennessee sold me, built in <em>2019</em> in a barn ten miles past anywhere.</p>
+          <p>I sing while I work. I think it goes in.</p>
+          <div class="links">
+            <a href="/the-gaps">See the gaps ↗</a>
+            <a href="/the-still">See the still ↗</a>
+          </div>
+        </div>
+        <div class="vista" aria-label="The barn at dawn — placeholder pending Gemini">
+          <p class="label">The barn at dawn<span class="aux">awaiting Gemini · 4:5</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bottle-poster b1">
+      <div class="container">
+        <div class="label-card" aria-label="Blue Ridge Blue label placeholder"><p>Blue Ridge Blue<br><span style="opacity:0.5;font-size:9px;letter-spacing:0.16em">label · pending</span></p></div>
+        <div class="copy">
+          <p class="track">Track 04 — Side A</p>
+          <h3>Blue Ridge <em>Blue.</em></h3>
+          <p class="descr"><em>A cobalt-tinged aperitif.</em> Butterfly pea flower and mountain mint, set against a single-vapor distillate. Drink before sundown.</p>
+          <p class="meta">14% ABV · Aperitif<br>Butterfly pea · Mountain mint · Lemon balm</p>
+          <a href="/the-bottle" class="buy">Buy a bottle ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bottle-poster b2">
+      <div class="container" style="grid-template-columns: 1fr 1fr; direction: rtl;">
+        <div class="label-card" style="direction: ltr;" aria-label="The Gap label placeholder"><p>The Gap<br><span style="opacity:0.5;font-size:9px;letter-spacing:0.16em">label · pending</span></p></div>
+        <div class="copy" style="direction: ltr;">
+          <p class="track">Track 05 — Side B</p>
+          <h3>The <em>Gap.</em></h3>
+          <p class="descr">A <em>sharp, bright</em> high-elevation amaro. Forged at altitude — the bitter side of the harvest.</p>
+          <p class="meta">28% ABV · Amaro<br>Wild ginger · Black walnut · Mountain mint</p>
+          <a href="/the-bottle" class="buy">Buy a bottle ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bottle-poster b3">
+      <div class="container">
+        <div class="label-card" aria-label="Deep Cove label placeholder"><p>Deep Cove<br><span style="opacity:0.5;font-size:9px;letter-spacing:0.16em">label · pending</span></p></div>
+        <div class="copy">
+          <p class="track">Track 06 — Side A</p>
+          <h3>Deep <em>Cove.</em></h3>
+          <p class="descr">A <em>dark, sweet</em> cordial for winter. Wild persimmon, paw-paw, and black walnut hull, slow-steeped.</p>
+          <p class="meta">22% ABV · Cordial · Fall &amp; winter<br>Wild persimmon · Paw-paw · Black walnut hull</p>
+          <a href="/the-bottle" class="buy">Buy a bottle ↗</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="colophon">
+    <div class="container">
+      <div>
+        <h3>The Barn</h3>
+        <p>Hot Springs, NC.</p>
+        <p>Ten miles past <em>anywhere</em>.</p>
+        <p>Open by appointment only.</p>
+      </div>
+      <div>
+        <h3>Correspondence</h3>
+        <a href="mailto:sadie@highlonesome.com">sadie@highlonesome.com</a>
+        <a href="tel:+18285550143">+1 828 555 0143</a>
+        <a href="https://instagram.com/highlonesome_nc">@highlonesome_nc</a>
+      </div>
+      <div>
+        <h3>Sung in by</h3>
+        <p class="signature-name">Sadie Greene</p>
+        <p><em>One voice in a wide place.</em></p>
+      </div>
+      <div class="rule">
+        <span>21+ verified · Made in Madison Co. NC · LP-01</span>
+        <span>© High Lonesome 2026</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

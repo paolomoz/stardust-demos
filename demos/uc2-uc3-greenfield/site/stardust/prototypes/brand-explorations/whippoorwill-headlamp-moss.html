@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<!-- Palette variant of whippoorwill-headlamp.html · Moss & Dew — forest-green undertone, dewy morning · generated 2026-05-12 by /tmp/make-exploration-palettes.py -->
+<!--
+  Brand exploration: WHIPPOORWILL
+  Direction: HEADLAMP — late-night foraging, single-light-pool atmospheric, spare meditation in the dark
+  Tagline: "Botanical liqueurs for the night shift."
+  Source brand spec: site/brand/brand-alternates.md § Alternate B
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whippoorwill — botanical liqueurs for the night shift · Moss & Dew</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cricket-navy:     #0a1810;
+      --headlight-amber:  #d8b840;
+      --pearl-snap-brown: #5a684a;
+      --napkin-cream:     #d4d8c0;
+      --ridge-dusk:       #1f3022;
+      --bird-silhouette:  #a8c098;
+      --motel-cyan:       #6ac060;
+      --ember-glow:       #b8a040;
+      --font-display: 'Cormorant Garamond','EB Garamond','Georgia',serif;
+      --font-body:    'Spectral','Georgia',serif;
+      --font-mono:    'IBM Plex Mono','Courier New',monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { font-family: var(--font-body); font-size: 17px; line-height: 1.7; color: var(--napkin-cream); background: var(--cricket-navy); overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { margin: 0; font-weight: normal; }
+    p, ul { margin: 0; padding: 0; list-style: none; }
+    img, svg { display: block; max-width: 100%; height: auto; }
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 36px; }
+
+    /* Top — minimal credits bar in the dark */
+    .top { padding: 18px 0; border-bottom: 1px solid rgba(168,192,152,0.12); }
+    .top .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
+    .mark { font-family: var(--font-display); font-style: italic; font-size: 24px; color: var(--headlight-amber); letter-spacing: 0.02em; }
+    .top nav { display: flex; gap: 28px; flex-wrap: wrap; }
+    .top nav a { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pearl-snap-brown); transition: color 200ms; }
+    .top nav a:hover { color: var(--headlight-amber); }
+
+    /* HERO — single light pool from upper-left */
+    .hero { padding: 160px 0 140px; position: relative; overflow: hidden; min-height: 88vh; }
+    .hero::before { content: ""; position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 22% 28%, rgba(216,184,64,0.42) 0%, rgba(216,184,64,0.08) 18%, transparent 36%),
+        radial-gradient(ellipse at 78% 76%, rgba(168,192,152,0.06) 0%, transparent 40%);
+      pointer-events: none;
+    }
+    .hero .container { position: relative; max-width: 920px; }
+
+    /* Whippoorwill silhouette at dusk */
+    .dusk-line { display: flex; align-items: center; gap: 18px; margin-bottom: 60px; }
+    .dusk-line .bird { width: 56px; height: 32px; opacity: 0.7; }
+    .dusk-line .bird path { fill: var(--bird-silhouette); }
+    .dusk-line .label { font-family: var(--font-display); font-style: italic; color: var(--bird-silhouette); font-size: 18px; }
+    .dusk-line .time { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; color: var(--pearl-snap-brown); text-transform: uppercase; margin-left: auto; }
+
+    .hero h1 { font-family: var(--font-display); font-weight: 500; font-style: italic; font-size: clamp(76px, 11vw, 168px); color: var(--napkin-cream); line-height: 0.92; letter-spacing: -0.01em; margin-bottom: 36px; max-width: 11ch; }
+    .hero h1 .lit { color: var(--headlight-amber); }
+    .hero .tagline { font-family: var(--font-body); font-size: clamp(20px, 2.2vw, 26px); line-height: 1.5; color: var(--napkin-cream); margin-bottom: 48px; max-width: 30em; }
+    .hero .tagline em { color: var(--headlight-amber); font-style: italic; }
+    .hero .meta-row { display: flex; gap: 32px; align-items: baseline; flex-wrap: wrap; margin-bottom: 64px; }
+    .hero .meta-row span { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--pearl-snap-brown); }
+    .hero .meta-row .live { color: var(--headlight-amber); }
+
+    .cta-primary { display: inline-block; font-family: var(--font-display); font-style: italic; font-size: 26px; color: var(--cricket-navy); background: var(--headlight-amber); padding: 16px 36px 18px; transition: background-color 200ms; }
+    .cta-primary:hover { background: var(--ember-glow); }
+    .cta-secondary { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bird-silhouette); border-bottom: 1px solid currentColor; margin-left: 24px; padding-bottom: 4px; }
+
+    /* Foraging notes section — typewriter list under amber pool */
+    .foraging { background: var(--cricket-navy); padding: 140px 0 120px; position: relative; }
+    .foraging::before { content: ""; position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 78% 50%, rgba(216,184,64,0.18) 0%, transparent 30%);
+      pointer-events: none;
+    }
+    .foraging .container { position: relative; display: grid; grid-template-columns: 1fr; gap: 48px; align-items: start; }
+    @media (min-width: 900px) { .foraging .container { grid-template-columns: 5fr 7fr; gap: 88px; } }
+    .foraging h2 { font-family: var(--font-display); font-weight: 500; font-style: italic; font-size: clamp(48px, 6vw, 76px); color: var(--napkin-cream); line-height: 0.95; margin-bottom: 24px; max-width: 9ch; }
+    .foraging h2 em { color: var(--headlight-amber); }
+    .foraging .lede { font-family: var(--font-body); font-style: italic; font-size: 20px; line-height: 1.55; color: var(--napkin-cream); max-width: 30em; }
+    .foraging .list { font-family: var(--font-mono); font-size: 13px; line-height: 2.1; color: var(--napkin-cream); padding-left: 24px; border-left: 1px solid rgba(216,184,64,0.4); }
+    .foraging .list li { display: flex; gap: 16px; }
+    .foraging .list .time { color: var(--pearl-snap-brown); flex-shrink: 0; min-width: 6ch; }
+    .foraging .list .what { color: var(--napkin-cream); }
+    .foraging .list .where { color: var(--bird-silhouette); font-style: italic; font-family: var(--font-display); font-size: 16px; }
+
+    /* The bottles — three lit panels in a dark gallery */
+    .deck { padding: 120px 0; position: relative; }
+    .deck::before { content: ""; position: absolute; inset: 0;
+      background-image:
+        radial-gradient(ellipse at 16% 50%, rgba(216,184,64,0.10) 0%, transparent 24%),
+        radial-gradient(ellipse at 50% 50%, rgba(216,184,64,0.08) 0%, transparent 24%),
+        radial-gradient(ellipse at 84% 50%, rgba(106,192,96,0.10) 0%, transparent 24%);
+      pointer-events: none;
+    }
+    .deck .container { position: relative; }
+    .deck .marker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bird-silhouette); margin-bottom: 16px; }
+    .deck h2 { font-family: var(--font-display); font-style: italic; font-size: clamp(48px, 6vw, 84px); color: var(--napkin-cream); line-height: 0.95; margin-bottom: 64px; font-weight: 400; }
+    .deck h2 .lit { color: var(--headlight-amber); }
+    .panels { display: grid; grid-template-columns: 1fr; gap: 48px; }
+    @media (min-width: 900px) { .panels { grid-template-columns: repeat(3, 1fr); gap: 56px; } }
+    .panel { position: relative; padding: 56px 32px; border: 1px solid rgba(168,192,152,0.16); background: rgba(33,50,58,0.4); }
+    .panel::before { content: ""; position: absolute; top: -40px; left: 50%; transform: translateX(-50%); width: 120px; height: 8px; background: radial-gradient(ellipse, var(--headlight-amber) 0%, transparent 75%); opacity: 0.85; }
+    .panel h3 { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 38px; color: var(--napkin-cream); line-height: 1; margin-bottom: 18px; }
+    .panel .descr { font-family: var(--font-body); font-style: italic; color: var(--headlight-amber); font-size: 17px; line-height: 1.5; margin-bottom: 32px; }
+    .panel .meta { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bird-silhouette); line-height: 2; margin-bottom: 24px; }
+    .panel .where { font-family: var(--font-display); font-style: italic; color: var(--headlight-amber); font-size: 17px; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+
+    /* Footer — closing-time strip under one lamp */
+    .closing { padding: 80px 0 56px; position: relative; }
+    .closing::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle at 50% 100%, rgba(216,184,64,0.16) 0%, transparent 35%); pointer-events: none; }
+    .closing .container { position: relative; display: grid; grid-template-columns: 1fr; gap: 36px; }
+    @media (min-width: 760px) { .closing .container { grid-template-columns: repeat(3, 1fr); } }
+    .closing h3 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--headlight-amber); margin-bottom: 12px; }
+    .closing p, .closing a { font-family: var(--font-body); font-size: 16px; line-height: 1.7; color: var(--napkin-cream); display: block; font-style: italic; }
+    .closing a { font-style: normal; font-family: var(--font-mono); font-size: 13px; }
+    .closing a:hover { color: var(--headlight-amber); }
+    .closing .rule { grid-column: 1 / -1; padding-top: 32px; margin-top: 24px; border-top: 1px solid rgba(168,192,152,0.16); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--pearl-snap-brown); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.001ms !important; } }
+    a:focus-visible { outline: 2px solid var(--headlight-amber); outline-offset: 4px; }
+  </style>
+</head>
+<body>
+
+  <header class="top">
+    <div class="container">
+      <a href="/" class="mark">Whippoorwill</a>
+      <nav>
+        <a href="/" aria-current="page">Home</a>
+        <a href="/the-bird">The Bird</a>
+        <a href="/the-night">The Night</a>
+        <a href="/the-bottle">The Bottle</a>
+        <a href="/the-still">The Still</a>
+        <a href="/where-to-find">Where to Find</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container">
+        <div class="dusk-line">
+          <svg class="bird" viewBox="0 0 56 32" aria-hidden="true">
+            <path d="M 2 22 Q 12 10 22 16 Q 28 8 36 18 Q 44 8 54 18 L 46 24 Q 38 20 30 22 L 18 24 Q 10 20 6 24 Z" />
+          </svg>
+          <span class="label">— at sundown, the bird calls —</span>
+          <span class="time">8:14 PM · April 11</span>
+        </div>
+        <h1>The <em class="lit">bird</em> calls in the dark.</h1>
+        <p class="tagline">Botanical liqueurs for the <em>night shift</em>. Hand-foraged by headlamp in Madison County, NC.</p>
+        <div class="meta-row">
+          <span class="live">● foraging tonight</span>
+          <span>Pours at four bars in Asheville</span>
+          <span>Junior, sole proprietor · est. 2019</span>
+        </div>
+        <a href="/where-to-find" class="cta-primary">Find a bar</a>
+        <a href="/the-bird" class="cta-secondary">the bird's story →</a>
+      </div>
+    </section>
+
+    <section class="foraging">
+      <div class="container">
+        <div>
+          <h2>Last night's <em>route.</em></h2>
+          <p class="lede">"I forage with a headlamp and I write product names on cocktail napkins. The herbs come from Madison County. The bottles come from a glass guy in Knoxville."</p>
+        </div>
+        <ul class="list">
+          <li><span class="time">8:42 PM</span> <span class="what">Ramps · 47 oz</span> <span class="where">— Wolfpen Creek</span></li>
+          <li><span class="time">9:11 PM</span> <span class="what">Black walnut hull · 1 lb</span> <span class="where">— Doe Branch</span></li>
+          <li><span class="time">10:24 PM</span> <span class="what">Wild persimmon · 3 lb</span> <span class="where">— old fence line</span></li>
+          <li><span class="time">11:08 PM</span> <span class="what">Sassafras root · 1 lb</span> <span class="where">— north slope</span></li>
+          <li><span class="time">12:36 AM</span> <span class="what">Mountain mint · armful</span> <span class="where">— under the bridge</span></li>
+          <li><span class="time">2:02 AM</span> <span class="what">Eastern juniper · enough</span> <span class="where">— top of the bald</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="deck">
+      <div class="container">
+        <p class="marker">Three bottles, three songs.</p>
+        <h2>What the <em class="lit">bird</em> brought back.</h2>
+        <div class="panels">
+          <article class="panel">
+            <h3>Long Night</h3>
+            <p class="descr">A slow, deep amaro for after last call.</p>
+            <p class="meta">30% ABV<br>Black walnut · Sassafras<br>Mountain mint</p>
+            <a href="/where-to-find" class="where">Where to pour →</a>
+          </article>
+          <article class="panel">
+            <h3>Call &amp; Answer</h3>
+            <p class="descr">Vermouth + bitter — the bird's two-note call.</p>
+            <p class="meta">24% ABV<br>Sourwood · Chicory<br>Magnolia bark</p>
+            <a href="/where-to-find" class="where">Where to pour →</a>
+          </article>
+          <article class="panel">
+            <h3>Headlight</h3>
+            <p class="descr">Citrus-bitter, low-ABV, for the drive home you can't take.</p>
+            <p class="meta">16% ABV<br>Wild persimmon · Hibiscus<br>Yuzu peel</p>
+            <a href="/where-to-find" class="where">Where to pour →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="closing">
+    <div class="container">
+      <div>
+        <h3>Hours</h3>
+        <p><em>Dusk to last call.</em></p>
+        <p>Seven nights a week.</p>
+      </div>
+      <div>
+        <h3>The bird's nest</h3>
+        <p>Madison County, NC</p>
+        <a href="mailto:junior@whippoorwill.com">junior@whippoorwill.com</a>
+        <a href="tel:+18285550143">+1 828 555 0143</a>
+      </div>
+      <div>
+        <h3>Junior</h3>
+        <p><em>Sole proprietor.</em></p>
+        <a href="https://instagram.com/whippoorwill_nc">@whippoorwill_nc</a>
+        <a href="https://whippoorwill.shop/">whippoorwill.shop ↗</a>
+      </div>
+      <div class="rule">
+        <span>21+ verified · Made in Madison Co. NC</span>
+        <span>© Whippoorwill 2026</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

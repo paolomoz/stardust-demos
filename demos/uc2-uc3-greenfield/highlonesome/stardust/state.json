@@ -1,0 +1,38 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:seed + stardust:brief (hand-authored, proof-of-concept)",
+    "writtenAt": "2026-05-12T00:00:00Z",
+    "stardustVersion": "0.3.0",
+    "scope": "greenfield bootstrap — no extract was run; state.json hand-authored to mark the 7 pages as 'extracted' so /stardust:direct and /stardust:prototype can run.",
+    "synthesizedInputs": [
+      "../brand/BRAND.md",
+      "../briefing/SITE-BRIEF.md",
+      "../briefing/CONTENT.md"
+    ]
+  },
+  "site": {
+    "name": "High Lonesome",
+    "originUrl": null,
+    "deployUrl": null,
+    "extractedAt": "2026-05-12T00:00:00Z",
+    "pageCap": null,
+    "totalDiscovered": 7,
+    "crawled": 7
+  },
+  "direction": {
+    "resolvedAt": "2026-05-12T00:00:00Z",
+    "phrase": "meditative mountain music wearing Italian summer color. Single voice in a wide place. Saturated, joyful, slow.",
+    "directionFile": "stardust/direction.md",
+    "mode": "A",
+    "variantMode": "single"
+  },
+  "pages": [
+    { "slug": "home",      "url": "https://highlonesome.com/",          "title": "High Lonesome · bottled bluegrass · Hot Springs, NC", "type": "landing", "status": "prototyped", "history": [{ "status": "extracted", "at": "2026-05-12T00:00:00Z" }, { "status": "directed", "at": "2026-05-12T00:00:00Z" }, { "status": "prototyped", "at": "2026-05-12T00:00:00Z" }], "stale": false, "staleReason": null, "currentStatePath": "stardust/current/pages/home.json",      "prototypePath": "stardust/prototypes/home-proposed.html", "migratedPath": null, "critique": { "p0": 0, "p1": 0, "p2": 1, "p3": 3, "p1Resolved": true } },
+    { "slug": "the-song",  "url": "https://highlonesome.com/the-song",  "title": "The Song — Sadie Greene · High Lonesome",             "type": "static",  "status": "extracted", "history": [{ "status": "extracted", "at": "2026-05-12T00:00:00Z" }], "stale": false, "staleReason": null, "currentStatePath": "stardust/current/pages/the-song.json",  "prototypePath": null, "migratedPath": null },
+    { "slug": "the-gaps",  "url": "https://highlonesome.com/the-gaps",  "title": "The Gaps & the Still · High Lonesome",                "type": "article", "status": "extracted", "history": [{ "status": "extracted", "at": "2026-05-12T00:00:00Z" }], "stale": false, "staleReason": null, "currentStatePath": "stardust/current/pages/the-gaps.json",  "prototypePath": null, "migratedPath": null },
+    { "slug": "the-bottle","url": "https://highlonesome.com/the-bottle","title": "The Bottle — three bottles · High Lonesome",          "type": "listing", "status": "extracted", "history": [{ "status": "extracted", "at": "2026-05-12T00:00:00Z" }], "stale": false, "staleReason": null, "currentStatePath": "stardust/current/pages/the-bottle.json","prototypePath": null, "migratedPath": null },
+    { "slug": "hymns",     "url": "https://highlonesome.com/hymns",     "title": "Hymns — recipes & cocktails · High Lonesome",         "type": "article", "status": "extracted", "history": [{ "status": "extracted", "at": "2026-05-12T00:00:00Z" }], "stale": false, "staleReason": null, "currentStatePath": "stardust/current/pages/hymns.json",     "prototypePath": null, "migratedPath": null },
+    { "slug": "shop",      "url": "https://highlonesome.com/shop",      "title": "Shop · High Lonesome",                                "type": "static",  "status": "extracted", "history": [{ "status": "extracted", "at": "2026-05-12T00:00:00Z" }], "stale": false, "staleReason": null, "currentStatePath": "stardust/current/pages/shop.json",      "prototypePath": null, "migratedPath": null },
+    { "slug": "contact",   "url": "https://highlonesome.com/contact",   "title": "Contact — Sadie · High Lonesome",                     "type": "static",  "status": "extracted", "history": [{ "status": "extracted", "at": "2026-05-12T00:00:00Z" }], "stale": false, "staleReason": null, "currentStatePath": "stardust/current/pages/contact.json",   "prototypePath": null, "migratedPath": null }
+  ]
+}

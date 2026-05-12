@@ -1,0 +1,191 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:direct (Phase 4)",
+    "writtenAt": "2026-05-12T00:00:00Z",
+    "readArtifacts": [
+      "stardust/current/DESIGN.json",
+      "stardust/current/_brand-extraction.json",
+      "PRODUCT.md",
+      "brand/BRAND.md"
+    ],
+    "resolvedDirection": "stardust/direction.md#active",
+    "scope": "TARGET site-level design system sidecar — single variant (Mode A). No page-level deployment.",
+    "stardustVersion": "0.3.0"
+  },
+  "schemaVersion": 2,
+  "project": "high-lonesome",
+  "register": "brand",
+  "tokens": {
+    "colors": {
+      "hl-blue":        { "value": "#1d4250", "oklch": "oklch(0.36 0.05 220)", "role": "page-surface-dark · dominant ground · text on light surfaces" },
+      "hl-fiddle-bone": { "value": "#f9efd8", "oklch": "oklch(0.94 0.03 80)",  "role": "page-surface-light · light-interlude ground · text on dark surfaces" },
+      "hl-cardinal":    { "value": "#e54a1c", "oklch": "oklch(0.62 0.20 35)",  "role": "loud-accent · primary CTA fill · flag-ground (at most one section per route)" },
+      "hl-honey":       { "value": "#eac246", "oklch": "oklch(0.82 0.14 85)",  "role": "secondary-warm · micro-typography accent · atmospheric glow" },
+      "hl-laurel":      { "value": "#f0a99e", "oklch": "oklch(0.79 0.09 30)",  "role": "secondary-warm · italic emphasis · warm-secondary surface" },
+      "hl-butterfly":   { "value": "#5cc1c0", "oklch": "oklch(0.74 0.09 195)", "role": "light-spark · Blue Ridge Blue surface · non-body accents only" },
+      "hl-ink":         { "value": "#2d1a14", "oklch": "oklch(0.21 0.03 30)",  "role": "deep-text · darkest contrast · never use #000" }
+    },
+    "typography": {
+      "display": { "family": "'Playfair Display', 'Cormorant Infant', 'EB Garamond', Georgia, serif", "style": "italic", "weight": 400, "case": "mixed", "ratio": 1.333, "sizes": { "hero": 144, "section": 80, "card": 64, "sub": 48 } },
+      "body":    { "family": "'Spectral', 'Lora', Georgia, serif", "style": "normal", "weight": 400, "sizes": { "lede": 22, "body": 19, "caption": 15 }, "lineHeight": 1.55 },
+      "mono":    { "family": "'IBM Plex Mono', 'Courier New', Menlo, monospace", "style": "normal", "weight": 400, "sizes": { "eyebrow": 13, "micro": 12, "numeric": 14 }, "tracking": 0.08 }
+    },
+    "spacing": {
+      "scale": [4, 8, 12, 16, 24, 32, 48, 64],
+      "sectionPadding": { "desktop": 96, "tablet": 72, "mobile": 48 },
+      "tier": "airy",
+      "rhythm": "alternate 96px and 64px section padding across sections to prevent monotony"
+    },
+    "rounded":  { "sm": 2, "md": 4, "lg": 12, "pill": 999 },
+    "elevation": "flat-by-conviction — no drop shadows, no gradient elevation; depth via atmospheric radial gradients and hand-painted asset materiality only",
+    "motion":   { "ease": "cubic-bezier(0.16, 1, 0.3, 1)", "duration": 380, "stagger": 60, "propertiesAllowed": ["transform", "opacity"], "reducedMotion": "honor — jump to resolved state" },
+    "breakpoints": { "mobile": 640, "tablet": 960, "desktop": 1280, "wide": 1680 }
+  },
+  "components": {
+    "button-primary":   { "shape": "rectangle", "radius": 4, "fill": "hl-fiddle-bone on dark ground; hl-cardinal on light ground", "label": "italic-classical-serif 20px", "hover": "background to hl-honey, translateY -1px" },
+    "button-secondary": { "shape": "text-link", "underline": "1px currentColor", "label": "Spectral italic 17px" },
+    "card":             { "treatment": "single-instance only — NOT used in 3-col identical grids; multi-instance content is rendered as multiple full-bleed sections instead" },
+    "eyebrow":          { "treatment": "IBM Plex Mono uppercase 13px tracking 0.08em color hl-honey" },
+    "pull-quote":       { "treatment": "Spectral italic 26px line 1.4; cite in mono uppercase tracking 0.08em" },
+    "ornament-rule":    { "treatment": "inline SVG hand-painted divider — rough strokes, currentColor, NEVER a 1px horizontal rule" }
+  },
+  "extensions": {
+    "colorMeta": {
+      "strategy": "drenched",
+      "groundFamily": "hl-blue (Mode C override: brand-faithful)",
+      "altSectionSurfaces": ["hl-fiddle-bone", "hl-butterfly", "hl-cardinal"],
+      "contrastRoster": [
+        { "fg": "hl-fiddle-bone",   "bg": "hl-blue",         "ratio": 10.2, "status": "AAA" },
+        { "fg": "hl-cardinal",      "bg": "hl-fiddle-bone",  "ratio": 5.4,  "status": "AA"  },
+        { "fg": "hl-ink",           "bg": "hl-fiddle-bone",  "ratio": 14.8, "status": "AAA" },
+        { "fg": "hl-ink",           "bg": "hl-butterfly",    "ratio": 7.9,  "status": "AAA" },
+        { "fg": "hl-fiddle-bone",   "bg": "hl-cardinal",     "ratio": 4.6,  "status": "AA"  },
+        { "fg": "hl-butterfly",     "bg": "hl-blue",         "ratio": 3.2,  "status": "non-body only" },
+        { "fg": "hl-honey",         "bg": "hl-blue",         "ratio": 6.3,  "status": "AA"  },
+        { "fg": "hl-laurel",        "bg": "hl-blue",         "ratio": 4.8,  "status": "AA"  }
+      ]
+    },
+    "typographyMeta": {
+      "expectedCharacter": "italic-classical-serif at scale — Playfair Display italic; mixed-case display; numerals + measurables in mono",
+      "rejectedCharacters": [
+        "all-caps display (forbidden)",
+        "roman display (forbidden — reads too rigid for music-coded brand)",
+        "sans-serif body (forbidden — humanist serif required)",
+        "4th type tier (forbidden — three families only)"
+      ],
+      "loadBearingRule": "italic-at-display is load-bearing; if the rendered HTML does not load Playfair Display + Cormorant Infant + Spectral + IBM Plex Mono via @font-face or Google Fonts, validation fails"
+    },
+    "paletteDeployment": {
+      "intensity": "drenched",
+      "targetGroundCount": 4,
+      "deploymentPattern": "asymmetric-cycling — NOT strict A/B alternation",
+      "cardinalFlashRule": "at-most-one-section-per-route as flag ground; never as body background; never as text color larger than micro-label",
+      "homeSectionGroundSequence": [
+        "hl-blue", "hl-blue", "hl-fiddle-bone", "hl-blue", "hl-butterfly", "hl-cardinal", "hl-blue", "hl-fiddle-bone", "hl-blue", "hl-blue"
+      ]
+    },
+    "divergence": {
+      "mode": "A (brand-faithful)",
+      "modeDetectionTrace": [
+        "captured signal classification: signal-strong (7 palette tokens · 3 type families · 3 imagery lanes)",
+        "rebrand triggers: none (no rebrand phrase, --rebrand flag not passed, signal-strong present)",
+        "→ Mode A active"
+      ],
+      "seed": {
+        "decade":       { "value": "mid-century-Italian × Renaissance-italic composite", "picked_by": "anchor-reference: brand/BRAND.md (Italian summer + italic-classical-serif)" },
+        "craft":        { "value": "editorial-poster + hand-painted-label",              "picked_by": "anchor-reference: brand/BRAND.md (Lane 3 imagery + 1960s Italian travel-poster reference)" },
+        "register":     { "value": "memoir-adjacent",                                     "picked_by": "anchor-reference: brand/BRAND.md voice (first-person singular Sadie)" },
+        "ground_family":{ "value": "hl-blue",                                             "picked_by": "user-constraint", "override": "brand-faithful" }
+      },
+      "font_deck":    { "name": "brand-inherited", "picked_by": "user-constraint" },
+      "palette":      { "source": "inherited from stardust/current/_brand-extraction.json", "picked_by": "user-constraint", "tokenCount": 7 },
+      "brand_faithful_inversions": [
+        { "rule": "italic-at-display required",       "rationale": "captured display family is Playfair Display italic; the italic forms read as singing, central to brand voice" },
+        { "rule": "all-caps display forbidden",       "rationale": "brand register is meditative / memoir; all-caps reads as shouting" },
+        { "rule": "mixed-case display required",      "rationale": "drenched palette + airy spacing already carry visual energy; type tier balances by reading quietly" },
+        { "rule": "drenched palette deployment",      "rationale": "central tension demands both halves at full volume; restrained or committed deployment collapses Italian half into Mountain half" },
+        { "rule": "cardinal-flash one section max",   "rationale": "loud-accent role rule; multiple cardinal sections would read trattoria" },
+        { "rule": "numerals + measurables in mono",   "rationale": "captured discipline; reads as measured rather than decorative" }
+      ],
+      "anti_toolbox_hits": [
+        { "hit": "drenched palette intensity",                        "justification": "explicit user preference + brand central tension demands wide saturation deployment" },
+        { "hit": "italic-at-display required",                         "justification": "brand-faithful inversion; captured display family is italic" },
+        { "hit": "atmospheric radial-gradient grounds (multiple)",    "justification": "brand imagery Lane 1 — cinematic Blue Ridge atmosphere as section ground (not depth-as-elevation)" }
+      ]
+    },
+    "componentStyle": {
+      "buttons": { "primary": { "shape": "rectangle", "case": "italic-classical-serif" } },
+      "cards":   { "treatment": "single-instance — never identical-grid 3-col card pattern" },
+      "inputs":  { "treatment": "deferred to contact page; home has no form components" },
+      "dualCTAPattern": "FORBIDDEN — Generic-2026-SaaS silhouette anti-reference. Hero CTA pair must be (primary fill) + (secondary text-link), NOT two visually-equivalent fills."
+    },
+    "systemComponentRoles": {
+      "header":       { "purpose": "site nav + credits-bar with vol/no marker", "position": "top", "siteWide": true },
+      "footer":       { "purpose": "colophon — hours, correspondence, signature, 21+", "position": "bottom", "siteWide": true },
+      "section-opener": { "purpose": "italic-display section heading with ornament-rule + eyebrow above", "siteWide": true },
+      "pour-list":    { "purpose": "find-a-pour stockists pattern", "position": "near-bottom", "siteWide": false }
+    },
+    "voice": {
+      "narrator": "first-person singular (Sadie Greene)",
+      "dos": [
+        "Slow plainspoken declaratives. Periods.",
+        "Specifics over modifiers — 'ten miles past anywhere', 'elevation 4,140 ft', '1983 in Verona'.",
+        "Reverent, not irreverent. Joy, not fun.",
+        "Italian DNA stays implicit (palette only)."
+      ],
+      "donts": [
+        "Never 'we' — always first-person 'I' or anonymous.",
+        "No editorial-register chrome vocabulary (atelier, the journal, dispatches).",
+        "No Italian-language words anywhere (trattoria, piazza, dolce).",
+        "No 'y'all' or generic folksy register.",
+        "No em-dashes (per impeccable shared design laws)."
+      ]
+    },
+    "iaPriorities": []
+  },
+  "narrative": {
+    "northStar": "A site that sounds like meditative single-voice mountain music and looks like a 1960s Italian summer travel poster — at the same time, at full volume on both halves.",
+    "overview": "High Lonesome is a single-maker Appalachian botanical-spirits house in Hot Springs NC. The brand site holds two halves in tension: auditory solitude (single-voice mountain music register, first-person Sadie narrator, slow declaratives, reverent tone) and visual joy (a saturated 7-token Mediterranean-pop palette deployed across ≥ 4 distinct grounds, italic-classical-serif display reading as singing, hand-painted bottle labels). Mode A brand-faithful: palette and type pinned, drenched palette intensity, italic-display load-bearing.",
+    "keyCharacteristics": [
+      "drenched palette deployment — 4 distinct grounds across 10 home sections, asymmetric cycling",
+      "italic-classical-serif display at scale, mixed-case (never all-caps)",
+      "cardinal-flash limited to one section per route as the brand's loudest moment",
+      "atmospheric radial-gradient grounds reference Blue Ridge sunsets / mountain laurel / sourwood honey",
+      "first-person singular Sadie narrator, plainspoken declaratives",
+      "numerals + measurables always in mono — measured, not decorative"
+    ],
+    "rules": [
+      "italic-at-display required across all display sizes (≥ 48px)",
+      "all-caps display forbidden",
+      "roman display forbidden",
+      "cardinal-flash limited to one section per route as flag ground; never body background; never text >micro-label",
+      "drenched palette deployment — ≥ 4 distinct section grounds on any multi-section route",
+      "Italian DNA implicit only — palette deploys it, copy never names it",
+      "no pure #000000 — use --hl-ink",
+      "no 3-col identical card grid — multi-instance content renders as multiple full-bleed sections",
+      "no centered SaaS hero with dual-CTA pair (Generic-2026-SaaS silhouette anti-reference)",
+      "no editorial-register vocabulary in chrome",
+      "no em-dashes in body copy"
+    ],
+    "dos": [
+      "Drench every section in a brand color — high-lonesome-blue is dominant, not exclusive.",
+      "Use italic display at scale (≥ 48px) for every headline.",
+      "Keep numerals + measurables in mono.",
+      "Vary section padding (96px / 64px alternation) so rhythm doesn't flatten.",
+      "Render the three bottles as three full-bleed sections, each with its own ground.",
+      "Reference Blue Ridge atmosphere in section grounds (radial gradients, mountain silhouettes)."
+    ],
+    "donts": [
+      "All-caps display anywhere.",
+      "Roman display anywhere.",
+      "3-col card grid of identical cards.",
+      "Side-stripe borders > 1px (impeccable absolute ban).",
+      "Gradient text, glassmorphism, hero-metric template, modal-first (impeccable absolute bans).",
+      "Pure #000000.",
+      "Italian-language words anywhere (trattoria, piazza, dolce).",
+      "Centered SaaS hero with dual-CTA pair.",
+      "Editorial-register vocabulary in chrome.",
+      "Em-dashes in body copy."
+    ]
+  }
+}

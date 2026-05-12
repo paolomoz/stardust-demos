@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<!-- stardust:provenance
+  writtenBy:        impeccable:craft (via stardust:prototype) — variant C palette swap · Teal Twilight (palette extracted from a private Mediterranean-pop reference image)
+  writtenAt:        2026-05-11T00:00:00Z
+  page:             home
+  pageUrl:          https://hollerandhymn.com/
+  againstDirection: stardust/direction.md (Active 2026-05-11T00:00:00Z — Mode A, multi-variant fork)
+  variantRole:      "Palette swap on variant C — Teal Twilight · Mediterranean-pop register, surface-dominant cool — deep-teal page throughout, cream-bone body text, coral-pink + mustard + vermilion atmospheric glows, cyan as light spark."
+  variantBrief:     >
+    The brand viewed entirely through the HOLLER side of the duality. Atmospheric photographic-led
+    composition (1970s outlaw-country album sleeve lineage — Willie Nelson 'Red Headed Stranger',
+    Townes 'Live at the Old Quarter', Johnny Cash 'At Folsom Prison'). Cinematic, spare, dark.
+    Heavy condensed display set against atmospheric voids. Hymnal-black ground throughout.
+    Bottles section becomes a vertical stack of full-bleed poster sections, NOT a fan or grid.
+    The HYMN half is quieted but not absent — visible as Wendell-voice body copy, occasional
+    almanac-adjacent typographic moments, but never as composition-level rhythm.
+  divergesFromA:
+    - composition: vertical poster-section stack instead of asymmetric collage on plywood
+    - motifs: atmospheric photographic-style heroes per section instead of marquee tape + stickers + Polaroids
+    - typography: Anton (heavy condensed sans, album-credits character) instead of Smokum (revival-poster)
+    - hero: full-bleed dark atmospheric NOT centered title-page NOT left-anchored album-cover-collage
+    - bottles: 3 vertical poster sections (one per featured bottle, near-full-bleed each) instead of fan + staggered catalog
+    - pews: simple centered type block like album liner notes instead of folk-art map
+    - palette: hymnal-black dominates as page surface; gilt-gold for credits / labels; tape-mustard absent
+  divergesFromB:
+    - composition: cinematic photographic-led vs. almanac multi-column typeset
+    - motifs: atmospheric voids vs. decorative rules + leader dots
+    - typography: heavy condensed sans (Anton) vs. classical transitional serif (Old Standard TT)
+    - register: Tabloid-adjacent vs. Memoir-adjacent
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Holler &amp; Hymn — variant C · Teal Twilight palette</title>
+  <meta name="description" content="Saturday night sin. Sunday morning hymn. Both in one bottle." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Spectral:ital,wght@0,400;0,700;1,400&family=Caveat:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --hh-hymnal-black: #1d4250;
+      --hh-barn-rust: #f0a99e;
+      --hh-gilt-gold: #eac246;
+      --hh-rhody-green: #5cc1c0;
+      --hh-bulletin-cream: #f9efd8;
+      --hh-hellfire-neon: #e54a1c;
+      --hh-tape-mustard: #eac246;
+      --hh-border-neutral: #c8b89a;
+      --hh-text-mute: #a8bdc0;
+      --hh-deep-black: #1d4250;
+      --hh-smoke: #234a58;
+      --font-display: 'Anton','Oswald','Bebas Neue','Impact',sans-serif;
+      --font-body: 'Spectral','Lora','Georgia',serif;
+      --font-mono: 'IBM Plex Mono','Courier New','Menlo',monospace;
+      --font-script: 'Caveat','Brush Script MT','Snell Roundhand',cursive;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { font-family: var(--font-body); font-size: 17px; line-height: 1.6; color: var(--hh-bulletin-cream); background: var(--hh-deep-black); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3, h4 { margin: 0; font-weight: normal; }
+    p { margin: 0; }
+    ul, ol { margin: 0; padding: 0; list-style: none; }
+    img, svg { display: block; max-width: 100%; height: auto; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+
+    /* Skip link */
+    .skip-link { position: absolute; left: -9999px; top: 8px; }
+    .skip-link:focus { left: 16px; z-index: 1000; background: var(--hh-barn-rust); color: var(--hh-bulletin-cream); padding: 10px 16px; }
+    a:focus-visible { outline: 2px solid var(--hh-gilt-gold); outline-offset: 4px; }
+
+    /* Header — minimal credits-strip */
+    .credits-bar { background: var(--hh-deep-black); padding: 14px 0; border-bottom: 1px solid rgba(234,194,70,0.18); }
+    .credits-bar .container { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    .credits-bar .mark { font-family: var(--font-display); font-size: 18px; letter-spacing: 0.04em; color: var(--hh-bulletin-cream); text-transform: uppercase; }
+    .credits-bar .mark .amp { color: var(--hh-barn-rust); font-family: var(--font-body); font-style: italic; padding: 0 0.18em; font-weight: 400; }
+    .credits-bar nav { display: flex; gap: 22px; flex-wrap: wrap; }
+    .credits-bar nav a { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hh-text-mute); transition: color 200ms; }
+    .credits-bar nav a:hover, .credits-bar nav a[aria-current="page"] { color: var(--hh-gilt-gold); }
+    .credits-bar .side-b { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; color: var(--hh-text-mute); }
+
+    /* Hero — full-bleed atmospheric */
+    .hero { background: var(--hh-deep-black); position: relative; min-height: 96vh; padding: 120px 0 140px; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(ellipse at 30% 40%, rgba(240,169,158,0.22) 0%, transparent 40%), radial-gradient(ellipse at 70% 70%, rgba(234,194,70,0.08) 0%, transparent 35%), url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.92  0 0 0 0 0.85  0 0 0 0 0.72  0 0 0 0.04 0'/></filter><rect width='400' height='400' filter='url(%23n)'/></svg>"); pointer-events: none; opacity: 0.85; mix-blend-mode: screen; }
+    .hero .container { position: relative; }
+    .hero .side-marker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--hh-text-mute); margin-bottom: 56px; }
+    .hero .side-marker .neon { color: var(--hh-hellfire-neon); }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(80px, 13vw, 192px); line-height: 0.88; color: var(--hh-bulletin-cream); text-transform: uppercase; letter-spacing: -0.01em; font-weight: 400; margin-bottom: 32px; max-width: 11ch; }
+    .hero h1 .amp { color: var(--hh-barn-rust); font-family: var(--font-body); font-style: italic; font-weight: 400; padding: 0 0.04em; }
+    .hero .song-title { font-family: var(--font-body); font-style: italic; font-size: clamp(20px, 2.2vw, 26px); color: var(--hh-bulletin-cream); line-height: 1.4; max-width: 28em; margin-bottom: 8px; }
+    .hero .song-title em { color: var(--hh-barn-rust); font-weight: 700; font-style: italic; }
+    .hero .track-time { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; color: var(--hh-text-mute); margin-bottom: 64px; }
+    .hero .cta { display: inline-block; font-family: var(--font-display); font-size: 22px; letter-spacing: 0.06em; color: var(--hh-bulletin-cream); text-transform: uppercase; padding: 18px 36px 20px; border: 2px solid var(--hh-bulletin-cream); transition: background-color 200ms, color 200ms; }
+    .hero .cta:hover, .hero .cta:focus-visible { background: var(--hh-bulletin-cream); color: var(--hh-deep-black); }
+    .hero .secondary { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--hh-text-mute); margin-left: 28px; border-bottom: 1px solid currentColor; padding-bottom: 2px; transition: color 200ms; }
+    .hero .secondary:hover { color: var(--hh-gilt-gold); }
+
+    /* Maker — spare atmospheric quote */
+    .maker { background: var(--hh-deep-black); padding: 140px 0; position: relative; }
+    .maker::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(ellipse at 50% 50%, rgba(240,169,158,0.06) 0%, transparent 50%); pointer-events: none; }
+    .maker .container { position: relative; text-align: center; }
+    .maker .track-marker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--hh-text-mute); margin-bottom: 64px; }
+    .maker blockquote { font-family: var(--font-body); font-style: italic; font-size: clamp(26px, 3.2vw, 40px); line-height: 1.35; color: var(--hh-bulletin-cream); max-width: 28em; margin: 0 auto; }
+    .maker blockquote em { color: var(--hh-gilt-gold); font-weight: 700; font-style: italic; }
+    .maker .signature-line { margin-top: 72px; }
+    .maker .signature { font-family: var(--font-script); font-size: 48px; color: var(--hh-gilt-gold); display: inline-block; transform: rotate(-2deg); line-height: 1; }
+    .maker .attribution { display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hh-text-mute); margin-top: 8px; }
+    .maker .readmore { display: inline-block; margin-top: 56px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hh-gilt-gold); border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+
+    /* The Place / The Still — cinematic side-b composition */
+    .side-b-place { background: var(--hh-smoke); padding: 120px 0; position: relative; overflow: hidden; }
+    .side-b-place .container { display: grid; grid-template-columns: 1fr; gap: 64px; align-items: center; }
+    @media (min-width: 900px) { .side-b-place .container { grid-template-columns: 5fr 4fr; gap: 80px; } }
+    .side-b-place .copy { padding-right: 0; }
+    .side-b-place .track-marker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--hh-text-mute); margin-bottom: 28px; }
+    .side-b-place h2 { font-family: var(--font-display); font-size: clamp(56px, 8vw, 112px); line-height: 0.9; color: var(--hh-bulletin-cream); text-transform: uppercase; font-weight: 400; margin-bottom: 32px; }
+    .side-b-place h2 em { color: var(--hh-gilt-gold); font-family: var(--font-body); font-style: italic; font-weight: 400; }
+    .side-b-place .copy p { font-family: var(--font-body); font-size: 19px; line-height: 1.6; color: var(--hh-bulletin-cream); margin-bottom: 32px; max-width: 30em; }
+    .side-b-place .copy p em { color: var(--hh-gilt-gold); font-style: italic; }
+    .side-b-place .links { display: flex; flex-direction: column; gap: 14px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; }
+    .side-b-place .links a { color: var(--hh-bulletin-cream); border-bottom: 1px solid var(--hh-barn-rust); padding-bottom: 4px; display: inline-block; align-self: flex-start; transition: color 200ms; }
+    .side-b-place .links a:hover { color: var(--hh-gilt-gold); border-bottom-color: var(--hh-gilt-gold); }
+    .side-b-place .vista { position: relative; aspect-ratio: 4 / 5; background: var(--hh-deep-black); border: 1px solid rgba(234,194,70,0.18); padding: 16px; display: flex; align-items: center; justify-content: center; }
+    .side-b-place .vista .ph-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hh-text-mute); text-align: center; }
+    .side-b-place .vista .ph-aux { display: block; margin-top: 4px; font-size: 9px; color: var(--hh-barn-rust); }
+    .side-b-place .vista-credits { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--hh-text-mute); margin-top: 12px; text-align: right; }
+    .side-b-figures { margin-top: 80px; padding-top: 32px; border-top: 1px solid rgba(234,194,70,0.22); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hh-gilt-gold); text-align: center; max-width: 1100px; margin-left: auto; margin-right: auto; padding-left: 32px; padding-right: 32px; }
+
+    /* Bottles — 3 vertical poster sections */
+    .poster { background: var(--hh-deep-black); padding: 0; }
+    .poster-track-marker { background: var(--hh-deep-black); padding: 72px 0 0; text-align: center; }
+    .poster-track-marker .marker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--hh-text-mute); }
+    .poster-track-marker h2 { font-family: var(--font-display); font-size: clamp(48px, 7vw, 96px); line-height: 0.9; color: var(--hh-bulletin-cream); text-transform: uppercase; margin-top: 16px; font-weight: 400; }
+    .poster-section { padding: 100px 0; position: relative; min-height: 84vh; display: flex; align-items: center; overflow: hidden; }
+    .poster-section.poster-rust { background: var(--hh-deep-black); }
+    .poster-section.poster-rust::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(ellipse at 70% 30%, rgba(240,169,158,0.28) 0%, transparent 45%), radial-gradient(ellipse at 20% 80%, rgba(229,74,28,0.12) 0%, transparent 35%); pointer-events: none; }
+    .poster-section.poster-black { background: var(--hh-smoke); }
+    .poster-section.poster-black::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(ellipse at 30% 50%, rgba(234,194,70,0.10) 0%, transparent 45%); pointer-events: none; }
+    .poster-section.poster-rhody { background: var(--hh-deep-black); }
+    .poster-section.poster-rhody::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(ellipse at 60% 50%, rgba(92,193,192,0.30) 0%, transparent 50%), radial-gradient(ellipse at 20% 20%, rgba(234,194,70,0.08) 0%, transparent 35%); pointer-events: none; }
+    .poster-section .container { position: relative; display: grid; grid-template-columns: 1fr; gap: 56px; align-items: center; }
+    @media (min-width: 900px) { .poster-section .container { grid-template-columns: 1fr 1fr; gap: 80px; } }
+    .poster-image { aspect-ratio: 4 / 5; max-width: 380px; margin: 0 auto; background: rgba(249,239,216,0.04); border: 1px solid rgba(234,194,70,0.22); display: flex; align-items: center; justify-content: center; }
+    .poster-image .ph-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hh-text-mute); text-align: center; }
+    .poster-image .ph-aux { display: block; margin-top: 4px; font-size: 9px; color: var(--hh-barn-rust); }
+    .poster-copy .track { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--hh-gilt-gold); margin-bottom: 16px; }
+    .poster-copy h3 { font-family: var(--font-display); font-size: clamp(52px, 8vw, 96px); line-height: 0.9; color: var(--hh-bulletin-cream); text-transform: uppercase; font-weight: 400; margin-bottom: 24px; max-width: 12ch; }
+    .poster-copy .description { font-family: var(--font-body); font-style: italic; font-size: clamp(20px, 2.4vw, 26px); color: var(--hh-bulletin-cream); line-height: 1.45; max-width: 22em; margin-bottom: 32px; }
+    .poster-copy .botanicals { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--hh-text-mute); line-height: 2; margin-bottom: 32px; max-width: 22em; }
+    .poster-copy .where { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--hh-bulletin-cream); border-bottom: 1px solid var(--hh-barn-rust); padding-bottom: 4px; display: inline-block; transition: color 200ms; }
+    .poster-copy .where:hover { color: var(--hh-gilt-gold); border-bottom-color: var(--hh-gilt-gold); }
+    .all-six { background: var(--hh-deep-black); padding: 56px 0 96px; text-align: center; border-top: 1px solid rgba(234,194,70,0.18); }
+    .all-six a { display: inline-block; font-family: var(--font-display); font-size: clamp(32px, 4vw, 56px); letter-spacing: 0.02em; color: var(--hh-bulletin-cream); text-transform: uppercase; border: 2px solid var(--hh-bulletin-cream); padding: 18px 44px; transition: background-color 200ms, color 200ms; }
+    .all-six a:hover { background: var(--hh-bulletin-cream); color: var(--hh-deep-black); }
+
+    /* Pour List — liner-notes centered type */
+    .liner-notes { background: var(--hh-smoke); padding: 120px 0; text-align: center; }
+    .liner-notes .track-marker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--hh-text-mute); margin-bottom: 16px; }
+    .liner-notes h2 { font-family: var(--font-display); font-size: clamp(48px, 7vw, 96px); line-height: 0.9; color: var(--hh-bulletin-cream); text-transform: uppercase; font-weight: 400; margin-bottom: 48px; }
+    .liner-notes h2 em { color: var(--hh-gilt-gold); font-family: var(--font-body); font-style: italic; }
+    .liner-notes ul { max-width: 36em; margin: 0 auto; }
+    .liner-notes li { padding: 22px 0; }
+    .liner-notes li + li { border-top: 1px solid rgba(234,194,70,0.16); }
+    .liner-notes .bar { font-family: var(--font-display); font-size: clamp(28px, 3.6vw, 40px); line-height: 1; color: var(--hh-bulletin-cream); text-transform: uppercase; }
+    .liner-notes .hood { display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--hh-gilt-gold); margin-top: 8px; }
+    .liner-notes .note { display: block; font-family: var(--font-body); font-style: italic; font-size: 16px; color: var(--hh-text-mute); margin-top: 6px; }
+    .liner-notes .see-all { margin-top: 64px; }
+    .liner-notes .see-all a { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hh-bulletin-cream); border-bottom: 1px solid var(--hh-barn-rust); padding-bottom: 4px; }
+    .liner-notes .see-all a:hover { color: var(--hh-gilt-gold); border-bottom-color: var(--hh-gilt-gold); }
+
+    /* Footer — album credits */
+    .album-credits { background: var(--hh-deep-black); padding: 96px 0 64px; border-top: 1px solid var(--hh-barn-rust); }
+    .album-credits .container { display: grid; grid-template-columns: 1fr; gap: 48px; }
+    @media (min-width: 900px) { .album-credits .container { grid-template-columns: repeat(3, 1fr); } }
+    .album-credits h3 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--hh-gilt-gold); margin-bottom: 16px; }
+    .album-credits p, .album-credits a { font-family: var(--font-body); font-size: 16px; line-height: 1.7; color: var(--hh-bulletin-cream); }
+    .album-credits a { display: block; transition: color 200ms; }
+    .album-credits a:hover { color: var(--hh-gilt-gold); }
+    .album-credits .mono { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; }
+    .album-credits .rule { grid-column: 1 / -1; margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(234,194,70,0.22); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--hh-text-mute); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .album-credits .signature-credit { font-family: var(--font-script); font-size: 28px; color: var(--hh-gilt-gold); transform: rotate(-2deg); display: inline-block; line-height: 1; margin-bottom: 4px; }
+
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; } }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Credits-bar header -->
+  <header class="credits-bar" role="banner">
+    <div class="container">
+      <a href="/" class="mark" aria-label="Holler &amp; Hymn — home">HOLLER<span class="amp">&amp;</span>HYMN</a>
+      <nav aria-label="Primary">
+        <a href="/" aria-current="page">Home</a>
+        <a href="/the-holler">Holler</a>
+        <a href="/the-still">Still</a>
+        <a href="/the-bottles">Bottles</a>
+        <a href="/hymns">Hymns</a>
+        <a href="/pews">Pews</a>
+        <a href="/visit">Visit</a>
+      </nav>
+      <span class="side-b">SIDE B · LP-01 · MMXXVI</span>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- Hero — atmospheric album cover -->
+    <section class="hero" aria-labelledby="hero-h1">
+      <div class="container">
+        <p class="side-marker">Side A · Track 01 — <span class="neon">●</span> Now Playing</p>
+        <h1 id="hero-h1">Holler <span class="amp">&amp;</span> Hymn</h1>
+        <p class="song-title">Saturday night <em>sin.</em> Sunday morning <em>hymn.</em> Both in one bottle.</p>
+        <p class="track-time">03 : 47 — Wendell Greene · Wolfpen Holler · Madison Co. NC</p>
+        <a href="/pews" class="cta">Find a Pew</a>
+        <a href="/visit" class="secondary">or book a Saturday tasting</a>
+      </div>
+    </section>
+
+    <!-- Maker — spare atmospheric quote -->
+    <section class="maker" aria-labelledby="maker-h2">
+      <div class="container">
+        <p class="track-marker">Track 02 — The Maker</p>
+        <h2 id="maker-h2" class="visually-hidden" style="position:absolute;left:-9999px;">Made by hand. From A to Z.</h2>
+        <blockquote>"I grew up in a hollow outside Asheville where my grandmother kept a still in the smokehouse and a hymnal on the kitchen table. We never thought of them as <em>different things.</em>"</blockquote>
+        <p class="signature-line">
+          <span class="signature">Wendell Greene</span>
+          <span class="attribution">Sole Proprietor · Wolfpen Holler · Madison Co. NC</span>
+        </p>
+        <a href="/the-holler" class="readmore">Read the full letter ↗</a>
+      </div>
+    </section>
+
+    <!-- Side-B Place: combined Holler + Still -->
+    <section class="side-b-place" aria-labelledby="place-h2">
+      <div class="container">
+        <div class="copy">
+          <p class="track-marker">Track 03 — Side B</p>
+          <h2 id="place-h2">Wolfpen Holler <em>&amp;</em> the Still</h2>
+          <p>Forty miles outside Asheville. Rhododendron understory, sourwood blossom in late June. Everything in these bottles is foraged within forty miles of my barn. The still I built in 2019 from a kit a man in Tennessee sold me. <em>He drew the diagram on the back of a feed-store receipt.</em></p>
+          <div class="links">
+            <a href="/the-holler">See the Holler ↗</a>
+            <a href="/the-still">See the Still ↗</a>
+          </div>
+        </div>
+        <div>
+          <div class="vista" aria-label="Wolfpen Holler dusk view — placeholder pending Gemini Lane 1">
+            <div>
+              <p class="ph-label">Awaiting Gemini</p>
+              <p class="ph-aux">Lane 1 · Place · 4:5</p>
+            </div>
+          </div>
+          <p class="vista-credits">Photographed by W.G. · Madison Co.</p>
+        </div>
+      </div>
+      <p class="side-b-figures">40 mi · 2019 · 27 herbs · $4,000 · 1 dead preacher</p>
+    </section>
+
+    <!-- Track marker for bottles -->
+    <div class="poster-track-marker">
+      <p class="marker">Track 04, 05, 06 — The Bottles</p>
+      <h2>Six Bottles.</h2>
+    </div>
+
+    <!-- Bottle 1 — Pass the Plate -->
+    <section class="poster poster-section poster-rust" aria-labelledby="bottle-1-h">
+      <div class="container">
+        <div class="poster-image" aria-label="PASS THE PLATE hand-painted bottle label — placeholder pending Gemini Lane 3">
+          <div style="text-align:center"><p class="ph-label">Awaiting Gemini</p><p class="ph-aux">Lane 3 · Label · 4:5</p></div>
+        </div>
+        <div class="poster-copy">
+          <p class="track">Track 04 — Side A</p>
+          <h3 id="bottle-1-h">Pass the Plate</h3>
+          <p class="description"><em>A Sunday-morning aperitif amaro. Golden in the glass.</em></p>
+          <p class="botanicals">24% ABV · Sourwood · Chicory · Magnolia Bark</p>
+          <a href="/pews" class="where">Where to buy ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottle 2 — Tent Revival -->
+    <section class="poster poster-section poster-black" aria-labelledby="bottle-2-h">
+      <div class="container" style="grid-template-columns: 1fr 1fr; direction: rtl;">
+        <div class="poster-image" style="direction: ltr;" aria-label="TENT REVIVAL hand-painted bottle label — placeholder pending Gemini Lane 3">
+          <div style="text-align:center"><p class="ph-label">Awaiting Gemini</p><p class="ph-aux">Lane 3 · Label · 4:5</p></div>
+        </div>
+        <div class="poster-copy" style="direction: ltr;">
+          <p class="track">Track 05 — Side B</p>
+          <h3 id="bottle-2-h">Tent Revival</h3>
+          <p class="description"><em>Mountain herbs. Hellfire heat.</em></p>
+          <p class="botanicals">32% ABV · Sumac · Juniper · Black Walnut · Ramps</p>
+          <a href="/pews" class="where">Where to buy ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottle 3 — The Backslider -->
+    <section class="poster poster-section poster-rhody" aria-labelledby="bottle-3-h">
+      <div class="container">
+        <div class="poster-image" aria-label="THE BACKSLIDER hand-painted bottle label — placeholder pending Gemini Lane 3">
+          <div style="text-align:center"><p class="ph-label">Awaiting Gemini</p><p class="ph-aux">Lane 3 · Label · 4:5</p></div>
+        </div>
+        <div class="poster-copy">
+          <p class="track">Track 06 — Side A</p>
+          <h3 id="bottle-3-h">The Backslider</h3>
+          <p class="description"><em>Sunday-school dropouts only.</em></p>
+          <p class="botanicals">18% ABV · Paw-Paw · Wild Persimmon · Juniper</p>
+          <a href="/pews" class="where">Where to buy ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- All Six Bottles CTA -->
+    <div class="all-six">
+      <a href="/the-bottles">All Six Bottles ↗</a>
+    </div>
+
+    <!-- Pour List — liner notes -->
+    <section class="liner-notes" aria-labelledby="pour-h2">
+      <div class="container">
+        <p class="track-marker">Track 07 — Pour List</p>
+        <h2 id="pour-h2">Find a <em>Pew.</em></h2>
+        <ul>
+          <li>
+            <span class="bar">Sermon Bar</span>
+            <span class="hood">Lexington Ave · Asheville</span>
+            <span class="note">Pours Tent Revival neat in a Pyrex cup.</span>
+          </li>
+          <li>
+            <span class="bar">The Backslider Tavern</span>
+            <span class="hood">River Arts District · Asheville</span>
+            <span class="note">The whole shelf.</span>
+          </li>
+          <li>
+            <span class="bar">Bull and Beggar</span>
+            <span class="hood">RAD · Asheville</span>
+            <span class="note">Sourwood-honey old fashioned.</span>
+          </li>
+          <li>
+            <span class="bar">Little Jumbo</span>
+            <span class="hood">Downtown · Asheville</span>
+            <span class="note">Saturday-night Tent Revival flight.</span>
+          </li>
+        </ul>
+        <p class="see-all"><a href="/pews">See all the pews ↗</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer — album credits -->
+  <footer class="album-credits" role="contentinfo">
+    <div class="container">
+      <div>
+        <h3>Hours</h3>
+        <p>Open by appointment.</p>
+        <p class="mono">Saturdays · 2 + 4 pm</p>
+        <p class="mono">Closed during foraging weeks.</p>
+      </div>
+      <div>
+        <h3>Recorded At</h3>
+        <p>Dirt road off Spring Creek.</p>
+        <p>Last mile unpaved.</p>
+        <p class="mono">Wolfpen Holler · Madison Co. NC 28753</p>
+      </div>
+      <div>
+        <h3>Engineered By</h3>
+        <p><span class="signature-credit">Wendell Greene</span></p>
+        <a href="mailto:wendell@hollerandhymn.com">wendell@hollerandhymn.com</a>
+        <a href="tel:+18285550143">+1 828 555 0143</a>
+        <a href="https://instagram.com/hollerandhymn">@hollerandhymn</a>
+      </div>
+      <div class="rule">
+        <span>21+ Verified · Made in Wolfpen Holler · LP-01 / Side B</span>
+        <span>© Holler &amp; Hymn 2026</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

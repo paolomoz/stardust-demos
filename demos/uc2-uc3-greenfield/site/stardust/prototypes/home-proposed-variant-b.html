@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<!-- stardust:provenance
+  writtenBy:        impeccable:craft (via stardust:prototype) — variant B (almanac page; HYMN half amplified)
+  writtenAt:        2026-05-11T00:00:00Z
+  page:             home
+  pageUrl:          https://hollerandhymn.com/
+  againstDirection: stardust/direction.md (Active 2026-05-11T00:00:00Z — Mode A, multi-variant fork)
+  variantRole:      "One captured trait amplified — the HYMN half / Memoir-adjacent register-flavor / hand-set typographic page"
+  variantBrief:     >
+    The brand viewed entirely through the HYMN side of the duality. Hand-set page character throughout —
+    almanac-page composition (Foxfire Book typography lineage, traditional transitional-serif display
+    and body, decorative-rule + leader-dot typography motifs). No marquee tape, no collage, no fan
+    composition. Multi-column typeset blocks. Strong gilt-gold for hymnal-edge accents. The HOLLER
+    half is quieted but not absent — visible as the irreverent product names and the Wendell-voice
+    body copy, never as composition-level loudness.
+  divergesFromA:
+    - composition: typeset multi-column blocks instead of asymmetric collage
+    - motifs: decorative rules + leader-dots + hand-set chapter marks instead of marquee tape + sticker stamps + Polaroids
+    - typography: Old Standard TT throughout for hymnbook character (NOT Smokum revival-poster)
+    - hero: centered almanac title-page composition (NOT left-anchored album-cover)
+    - bottles: typeset catalog page in columns (NOT 180° fan)
+    - pews: leader-dot list (NOT folk-art map)
+    - palette: stronger gilt-gold presence; tape-mustard absent (no tape motif)
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Holler &amp; Hymn — Almanac · botanical liqueurs from Wolfpen Holler, NC</title>
+  <meta name="description" content="Saturday night sin. Sunday morning hymn. Both in one bottle." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=IM+Fell+DW+Pica:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --hh-hymnal-black: #1a1410;
+      --hh-barn-rust: #7e1d12;
+      --hh-gilt-gold: #d4a45c;
+      --hh-rhody-green: #3e5a3e;
+      --hh-bulletin-cream: #e8d8b8;
+      --hh-hellfire-neon: #f04a26;
+      --hh-tape-mustard: #d8a740;
+      --hh-border-neutral: #c8b89a;
+      --hh-text-mute: #5a4a3e;
+      --hh-paper: #ede0c0;
+      --font-display: 'IM Fell DW Pica','Old Standard TT','Bookman','Georgia',serif;
+      --font-body: 'Old Standard TT','Lora','Bookman','Georgia',serif;
+      --font-mono: 'IBM Plex Mono','Courier New','Menlo',monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { font-family: var(--font-body); font-size: 17px; line-height: 1.7; color: var(--hh-hymnal-black); background: var(--hh-paper); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3, h4 { margin: 0; font-weight: normal; }
+    p { margin: 0 0 1em 0; }
+    ul, ol { margin: 0; padding: 0; list-style: none; }
+    .container { max-width: 920px; margin: 0 auto; padding: 0 32px; }
+    img, svg { display: block; max-width: 100%; height: auto; }
+
+    /* Almanac decorative rules */
+    .rule-thick { border-top: 4px double var(--hh-hymnal-black); padding-top: 6px; border-bottom: 1px solid var(--hh-hymnal-black); padding-bottom: 18px; }
+    .rule-thin { border-top: 1px solid var(--hh-hymnal-black); padding-top: 12px; }
+    .rule-ornament { text-align: center; padding: 24px 0; }
+    .rule-ornament::before { content: "❦"; color: var(--hh-barn-rust); font-size: 18px; letter-spacing: 32px; margin-left: 32px; }
+
+    /* Header — almanac masthead */
+    .masthead { background: var(--hh-paper); border-bottom: 3px double var(--hh-hymnal-black); }
+    .masthead .container { display: flex; align-items: baseline; justify-content: space-between; padding-top: 18px; padding-bottom: 14px; flex-wrap: wrap; gap: 12px; }
+    .masthead .vol { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hh-text-mute); }
+    .masthead nav { display: flex; gap: 18px; flex-wrap: wrap; }
+    .masthead nav a { font-family: var(--font-body); font-style: italic; font-size: 14px; color: var(--hh-hymnal-black); }
+    .masthead nav a:hover, .masthead nav a[aria-current="page"] { color: var(--hh-barn-rust); }
+
+    /* Hero — almanac title page */
+    .hero { background: var(--hh-paper); padding: 96px 0 56px; text-align: center; position: relative; }
+    .hero::before { content: "❦  ❦  ❦"; display: block; color: var(--hh-barn-rust); letter-spacing: 32px; padding-left: 32px; margin-bottom: 32px; font-size: 14px; }
+    .hero .vol-edition { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--hh-text-mute); margin-bottom: 18px; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(72px, 11vw, 132px); font-weight: 700; line-height: 0.95; color: var(--hh-hymnal-black); margin-bottom: 8px; letter-spacing: -0.01em; }
+    .hero h1 .amp { font-style: italic; color: var(--hh-barn-rust); padding: 0 0.1em; font-weight: 400; }
+    .hero .subtitle { font-family: var(--font-body); font-style: italic; font-size: clamp(20px, 2.4vw, 28px); color: var(--hh-hymnal-black); margin: 16px auto 32px; max-width: 32em; line-height: 1.4; }
+    .hero .subtitle em { color: var(--hh-barn-rust); font-weight: 700; font-style: italic; }
+    .hero .tagline-rule { width: 280px; margin: 0 auto; border-top: 1px solid var(--hh-hymnal-black); padding-top: 16px; }
+    .hero .tagline { font-family: var(--font-body); font-size: 18px; line-height: 1.55; max-width: 36em; margin: 0 auto 40px; color: var(--hh-hymnal-black); }
+    .hero .tagline em { font-style: italic; color: var(--hh-barn-rust); }
+    .hero .cta-line { display: flex; justify-content: center; align-items: baseline; gap: 28px; flex-wrap: wrap; margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--hh-hymnal-black); }
+    .hero .cta-primary { font-family: var(--font-display); font-size: 22px; color: var(--hh-barn-rust); border-bottom: 2px solid var(--hh-barn-rust); padding-bottom: 4px; font-weight: 700; }
+    .hero .cta-secondary { font-family: var(--font-body); font-style: italic; font-size: 16px; color: var(--hh-hymnal-black); border-bottom: 1px solid var(--hh-text-mute); padding-bottom: 2px; }
+
+    /* The Maker — typeset quote */
+    .maker-entry { background: var(--hh-paper); padding: 80px 0 72px; }
+    .maker-entry .chapter-mark { text-align: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--hh-text-mute); margin-bottom: 8px; }
+    .maker-entry h2 { font-family: var(--font-display); font-size: clamp(36px, 5vw, 56px); font-weight: 700; line-height: 1.05; color: var(--hh-hymnal-black); text-align: center; margin-bottom: 48px; }
+    .maker-entry h2 em { font-style: italic; color: var(--hh-barn-rust); }
+    .maker-quote { font-family: var(--font-body); font-size: 22px; line-height: 1.7; color: var(--hh-hymnal-black); max-width: 32em; margin: 0 auto; text-align: left; position: relative; padding-left: 0; }
+    .maker-quote::first-letter { font-family: var(--font-display); font-size: 4.6em; font-weight: 700; float: left; line-height: 0.92; padding: 4px 12px 0 0; color: var(--hh-barn-rust); }
+    .maker-quote .hl-mustard { background: rgba(212,164,92,0.45); padding: 0 0.15em; }
+    .maker-quote .hl-rust { color: var(--hh-barn-rust); font-style: italic; }
+    .maker-attribution { text-align: right; font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--hh-text-mute); margin-top: 32px; max-width: 32em; margin-left: auto; margin-right: auto; }
+    .maker-attribution .name { font-style: normal; font-weight: 700; color: var(--hh-hymnal-black); }
+    .maker-readmore { text-align: center; margin-top: 56px; }
+    .maker-readmore a { font-family: var(--font-body); font-style: italic; color: var(--hh-barn-rust); border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+
+    /* The Place & The Still — multi-column almanac entry */
+    .almanac-entry { background: var(--hh-hymnal-black); color: var(--hh-paper); padding: 88px 0 96px; }
+    .almanac-entry .chapter-mark { color: var(--hh-gilt-gold); }
+    .almanac-entry h2 { color: var(--hh-paper); font-family: var(--font-display); font-size: clamp(40px, 6vw, 64px); font-weight: 700; text-align: center; margin-bottom: 56px; }
+    .almanac-entry h2 em { color: var(--hh-gilt-gold); font-style: italic; }
+    .almanac-cols { display: grid; grid-template-columns: 1fr; gap: 56px; }
+    @media (min-width: 820px) { .almanac-cols { grid-template-columns: 1fr 1fr; gap: 64px; } }
+    .almanac-col { font-family: var(--font-body); }
+    .almanac-col h3 { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--hh-paper); margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--hh-gilt-gold); }
+    .almanac-col h3 em { color: var(--hh-gilt-gold); font-style: italic; }
+    .almanac-col p { color: var(--hh-paper); font-size: 17px; line-height: 1.7; }
+    .almanac-col .read-on { font-family: var(--font-body); font-style: italic; color: var(--hh-gilt-gold); border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+    .almanac-figures { margin-top: 56px; padding: 24px 0; border-top: 1px solid var(--hh-gilt-gold); border-bottom: 1px solid var(--hh-gilt-gold); text-align: center; font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--hh-gilt-gold); line-height: 2; }
+
+    /* Bottles — typeset catalog */
+    .catalog { background: var(--hh-paper); padding: 88px 0 96px; }
+    .catalog .chapter-mark { text-align: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--hh-text-mute); margin-bottom: 8px; }
+    .catalog h2 { font-family: var(--font-display); font-size: clamp(40px, 6vw, 64px); font-weight: 700; text-align: center; margin-bottom: 56px; color: var(--hh-hymnal-black); }
+    .catalog h2 em { color: var(--hh-barn-rust); font-style: italic; }
+    .catalog-list { display: grid; grid-template-columns: 1fr; gap: 0; }
+    @media (min-width: 820px) { .catalog-list { grid-template-columns: 1fr 1fr; gap: 0 64px; } }
+    .catalog-item { padding: 28px 0; border-bottom: 1px solid var(--hh-hymnal-black); }
+    .catalog-item:nth-child(1), .catalog-item:nth-child(2) { border-top: 4px double var(--hh-hymnal-black); }
+    .catalog-item h3 { font-family: var(--font-display); font-size: 26px; font-weight: 700; line-height: 1; margin-bottom: 6px; color: var(--hh-hymnal-black); display: flex; justify-content: space-between; align-items: baseline; gap: 18px; }
+    .catalog-item h3 .price { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.12em; color: var(--hh-text-mute); font-weight: 400; flex-shrink: 0; }
+    .catalog-item .botanicals { font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--hh-text-mute); margin-bottom: 6px; }
+    .catalog-item .note { font-family: var(--font-body); font-size: 16px; color: var(--hh-hymnal-black); }
+    .catalog-item .buy { font-family: var(--font-body); font-style: italic; color: var(--hh-barn-rust); font-size: 14px; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+    .catalog-all { text-align: center; margin-top: 56px; padding-top: 28px; border-top: 4px double var(--hh-hymnal-black); }
+    .catalog-all a { font-family: var(--font-display); font-size: 26px; font-weight: 700; color: var(--hh-barn-rust); border-bottom: 2px solid currentColor; padding-bottom: 4px; }
+
+    /* Pour List — leader-dot listing */
+    .pour { background: var(--hh-paper); padding: 88px 0 96px; border-top: 4px double var(--hh-hymnal-black); }
+    .pour .chapter-mark { text-align: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--hh-text-mute); margin-bottom: 8px; }
+    .pour h2 { font-family: var(--font-display); font-size: clamp(40px, 6vw, 64px); font-weight: 700; text-align: center; margin-bottom: 16px; color: var(--hh-hymnal-black); }
+    .pour h2 em { color: var(--hh-barn-rust); font-style: italic; }
+    .pour .pour-intro { text-align: center; font-family: var(--font-body); font-style: italic; font-size: 18px; color: var(--hh-text-mute); margin-bottom: 48px; }
+    .pour-list { max-width: 720px; margin: 0 auto; }
+    .pour-list li { display: flex; align-items: baseline; padding: 14px 0; gap: 12px; }
+    .pour-list li + li { border-top: 1px solid var(--hh-border-neutral); }
+    .pour-list .bar { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--hh-hymnal-black); }
+    .pour-list .leader { flex: 1; border-bottom: 1px dotted var(--hh-text-mute); transform: translateY(-4px); }
+    .pour-list .hood { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hh-text-mute); flex-shrink: 0; }
+    .pour-list .note { display: block; font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--hh-text-mute); margin-top: 4px; flex-basis: 100%; padding-left: 4px; }
+    .pour-see-all { text-align: center; margin-top: 40px; }
+    .pour-see-all a { font-family: var(--font-body); font-style: italic; color: var(--hh-barn-rust); border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+
+    /* Footer — colophon */
+    .colophon { background: var(--hh-hymnal-black); color: var(--hh-paper); padding: 72px 0 56px; border-top: 4px double var(--hh-gilt-gold); }
+    .colophon .container { display: grid; grid-template-columns: 1fr; gap: 32px; }
+    @media (min-width: 820px) { .colophon .container { grid-template-columns: 1fr 1fr 1fr; gap: 48px; } }
+    .colophon h3 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--hh-gilt-gold); margin-bottom: 12px; }
+    .colophon p, .colophon a { color: var(--hh-paper); font-family: var(--font-body); font-size: 15px; line-height: 1.7; }
+    .colophon a { display: block; }
+    .colophon a:hover { color: var(--hh-gilt-gold); }
+    .colophon .mono { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; }
+    .colophon-rule { max-width: 920px; margin: 56px auto 0; padding: 24px 32px 0; border-top: 1px solid var(--hh-gilt-gold); text-align: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--hh-text-mute); }
+
+    .skip-link { position: absolute; left: -9999px; top: 8px; }
+    .skip-link:focus { left: 16px; z-index: 1000; background: var(--hh-barn-rust); color: var(--hh-paper); padding: 10px 16px; }
+    a:focus-visible { outline: 2px solid var(--hh-barn-rust); outline-offset: 3px; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; } }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="masthead" role="banner">
+    <div class="container">
+      <p class="vol">Vol. I · No. 1 · Madison Co. NC · MMXXVI</p>
+      <nav aria-label="Primary">
+        <a href="/" aria-current="page">Home</a>
+        <a href="/the-holler">Holler</a>
+        <a href="/the-still">Still</a>
+        <a href="/the-bottles">Bottles</a>
+        <a href="/hymns">Hymns</a>
+        <a href="/pews">Pews</a>
+        <a href="/visit">Visit</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- Hero — almanac title page -->
+    <section class="hero" aria-labelledby="hero-h1">
+      <div class="container">
+        <p class="vol-edition">An Almanac of Botanical Spirits</p>
+        <h1 id="hero-h1">Holler <span class="amp">&amp;</span> Hymn</h1>
+        <p class="subtitle">Saturday night <em>sin</em>. Sunday morning <em>hymn</em>. Both in one bottle.</p>
+        <div class="tagline-rule">
+          <p class="tagline">Hand-made botanical liqueurs from <em>Wolfpen Holler</em>, Madison County, North Carolina. <em>Forty miles. Twenty-seven herbs. One preacher's shed.</em></p>
+        </div>
+        <div class="cta-line">
+          <a href="/pews" class="cta-primary">Find a Pew</a>
+          <a href="/visit" class="cta-secondary"><em>or book a Saturday tasting</em></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Maker — typeset quote -->
+    <section class="maker-entry" aria-labelledby="maker-h2">
+      <div class="container">
+        <p class="chapter-mark">Chapter I · The Maker</p>
+        <h2 id="maker-h2">Made by Hand. <em>From A to Z.</em></h2>
+        <blockquote class="maker-quote">"I grew up in a hollow outside Asheville where my grandmother kept a still in the smokehouse and a hymnal on the kitchen table. We never thought of them as different things. <span class="hl-mustard">Twenty-seven herbs</span> foraged from inside <span class="hl-rust">forty miles</span> of my barn. Hand-distilled in the preacher's shed. Made from A to Z."</blockquote>
+        <p class="maker-attribution"><span class="name">Wendell Greene</span>, sole proprietor · Wolfpen Holler · Madison Co. NC · May, MMXXVI</p>
+        <p class="maker-readmore"><a href="/the-holler">Read the full letter from Wendell.</a></p>
+      </div>
+    </section>
+
+    <!-- The Place & The Still — almanac entry -->
+    <section class="almanac-entry" aria-labelledby="almanac-h2">
+      <div class="container">
+        <p class="chapter-mark">Chapter II · The Place &amp; The Still</p>
+        <h2 id="almanac-h2"><em>Wolfpen Holler</em> &amp; the Still</h2>
+        <div class="almanac-cols">
+          <div class="almanac-col">
+            <h3>§ I · <em>The Place</em></h3>
+            <p>Forty minutes outside Asheville. Rhododendron understory, sourwood blossom in late June, ramps under the leaf-mould in March. Everything in these bottles is foraged within forty miles of my barn. Nothing bought in a jug. The map of Madison County is, by chance, also the map of the brand.</p>
+            <a class="read-on" href="/the-holler">Read the holler in full →</a>
+          </div>
+          <div class="almanac-col">
+            <h3>§ II · <em>The Still</em></h3>
+            <p>Built in 2019 from a kit a man in Tennessee sold me. He drew the diagram on the back of a feed-store receipt. The shed it sits in I bought off the widow of a dead preacher for four thousand dollars. The labels are painted by hand, by me, in the same shed.</p>
+            <a class="read-on" href="/the-still">Read the still in full →</a>
+          </div>
+        </div>
+        <p class="almanac-figures">40 mi · MMXIX · 27 herbs · $4,000 · 1 dead preacher</p>
+      </div>
+    </section>
+
+    <!-- Bottles — typeset catalog -->
+    <section class="catalog" aria-labelledby="catalog-h2">
+      <div class="container">
+        <p class="chapter-mark">Chapter III · The Catalog</p>
+        <h2 id="catalog-h2">Six Bottles. <em>Four Categories.</em></h2>
+        <ol class="catalog-list">
+          <li class="catalog-item">
+            <h3>I · Pass the Plate <span class="price">24% ABV</span></h3>
+            <p class="botanicals">Sourwood blossom · chicory · magnolia bark</p>
+            <p class="note">A Sunday-morning aperitif amaro. Golden in the glass, bitter enough to remember it was made for the offering bowl, not the tip jar.</p>
+            <a class="buy" href="/pews">Where to buy →</a>
+          </li>
+          <li class="catalog-item">
+            <h3>II · Tent Revival <span class="price">32% ABV</span></h3>
+            <p class="botanicals">Staghorn sumac · juniper · black walnut · ramps</p>
+            <p class="note">Mountain herbs. Hellfire heat. A spring batch only; the rest of the year it sleeps in mason jars.</p>
+            <a class="buy" href="/pews">Where to buy →</a>
+          </li>
+          <li class="catalog-item">
+            <h3>III · The Backslider <span class="price">18% ABV</span></h3>
+            <p class="botanicals">Paw-paw · wild persimmon · juniper</p>
+            <p class="note">Sunday-school dropouts only. A sweet cordial that knows it's a cordial.</p>
+            <a class="buy" href="/pews">Where to buy →</a>
+          </li>
+          <li class="catalog-item">
+            <h3>IV · Drink Ye All of It <span class="price">44% ABV</span></h3>
+            <p class="botanicals">Aromatic · citrus · herbal (3 × 100 ml)</p>
+            <p class="note">Cocktail bitters, three formats in one box. Matthew 26:27. Three dashes minimum.</p>
+            <a class="buy" href="/pews">Where to buy →</a>
+          </li>
+          <li class="catalog-item">
+            <h3>V · Deacon's Draught <span class="price">26% ABV</span></h3>
+            <p class="botanicals">Mountain mint · sassafras · black walnut</p>
+            <p class="note">An evening amaro. The deacon's collar undone, the deacon's draught poured.</p>
+            <a class="buy" href="/pews">Where to buy →</a>
+          </li>
+          <li class="catalog-item">
+            <h3>VI · The No-Show <span class="price">11% ABV</span></h3>
+            <p class="botanicals">Muscadine · hibiscus · mountain mint</p>
+            <p class="note">A pale-pink low-alcohol aperitivo. For the pew you didn't sit in.</p>
+            <a class="buy" href="/pews">Where to buy →</a>
+          </li>
+        </ol>
+        <p class="catalog-all"><a href="/the-bottles">All six bottles, in full →</a></p>
+      </div>
+    </section>
+
+    <!-- Pour List — leader-dot listing -->
+    <section class="pour" aria-labelledby="pour-h2">
+      <div class="container">
+        <p class="chapter-mark">Chapter IV · The Pour List</p>
+        <h2 id="pour-h2">Find a <em>Pew</em></h2>
+        <p class="pour-intro">If you are in Asheville, try these pews.</p>
+        <ul class="pour-list">
+          <li>
+            <span class="bar">Sermon Bar</span>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="hood">Lexington Ave</span>
+            <span class="note">Pours Tent Revival neat in a Pyrex cup. Closest thing to a hymn.</span>
+          </li>
+          <li>
+            <span class="bar">The Backslider Tavern</span>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="hood">River Arts District</span>
+            <span class="note">The whole shelf.</span>
+          </li>
+          <li>
+            <span class="bar">Bull and Beggar</span>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="hood">RAD</span>
+            <span class="note">Sourwood-honey old fashioned.</span>
+          </li>
+          <li>
+            <span class="bar">Little Jumbo</span>
+            <span class="leader" aria-hidden="true"></span>
+            <span class="hood">Downtown</span>
+            <span class="note">Saturday-night Tent Revival flight.</span>
+          </li>
+        </ul>
+        <p class="pour-see-all"><a href="/pews">See all the pews →</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Colophon -->
+  <footer class="colophon" role="contentinfo">
+    <div class="container">
+      <div>
+        <h3>Hours</h3>
+        <p>Open by appointment.</p>
+        <p class="mono">Saturdays · 2 + 4 pm</p>
+        <p class="mono">Closed during foraging weeks.</p>
+      </div>
+      <div>
+        <h3>Directions</h3>
+        <p>Dirt road off Spring Creek.</p>
+        <p>Last mile unpaved.</p>
+        <p class="mono">Wolfpen Holler · Madison Co. NC 28753</p>
+      </div>
+      <div>
+        <h3>Correspondence</h3>
+        <a href="mailto:wendell@hollerandhymn.com">wendell@hollerandhymn.com</a>
+        <a href="tel:+18285550143">+1 828 555 0143</a>
+        <a href="https://instagram.com/hollerandhymn">@hollerandhymn</a>
+      </div>
+    </div>
+    <p class="colophon-rule">Set in Old Standard TT &amp; IM Fell DW Pica · Printed in Madison Co. NC · © Holler &amp; Hymn MMXXVI · 21 + Verified · — W. G.</p>
+  </footer>
+
+</body>
+</html>

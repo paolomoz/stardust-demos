@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!-- Palette variant of highlonesome-hymnal.html · Foxed Page — yellowed sepia aged hymnal · generated 2026-05-12 by /tmp/make-exploration-palettes.py -->
+<!--
+  Brand exploration: HIGH LONESOME
+  Direction: HAND-BOUND HYMNAL — classical hand-set page, leader-rules, multi-column hymnal/almanac character
+  Maker: Sadie · WNC Mountains
+  Tagline: "Bottled bluegrass — mountain spirits, hand-made, sung in."
+  Source brand spec: site/brand/brand-alternates.md § Alternate C
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>High Lonesome — bottled bluegrass · WNC · Foxed Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --page-cream:        #ebd8b8;
+      --bone-fiddle:       #c9a874;
+      --hymnbook-oxblood:  #7a3a28;
+      --spruce-dark:       #4a4028;
+      --ink-text:          #4a3220;
+      --hymnal-red-rule:   #a82820;
+      --ridge-dusk:        #3a2a18;
+      --aged-page:         #d4c098;
+      --gilt:              #8a6428;
+      --font-display: 'Cormorant Infant','EB Garamond','Bookman','Georgia',serif;
+      --font-body:    'EB Garamond','Cormorant Infant','Georgia',serif;
+      --font-mono:    'IBM Plex Mono','Courier New',monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { font-family: var(--font-body); font-size: 18px; line-height: 1.65; color: var(--ink-text); background: var(--page-cream); }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { margin: 0; font-weight: normal; }
+    p, ul, ol { margin: 0; padding: 0; list-style: none; }
+    img, svg { display: block; max-width: 100%; height: auto; }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 40px; }
+
+    /* Old paper texture — very subtle */
+    body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      background-image:
+        radial-gradient(ellipse at 30% 20%, rgba(138,100,40,0.06) 0%, transparent 40%),
+        radial-gradient(ellipse at 80% 75%, rgba(122,58,40,0.04) 0%, transparent 35%);
+    }
+
+    /* Masthead — hand-set newspaper / hymnal title page */
+    .masthead { background: var(--page-cream); border-bottom: 4px double var(--ink-text); padding-top: 22px; padding-bottom: 14px; }
+    .masthead .container { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; }
+    .masthead .vol { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gilt); }
+    .masthead nav { display: flex; gap: 22px; flex-wrap: wrap; }
+    .masthead nav a { font-family: var(--font-display); font-style: italic; font-size: 16px; color: var(--ink-text); }
+    .masthead nav a:hover { color: var(--hymnbook-oxblood); }
+    .masthead nav a[aria-current="page"] { color: var(--hymnbook-oxblood); border-bottom: 1px solid currentColor; }
+
+    /* Hero — hymnal title page */
+    .title-page { padding: 100px 0 80px; text-align: center; }
+    .title-page::before, .title-page::after { content: ""; display: block; height: 1px; max-width: 240px; margin: 0 auto; background: var(--ink-text); }
+    .title-page::before { margin-bottom: 24px; }
+    .title-page::after { margin-top: 56px; }
+    .vol-no { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gilt); margin-bottom: 18px; }
+    .title-page h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(72px, 11vw, 132px); line-height: 0.96; color: var(--ink-text); margin-bottom: 12px; letter-spacing: -0.005em; }
+    .title-page h1 .italic { font-style: italic; color: var(--hymnbook-oxblood); }
+    .title-page .subtitle { font-family: var(--font-display); font-style: italic; font-size: clamp(20px, 2.4vw, 28px); color: var(--hymnbook-oxblood); margin-bottom: 32px; }
+    .title-page .lede { max-width: 36em; margin: 0 auto; font-family: var(--font-body); font-size: 18px; line-height: 1.7; color: var(--ink-text); }
+    .title-page .lede em { font-style: italic; color: var(--hymnbook-oxblood); }
+    .title-page .lede .small-caps { font-variant: small-caps; letter-spacing: 0.06em; }
+    .title-page .red-rule { width: 80px; margin: 36px auto 24px; border-top: 2px solid var(--hymnal-red-rule); }
+    .title-page .ctas { display: inline-flex; align-items: baseline; gap: 28px; flex-wrap: wrap; justify-content: center; padding-top: 16px; border-top: 1px solid var(--ink-text); padding-inline: 16px; }
+    .title-page .cta-primary { font-family: var(--font-display); font-weight: 600; font-size: 22px; color: var(--hymnal-red-rule); border-bottom: 2px solid currentColor; padding-bottom: 4px; }
+    .title-page .cta-secondary { font-family: var(--font-display); font-style: italic; font-size: 16px; color: var(--ink-text); border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+
+    /* Chapter — single column with drop cap */
+    .chapter { padding: 80px 0 72px; }
+    .chapter-mark { text-align: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gilt); margin-bottom: 18px; }
+    .chapter h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(40px, 5vw, 64px); line-height: 1; text-align: center; margin-bottom: 56px; color: var(--ink-text); }
+    .chapter h2 em { font-style: italic; color: var(--hymnbook-oxblood); }
+    .chapter-body { max-width: 32em; margin: 0 auto; font-family: var(--font-body); font-size: 20px; line-height: 1.75; color: var(--ink-text); }
+    .chapter-body::first-letter { font-family: var(--font-display); font-size: 5em; font-weight: 700; float: left; line-height: 0.92; padding: 6px 14px 0 0; color: var(--hymnbook-oxblood); }
+    .chapter-body p { margin-bottom: 20px; }
+    .chapter-body em { font-style: italic; color: var(--hymnbook-oxblood); }
+    .chapter-attribution { max-width: 32em; margin: 32px auto 0; font-family: var(--font-display); font-style: italic; font-size: 17px; color: var(--gilt); text-align: right; }
+    .chapter-attribution .signature-name { font-style: normal; font-weight: 600; color: var(--ink-text); }
+
+    /* Section break — ornamental rule */
+    .ornament-break { text-align: center; padding: 40px 0; }
+    .ornament-break::before, .ornament-break::after { content: ""; display: inline-block; width: 100px; height: 1px; background: var(--ink-text); vertical-align: middle; margin: 0 16px; }
+    .ornament-break .glyph { font-family: var(--font-display); font-style: italic; color: var(--hymnal-red-rule); font-size: 24px; }
+
+    /* Almanac entry — two-column page */
+    .almanac { padding: 64px 0 80px; background: var(--page-cream); border-top: 4px double var(--ink-text); border-bottom: 4px double var(--ink-text); }
+    .almanac h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(40px, 5vw, 56px); text-align: center; margin-bottom: 48px; color: var(--ink-text); }
+    .almanac h2 em { font-style: italic; color: var(--hymnbook-oxblood); }
+    .almanac-cols { display: grid; grid-template-columns: 1fr; gap: 48px; }
+    @media (min-width: 820px) { .almanac-cols { grid-template-columns: 1fr 1fr; gap: 56px; } }
+    .almanac-col h3 { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--ink-text); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--hymnal-red-rule); }
+    .almanac-col h3 .num { font-family: var(--font-mono); font-size: 12px; color: var(--gilt); letter-spacing: 0.16em; margin-right: 10px; }
+    .almanac-col p { font-family: var(--font-body); font-size: 17px; line-height: 1.7; }
+    .almanac-col em { font-style: italic; color: var(--hymnbook-oxblood); }
+    .almanac-col .read-more { display: inline-block; margin-top: 14px; font-family: var(--font-display); font-style: italic; font-size: 15px; color: var(--hymnal-red-rule); border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+    .almanac-figures { margin-top: 56px; padding: 16px 0; border-top: 1px solid var(--ink-text); border-bottom: 1px solid var(--ink-text); text-align: center; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-text); }
+    .almanac-figures .accent { color: var(--hymnbook-oxblood); }
+
+    /* Bottle catalog — typeset list */
+    .catalog { padding: 80px 0; }
+    .catalog h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(40px, 5vw, 64px); text-align: center; margin-bottom: 48px; color: var(--ink-text); }
+    .catalog h2 em { font-style: italic; color: var(--hymnbook-oxblood); }
+    .catalog-list { max-width: 720px; margin: 0 auto; }
+    .catalog-item { padding: 24px 0; border-bottom: 1px solid var(--ink-text); }
+    .catalog-item:first-child { border-top: 4px double var(--ink-text); }
+    .catalog-item h3 { font-family: var(--font-display); font-weight: 700; font-size: 26px; color: var(--ink-text); display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 4px; }
+    .catalog-item h3 .roman { font-family: var(--font-mono); font-size: 14px; color: var(--gilt); letter-spacing: 0.18em; }
+    .catalog-item h3 .price { font-family: var(--font-mono); font-size: 13px; color: var(--gilt); letter-spacing: 0.12em; font-weight: 400; }
+    .catalog-item .descr { font-family: var(--font-body); font-size: 17px; line-height: 1.55; color: var(--ink-text); margin: 6px 0; }
+    .catalog-item .descr em { font-style: italic; color: var(--hymnbook-oxblood); }
+    .catalog-item .meta { font-family: var(--font-display); font-style: italic; font-size: 14px; color: var(--gilt); }
+    .catalog-item .buy { display: inline-block; margin-top: 8px; font-family: var(--font-display); font-style: italic; font-size: 14px; color: var(--hymnal-red-rule); border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+
+    /* Colophon footer */
+    .colophon { background: var(--ridge-dusk); color: var(--page-cream); padding: 72px 0 56px; border-top: 4px double var(--gilt); }
+    .colophon .container { display: grid; grid-template-columns: 1fr; gap: 32px; }
+    @media (min-width: 820px) { .colophon .container { grid-template-columns: repeat(3, 1fr); gap: 48px; } }
+    .colophon h3 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gilt); margin-bottom: 12px; }
+    .colophon p, .colophon a { font-family: var(--font-body); font-size: 16px; line-height: 1.7; color: var(--page-cream); display: block; }
+    .colophon a:hover { color: var(--bone-fiddle); }
+    .colophon em { font-style: italic; color: var(--bone-fiddle); }
+    .colophon .rule { grid-column: 1 / -1; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--gilt); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gilt); text-align: center; }
+
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.001ms !important; } }
+    a:focus-visible { outline: 2px solid var(--hymnal-red-rule); outline-offset: 4px; }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="container">
+      <p class="vol">Vol. I · No. 1 · Hot Springs, NC · MMXXVI</p>
+      <nav>
+        <a href="/" aria-current="page">Home</a>
+        <a href="/the-song">The Song</a>
+        <a href="/the-gaps">The Gaps</a>
+        <a href="/the-still">The Still</a>
+        <a href="/the-bottle">The Bottle</a>
+        <a href="/shop">Shop</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Title page -->
+    <section class="title-page">
+      <div class="container">
+        <p class="vol-no">An Almanac of Mountain Spirits</p>
+        <h1>High <span class="italic">Lonesome</span></h1>
+        <p class="subtitle">— bottled bluegrass —</p>
+        <p class="lede">Hand-made botanical liqueurs from the <span class="small-caps">Blue Ridge</span>. Foraged in the <em>gaps and balds</em>, distilled in a small barn ten miles from anywhere, <em>sung in</em> while bottled.</p>
+        <div class="red-rule" aria-hidden="true"></div>
+        <div class="ctas">
+          <a href="/shop" class="cta-primary">Visit the Shop</a>
+          <a href="/the-song" class="cta-secondary">read about the maker →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chapter I — the maker (Sadie) -->
+    <section class="chapter">
+      <div class="container">
+        <p class="chapter-mark">Chapter I · The Maker</p>
+        <h2>The <em>high lonesome</em> sound.</h2>
+        <div class="chapter-body">
+          <p>There's a thing in old-time music called the <em>high lonesome sound</em>. It's not sad exactly. It's the sound of one voice in a wide place. That's what I'm trying to put in a bottle.</p>
+          <p>The herbs grow in those wide places — the gaps, the balds, the deep coves — and I work in a small barn ten miles from anywhere. I sing while I work. <em>I think it goes in.</em></p>
+        </div>
+        <p class="chapter-attribution">— <span class="signature-name">Sadie Greene</span>, sole proprietor · Hot Springs, NC · May, MMXXVI</p>
+      </div>
+    </section>
+
+    <div class="ornament-break"><span class="glyph">❦</span></div>
+
+    <!-- Chapter II — Almanac of Place + Still -->
+    <section class="almanac">
+      <div class="container">
+        <h2>Chapter II · <em>The Place &amp; The Still</em></h2>
+        <div class="almanac-cols">
+          <div class="almanac-col">
+            <h3><span class="num">§ I</span> Of the Place.</h3>
+            <p>The Blue Ridge runs north along the western edge of <em>Madison County</em>. The gaps — wide passes between the ridges — keep their own weather. I forage where the rhododendron understory clears, where the sourwood blossoms in late June, and where the wild persimmon holds until first frost. <em>Within forty miles.</em></p>
+            <a href="/the-gaps" class="read-more">Read the gaps in full →</a>
+          </div>
+          <div class="almanac-col">
+            <h3><span class="num">§ II</span> Of the Still.</h3>
+            <p>The still is a copper kit a man in Tennessee sold me in 2019. He drew the schematic on the back of a feed-store receipt. <em>I still have the receipt.</em> The barn it sits in is ten miles from anywhere — a half-mile of unpaved road and then another. I sing while I work. I think it goes in.</p>
+            <a href="/the-still" class="read-more">Read the still in full →</a>
+          </div>
+        </div>
+        <p class="almanac-figures"><span class="accent">XL</span> mi. · MMXIX · <span class="accent">XXVII</span> herbs · <span class="accent">$4,000</span> · I dead preacher's shed</p>
+      </div>
+    </section>
+
+    <div class="ornament-break"><span class="glyph">❦</span></div>
+
+    <!-- Chapter III — Catalog -->
+    <section class="catalog">
+      <div class="container">
+        <p class="chapter-mark">Chapter III · The Catalog</p>
+        <h2>Three Bottles, <em>Bound in One Cover.</em></h2>
+        <ol class="catalog-list">
+          <li class="catalog-item">
+            <h3><span class="roman">I.</span> Blue Ridge Blue <span class="price">$48</span></h3>
+            <p class="descr"><em>A cobalt-tinged aperitif.</em> Butterfly pea flower, lemon balm, and a touch of mountain mint, set against a single-vapor distillate.</p>
+            <p class="meta">14% ABV · Aperitif · Spring &amp; summer.</p>
+            <a class="buy" href="/the-bottle">Buy a bottle →</a>
+          </li>
+          <li class="catalog-item">
+            <h3><span class="roman">II.</span> The Gap <span class="price">$52</span></h3>
+            <p class="descr">A <em>sharp, bright</em> high-elevation amaro. Forged at altitude — the bitter side of the harvest.</p>
+            <p class="meta">28% ABV · Amaro · Year-round.</p>
+            <a class="buy" href="/the-bottle">Buy a bottle →</a>
+          </li>
+          <li class="catalog-item">
+            <h3><span class="roman">III.</span> Deep Cove <span class="price">$54</span></h3>
+            <p class="descr">A <em>dark, sweet</em> cordial for winter. Wild persimmon, paw-paw, and black walnut hull, slow-steeped.</p>
+            <p class="meta">22% ABV · Cordial · Fall &amp; winter only.</p>
+            <a class="buy" href="/the-bottle">Buy a bottle →</a>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="colophon">
+    <div class="container">
+      <div>
+        <h3>The Barn</h3>
+        <p>Hot Springs, NC.</p>
+        <p>Ten miles past <em>anywhere</em>.</p>
+        <p>Open by appointment only.</p>
+      </div>
+      <div>
+        <h3>Correspondence</h3>
+        <a href="mailto:sadie@highlonesome.coffee">sadie@highlonesome.com</a>
+        <a href="tel:+18285550143">+1 828 555 0143</a>
+        <a href="https://instagram.com/highlonesome_nc">@highlonesome_nc</a>
+      </div>
+      <div>
+        <h3>Sung in by</h3>
+        <p><em>Sadie Greene</em>, sole proprietor.</p>
+        <p>Spruce barn · Single voice.</p>
+      </div>
+      <p class="rule">Set in Cormorant Infant &amp; EB Garamond · printed in Madison Co. NC · © High Lonesome MMXXVI · 21+ verified</p>
+    </div>
+  </footer>
+
+</body>
+</html>

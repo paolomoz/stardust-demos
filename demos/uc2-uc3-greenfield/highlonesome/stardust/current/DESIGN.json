@@ -1,0 +1,259 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:seed (hand-authored, proof-of-concept)",
+    "writtenAt": "2026-05-12T00:00:00Z",
+    "readArtifacts": ["brand/BRAND.md"],
+    "synthesizedInputs": ["brand/BRAND.md"],
+    "stardustVersion": "0.3.0",
+    "scope": "descriptive — machine-readable mirror of DESIGN.md + extensions (divergence audit, voice, iaPriorities, narrative)",
+    "notes": [
+      "palette is the 7-token Mediterranean-pop set selected from a separate exploration thread (variant-c-teal-saturated of Holler & Hymn)",
+      "tokens renamed in brand-native vocabulary: high-lonesome-blue / fiddle-bone / cardinal-flash / sourwood-honey / mountain-laurel / butterfly-pea / barn-ink",
+      "palette deployment intensity = `drenched` per intent-dimensions.md § 7.5 (Expressive axis) and per user-documented saturation preference (feedback_palette_saturation_preference.md)"
+    ]
+  },
+  "schemaVersion": 2,
+  "name": "High Lonesome",
+  "description": "Single-maker WNC mountain-spirits house — palette deployed at maximalist intensity",
+  "colors": {
+    "high-lonesome-blue": "#1d4250",
+    "fiddle-bone":        "#f9efd8",
+    "cardinal-flash":     "#e54a1c",
+    "sourwood-honey":     "#eac246",
+    "mountain-laurel":    "#f0a99e",
+    "butterfly-pea":      "#5cc1c0",
+    "barn-ink":           "#2d1a14",
+    "ridge-dawn":         "#2a4858",
+    "cardinal-deep":      "#a8341a",
+    "text-mute-on-dark":  "#a8bdc0",
+    "text-mute-on-light": "#6b3f30",
+    "border-on-dark":     "#3a5868",
+    "border-on-light":    "#c8b89a"
+  },
+  "typography": {
+    "display-hero":    { "fontFamily": "'Playfair Display','Cormorant Infant','EB Garamond','Georgia',serif", "fontStyle": "italic", "fontWeight": 400, "fontSize": "144px", "lineHeight": "0.92", "letterSpacing": "-0.012em", "expectedCharacter": "italic classical serif at huge scale; calligraphic terminals; reads as singing", "rejectedCharacters": ["heavy condensed sans (Anton, Impact)", "decorative revival-tent slab", "geometric humanist sans", "ITC-style novelty cursive"] },
+    "display-section": { "fontFamily": "'Playfair Display','Cormorant Infant','EB Garamond','Georgia',serif", "fontStyle": "italic", "fontWeight": 500, "fontSize": "80px",  "lineHeight": "0.95", "letterSpacing": "-0.005em" },
+    "display-product": { "fontFamily": "'Playfair Display','Cormorant Infant','EB Garamond','Georgia',serif", "fontStyle": "italic", "fontWeight": 500, "fontSize": "64px",  "lineHeight": "1" },
+    "body":            { "fontFamily": "'Spectral','Lora','Georgia',serif", "fontStyle": "normal", "fontWeight": 400, "fontSize": "19px", "lineHeight": "1.6", "expectedCharacter": "humanist serif designed for long-form reading; slightly inktrapped" },
+    "body-italic":     { "fontFamily": "'Spectral','Lora','Georgia',serif", "fontStyle": "italic", "fontWeight": 400, "fontSize": "22px", "lineHeight": "1.5" },
+    "mono":            { "fontFamily": "'IBM Plex Mono','Courier New','Menlo',monospace", "fontSize": "11px", "fontWeight": 400, "letterSpacing": "0.22em", "textTransform": "uppercase", "expectedCharacter": "typewriter / Selectric character; tight tracking at body size, loose tracking at marker size" },
+    "numerals":        { "fontFamily": "'IBM Plex Mono','Courier New','Menlo',monospace", "fontSize": "14px", "fontWeight": 500 }
+  },
+  "rounded": { "none": "0px", "sm": "2px", "md": "4px", "lg": "8px", "pill": "9999px" },
+  "spacing": {
+    "xxs": "4px", "xs": "8px", "sm": "12px", "md": "20px", "lg": "32px", "xl": "56px", "xxl": "96px", "xxxl": "160px",
+    "sectionPadding": {
+      "desktop": "120px",
+      "tablet":  "80px",
+      "mobile":  "48px",
+      "tier":    "drenched-cinematic"
+    }
+  },
+  "components": {
+    "button-primary":      { "backgroundColor": "{colors.fiddle-bone}", "textColor": "{colors.high-lonesome-blue}", "rounded": "{rounded.sm}", "padding": "16px 36px", "fontStyle": "italic" },
+    "button-ghost-on-dark":{ "backgroundColor": "transparent",          "textColor": "{colors.fiddle-bone}",        "rounded": "{rounded.sm}", "padding": "16px 32px", "border": "1px solid {colors.fiddle-bone}" },
+    "link-quiet":          { "textColor": "{colors.mountain-laurel}",   "textDecoration": "underline", "textUnderlineOffset": "0.2em" },
+    "link-cardinal":       { "textColor": "{colors.cardinal-flash}",    "textDecoration": "underline" }
+  },
+  "extensions": {
+    "register": "brand",
+    "colorMeta": {
+      "tokenCount": 7,
+      "namingPolicy": "brand-native (no Primary/Secondary/Alarm/Warning/Shadow/Brand)",
+      "loadBearing": ["high-lonesome-blue", "fiddle-bone", "cardinal-flash"],
+      "quarantined": [
+        { "token": "butterfly-pea", "rule": "Blue Ridge Blue product surface + single-glance light spark on dark grounds; never body text; sub-AA contrast at body sizes" },
+        { "token": "sourwood-honey", "rule": "marker / micro-typography / atmospheric glow only; never primary body text; pairs cleanly with high-lonesome-blue and fiddle-bone" }
+      ],
+      "forbidden": ["#000000 (pure black)", "Foxfire-Book reissue palette (sage/oxblood/cream-only)", "Kinfolk-luxe beige/sage"]
+    },
+    "typographyMeta": {
+      "tier": "3-tier hybrid: italic-classical-serif display + humanist serif body + Selectric mono numerals",
+      "tierAssignments": {
+        "display": "italic-classical-serif, mixed-case, ≥ 64px; roman display FORBIDDEN; all-caps display FORBIDDEN",
+        "body":    "humanist serif (Spectral); roman primary + italic for emphasis",
+        "mono":    "IBM Plex Mono; markers + numerals only; > 14px FORBIDDEN (pushes brand into almanac register)"
+      },
+      "italicAtDisplayRequired": true,
+      "rejectedCharacters": ["heavy condensed sans (Anton, Impact, Oswald)", "decorative revival-tent slab (Smokum, Rye)", "all-caps display", "Roman display ≥ 64px", "ITC-style novelty cursive"],
+      "scaleRatio": 1.5
+    },
+    "shadows": [],
+    "motion": {
+      "policy": "flat-by-conviction with atmospheric radial-gradients as depth substitute",
+      "reducedMotionContract": true,
+      "allowedTransitions": ["opacity", "color", "background-color", "border-color"],
+      "forbidden": ["box-shadow animations", "parallax", "scroll-triggered transforms", "any animation > 600ms"]
+    },
+    "breakpoints": {
+      "mobile":  { "max": "639px" },
+      "tablet":  { "min": "640px", "max": "1023px" },
+      "desktop": { "min": "1024px" }
+    },
+    "paletteDeployment": {
+      "intensity": "drenched",
+      "targetGroundCount": 4,
+      "asymmetricCyclingRequired": true,
+      "noSingleGroundOver": "50% of sections",
+      "rationale": "brand's central tension is auditory-solitude × visual-joy; the palette deploys the joy. Saturation deployment is load-bearing per BRAND.md § Central Tension."
+    },
+    "divergence": {
+      "mode": "Mode A — brand-faithful (signal-strong with explicit drenched-deployment + italic-display + atmospheric-cinematic register declared in BRAND.md)",
+      "seed": {
+        "decade":          { "value": "mid-century Italian travel posters × Smithsonian Folkways album sleeves (cross-decade fusion)", "picked_by": "anchor-reference: BRAND.md § Tone reference" },
+        "craft":           { "value": "atmospheric cinematic photography (Lane 1) + hand-painted bottle labels (Lane 3) + minimal supporting still-life (Lane 2)", "picked_by": "anchor-reference: BRAND.md § Imagery direction" },
+        "register_flavor": { "value": "Memoir-adjacent (single-voice maker register from BRAND.md voice rules) crossed with Saturated-Poster (Italian-pop palette deployment)", "picked_by": "brand-native: central tension = auditory solitude × visual joy" },
+        "ground_family":   { "value": "atmospheric-cinematic (radial-gradients + mountain-silhouettes as primary depth language)", "picked_by": "user-constraint: BRAND.md § Composition rules", "override": "brand-faithful" }
+      },
+      "font_deck": { "name": "brand-inherited", "picked_by": "user-constraint", "tiers": ["Playfair Display italic", "Spectral", "IBM Plex Mono"] },
+      "palette":   { "source": "inherited from BRAND.md (7-token Mediterranean-pop set, brand-native naming)", "picked_by": "user-constraint", "tokens": ["high-lonesome-blue", "fiddle-bone", "cardinal-flash", "sourwood-honey", "mountain-laurel", "butterfly-pea", "barn-ink"] },
+      "brand_faithful_inversions": [
+        { "retain": "high-lonesome-blue #1d4250 over near-black",                "reason": "brand-faithful — page surface is mountain-dusk teal, not generic dark" },
+        { "retain": "italic-display over roman-display",                          "reason": "brand-faithful — italic forms read as singing, matches the music-coded central register" },
+        { "retain": "7-token saturated palette over Restrained default",          "reason": "user-documented saturation preference + brand-faithful — Drenched deployment is the brand's central thesis" },
+        { "retain": "mountain-silhouette atmospheric anchor over abstract heroes","reason": "brand-faithful — the Blue Ridge is the brand's place, the silhouette IS the brand" },
+        { "retain": "mixed-case display over all-caps",                           "reason": "brand-faithful — all-caps display would collapse the brand into Holler & Hymn's revival-tent register" },
+        { "retain": "Italian DNA implicit (palette only)",                        "reason": "brand-faithful — Italian-language words in copy would collapse the brand into trattoria costume" }
+      ],
+      "antiToolboxAudit": {
+        "checked": [
+          "Generic-2026-SaaS silhouette",
+          "Editorial-register vocabulary on non-editorial brand",
+          "Fabricated content (invented stats / dates / customers)",
+          "Hero text on photographic background without contrast scrim",
+          "Generic role names in palette (forbidden, brand-native used)",
+          "3-col card grid for products (forbidden, full-bleed bottle-poster sections used)",
+          "Pure #000000 (forbidden, barn-ink used)",
+          "All-caps display (forbidden, mixed-case italic used)",
+          "Italian-American costume (trattoria, piazza, dolce, Roma)",
+          "Foxfire-Book reissue (sage/oxblood/cream-only) — saturated palette refuses this",
+          "Wes Anderson costume-pastel (caught by atmospheric grounds + cinematic landscape register)"
+        ],
+        "hits": [],
+        "result": "clean — all checked, none required removal"
+      }
+    },
+    "componentStyle": {
+      "buttons": {
+        "primary":   { "background": "#f9efd8", "color": "#1d4250", "borderRadius": "2px", "padding": "16px 36px", "fontFamily": "'Playfair Display', italic-serif", "fontStyle": "italic", "fontWeight": 500, "hoverDelta": "background → #f0a99e" },
+        "ghostOnDark": { "background": "transparent", "color": "#f9efd8", "borderRadius": "2px", "padding": "16px 32px", "border": "1px solid #f9efd8" }
+      },
+      "cards": null,
+      "inputs": null,
+      "dualCTAPattern": null
+    },
+    "systemComponentRoles": {
+      "credits-bar-header":   { "purpose": "minimal serif top strip; mark + nav + edition marker", "positionClass": "site-wide top", "ground": "transparent over hero atmospheric, becomes high-lonesome-blue on scroll" },
+      "atmospheric-section":  { "purpose": "primary composition unit — full-bleed ground + atmospheric radial-gradient + italic-display headline + humanist serif body + single CTA or link-out", "positionClass": "stacked" },
+      "landscape-vista":      { "purpose": "aspect-ratio placeholder slot for Blue Ridge photography (Gemini Lane 1)", "positionClass": "in-section" },
+      "bottle-poster":        { "purpose": "per-product full-bleed cinematic section; image left/right alternating", "positionClass": "stacked per bottle" },
+      "liner-notes-list":     { "purpose": "centered type block for pour list (album-credits register)", "positionClass": "section-internal" },
+      "colophon-footer":      { "purpose": "3-col footer on high-lonesome-blue; mono throughout", "positionClass": "site-wide bottom" },
+      "age-gate-modal":       { "purpose": "21+ verification before content; focusable, non-dismissable, irreversible no-exit", "positionClass": "modal full-viewport" }
+    },
+    "voice": {
+      "narrator": "first-person singular (Sadie Greene)",
+      "register": "slow plainspoken declaratives; specifics over modifiers; reverent not irreverent; joyful not playful",
+      "do": [
+        "First-person singular (Sadie). Never 'we' / 'our team'.",
+        "Slow declaratives. Periods, not commas.",
+        "Specifics over modifiers — 'ten miles past anywhere', '1983 in Verona', 'elev. 4,140 ft', 'twenty-seven herbs'.",
+        "Reverent, not irreverent. Joyful, not playful.",
+        "Italian DNA in the palette, never in the language."
+      ],
+      "dont": [
+        "we / our team / passionate / crafted / curated / artisanal / award-winning / finest",
+        "adjective stacks of three or more",
+        "Italian-language words (atelier / piazza / trattoria / dolce / Roma)",
+        "irreverent winks",
+        "exclamation marks in chrome",
+        "all-caps display"
+      ],
+      "examples": {
+        "do": [
+          "One voice in a wide place.",
+          "I sing while I work. I think it goes in.",
+          "The labels are loud because I like them loud.",
+          "Forged at altitude.",
+          "For the long dark.",
+          "Drink before sundown.",
+          "Ten miles past anywhere.",
+          "1983, Verona. I came back with a permanent sense of color."
+        ],
+        "dont": [
+          "Our passionate team of artisans crafts each bottle with care.",
+          "Award-winning small-batch mountain spirits.",
+          "Atelier Sadie — a journal of mountain joy.",
+          "Pour una bella vita.",
+          "Bottled with love in the WNC mountains."
+        ]
+      },
+      "rules": [
+        "Voice is quiet against the loud palette. Saturation × restraint is the brand's tension.",
+        "Italian DNA is implicit (palette) never explicit (copy).",
+        "Reverent — the brand smiles, does not wink.",
+        "First-person singular everywhere except legal/utility footer."
+      ]
+    },
+    "iaPriorities": [
+      {
+        "signal": "single-audience-primary-action (visit the shop)",
+        "evidence": "home page leads with a single CTA 'Visit the Shop' (external link to .shop subdomain). Secondary text-link 'read about the maker' is subordinate.",
+        "preserveAs": "first-viewport, single CTA visible",
+        "scope": "home"
+      }
+    ],
+    "brandTokens": {
+      "--hl-blue":           "#1d4250",
+      "--hl-fiddle-bone":    "#f9efd8",
+      "--hl-cardinal":       "#e54a1c",
+      "--hl-honey":          "#eac246",
+      "--hl-laurel":         "#f0a99e",
+      "--hl-butterfly":      "#5cc1c0",
+      "--hl-ink":            "#2d1a14",
+      "--hl-ridge-dawn":     "#2a4858",
+      "--hl-cardinal-deep":  "#a8341a"
+    }
+  },
+  "narrative": {
+    "northStar": "Mountain song, Italian-pop wrap. The recordings of Bill Monroe pressed onto vinyl jackets designed by Massimo Vignelli.",
+    "overview": "High Lonesome is a single-maker WNC mountain-spirits house. The visual system deploys a saturated 7-token Mediterranean-pop palette across cinematic-landscape-led sections, italic-classical-serif display throughout, and humanist serif body. The central tension is auditory solitude × visual joy — quiet voice, loud palette.",
+    "keyCharacteristics": [
+      "7 brand tokens deployed across ≥ 4 distinct section grounds on the home page (Drenched palette deployment)",
+      "Asymmetric cycling between section grounds — no strict A/B alternation",
+      "Italic-classical-serif display (Playfair Display italic) at all sizes ≥ 64px",
+      "Mixed-case display (all-caps forbidden)",
+      "Humanist serif body (Spectral) with italic emphasis",
+      "IBM Plex Mono for markers + numerals only (≤ 14px)",
+      "Atmospheric radial-gradient grounds + mountain-silhouette horizons (cinematic landscape register)",
+      "Flat — no shadows, no glassmorphism, no glass / depth language"
+    ],
+    "rules": [
+      "The Saturation-Deployment Rule — ≥ 4 distinct section grounds; asymmetric cycling required.",
+      "The Italian-DNA-Implicit Rule — palette only, never copy.",
+      "The Italic-Display Rule — italic only at ≥ 64px; roman forbidden.",
+      "The Mixed-Case Display Rule — all-caps forbidden at display tier.",
+      "The Mono-As-Marker Rule — IBM Plex Mono ≤ 14px only.",
+      "The Quiet-Voice Rule — slow declaratives against loud palette.",
+      "The No-Pure-Black Rule — barn-ink #2d1a14 is darkest.",
+      "IA-priority — single primary CTA ('Visit the Shop') above the fold."
+    ],
+    "dos": [
+      "Deploy palette across ≥ 4 section grounds.",
+      "Use italic-classical-serif for all display.",
+      "Keep voice quiet against the loud palette.",
+      "Preserve atmospheric cinematic register on placeholder sections.",
+      "Name palette tokens brand-native."
+    ],
+    "donts": [
+      "Use roman display ≥ 64px.",
+      "Use all-caps display.",
+      "Use Italian-language words in copy.",
+      "Render 3-col card grid for products.",
+      "Default to single-dominant-ground deployment.",
+      "Approach pure #000000.",
+      "Use the Foxfire-Book reissue palette.",
+      "Render the centered SaaS-hero silhouette."
+    ]
+  }
+}

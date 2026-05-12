@@ -1,0 +1,19 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:seed + stardust:brief (hand-authored, proof-of-concept)",
+    "writtenAt": "2026-05-12T00:00:00Z",
+    "synthesizedInputs": ["brand/BRAND.md", "briefing/SITE-BRIEF.md", "briefing/CONTENT.md"],
+    "stardustVersion": "0.3.0",
+    "scope": "summary of the synthesized page set — no crawl performed; pages authored directly from brand + briefing documents"
+  },
+  "successes": [
+    { "slug": "home",      "url": "https://highlonesome.com/",          "source": "synthesized", "originDoc": "CONTENT.md#1-home" },
+    { "slug": "the-song",  "url": "https://highlonesome.com/the-song",  "source": "synthesized", "originDoc": "CONTENT.md#2-the-song" },
+    { "slug": "the-gaps",  "url": "https://highlonesome.com/the-gaps",  "source": "synthesized", "originDoc": "CONTENT.md#3-the-gaps" },
+    { "slug": "the-bottle","url": "https://highlonesome.com/the-bottle","source": "synthesized", "originDoc": "CONTENT.md#4-the-bottle" },
+    { "slug": "hymns",     "url": "https://highlonesome.com/hymns",     "source": "synthesized", "originDoc": "CONTENT.md#5-hymns" },
+    { "slug": "shop",      "url": "https://highlonesome.com/shop",      "source": "synthesized", "originDoc": "CONTENT.md#6-shop" },
+    { "slug": "contact",   "url": "https://highlonesome.com/contact",   "source": "synthesized", "originDoc": "CONTENT.md#7-contact" }
+  ],
+  "failures": []
+}

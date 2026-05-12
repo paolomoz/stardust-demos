@@ -1,0 +1,86 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:seed (hand-authored, proof-of-concept)",
+    "writtenAt": "2026-05-12T00:00:00Z",
+    "synthesizedInputs": ["brand/BRAND.md"],
+    "stardustVersion": "0.3.0",
+    "notes": [
+      "consolidated brand surface — hand-authored from BRAND.md",
+      "logo at assets/logo.svg is a placeholder; final logo arrives from Gemini 3 Pro Image Preview generation",
+      "palette is 7 brand tokens; signal-strong classification (≥3 distinct tokens, 3 type families captured)",
+      "no source URL — greenfield brand"
+    ]
+  },
+  "site": {
+    "name": "High Lonesome",
+    "tagline": "Bottled bluegrass. One voice in a wide place.",
+    "originUrl": null,
+    "intent": "Single-maker WNC mountain-spirits house · Sadie Greene · Hot Springs, Madison Co. NC"
+  },
+  "logo": {
+    "source": "synthesized",
+    "sourceSelector": null,
+    "localPath": "stardust/current/assets/logo.svg",
+    "format": "svg",
+    "intrinsicWidth": 600,
+    "intrinsicHeight": 200,
+    "synthesized": true,
+    "synthesizedBasis": "BRAND.md logo direction — italic Playfair Display 'High Lonesome' wordmark, mountain-silhouette underline + small italic 'bottled bluegrass' tagline beneath",
+    "pendingExternalGen": "Gemini 3 Pro Image Preview — see brand/BRAND.md logo direction"
+  },
+  "palette": [
+    { "role": "page-surface-dark",  "value": "#1d4250", "name": "high-lonesome-blue", "usedAs": ["page ground (dominant)", "section ground (majority of sections)", "text on light surfaces"] },
+    { "role": "page-surface-light", "value": "#f9efd8", "name": "fiddle-bone",        "usedAs": ["section ground (light interludes)", "text on dark surfaces", "page paper register"] },
+    { "role": "loud-accent",        "value": "#e54a1c", "name": "cardinal-flash",     "usedAs": ["primary CTA fill", "display emphasis underlines", "loud bottle section ground (The Gap)"] },
+    { "role": "secondary-warm",     "value": "#eac246", "name": "sourwood-honey",     "usedAs": ["micro-typography accent", "atmospheric glow", "tape/ribbon contexts"] },
+    { "role": "secondary-warm",     "value": "#f0a99e", "name": "mountain-laurel",    "usedAs": ["warm-secondary section ground", "italic emphasis in body", "Italian thread accent"] },
+    { "role": "light-spark",        "value": "#5cc1c0", "name": "butterfly-pea",      "usedAs": ["Blue Ridge Blue product surface", "single-glance light accent on dark grounds"] },
+    { "role": "deep-text",          "value": "#2d1a14", "name": "barn-ink",           "usedAs": ["body text on light surfaces", "deepest contrast"] }
+  ],
+  "typography": {
+    "display": { "fontFamily": "'Playfair Display','Cormorant Infant','EB Garamond','Georgia',serif", "fontStyle": "italic", "role": "italic-classical-serif at scale; mixed-case; reads as singing", "expectedCharacter": "Playfair Display italic" },
+    "body":    { "fontFamily": "'Spectral','Lora','Georgia',serif", "fontStyle": "normal", "role": "humanist serif for long-form reading; roman primary with italic emphasis" },
+    "mono":    { "fontFamily": "'IBM Plex Mono','Courier New','Menlo',monospace", "role": "markers + numerals only; ≤ 14px" }
+  },
+  "voice": {
+    "register": "brand",
+    "narrator": "first-person singular (Sadie Greene)",
+    "anchorPhrases": [
+      "One voice in a wide place.",
+      "Bottled bluegrass.",
+      "I sing while I work. I think it goes in.",
+      "The labels are loud because I like them loud.",
+      "Forged at altitude.",
+      "For the long dark.",
+      "Drink before sundown.",
+      "Ten miles past anywhere."
+    ],
+    "tensionMove": "auditory solitude × visual joy — quiet single-voice mountain music wrapped in saturated Italian-pop palette"
+  },
+  "imageryLanes": [
+    { "lane": "1 — cinematic Blue Ridge landscape", "description": "atmospheric photographs at dusk/dawn/mist/storm; mountain silhouettes; the gaps and balds; saturated skies (sunrise-pink, blue-hour navy, storm-steel) that justify the saturated palette overlaid" },
+    { "lane": "2 — hand-bound objects",            "description": "fiddle on windowsill; hand-bound notebook open to setlist; wax-seal stamp; copper still in dim barn; used sparingly as secondary illustrations" },
+    { "lane": "3 — hand-painted bottle labels",    "description": "Italian-pop posters scaled down; cardinal-flash + sourwood-honey dominant; high-lonesome-blue as label ground; saturated palette tones throughout" }
+  ],
+  "antiReferences": [
+    "Kinfolk / Cereal-Magazine luxe-minimal-craft",
+    "Brooklyn industrial-craft",
+    "Generic country / farm signage",
+    "Wes Anderson costume-symmetric pastel",
+    "Etsy folk-craft",
+    "Modern craft-beer label vernacular",
+    "Generic-2026-SaaS silhouette",
+    "Editorial-register vocabulary in chrome",
+    "Italian-American costume (trattoria, piazza, dolce, Roma)",
+    "Foxfire-Book historic-reissue look"
+  ],
+  "brandTokens": {
+    "--hl-blue":          "#1d4250",
+    "--hl-fiddle-bone":   "#f9efd8",
+    "--hl-cardinal":      "#e54a1c",
+    "--hl-honey":         "#eac246",
+    "--hl-laurel":        "#f0a99e",
+    "--hl-butterfly":     "#5cc1c0",
+    "--hl-ink":           "#2d1a14"
+  }
+}

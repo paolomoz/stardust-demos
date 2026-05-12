@@ -1,0 +1,91 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:seed + stardust:brief (hand-authored, proof-of-concept)",
+    "writtenAt": "2026-05-12T00:00:00Z",
+    "source": "synthesized — no source URL; greenfield brand",
+    "finalUrl": "https://highlonesome.com/",
+    "synthesizedInputs": ["brand/BRAND.md", "briefing/SITE-BRIEF.md", "briefing/CONTENT.md#1-home"],
+    "stardustVersion": "0.3.0"
+  },
+  "slug": "home",
+  "meta": {
+    "finalUrl": "https://highlonesome.com/",
+    "title": "High Lonesome — bottled bluegrass · Hot Springs, NC",
+    "description": "One voice in a wide place. Hand-foraged botanical spirits from a barn ten miles past anywhere in the WNC mountains. Made by Sadie Greene.",
+    "og": { "title": "High Lonesome — bottled bluegrass", "description": "One voice in a wide place. Hand-foraged WNC mountain spirits.", "image": "/assets/og-home.jpg", "type": "website", "siteName": "High Lonesome" },
+    "themeColor": { "light": "#f9efd8", "dark": "#1d4250" }
+  },
+  "headings": [
+    { "level": 1, "text": "High Lonesome",                          "fontFamily": "'Playfair Display', italic-serif", "fontStyle": "italic", "fontSize": "144px", "lineHeight": "0.92", "color": "#f9efd8", "domPath": "main > section.hero > h1" },
+    { "level": 2, "text": "One voice in a wide place.",             "fontFamily": "'Playfair Display', italic-serif", "fontStyle": "italic", "fontSize": "80px",  "color": "#f9efd8", "domPath": "main > section.song > h2" },
+    { "level": 2, "text": "The Gaps & the Still",                   "fontFamily": "'Playfair Display', italic-serif", "fontStyle": "italic", "fontSize": "80px",  "color": "#2d1a14", "domPath": "main > section.gaps > h2" },
+    { "level": 2, "text": "Three Bottles, bound in one cover.",     "fontFamily": "'Playfair Display', italic-serif", "fontStyle": "italic", "fontSize": "80px",  "color": "#f9efd8", "domPath": "main > section.bottles-opener > h2" },
+    { "level": 3, "text": "Blue Ridge Blue",                        "fontFamily": "'Playfair Display', italic-serif", "fontStyle": "italic", "fontSize": "64px",  "color": "#1d4250", "domPath": "main > section.bottle-1 > h3" },
+    { "level": 3, "text": "The Gap",                                "fontFamily": "'Playfair Display', italic-serif", "fontStyle": "italic", "fontSize": "64px",  "color": "#f9efd8", "domPath": "main > section.bottle-2 > h3" },
+    { "level": 3, "text": "Deep Cove",                              "fontFamily": "'Playfair Display', italic-serif", "fontStyle": "italic", "fontSize": "64px",  "color": "#f9efd8", "domPath": "main > section.bottle-3 > h3" },
+    { "level": 2, "text": "Find a Pour.",                           "fontFamily": "'Playfair Display', italic-serif", "fontStyle": "italic", "fontSize": "80px",  "color": "#f9efd8", "domPath": "main > section.pour-list > h2" }
+  ],
+  "landmarks": [
+    { "tag": "header", "role": "header", "className": "credits-bar", "visibleText": "High Lonesome · Home · The Song · The Gaps · The Bottle · Hymns · Shop · Contact · Vol. I · No. 1", "bgColor": "transparent", "textColor": "#f9efd8" },
+    { "tag": "nav",    "role": "nav",    "className": "primary-nav", "visibleText": "Home · The Song · The Gaps · The Bottle · Hymns · Shop · Contact" },
+    { "tag": "main",   "role": "main",   "className": "page-home",   "visibleText": "Hero · The Song · The Gaps & The Still · Three Bottles · Blue Ridge Blue · The Gap · Deep Cove · All Three Bottles CTA · Find a Pour · Colophon" },
+    { "tag": "footer", "role": "footer", "className": "colophon",    "visibleText": "Hours · Correspondence · Sung In By · 21+ · © High Lonesome 2026" }
+  ],
+  "sections": [
+    { "tag": "section", "className": "hero",              "bgMode": "atmospheric-blue",   "bgColor": "#1d4250", "atmosphericGlow": "sunset-pink + sourwood-honey from upper-right",                          "childTextSnippet": "Hero — italic 'High Lonesome' wordmark over cinematic landscape placeholder. Tagline: 'One voice in a wide place. Bottled bluegrass from a barn ten miles past anywhere.' Single CTA 'Visit the Shop' + secondary link 'read about the maker →'. Location marker: 'Hot Springs, NC · elev. 4,140 ft'." },
+    { "tag": "section", "className": "song",              "bgMode": "atmospheric-blue",   "bgColor": "#1d4250", "atmosphericGlow": "mountain-laurel radial from center",                                       "childTextSnippet": "The Song — centered italic display 'One voice in a wide place.' Spare. Single Sadie quote + signature in italic. Reading 'read the song in full →' link." },
+    { "tag": "section", "className": "gaps",              "bgMode": "light-interlude",    "bgColor": "#f9efd8", "atmosphericGlow": "sourwood-honey-mist-band horizontal across middle",                         "childTextSnippet": "The Gaps & the Still (combined). Split 5/7 — text left (italic header + paragraph + two link-outs 'see the gaps' / 'see the still'), atmospheric vista placeholder right. The brand's first surface inversion." },
+    { "tag": "section", "className": "bottles-opener",    "bgMode": "atmospheric-blue",   "bgColor": "#1d4250", "atmosphericGlow": "cardinal-flash + butterfly-pea twin glows top-right and bottom-left",        "childTextSnippet": "Three Bottles, bound in one cover. Centered italic display section opener. Track-marker 'Track 04, 05, 06'. Italic body lede." },
+    { "tag": "section", "className": "bottle-1",          "bgMode": "butterfly-pea-tint", "bgColor": "#5cc1c0", "atmosphericGlow": "high-lonesome-blue radial from bottom + fiddle-bone wash horizontal",        "childTextSnippet": "Blue Ridge Blue — italic display name on butterfly-pea-tinted ground. Lane 3 label placeholder left, copy right. 14% ABV aperitif. 'Drink before sundown.' Cobalt-tinged. Lightest section." },
+    { "tag": "section", "className": "bottle-2",          "bgMode": "cardinal-loud",      "bgColor": "#e54a1c", "atmosphericGlow": "mountain-laurel + sourwood-honey atmospheric overlay",                       "childTextSnippet": "The Gap — italic display name on cardinal-flash ground (the brand's loudest section). Lane 3 label placeholder right, copy left. 28% ABV amaro. 'Forged at altitude.' The brand's loudest moment — single section at cardinal-flash ground." },
+    { "tag": "section", "className": "bottle-3",          "bgMode": "atmospheric-blue",   "bgColor": "#1d4250", "atmosphericGlow": "sourwood-honey radial from center + cardinal-deep from lower-left",          "childTextSnippet": "Deep Cove — italic display name on high-lonesome-blue ground. Lane 3 label placeholder left, copy right. 22% ABV cordial. 'For the long dark.' Returns to the dominant ground after the cardinal-flash interlude." },
+    { "tag": "section", "className": "all-three-cta",     "bgMode": "light-interlude",    "bgColor": "#f9efd8", "atmosphericGlow": "sourwood-honey + mountain-laurel atmospheric wash",                          "childTextSnippet": "All Three Bottles → CTA section. Centered italic display 'All three, bound together.' Single link-cardinal CTA. Brand's second surface inversion." },
+    { "tag": "section", "className": "pour-list",         "bgMode": "atmospheric-blue",   "bgColor": "#1d4250", "atmosphericGlow": "atmospheric mountain-laurel + butterfly-pea twin glows",                      "childTextSnippet": "Find a Pour — italic display header. Centered liner-notes type block: 4 WNC bars with Sadie's pour notes. Centered single 'see all pours →' link-cardinal." },
+    { "tag": "footer",  "className": "colophon",          "bgMode": "atmospheric-blue",   "bgColor": "#1d4250", "atmosphericGlow": "subtle barn-ink atmospheric radial from lower-center",                       "childTextSnippet": "Colophon — three columns: Hours / Correspondence (email + phone + IG) / Sung In By (Sadie's italic signature). Single italic rule footer with copyright + 21+ + LP-01." }
+  ],
+  "sectionGroundSequence": ["high-lonesome-blue", "high-lonesome-blue", "fiddle-bone", "high-lonesome-blue", "butterfly-pea", "cardinal-flash", "high-lonesome-blue", "fiddle-bone", "high-lonesome-blue", "high-lonesome-blue"],
+  "distinctGrounds": 4,
+  "paletteDeploymentIntensity": "drenched",
+  "ctas": [
+    { "label": "Visit the Shop",          "href": "https://highlonesome.shop/",       "bgColor": "#f9efd8",     "color": "#1d4250", "fontFamily": "'Playfair Display', italic-serif", "fontStyle": "italic", "borderRadius": "2px", "padding": "16px 36px" },
+    { "label": "read about the maker →",  "href": "/the-song",                         "bgColor": "transparent", "color": "#f0a99e", "fontFamily": "'Spectral', italic-serif",         "fontStyle": "italic", "borderBottom": "1px solid #f0a99e" },
+    { "label": "see the gaps ↗",          "href": "/the-gaps",                         "bgColor": "transparent", "color": "#1d4250", "fontFamily": "'Spectral', italic-serif",         "fontStyle": "italic", "borderBottom": "1px solid #1d4250" },
+    { "label": "see the still ↗",         "href": "/the-still",                         "bgColor": "transparent", "color": "#1d4250", "fontFamily": "'Spectral', italic-serif",         "fontStyle": "italic", "borderBottom": "1px solid #1d4250" },
+    { "label": "Buy a bottle ↗",          "href": "/the-bottle#blue-ridge-blue",       "bgColor": "transparent", "color": "#1d4250", "fontFamily": "'Spectral', italic-serif",         "fontStyle": "italic" },
+    { "label": "Buy a bottle ↗",          "href": "/the-bottle#the-gap",                "bgColor": "transparent", "color": "#f9efd8", "fontFamily": "'Spectral', italic-serif",         "fontStyle": "italic" },
+    { "label": "Buy a bottle ↗",          "href": "/the-bottle#deep-cove",              "bgColor": "transparent", "color": "#f9efd8", "fontFamily": "'Spectral', italic-serif",         "fontStyle": "italic" },
+    { "label": "All three, bound together ↗", "href": "/the-bottle",                    "bgColor": "transparent", "color": "#e54a1c", "fontFamily": "'Playfair Display', italic-serif", "fontStyle": "italic", "borderBottom": "2px solid #e54a1c" },
+    { "label": "See all pours →",         "href": "/where-to-find",                     "bgColor": "transparent", "color": "#e54a1c", "fontFamily": "'Spectral', italic-serif",         "fontStyle": "italic", "borderBottom": "1px solid #e54a1c" }
+  ],
+  "links": [
+    { "label": "Home",         "href": "/",            "external": false },
+    { "label": "The Song",     "href": "/the-song",    "external": false },
+    { "label": "The Gaps",     "href": "/the-gaps",    "external": false },
+    { "label": "The Bottle",   "href": "/the-bottle",  "external": false },
+    { "label": "Hymns",        "href": "/hymns",       "external": false },
+    { "label": "Shop",         "href": "https://highlonesome.shop/", "external": true },
+    { "label": "Contact",      "href": "/contact",     "external": false }
+  ],
+  "media": {
+    "images": [
+      { "src": "/assets/images/hero-landscape.jpg",    "alt": "Blue Ridge mountain landscape at dusk — Hot Springs NC",          "intent": "lane-1 cinematic landscape (hero)",      "pending": true },
+      { "src": "/assets/images/sadie-portrait.jpg",     "alt": "Sadie Greene at the barn, golden-hour, fiddle visible",          "intent": "lane-1 maker portrait",                  "pending": true },
+      { "src": "/assets/images/gaps-vista.jpg",         "alt": "WNC gap vista — looking west from the bald",                     "intent": "lane-1 landscape (gaps section)",        "pending": true },
+      { "src": "/assets/images/label-blue-ridge-blue.png", "alt": "Blue Ridge Blue hand-painted bottle label (Italian-pop style)","intent": "lane-3 hand-painted label",              "pending": true },
+      { "src": "/assets/images/label-the-gap.png",       "alt": "The Gap hand-painted bottle label (Italian-pop style)",         "intent": "lane-3 hand-painted label",              "pending": true },
+      { "src": "/assets/images/label-deep-cove.png",     "alt": "Deep Cove hand-painted bottle label (Italian-pop style)",       "intent": "lane-3 hand-painted label",              "pending": true }
+    ],
+    "svgs": [],
+    "videos": [],
+    "iframes": [],
+    "cssBackgrounds": []
+  },
+  "forms": [],
+  "widgets": { "dialogs": 1, "accordions": 0, "tablists": 0 },
+  "body": { "bgColor": "#1d4250", "color": "#f9efd8", "fontFamily": "'Spectral', serif", "fontSize": "19px", "htmlBg": "#1d4250" },
+  "logoCandidates": [
+    { "kind": "wordmark", "src": "/assets/logo.svg", "alt": "High Lonesome", "intrinsicWidth": 600, "intrinsicHeight": 200 }
+  ],
+  "appleTouch": null,
+  "favicon": "/assets/favicon.svg"
+}

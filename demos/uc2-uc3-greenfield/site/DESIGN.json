@@ -24,6 +24,7 @@
     "rhody-green":     "#3e5a3e",
     "bulletin-cream":  "#e8d8b8",
     "hellfire-neon":   "#f04a26",
+    "tape-mustard":    "#d8a740",
     "ink":             "#1a1410",
     "surface-cream":   "#e8d8b8",
     "surface-black":   "#1a1410",
@@ -79,7 +80,8 @@
       "loadBearing": ["hymnal-black", "bulletin-cream", "barn-rust"],
       "quarantined": [
         { "token": "rhody-green", "rule": "botanical-context surfaces only (the-still / foraging map / deep-product descriptions)" },
-        { "token": "hellfire-neon", "rule": "one-glance accents only — at most one instance per visible viewport; never as body text; never as dominant element on hymnal-black surface" }
+        { "token": "hellfire-neon", "rule": "one-glance accents only — at most one instance per visible viewport; never as body text; never as dominant element on hymnal-black surface" },
+        { "token": "tape-mustard", "rule": "marquee tape / sticker / hand-painted-ribbon contexts only — never body, never CTA, never section ground, never text fill; gilt-gold-adjacent but distinct for the caution-tape character (see DESIGN.md § Tape-Mustard Restriction Rule)" }
       ],
       "forbidden": ["#000000 (pure black)", "purple", "magenta", "beige/sage Kinfolk substitutes"]
     },
@@ -221,7 +223,8 @@
       "--hh-gilt-gold":      "#d4a45c",
       "--hh-rhody-green":    "#3e5a3e",
       "--hh-bulletin-cream": "#e8d8b8",
-      "--hh-hellfire-neon":  "#f04a26"
+      "--hh-hellfire-neon":  "#f04a26",
+      "--hh-tape-mustard":   "#d8a740"
     }
   },
   "narrative": {

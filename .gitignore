@@ -9,3 +9,7 @@ demos/*/recording/*.webm
 # Editor / OS
 *.swp
 *~
+
+# Local-only tooling and secrets
+.env
+.skill-archive/

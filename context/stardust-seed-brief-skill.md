@@ -301,6 +301,43 @@ Hand-authored artifacts use the same `_provenance.writtenBy` field name and the 
 - Could `/stardust:seed` and `/stardust:brief` share implementation under the hood and only differ at the CLI? Probably yes — most of the work is "compile structured documents → JSON/markdown schema." The split is at the user-facing surface, not the internals.
 - Should there be a third sibling command, `/stardust:assets` or `/stardust:gen-imagery`, that handles the external-generation handoff? Currently the user manually generates with Gemini and drops files in. A sibling command could surface the prompts + accept output.
 
+## Downstream consumer contract — what `direct` / `prototype` / `migrate` need from seed+brief output
+
+The output schema isn't free-form documentation; downstream skills have specific reads against it. This section names every load-bearing field a downstream skill consumes, with the audit / decision it powers. The pair-doc `context/stardust-prototype-skill.md` proposals reference these fields explicitly; when the upstream skill team implements seed+brief, the schema is constrained by what these reads require.
+
+### Fields `direct` reads
+
+- `PRODUCT.md` § Register → resolves the divergence-toolkit's register-axis pin (`brand` / `product`). When seed authors PRODUCT.md, it must commit to a register; downstream `direct` does not infer from copy.
+- `PRODUCT.md` § Anti-references → propagated verbatim into `direct`'s anti-toolbox audit list. Brand-specific anti-patterns (e.g. *"Kinfolk-luxe-minimal-craft"* for Holler & Hymn) are the only mechanism that prevents `direct` from defaulting to LLM-craft-reflex on its own initiative.
+- `DESIGN.json.colors` + `extensions.brandTokens` → palette signal-strength classification (`signal-strong` / `signal-thin` / `signal-absent` per `direct` § Setup step 5). Mode A (brand-faithful) defaults from this read.
+- `DESIGN.json.typography` per-tier `fontFamily` + (new field, see below) `typographyMeta.expectedCharacter` → consumed by `prototype` proposal F.2 to verify the rendered face character matches brand intent. Seed must author both.
+
+### Fields `prototype` reads (and the audits they power)
+
+- `current/pages/<slug>.json.sections[].bgMode` — load-bearing for **prototype proposal H.2** (palette-deployment-intensity audit). Each page-section's `bgMode` field declares its assigned register-side (e.g. `bulletin` / `revival` for Holler & Hymn's two-register pattern), which the prototype skill reads to assign per-section ground colors. Brief must populate this for every section.
+- `current/pages/<slug>.json.headings[].text` + `sections[].childTextSnippet` + `ctas[].label` — **load-bearing nouns guarantee** for `prototype`'s downstream rendering. Verbatim preservation contract (see *verbatim guarantee* pattern). Brief must mark which content slots are load-bearing.
+- `current/pages/<slug>.json.media.images[].pending` + `intent` — **load-bearing for prototype's placeholder-signature renderer** (variant C of `before-after-shell.md`). When `pending: true`, prototype renders the `[data-placeholder]` visual signature per F-002 contract instead of fabricating content. Brief authors these fields directly.
+- `DESIGN.json.extensions.divergence.brand_faithful_inversions[]` — feeds **prototype proposal G.3** (variant role allocation). The retentions list informs which inversions are deliberate (and thus immune to "make it bolder" iteration) vs. inheritances (which can be opened up if direction changes).
+- `DESIGN.json.extensions.colorMeta.quarantined[]` — **load-bearing for prototype's anti-toolbox audit** (proposal C). Quarantined-token rules (e.g. "rhody-green only in botanical-context content") are enforced at render time; seed must populate the quarantine rules.
+- `DESIGN.json.extensions.voice.do[]` + `dont[]` + `examples.do[]` — feeds craft's copy-generation. Seed must lift verbatim from BRAND.md.
+
+### New fields the schema needs (added by these proposals)
+
+Seed's output should include the following fields beyond what `extract` currently produces. These are required because the prototype skill's proposals (per `context/stardust-prototype-skill.md`) read them at audit time:
+
+- `DESIGN.json.typography.<tier>.expectedCharacter` (string) — brand-intent description per tier; consumed by prototype proposal F.2 (font-availability + character-appropriateness audit). Example: *"hand-lettered revival-tent / hand-painted plywood signage / decorative slab with bracketed serifs."*
+- `DESIGN.json.typography.<tier>.rejectedCharacters` (array of strings) — character categories that fail the brand at audit time. Example: *["modern geometric sans (Impact, Oswald)", "ITC-style decorative cursive", "humanist sans"]*.
+- `DESIGN.json.extensions.paletteDeployment.intensity` (`held` / `applied` / `drenched`) — intended palette-deployment intensity; consumed by prototype proposal H.4 (palette-deployment audit). Derived from brand tension language in BRAND.md ("both halves at full volume" → `drenched`; "restrained, ritual, hushed" → `held`).
+- `DESIGN.json.extensions.paletteDeployment.targetGroundCount` (integer) — minimum distinct section grounds across the long-scroll home; audited at render time.
+- `pages/<slug>.json.sections[].bgMode` (already documented; now formally required) — register-side assignment per section; consumed by prototype's two-register-section pattern (proposal D — seed-to-composition translation).
+- `pages/<slug>.json.sections[].verbatim` (boolean) — when `true`, the section's headings + childTextSnippet + cta labels must render unchanged by downstream commands; prototype refuses any paraphrasing. Authored by brief.
+
+### Why this contract matters for the skill's design
+
+Without this consumer contract, prototype's audits would have no machine-readable assertions to check against; they'd fall back to LLM-as-critic perceptual judgment for everything. The contract makes the audits **deterministic** for the brand-specific assertions (palette, type, voice, quarantine rules) and leaves LLM-as-critic for the cases that genuinely require perceptual judgment (overall composition, register match).
+
+When seed+brief are implemented, **the schema additions above are not optional fields** — they're required for the prototype skill's gate behaviour to function. If seed doesn't author them, prototype falls back to today's reflex-defaults and the AI-slop failure modes return.
+
 ## Reference materials
 
 - **Worked example, input side:** `demos/uc2-uc3-greenfield/site/brand/BRAND.md`, `demos/uc2-uc3-greenfield/site/briefing/SITE-BRIEF.md`, `demos/uc2-uc3-greenfield/site/briefing/CONTENT.md`.
@@ -313,5 +350,11 @@ Hand-authored artifacts use the same `_provenance.writtenBy` field name and the 
 ## Brands this draft is based on
 
 - **Holler & Hymn** — small-batch Appalachian botanical-liqueur house, single maker, central tension is *Saturday-night sin × Sunday-morning hymn*. Hand-authored proof-of-concept for both commands. Tested input-shape decisions: how richly to describe the central tension, how literally to bind anti-references, how to handle the imagery-lane convention when one lane (botanical/process) requires real outdoor photography and another (label art) requires hand-painted output. Tested output-shape decisions: the seed/brief split of `PRODUCT.md`, the `bgMode` field for two-register sections, the `pending: true` + `intent: lane-N` pattern for awaiting-external-generation assets.
+
+- **High Lonesome** (validation case, 2026-05-12) — Mediterranean-pop variant of the WNC mountain-spirits direction (Hot Springs, NC; saturated 7-token palette; italic-classical-serif display tier; central tension *auditory solitude × visual joy*). Hand-authored proof-of-concept artifacts at `demos/uc2-uc3-greenfield/highlonesome/` ran through the full downstream pipeline (`stardust:direct` → `stardust:prototype` → `impeccable:craft` → `impeccable:critique`) without seam. Validated:
+   - The seed-output `_brand-extraction.json` schema (palette role-naming, `imageryLanes[]`, voice anchors, anti-references) feeds `stardust:direct` correctly without translation.
+   - The brief-output `pages/<slug>.json` schema (sectionGroundSequence, distinctGrounds, paletteDeploymentIntensity) carries directly into the shape brief.
+   - The consumer-contract fields (`typographyMeta.expectedCharacter` + `.rejectedCharacters` + `.loadBearingRule`, `extensions.paletteDeployment.intensity` + `.targetGroundCount` + `.cardinalFlashRule` + `.homeSectionGroundSequence`) are read by craft as hard-rule passthroughs and respected by the rendered HTML. Proposal-stage fields are enforceable consumer contracts today, ahead of the upstream skill landing.
+   - The greenfield placeholder visual signature (tinted-off-ground + 1px dashed + mono label + hl-cardinal instrumentation dot) maps cleanly from brief's `pending: true` / `intent: lane-N` markers to the rendered prototype's `[data-placeholder]` elements.
 
 Add new entries when subsequent brands surface a new rule, decision, or gotcha.

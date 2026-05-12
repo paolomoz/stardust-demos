@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<!--
+  Brand exploration: HIGH LONESOME
+  Direction: FIDDLE-CASE NOTEBOOK — hand-written touring journal, cursive + typewriter mono, tape & ink
+  Tagline: "Notes from the road."
+  Source brand spec: site/brand/brand-alternates.md § Alternate C
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>High Lonesome — bottled bluegrass · WNC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Special+Elite&family=EB+Garamond:ital,wght@0,400;1,400&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper-cream:       #e0d4b8;
+      --paper-warm:        #d4c5a0;
+      --leather-brown:     #5a3a20;
+      --ink-pen-blue:      #1a3a6a;
+      --cursive-rust:      #9c5a3a;
+      --spine-stitch:      #3a3025;
+      --tape-amber:        #c89a4a;
+      --hymnal-red:        #c43935;
+      --spruce-dark:       #3a4f3d;
+      --ink-deep:          #2a1a14;
+      --font-script:  'Caveat','Brush Script MT',cursive;
+      --font-mono:    'Special Elite','IBM Plex Mono','Courier New',monospace;
+      --font-body:    'EB Garamond','Georgia',serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body { font-family: var(--font-mono); font-size: 16px; line-height: 1.7; color: var(--ink-deep); background: var(--paper-cream); overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { margin: 0; font-weight: normal; }
+    p, ul, ol { margin: 0; padding: 0; list-style: none; }
+    img, svg { display: block; max-width: 100%; height: auto; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
+
+    /* Paper texture — well-thumbed */
+    body::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(90,58,32,0.06) 0%, transparent 8%),
+        radial-gradient(circle at 78% 60%, rgba(90,58,32,0.08) 0%, transparent 12%),
+        radial-gradient(circle at 45% 80%, rgba(156,90,58,0.05) 0%, transparent 8%);
+    }
+
+    /* Top — spiral-bound book edge */
+    .spiral { background: var(--paper-warm); padding: 18px 0 16px; border-bottom: 3px solid var(--spine-stitch); position: relative; }
+    .spiral::before { content: ""; position: absolute; left: 0; right: 0; bottom: -4px; height: 8px;
+      background-image: radial-gradient(circle at 20px center, var(--spine-stitch) 3px, transparent 4px);
+      background-size: 40px 8px; background-repeat: repeat-x;
+    }
+    .spiral .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .mark { font-family: var(--font-script); font-weight: 600; font-size: 30px; color: var(--ink-pen-blue); line-height: 1; transform: rotate(-1.5deg); display: inline-block; }
+    .spiral nav { display: flex; gap: 20px; flex-wrap: wrap; }
+    .spiral nav a { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--leather-brown); text-transform: lowercase; }
+    .spiral nav a:hover { color: var(--hymnal-red); }
+    .spiral nav a[aria-current="page"] { color: var(--hymnal-red); border-bottom: 1px solid currentColor; }
+
+    /* HERO — open notebook spread */
+    .hero { padding: 80px 0; }
+    .notebook { background: var(--paper-cream); max-width: 880px; margin: 0 auto; padding: 64px 56px 96px; position: relative; box-shadow: inset 80px 0 60px -60px rgba(90,58,32,0.18); border-left: 3px double var(--spine-stitch); }
+    /* spiral-bound holes on left edge */
+    .notebook::before { content: ""; position: absolute; top: 0; bottom: 0; left: -10px; width: 18px;
+      background-image: radial-gradient(circle at center, var(--paper-warm) 5px, transparent 6px);
+      background-size: 18px 32px; background-repeat: repeat-y;
+    }
+    .notebook .date { font-family: var(--font-script); font-size: 22px; color: var(--ink-pen-blue); transform: rotate(-1deg); display: inline-block; margin-bottom: 8px; }
+    .notebook .place { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--leather-brown); text-transform: uppercase; margin-bottom: 32px; }
+    .notebook h1 { font-family: var(--font-script); font-weight: 700; font-size: clamp(68px, 9.5vw, 144px); color: var(--ink-pen-blue); line-height: 0.96; letter-spacing: -0.01em; transform: rotate(-1.5deg); display: inline-block; margin-bottom: 16px; max-width: 100%; }
+    .notebook h1 .underline { display: inline-block; border-bottom: 4px solid var(--hymnal-red); padding-bottom: 4px; }
+    .notebook .subtitle { font-family: var(--font-script); font-size: 28px; color: var(--cursive-rust); margin-bottom: 32px; transform: rotate(-0.5deg); display: inline-block; }
+    .notebook .body-text { font-family: var(--font-body); font-size: 19px; line-height: 1.75; max-width: 36em; color: var(--ink-deep); margin-bottom: 16px; }
+    .notebook .body-text em { color: var(--hymnal-red); font-style: italic; }
+    .notebook .body-text .strike { text-decoration: line-through; text-decoration-color: var(--ink-pen-blue); opacity: 0.7; }
+    .notebook .footnote { font-family: var(--font-mono); font-size: 13px; color: var(--leather-brown); margin-top: 28px; line-height: 1.6; padding-top: 16px; border-top: 1px dashed var(--leather-brown); max-width: 36em; }
+    .notebook .scribble-arrow { display: inline-block; transform: rotate(-3deg); font-family: var(--font-script); font-size: 22px; color: var(--cursive-rust); margin-left: 12px; }
+    .notebook .taped-photo { position: absolute; top: 56px; right: 56px; width: 180px; aspect-ratio: 4/5; background: var(--paper-warm); border: 1px solid var(--leather-brown); padding: 12px 12px 24px; transform: rotate(4deg); display: flex; align-items: center; justify-content: center; }
+    .notebook .taped-photo .tape { position: absolute; top: -10px; width: 56px; height: 18px; background: var(--tape-amber); opacity: 0.78; }
+    .notebook .taped-photo .tape.left { left: 16px; transform: rotate(-8deg); }
+    .notebook .taped-photo .tape.right { right: 16px; transform: rotate(6deg); }
+    .notebook .taped-photo p { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--leather-brown); text-align: center; }
+    .notebook .cta-row { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; margin-top: 40px; }
+    .notebook .cta-primary { font-family: var(--font-script); font-weight: 700; font-size: 28px; color: var(--paper-cream); background: var(--hymnal-red); padding: 14px 30px 16px; transform: rotate(-1deg); display: inline-block; }
+    .notebook .cta-text { font-family: var(--font-script); font-size: 20px; color: var(--ink-pen-blue); border-bottom: 1px solid currentColor; padding-bottom: 2px; transform: rotate(-1deg); display: inline-block; }
+
+    /* Tour log — set-list page */
+    .tour-log { background: var(--paper-warm); padding: 88px 0 96px; border-top: 3px dashed var(--leather-brown); border-bottom: 3px dashed var(--leather-brown); position: relative; }
+    .tour-log .container { position: relative; }
+    .tour-log h2 { font-family: var(--font-script); font-weight: 700; font-size: clamp(48px, 6vw, 80px); color: var(--ink-pen-blue); transform: rotate(-1.5deg); display: inline-block; margin-bottom: 16px; }
+    .tour-log h2 em { color: var(--hymnal-red); font-style: italic; }
+    .tour-log .subhead { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; color: var(--leather-brown); text-transform: uppercase; margin-bottom: 48px; }
+    .setlist { max-width: 720px; margin: 0; padding: 32px; background: var(--paper-cream); border: 1px solid var(--leather-brown); transform: rotate(-0.6deg); position: relative; }
+    .setlist::before { content: ""; position: absolute; top: -8px; left: 60px; width: 90px; height: 16px; background: var(--tape-amber); opacity: 0.75; transform: rotate(-3deg); }
+    .setlist::after { content: ""; position: absolute; bottom: -8px; right: 50px; width: 80px; height: 14px; background: var(--tape-amber); opacity: 0.7; transform: rotate(2deg); }
+    .setlist .header { font-family: var(--font-script); font-size: 24px; color: var(--ink-pen-blue); transform: rotate(-1deg); display: inline-block; margin-bottom: 16px; }
+    .setlist ol { counter-reset: track; }
+    .setlist ol li { counter-increment: track; padding: 12px 0; border-bottom: 1px dotted var(--leather-brown); display: grid; grid-template-columns: 28px 1fr auto; align-items: baseline; gap: 14px; }
+    .setlist ol li::before { content: counter(track,decimal-leading-zero) "."; font-family: var(--font-mono); font-size: 12px; color: var(--leather-brown); letter-spacing: 0.06em; }
+    .setlist .song { font-family: var(--font-body); font-size: 19px; color: var(--ink-deep); }
+    .setlist .song em { font-style: italic; color: var(--cursive-rust); }
+    .setlist .annotation { font-family: var(--font-script); font-size: 17px; color: var(--ink-pen-blue); transform: rotate(-1deg); display: inline-block; }
+    .setlist .stamp { display: inline-block; padding: 4px 10px; border: 1.5px solid var(--hymnal-red); color: var(--hymnal-red); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; margin-top: 18px; transform: rotate(-3deg); }
+
+    /* Bottle pages — three notebook pages stacked */
+    .bottle-pages { padding: 88px 0 96px; }
+    .bottle-pages h2 { text-align: center; font-family: var(--font-script); font-weight: 700; font-size: clamp(56px, 7vw, 96px); color: var(--ink-pen-blue); transform: rotate(-1deg); display: block; margin-bottom: 12px; line-height: 1; }
+    .bottle-pages h2 em { color: var(--hymnal-red); font-style: italic; }
+    .bottle-pages .subhead { text-align: center; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; color: var(--leather-brown); text-transform: uppercase; margin-bottom: 64px; }
+    .bottle-deck { display: grid; grid-template-columns: 1fr; gap: 56px; max-width: 1080px; margin: 0 auto; }
+    @media (min-width: 880px) { .bottle-deck { grid-template-columns: repeat(3, 1fr); gap: 32px; } }
+    .bottle-page { background: var(--paper-cream); padding: 36px 32px 56px; position: relative; border-left: 2px solid var(--spine-stitch); box-shadow: inset 30px 0 30px -30px rgba(90,58,32,0.12); }
+    .bottle-page:nth-child(1) { transform: rotate(-0.8deg); }
+    .bottle-page:nth-child(2) { transform: rotate(0.4deg); }
+    .bottle-page:nth-child(3) { transform: rotate(-0.4deg); }
+    .bottle-page .corner-tape { position: absolute; top: -8px; right: 12px; width: 56px; height: 18px; background: var(--tape-amber); opacity: 0.78; transform: rotate(8deg); }
+    .bottle-page .num { font-family: var(--font-script); font-size: 22px; color: var(--ink-pen-blue); transform: rotate(-2deg); display: inline-block; margin-bottom: 4px; }
+    .bottle-page h3 { font-family: var(--font-script); font-weight: 700; font-size: 48px; color: var(--hymnal-red); line-height: 1; transform: rotate(-1deg); display: inline-block; margin-bottom: 14px; }
+    .bottle-page .descr { font-family: var(--font-body); font-style: italic; font-size: 18px; color: var(--ink-deep); line-height: 1.5; margin-bottom: 28px; }
+    .bottle-page .recipe { font-family: var(--font-mono); font-size: 12px; line-height: 2.1; color: var(--ink-deep); }
+    .bottle-page .recipe .row { display: flex; gap: 10px; }
+    .bottle-page .recipe .row .item { color: var(--ink-deep); }
+    .bottle-page .recipe .row .qty { color: var(--leather-brown); flex-shrink: 0; min-width: 5ch; }
+    .bottle-page .ann { display: inline-block; margin-top: 18px; font-family: var(--font-script); font-size: 18px; color: var(--ink-pen-blue); transform: rotate(-1deg); }
+    .bottle-page .where { display: inline-block; margin-top: 16px; font-family: var(--font-script); font-size: 18px; color: var(--cursive-rust); border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+
+    /* Footer — back-cover page */
+    .back-cover { background: var(--paper-warm); padding: 64px 0 56px; border-top: 3px dashed var(--leather-brown); }
+    .back-cover .container { max-width: 720px; }
+    .back-cover .panel { background: var(--paper-cream); padding: 36px 32px; border: 1px solid var(--leather-brown); position: relative; }
+    .back-cover .panel::before { content: ""; position: absolute; top: -8px; left: 50%; transform: translateX(-50%); width: 84px; height: 16px; background: var(--tape-amber); opacity: 0.75; }
+    .back-cover h3 { font-family: var(--font-script); font-size: 22px; color: var(--ink-pen-blue); transform: rotate(-1deg); display: inline-block; margin-bottom: 12px; }
+    .back-cover .row { display: grid; grid-template-columns: 1fr auto; gap: 16px; padding: 10px 0; border-bottom: 1px dotted var(--leather-brown); font-family: var(--font-mono); font-size: 13px; }
+    .back-cover .row .label { color: var(--leather-brown); }
+    .back-cover .row .val { color: var(--ink-deep); }
+    .back-cover .row a { color: var(--ink-pen-blue); border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+    .back-cover .signature { text-align: right; font-family: var(--font-script); font-weight: 700; font-size: 36px; color: var(--hymnal-red); transform: rotate(-3deg); display: block; margin-top: 24px; line-height: 1; }
+    .back-cover .rule { margin-top: 32px; padding-top: 20px; border-top: 1px dashed var(--leather-brown); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--leather-brown); text-align: center; text-transform: uppercase; }
+
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.001ms !important; } }
+    a:focus-visible { outline: 2px solid var(--hymnal-red); outline-offset: 4px; }
+  </style>
+</head>
+<body>
+
+  <header class="spiral">
+    <div class="container">
+      <a href="/" class="mark">High Lonesome</a>
+      <nav>
+        <a href="/" aria-current="page">home</a>
+        <a href="/the-song">the song</a>
+        <a href="/the-gaps">the gaps</a>
+        <a href="/the-still">the still</a>
+        <a href="/the-bottle">the bottle</a>
+        <a href="/shop">shop</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <article class="notebook">
+        <p class="date">May 11, MMXXVI · 6:42 PM</p>
+        <p class="place">Hot Springs · Madison Co. · WNC</p>
+        <h1><span class="underline">High Lonesome</span></h1>
+        <p class="subtitle">— Notes from the road —</p>
+        <p class="body-text">"There's a thing in old-time music called the <em>high lonesome sound</em>. It's not <span class="strike">sad</span> sad exactly. It's the sound of one voice in a wide place."</p>
+        <p class="body-text">"That's what I'm trying to put in a bottle. The herbs grow in those wide places — the gaps, the balds, the deep coves. I work in a small barn ten miles from anywhere. <em>I sing while I work.</em> I think it goes in."</p>
+        <p class="footnote">→ Footnote: foraged tonight — wild ginger from Wolfpen Creek (3 oz), butterfly pea flower from the bald (7 stems), eastern juniper (the bird showed me where).</p>
+        <div class="taped-photo" aria-label="taped photograph placeholder">
+          <span class="tape left" aria-hidden="true"></span>
+          <span class="tape right" aria-hidden="true"></span>
+          <p>Sadie<br>at the barn<br>2024</p>
+        </div>
+        <div class="cta-row">
+          <a href="/shop" class="cta-primary">Visit the Shop</a>
+          <a href="/the-song" class="cta-text">read the rest →</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="tour-log">
+      <div class="container">
+        <h2>Spring <em>Tour Log.</em></h2>
+        <p class="subhead">— Where the bottles ended up —</p>
+        <div class="setlist">
+          <p class="header">Asheville · Show 01</p>
+          <ol>
+            <li><span class="song">Sermon Bar — pours <em>The Gap</em> neat</span> <span class="annotation">Lexington Ave</span></li>
+            <li><span class="song">The Backslider Tavern — <em>whole shelf</em></span> <span class="annotation">RAD</span></li>
+            <li><span class="song">Bull and Beggar — sourwood-honey old-fashioned</span> <span class="annotation">RAD</span></li>
+            <li><span class="song">Little Jumbo — <em>Saturday-night flight</em></span> <span class="annotation">downtown</span></li>
+            <li><span class="song">Top of the Monk — house bitters set</span> <span class="annotation">Black Mountain Ave</span></li>
+          </ol>
+          <span class="stamp">★ closed encore ★</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="bottle-pages">
+      <h2>Three Songs, <em>Three Bottles.</em></h2>
+      <p class="subhead">— from the page-back of the fiddle case —</p>
+      <div class="bottle-deck">
+        <article class="bottle-page">
+          <span class="corner-tape" aria-hidden="true"></span>
+          <p class="num">№ 1 · Side A</p>
+          <h3>Blue Ridge Blue</h3>
+          <p class="descr"><em>A cobalt-tinged aperitif.</em> Butterfly pea blossom and mountain mint.</p>
+          <div class="recipe">
+            <div class="row"><span class="qty">14%</span><span class="item">ABV · aperitif</span></div>
+            <div class="row"><span class="qty">·</span><span class="item">butterfly pea</span></div>
+            <div class="row"><span class="qty">·</span><span class="item">mountain mint</span></div>
+            <div class="row"><span class="qty">·</span><span class="item">lemon balm</span></div>
+          </div>
+          <span class="ann">— drink before sundown</span><br>
+          <a href="/the-bottle" class="where">buy a bottle →</a>
+        </article>
+        <article class="bottle-page">
+          <span class="corner-tape" aria-hidden="true"></span>
+          <p class="num">№ 2 · Side B</p>
+          <h3>The Gap</h3>
+          <p class="descr">A <em>sharp, bright</em> high-elevation amaro.</p>
+          <div class="recipe">
+            <div class="row"><span class="qty">28%</span><span class="item">ABV · amaro</span></div>
+            <div class="row"><span class="qty">·</span><span class="item">wild ginger</span></div>
+            <div class="row"><span class="qty">·</span><span class="item">black walnut</span></div>
+            <div class="row"><span class="qty">·</span><span class="item">mountain mint</span></div>
+          </div>
+          <span class="ann">— forged at altitude</span><br>
+          <a href="/the-bottle" class="where">buy a bottle →</a>
+        </article>
+        <article class="bottle-page">
+          <span class="corner-tape" aria-hidden="true"></span>
+          <p class="num">№ 3 · Side A</p>
+          <h3>Deep Cove</h3>
+          <p class="descr">A <em>dark, sweet</em> cordial for winter.</p>
+          <div class="recipe">
+            <div class="row"><span class="qty">22%</span><span class="item">ABV · cordial</span></div>
+            <div class="row"><span class="qty">·</span><span class="item">wild persimmon</span></div>
+            <div class="row"><span class="qty">·</span><span class="item">paw-paw</span></div>
+            <div class="row"><span class="qty">·</span><span class="item">black walnut hull</span></div>
+          </div>
+          <span class="ann">— for the long dark</span><br>
+          <a href="/the-bottle" class="where">buy a bottle →</a>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="back-cover">
+    <div class="container">
+      <div class="panel">
+        <h3>The back cover —</h3>
+        <div class="row"><span class="label">The barn</span><span class="val">Hot Springs, NC</span></div>
+        <div class="row"><span class="label">Open</span><span class="val">by appointment only</span></div>
+        <div class="row"><span class="label">Email</span><a href="mailto:sadie@highlonesome.com">sadie@highlonesome.com</a></div>
+        <div class="row"><span class="label">Phone</span><a href="tel:+18285550143">+1 828 555 0143</a></div>
+        <div class="row"><span class="label">Instagram</span><a href="https://instagram.com/highlonesome_nc">@highlonesome_nc</a></div>
+        <span class="signature">Sadie Greene</span>
+      </div>
+      <p class="rule">21+ verified · made in Madison Co. NC · © high lonesome 2026</p>
+    </div>
+  </footer>
+
+</body>
+</html>

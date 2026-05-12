@@ -23,22 +23,68 @@
     "resolvedAt": "2026-05-11T00:00:00Z",
     "phrase": "rooted, irreverent, hand-made. Saturday night and Sunday morning at the same time.",
     "directionFile": "stardust/direction.md",
-    "variantMode": "single",
+    "variantMode": "multi-variant fork (retroactive — variants B and C generated after v2-A re-shape per context/stardust-prototype-skill.md § Failure mode #4 corrective)",
     "variants": [
       {
-        "id": "single",
-        "name": "Holler & Hymn (resolved)",
-        "role": "single-variant brand-faithful crystallization",
+        "id": "variant-a",
+        "name": "Revival-Tent Collage",
+        "role": "faithful + improvements (the v2 re-shape; ampersand-as-design centerline)",
         "tagline": "Saturday night sin. Sunday morning hymn. Both in one bottle.",
-        "designFile": "DESIGN.md",
-        "designJsonFile": "DESIGN.json",
-        "groundFamily": "two-register alternation (bulletin-cream + hymnal-black)",
-        "fontDeck": "brand-inherited (hand-lettered display + hymnal serif + IBM Plex Mono)",
-        "typeScale": "1.333 perfect-fourth"
+        "shapeBrief": "stardust/prototypes/home-shape-variant-a.md",
+        "prototypePath": "stardust/prototypes/home-proposed-variant-a.html",
+        "groundFamily": "two-register alternation (bulletin-cream + hymnal-black) with hand-painted plywood textures",
+        "fontDeck": "Smokum (display, revival-tent poster) + Lora (body, hymnbook) + Caveat (script, handwritten) + IBM Plex Mono (numerals)",
+        "amplifies": "hand-painted plywood signage motif + revival-tent poster character + the AMPERSAND as the design",
+        "composition": "asymmetric collage: left-anchored hero, full-bleed letter-on-table, plywood-collage 'Back Room', 180° bottle fan, folk-art map pew list",
+        "register": "Memoir × Tabloid alternation per section"
+      },
+      {
+        "id": "variant-b",
+        "name": "Almanac Page",
+        "role": "HYMN half amplified — typographic-led restraint within the brand",
+        "tagline": "An almanac of botanical spirits, from Wolfpen Holler.",
+        "shapeBrief": "stardust/prototypes/home-shape-variant-a.md (inline brief in <!-- stardust:provenance --> of the proposed HTML)",
+        "prototypePath": "stardust/prototypes/home-proposed-variant-b.html",
+        "groundFamily": "single hymnbook-paper ground (bulletin-cream + hymnal-black for the almanac entries section)",
+        "fontDeck": "IM Fell DW Pica + Old Standard TT (display + body, hand-set transitional serif) + IBM Plex Mono (numerals); no script tier",
+        "amplifies": "the HYMN half + the Memoir-adjacent register + Foxfire-Book typographic lineage",
+        "composition": "almanac title-page hero (centered, decorative rules), typeset multi-column 'Place & Still' entry, 6-bottle typeset catalog with double-rules and prices, leader-dot pew list, colophon footer",
+        "register": "Memoir-adjacent (almanac/hymnbook page character throughout)"
+      },
+      {
+        "id": "variant-c",
+        "name": "Outlaw Album Sleeve",
+        "role": "HOLLER half amplified — atmospheric/photographic-led within the brand",
+        "tagline": "Track 01, Side A — now playing.",
+        "shapeBrief": "inline brief in <!-- stardust:provenance --> of the proposed HTML",
+        "prototypePath": "stardust/prototypes/home-proposed-variant-c.html",
+        "groundFamily": "single deep-black ground throughout (hymnal-black with radial-gradient atmospheric overlays per section)",
+        "fontDeck": "Anton (display, heavy condensed sans, album-credits character) + Spectral (body, cinematic serif) + Caveat (script, signature) + IBM Plex Mono (numerals/track-markers)",
+        "amplifies": "the HOLLER half + the 1970s outlaw-country album-sleeve register + cinematic restraint",
+        "composition": "atmospheric dark hero (single big wordmark + song-title-style tagline + one CTA), spare centered Wendell quote, side-B 'Place & Still' combined panel, three vertical poster-sections for featured bottles, liner-notes pew list, album-credits footer",
+        "register": "Tabloid-adjacent (album-credits / liner-notes character throughout)"
       }
     ],
-    "mode": "Mode A (brand-faithful) — palette + 3-tier type pinned; decade/craft/register-flavor rolled (anchored by BRAND.md cultural references); Mode C ground-family override (two-register pattern brand-native)",
-    "pinnedColors": ["#1a1410", "#7e1d12", "#d4a45c", "#3e5a3e", "#e8d8b8", "#f04a26"],
+    "pickedVariant": null,
+    "pickReasoning": "Brand pivot REJECTED 2026-05-11. The user explored the Mediterranean-pop palette through 7 swaps on the variant-c composition and converged on teal-saturated as the palette-deployment preference, but declined to amend Holler & Hymn's documented Appalachian outlaw-country brand register to match. teal-saturated stays on disk as a parallel exploration artifact (relevant for the demo's seam-beat narration as 'what user-driven palette exploration looks like'); it is NOT the canonical Holler & Hymn home prototype. The cross-session palette preference (diverse, saturated, broad-set, asymmetric-cycling) was captured in feedback_palette_saturation_preference.md and applies to future design work; the Holler & Hymn brand specifically stays Appalachian per the current BRAND.md / DESIGN.md.",
+    "explorationOutcome": {
+      "exploredOnVariantCBase": ["variant-c (rust/cream/hymnal-black baseline)", "variant-c-cobalt-night", "variant-c-deep-woods", "variant-c-ember-ash", "variant-c-coral-piazza", "variant-c-teal-twilight", "variant-c-teal-blocks", "variant-c-teal-saturated"],
+      "explorationWinner": "variant-c-teal-saturated",
+      "explorationWinnerStatus": "preserved as a parallel artifact; NOT the canonical Holler & Hymn brand; surfaced in context/stardust-prototype-skill.md § Failure mode #5 as the corrective output for the palette-deployment skill miss",
+      "brandPivotDecision": "rejected — keep Appalachian palette canonical"
+    },
+    "pickImpliesBrandPivot": false,
+    "brandPivotPending": null,
+    "canonicalDirectionPending": {
+      "candidates": [
+        { "id": "variant-a", "label": "Revival-Tent Collage", "depth": "deep-iterated v2 re-shape with anti-default composition + Smokum/Lora/Caveat/IBM Plex Mono fonts", "path": "stardust/prototypes/home-proposed-variant-a.html" },
+        { "id": "variant-b", "label": "Almanac Page (HYMN amplified)", "depth": "sketch-depth first pass with IM Fell DW Pica / Old Standard TT", "path": "stardust/prototypes/home-proposed-variant-b.html" },
+        { "id": "variant-c", "label": "Outlaw Album Sleeve (HOLLER amplified)", "depth": "sketch-depth first pass with Anton / Spectral / Caveat / IBM Plex Mono", "path": "stardust/prototypes/home-proposed-variant-c.html" }
+      ],
+      "saturationReviewNote": "Whichever variant advances, consider re-evaluating its palette deployment per the saturation preference captured in feedback_palette_saturation_preference.md — variant-a currently uses only 2 ground colors (cream + hymnal-black). Could be upgraded to deploy more brand tokens (rhody-green, gilt-gold) as additional section grounds while staying in the Appalachian palette."
+    },
+    "mode": "Mode A (brand-faithful) — palette + 3-tier type pinned; decade/craft/register-flavor rolled (anchored by BRAND.md cultural references); Mode C ground-family override (two-register pattern brand-native). Multi-variant fork now active: each variant differs by ≥2 substantive changes (composition strategy, type deck, ground-family treatment, register-flavor balance) per the variant differentiation contract.",
+    "pinnedColors": ["#1a1410", "#7e1d12", "#d4a45c", "#3e5a3e", "#e8d8b8", "#f04a26", "#d8a740"],
     "improvementsListPath": null,
     "improvementsListSkippedReason": "greenfield — current/ is hand-authored as the brand's desired target, not a captured deployment to fix. There is no execution gap to close."
   },
@@ -48,16 +94,65 @@
       "url": "https://hollerandhymn.com/",
       "title": "Holler & Hymn — botanical liqueurs from Wolfpen Holler, NC",
       "type": "landing",
-      "status": "directed",
+      "status": "prototyped",
       "history": [
-        { "status": "extracted", "at": "2026-05-11T00:00:00Z" },
-        { "status": "directed",  "at": "2026-05-11T00:00:00Z" }
+        { "status": "extracted",  "at": "2026-05-11T00:00:00Z" },
+        { "status": "directed",   "at": "2026-05-11T00:00:00Z" },
+        { "status": "prototyped", "at": "2026-05-11T00:00:00Z" }
       ],
       "stale": false,
       "staleReason": null,
       "currentStatePath": "stardust/current/pages/home.json",
       "prototypePath": null,
-      "migratedPath": null
+      "prototypePaths": {
+        "variant-a": "stardust/prototypes/home-proposed-variant-a.html",
+        "variant-b": "stardust/prototypes/home-proposed-variant-b.html",
+        "variant-c": "stardust/prototypes/home-proposed-variant-c.html"
+      },
+      "shapeBriefPath": null,
+      "shapeBriefPaths": {
+        "variant-a": "stardust/prototypes/home-shape-variant-a.md",
+        "variant-b": "inline in stardust/prototypes/home-proposed-variant-b.html provenance",
+        "variant-c": "inline in stardust/prototypes/home-proposed-variant-c.html provenance"
+      },
+      "shapeBriefHistory": [
+        { "version": 1, "path": "stardust/prototypes/home-shape-v1.md", "result": "slop — encoded the AI-craft-default silhouette; produced render that hit 5 of 9 brand anti-references plus 3 impeccable absolute bans", "replacedAt": "2026-05-11T00:00:00Z" },
+        { "version": 2, "path": "stardust/prototypes/home-shape-variant-a.md", "result": "anti-default — encodes asymmetric / collage / hand-imperfect / full-bleed composition per section; refuses centered-hero, dual-CTA-pair, 3-col card grid, parallel splits, 1200px uniform container. Now slotted as variant A in the multi-variant fork.", "authoredAt": "2026-05-11T00:00:00Z" }
+      ],
+      "prototypeHistory": [
+        { "version": 1, "path": "stardust/prototypes/home-proposed-v1.html", "result": "slop — analysis in context/stardust-prototype-skill.md § Failure mode #1", "renderedAt": "2026-05-11T00:00:00Z" },
+        { "version": "variant-a", "path": "stardust/prototypes/home-proposed-variant-a.html", "result": "anti-default re-shape; manual audit clean against the 3 silhouette markers from context/stardust-prototype-skill.md § proposal C; Smokum + Lora + Caveat + IBM Plex Mono loaded via Google Fonts <link>", "renderedAt": "2026-05-11T00:00:00Z" },
+        { "version": "variant-b", "path": "stardust/prototypes/home-proposed-variant-b.html", "result": "HYMN-half amplified — almanac page composition with hand-set transitional-serif typography; IM Fell DW Pica + Old Standard TT + IBM Plex Mono", "renderedAt": "2026-05-11T00:00:00Z" },
+        { "version": "variant-c", "path": "stardust/prototypes/home-proposed-variant-c.html", "result": "HOLLER-half amplified — outlaw-country album-sleeve composition with heavy condensed sans display; Anton + Spectral + Caveat + IBM Plex Mono", "renderedAt": "2026-05-11T00:00:00Z" }
+      ],
+      "migratedPath": null,
+      "critique": {
+        "v1": {
+          "method": "manual (user correction surfaced the slop)",
+          "findings": { "P0": 0, "P1": 1, "P2": 2, "P3": 1, "userSurfacedSilhouetteHit": true },
+          "verdict": "rejected — re-shape required; analysis recorded in context/stardust-prototype-skill.md"
+        },
+        "v2": {
+          "method": "manual against context/stardust-prototype-skill.md § proposal C silhouette markers + § F.1 font-availability audit",
+          "findings": { "P0": 0, "P1": 0, "P2": 1, "P3": 0 },
+          "audits": {
+            "SaaS-silhouette":      { "markersHit": "0 of 4", "result": "clean" },
+            "identical-card-grid":  { "markersHit": "2 of 4", "result": "clean (below the 4-of-4 threshold; catalog entries have distinct compositions)" },
+            "Kinfolk-luxe-minimal": { "markersHit": "0 of 5", "result": "clean — full-bleed grounds, varied padding, varied gutters, rotations on ~20 elements" },
+            "font-availability":    { "result": "clean", "loaded": ["Smokum (display)", "Lora (body)", "Caveat (script)", "IBM Plex Mono (mono)"], "method": "Google Fonts CDN <link>; deviation from impeccable's self-contained rule documented in prototype provenance comment; migrate path: self-host WOFF2" },
+            "color-palette-discipline": { "result": "clean", "tokens": 7, "note": "tape-mustard #d8a740 elevated from undocumented derived var to documented 7th brand token; usage rule (tape/sticker/ribbon-only) added to DESIGN.md § Named Rules + DESIGN.json extensions.colorMeta.quarantined[]" }
+          },
+          "p2Advisory": [
+            "Bottle fan SVG silhouettes use mono labels with letter-spacing; could be more hand-painted character if inline-SVG curved text were added per bottle. Acceptable as first pass since Gemini Lane 3 hand-painted labels will replace the fan rendering downstream"
+          ],
+          "appliedFixes": [
+            { "issue": "Display fallback to Impact erases revival-tent character (Failure mode #3 per context/stardust-prototype-skill.md)", "fix": "added <link> to Google Fonts (Smokum/Lora/Caveat/IBM Plex Mono); display now renders Smokum (decorative slab, bracketed serifs, fairground-poster character) instead of Impact (generic bold news headline)", "appliedAt": "2026-05-11T00:00:00Z" },
+            { "issue": "tape-mustard #d8a740 was an undocumented derived CSS variable outside the locked 6-token palette", "fix": "elevated to documented 7th brand token in DESIGN.md (colors + Named Rule: Tape-Mustard Restriction Rule) and DESIGN.json (extensions.colorMeta.quarantined[] + brandTokens)", "appliedAt": "2026-05-11T00:00:00Z" },
+            { "issue": "Failure mode #3 framed as 'P2 advisory, defer to Phase 4 polish' was wrong — display type is the brand's loudest surface, equal in severity to silhouette miss", "fix": "sharpened context/stardust-prototype-skill.md Failure mode #3 with severity recharacterization + proposals F.1 (mandatory font-availability audit in Phase 2.5) + F.2 (expectedCharacter assertions in DESIGN.json) + F.3 ('render-character violations equal render-composition violations') + F.4 (web-font CDN exception to self-contained rule for brand Mode A)", "appliedAt": "2026-05-11T00:00:00Z" }
+          ],
+          "verdict": "approved as the v2 anti-default re-shape with typography character + tape-mustard token applied — pending user sign-off"
+        }
+      }
     },
     {
       "slug": "the-holler",

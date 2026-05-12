@@ -22,6 +22,7 @@ colors:
   rhody-green:      "#3e5a3e"
   bulletin-cream:   "#e8d8b8"
   hellfire-neon:    "#f04a26"
+  tape-mustard:     "#d8a740"   # derived secondary — usage-restricted (see § Named Rules)
   ink:              "#1a1410"
   surface-cream:    "#e8d8b8"
   surface-black:    "#1a1410"
@@ -168,6 +169,9 @@ What the system explicitly is **not**: luxe-minimal artisanal-Southern (no Kinfo
 ### Accent (irreverence)
 - **Hellfire Neon `#f04a26`** (`--hellfire-neon`) — one-glance accents only. A chip, a single ornament glyph, the dot over a hand-painted "&". **Never as body text.** **Never as a dominant element on hymnal-black surface.** Reading it should feel like a single neon bulb above a Sunday school. **At most one instance per visible viewport.**
 
+### Derived secondary (usage-restricted)
+- **Tape Mustard `#d8a740`** (`--tape-mustard`) — **marquee tape, sticker, hand-painted ribbon contexts only.** Never body, never CTA, never text fill, never a section ground. Gilt-gold-adjacent but visually distinct (sharper, less brown) for the caution-tape character the brand carries from the reference's marquee-tape grammar. The translation move from the reference brand's distinct mustard-yellow tape — Holler & Hymn's tape ribbons (marquee runners across the hero and bottles sections, the `P.1 · CONT'D ↓` section break, the kraft-strip detail on the TENT REVIVAL catalog entry) use this token, not gilt-gold.
+
 ### Neutral
 - **Border Neutral `#c8b89a`** — card outlines, divider rules on cream surfaces. Muted hymnal-page-margin tone.
 - **Text Mute `#5a4a3e`** — secondary copy, footer link text on cream. Never on dark surface.
@@ -181,6 +185,8 @@ What the system explicitly is **not**: luxe-minimal artisanal-Southern (no Kinfo
 **The No-Pure-Black Rule.** `#000000` is forbidden. Hymnal-black `#1a1410` is the darkest color in the system. Body text on cream is hymnal-black, not black.
 
 **The Botanical-Quarantine Rule.** Rhody green `#3e5a3e` appears only in botanical-context content (the-still page, foraging map, deep-product descriptions discussing herbs and plants). Never as a CTA background, never on the home page, never as a navigation surface. Quarantining keeps "nature" from creeping into the whole brand.
+
+**The Tape-Mustard Restriction Rule.** Tape mustard `#d8a740` is the brand's marquee-tape / sticker / hand-painted-ribbon color. It appears **only** on contexts that render as physical-object tape or sticker artifacts — the hero marquee ribbon, the bottles-section marquee, the `P.1 · CONT'D ↓` section-break tape, the kraft-strip detail across catalog entries. **Never used for:** body text, CTAs, section grounds, primary type accents, navigation surfaces, footer chrome. Confusion with gilt-gold (`#d4a45c`) is the load-bearing failure mode — they read similarly at small sizes, but tape-mustard's slightly higher chroma and sharper warmth gives it the bar-floor caution-tape character that gilt-gold's hymnal-edge gilded character would dilute.
 
 ## 3. Typography
 

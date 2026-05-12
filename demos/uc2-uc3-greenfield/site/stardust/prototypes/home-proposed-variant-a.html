@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<!-- stardust:provenance
+  writtenBy:        impeccable:craft (via stardust:prototype) — v2 re-shape
+  writtenAt:        2026-05-11T00:00:00Z
+  page:             home
+  pageUrl:          https://hollerandhymn.com/
+  againstDirection: stardust/direction.md (Active 2026-05-11T00:00:00Z — Mode A, single variant)
+  shapeBriefPath:   stardust/prototypes/home-shape.md (v2 — re-shape after v1 slop critique)
+  replaces:         stardust/prototypes/home-proposed-v1.html (slop — analysis in context/stardust-prototype-skill.md)
+  renderedVia:      impeccable:craft (via Skill; v1 critique findings consumed; anti-default composition encoded in v2 brief)
+  stardustVersion:  0.3.0
+  shape_version:    2
+  unsourcedContent:
+    - section[data-section="wendells-letter"] .polaroid-portrait — Wendell portrait (pending Gemini Lane 1)
+    - section[data-section="the-back-room"] .polaroid-still      — copper still close-up (pending Gemini Lane 1)
+    - section[data-section="bottles-fan"] .catalog-entry[1] .label — PASS THE PLATE label (pending Lane 3)
+    - section[data-section="bottles-fan"] .catalog-entry[2] .label — TENT REVIVAL label  (pending Lane 3)
+    - section[data-section="bottles-fan"] .catalog-entry[3] .label — THE BACKSLIDER label (pending Lane 3)
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Holler &amp; Hymn — botanical liqueurs from Wolfpen Holler, NC</title>
+  <meta name="description" content="Saturday night sin. Sunday morning hymn. Both in one bottle. Small-batch Appalachian botanical liqueurs hand-made by Wendell Greene in Madison County, North Carolina." />
+  <meta name="theme-color" content="#e8d8b8" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1a1410" media="(prefers-color-scheme: dark)" />
+  <!--
+    Web-font dependency: deviates from impeccable's "self-contained, no external CSS" rule for this prototype.
+    The brand's display character (1940s revival-tent posters / hand-painted plywood signage) cannot be carried by
+    system fallbacks (Impact / Oswald) — system-fallback erases the brand. See context/stardust-prototype-skill.md
+    § Failure mode #3 for the severity analysis.
+    For migrate / production: bundle these as base64 @font-face or self-host the WOFF2 files.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Smokum&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Caveat:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --hh-hymnal-black:   #1a1410;
+      --hh-barn-rust:      #7e1d12;
+      --hh-gilt-gold:      #d4a45c;
+      --hh-rhody-green:    #3e5a3e;
+      --hh-bulletin-cream: #e8d8b8;
+      --hh-hellfire-neon:  #f04a26;
+      --hh-border-neutral: #c8b89a;
+      --hh-text-mute:      #5a4a3e;
+      --hh-barn-rust-deep: #5e1408;
+      --hh-kraft:          #b08858;
+      --hh-tape-mustard:   #d8a740;  /* derived secondary — see DESIGN.md § Tape-Mustard Restriction Rule */
+      --hh-paper-shadow:   #c4ad7a;
+      --r-sm: 2px; --r-md: 4px; --r-pill: 9999px;
+      --font-display: 'Smokum','Knockout','Saloon','Camp Type','Bebas Neue','Oswald','Impact',sans-serif;
+      --font-body:    'Lora','Sentinel','Bookman','Bookman Old Style','Cycles','Georgia',serif;
+      --font-mono:    'IBM Plex Mono','Courier Prime','Courier New','Menlo',monospace;
+      --font-script:  'Caveat','Homemade Apple','Brush Script MT','Lucida Handwriting','Snell Roundhand','Comic Sans MS',cursive;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--hh-hymnal-black);
+      background: var(--hh-bulletin-cream);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img, svg { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3, h4 { margin: 0; font-weight: normal; }
+    p { margin: 0; }
+    ul, ol { margin: 0; padding: 0; list-style: none; }
+
+    /* Type utilities */
+    .display { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; line-height: 0.95; letter-spacing: -0.005em; }
+    .mono    { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; font-size: 12px; font-weight: 500; }
+    .script  { font-family: var(--font-script); }
+    .serif   { font-family: var(--font-body); }
+    .body-text { font-family: var(--font-body); font-size: 17px; line-height: 1.55; }
+
+    /* Skip link */
+    .skip-link { position: absolute; left: -9999px; top: 8px; background: var(--hh-barn-rust); color: var(--hh-bulletin-cream); padding: 10px 16px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; border-radius: var(--r-sm); }
+    .skip-link:focus { left: 16px; z-index: 1000; }
+
+    /* ===== HEADER — irregular cream band, not centered SaaS chrome ===== */
+    .site-header { width: 100%; background: var(--hh-bulletin-cream); border-bottom: 1px solid var(--hh-border-neutral); padding: 22px 4vw; display: flex; align-items: center; gap: 3vw; flex-wrap: wrap; }
+    .brand-mark { font-family: var(--font-display); font-size: 24px; font-weight: 800; letter-spacing: -0.01em; color: var(--hh-hymnal-black); text-transform: uppercase; flex-shrink: 0; }
+    .brand-mark .amp { color: var(--hh-barn-rust); font-family: var(--font-body); font-style: italic; font-weight: 400; font-size: 1.2em; vertical-align: -0.04em; padding-inline: 0.05em; transform: rotate(-6deg); display: inline-block; }
+    .nav-bar { flex: 1; display: flex; gap: 26px 30px; flex-wrap: wrap; align-items: baseline; padding-left: 4vw; }
+    .nav-bar a { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hh-hymnal-black); transition: color 200ms cubic-bezier(0.16,1,0.3,1); }
+    /* Irregular vertical baselines (hand-painted character) */
+    .nav-bar a:nth-child(1) { transform: translateY(1px); }
+    .nav-bar a:nth-child(2) { transform: translateY(-2px) rotate(-1deg); }
+    .nav-bar a:nth-child(3) { transform: translateY(2px); }
+    .nav-bar a:nth-child(4) { transform: translateY(-1px); }
+    .nav-bar a:nth-child(5) { transform: translateY(1px) rotate(0.5deg); }
+    .nav-bar a:nth-child(6) { transform: translateY(-2px); }
+    .nav-bar a:nth-child(7) { transform: translateY(2px) rotate(-0.5deg); }
+    .nav-bar a:hover { color: var(--hh-barn-rust); }
+    .nav-bar a[aria-current="page"] { color: var(--hh-barn-rust); }
+    /* Hand-painted visit button — irregular edges */
+    .visit-bar { background: var(--hh-barn-rust); color: var(--hh-bulletin-cream); padding: 11px 26px 13px 24px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; clip-path: polygon(2% 4%, 98% 0, 100% 96%, 0 100%); transition: background-color 200ms; }
+    .visit-bar:hover, .visit-bar:focus-visible { background: var(--hh-barn-rust-deep); }
+
+    /* ===== HERO — left-anchored album cover, NOT centered ===== */
+    .hero { position: relative; background: var(--hh-hymnal-black); color: var(--hh-bulletin-cream); padding: 96px 4vw 140px; overflow: hidden; min-height: 88vh; display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: auto auto auto auto auto auto; column-gap: 2vw; row-gap: 16px; }
+    /* Hand-stippled SVG noise overlay */
+    .hero::before { content: ""; position: absolute; inset: 0; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.92  0 0 0 0 0.85  0 0 0 0 0.72  0 0 0 0.04 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>"); opacity: 0.7; pointer-events: none; mix-blend-mode: screen; }
+    .hero > * { position: relative; z-index: 1; }
+
+    /* Seal logo top-left */
+    .hero-seal { grid-column: 1 / 4; grid-row: 1; width: 160px; height: 160px; display: block; }
+    .hero-seal svg { width: 100%; height: 100%; }
+
+    /* Wordmark left-anchored, stacked, irregular */
+    .hero-wordmark { grid-column: 1 / 9; grid-row: 2 / 5; display: flex; flex-direction: column; align-items: flex-start; padding-top: 8px; }
+    .hero-wordmark .line { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; line-height: 0.92; letter-spacing: -0.02em; color: var(--hh-bulletin-cream); font-size: clamp(64px, 11.5vw, 152px); }
+    .hero-wordmark .line-1 { /* HOLLER */ }
+    .hero-wordmark .line-2 { /* & */ font-family: var(--font-body); font-style: italic; color: var(--hh-barn-rust); font-size: clamp(96px, 18vw, 240px); font-weight: 400; line-height: 0.7; transform: rotate(-8deg) translate(0.08em, -0.05em); margin-left: 0.06em; }
+    .hero-wordmark .line-3 { /* HYMN */ margin-left: 0.42em; margin-top: -0.08em; }
+
+    /* Tagline right-anchored */
+    .hero-tagline { grid-column: 8 / 13; grid-row: 2 / 5; align-self: end; text-align: right; padding-bottom: 20px; padding-right: 1vw; display: flex; flex-direction: column; gap: 4px; }
+    .hero-tagline .tline { font-family: var(--font-body); font-size: clamp(20px, 2.3vw, 28px); line-height: 1.25; color: var(--hh-bulletin-cream); }
+    .hero-tagline .marked { position: relative; display: inline-block; }
+    .hero-tagline .marked.sin::after,
+    .hero-tagline .marked.hymn::after { content: ""; position: absolute; left: -10%; top: -18%; width: 120%; height: 140%; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50' preserveAspectRatio='none'><ellipse cx='50' cy='25' rx='44' ry='17' fill='none' stroke='%237e1d12' stroke-width='1.5' stroke-linecap='round' stroke-dasharray='80 4 78 6' transform='rotate(-3 50 25)'/></svg>"); background-size: 100% 100%; background-repeat: no-repeat; pointer-events: none; opacity: 0.92; }
+    .hero-tagline .marked.hymn::after { transform: scaleX(-1) rotate(2deg); }
+
+    /* Diagonal marquee tape */
+    .marquee-tape { grid-column: 1 / 13; grid-row: 5; position: relative; height: 56px; margin: 24px 0 8px; }
+    .marquee-tape .tape-inner { position: absolute; left: -8vw; right: -8vw; top: 6px; height: 44px; background: var(--hh-tape-mustard); transform: rotate(-3deg); transform-origin: center; display: flex; align-items: center; overflow: hidden; padding: 0 2vw; }
+    .marquee-tape .tape-text { white-space: nowrap; font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: 0.04em; color: var(--hh-hymnal-black); text-transform: uppercase; }
+
+    /* Hero CTAs */
+    .hero-cta-row { grid-column: 1 / 8; grid-row: 6; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 24px; }
+    .pew-button { background: var(--hh-barn-rust); color: var(--hh-bulletin-cream); padding: 18px 36px 20px 32px; font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; clip-path: polygon(1% 6%, 99% 0, 100% 92%, 2% 100%); border: 0; cursor: pointer; transition: background-color 200ms; }
+    .pew-button:hover, .pew-button:focus-visible { background: var(--hh-barn-rust-deep); }
+    .secondary-link { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: lowercase; color: var(--hh-bulletin-cream); border-bottom: 1px solid var(--hh-barn-rust); padding: 2px 4px 4px; margin-left: 14px; transition: color 200ms; }
+    .secondary-link:hover { color: var(--hh-gilt-gold); border-bottom-color: var(--hh-gilt-gold); }
+
+    /* ===== SECTION BREAKS — physical-object metaphors ===== */
+    .break-tape, .break-stamp, .break-bunting, .break-intermission, .break-waxseal { width: 100%; position: relative; overflow: hidden; }
+    .break-tape { background: var(--hh-bulletin-cream); padding: 18px 0; }
+    .break-tape .tape-strip { background: var(--hh-tape-mustard); height: 36px; transform: rotate(1.5deg); transform-origin: center; width: 110%; margin-left: -5%; display: flex; align-items: center; justify-content: center; clip-path: polygon(0 12%, 100% 0, 100% 84%, 0 100%); }
+    .break-tape .tape-strip span { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--hh-hymnal-black); }
+    .break-stamp { background: var(--hh-hymnal-black); padding: 28px 0; text-align: center; }
+    .break-stamp .stamp-text { display: inline-block; font-family: var(--font-display); font-size: 20px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hh-bulletin-cream); transform: rotate(-1deg); position: relative; padding: 8px 32px; border-top: 1px dashed var(--hh-bulletin-cream); border-bottom: 1px dashed var(--hh-bulletin-cream); }
+    .break-stamp .stamp-text::before, .break-stamp .stamp-text::after { content: "★"; position: absolute; top: 50%; transform: translateY(-50%); font-size: 14px; color: var(--hh-barn-rust); }
+    .break-stamp .stamp-text::before { left: 12px; }
+    .break-stamp .stamp-text::after { right: 12px; }
+    .break-bunting { background: var(--hh-hymnal-black); padding: 24px 0 32px; }
+    .break-bunting svg { width: 100%; height: 56px; display: block; }
+    .break-intermission { background: var(--hh-bulletin-cream); padding: 28px 0; text-align: center; position: relative; }
+    .break-intermission::before, .break-intermission::after { content: ""; position: absolute; top: 50%; height: 1px; background: var(--hh-barn-rust); opacity: 0.5; width: 36%; }
+    .break-intermission::before { left: 4%; }
+    .break-intermission::after { right: 4%; }
+    .break-intermission .sign { display: inline-block; padding: 12px 28px; background: var(--hh-bulletin-cream); font-family: var(--font-display); font-size: 28px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--hh-barn-rust); transform: rotate(1deg); border: 1.5px solid var(--hh-barn-rust); position: relative; z-index: 1; }
+    .break-waxseal { background: var(--hh-bulletin-cream); padding: 32px 0; text-align: center; }
+    .break-waxseal .seal { display: inline-block; width: 80px; height: 80px; transform: rotate(3deg); }
+
+    /* ===== WENDELL'S LETTER ===== */
+    .letter-section { background: var(--hh-bulletin-cream); padding: 140px 4vw 96px; position: relative; overflow: hidden; }
+    /* Worn-wood table grain underlay */
+    .letter-section::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(180deg, rgba(176,136,88,0.04) 0%, rgba(176,136,88,0.08) 50%, rgba(176,136,88,0.04) 100%), repeating-linear-gradient(92deg, transparent 0px, transparent 40px, rgba(176,136,88,0.06) 41px, transparent 42px); pointer-events: none; }
+    .letter { position: relative; max-width: 720px; margin: 0 auto; background: #efe1c2; padding: 56px 52px 96px; transform: rotate(-1.5deg); border: 1px solid var(--hh-paper-shadow); }
+    .letter-waxseal { position: absolute; top: 18px; left: 22px; width: 52px; height: 52px; transform: rotate(8deg); }
+    .letter-date { position: absolute; top: 24px; right: 32px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--hh-text-mute); transform: rotate(1deg); }
+    .letter-body { font-family: var(--font-body); font-size: 19px; line-height: 1.65; color: var(--hh-hymnal-black); margin-top: 56px; }
+    .letter-body .hl-mustard { background: rgba(216,167,64,0.55); padding: 0.05em 0.2em; }
+    .letter-body .hl-rust    { background: rgba(126,29,18,0.22); padding: 0.05em 0.2em; }
+    .letter-body .circled    { position: relative; display: inline-block; padding: 0 0.15em; }
+    .letter-body .circled::after { content: ""; position: absolute; left: -8%; top: -22%; width: 116%; height: 144%; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 50' preserveAspectRatio='none'><ellipse cx='50' cy='25' rx='44' ry='18' fill='none' stroke='%23c4321a' stroke-width='1.4' stroke-linecap='round' stroke-dasharray='90 4' transform='rotate(-2 50 25)'/></svg>"); background-size: 100% 100%; background-repeat: no-repeat; pointer-events: none; }
+    .letter-body .underlined { position: relative; display: inline-block; padding-bottom: 0.04em; }
+    .letter-body .underlined::after { content: ""; position: absolute; left: 0; right: 0; bottom: -0.08em; height: 0.18em; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'><path d='M 2 6 Q 50 9 100 5 T 198 6' fill='none' stroke='%237e1d12' stroke-width='3' stroke-linecap='round'/></svg>"); background-size: 100% 100%; background-repeat: no-repeat; }
+    .letter-polaroid { position: absolute; bottom: -36px; left: -40px; width: 160px; transform: rotate(3deg); }
+    .letter-polaroid .ph-frame { background: #f7eed4; padding: 10px 10px 32px; border: 1px solid var(--hh-paper-shadow); }
+    .letter-polaroid .tape-l, .letter-polaroid .tape-r { position: absolute; top: -8px; width: 50px; height: 18px; background: rgba(216,167,64,0.7); }
+    .letter-polaroid .tape-l { left: 20px; transform: rotate(-12deg); }
+    .letter-polaroid .tape-r { right: 20px; transform: rotate(8deg); }
+    .letter-signature { font-family: var(--font-script); font-size: 44px; color: var(--hh-barn-rust); text-align: right; transform: rotate(-2deg); margin-top: 36px; margin-right: 12px; line-height: 1; }
+    .letter-envelope { position: absolute; bottom: -10px; right: -30px; width: 240px; height: 180px; pointer-events: none; }
+    .letter-read-more { text-align: center; margin-top: 96px; }
+    .letter-read-more a { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hh-barn-rust); border-bottom: 1px solid var(--hh-barn-rust); padding-bottom: 4px; }
+
+    /* Placeholder signature (v2 — barn-rust dot, not neon) */
+    .ph-frame.ph-pending { background: var(--hh-bulletin-cream); border: 1px dashed var(--hh-border-neutral); aspect-ratio: 4 / 5; display: grid; place-items: center; position: relative; }
+    .ph-frame.ph-pending::after { content: ""; position: absolute; top: 10px; right: 10px; width: 8px; height: 8px; background: var(--hh-barn-rust); border-radius: var(--r-pill); }
+    .ph-frame.ph-pending .ph-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hh-text-mute); text-align: center; max-width: 22ch; }
+
+    /* ===== THE BACK ROOM ===== */
+    .back-room { background: var(--hh-barn-rust); color: var(--hh-bulletin-cream); padding: 96px 4vw 72px; position: relative; overflow: hidden; }
+    /* Hand-painted plywood texture: vertical wood-grain lines + irregular darker patches */
+    .back-room::before { content: ""; position: absolute; inset: 0; background-image: repeating-linear-gradient(90deg, transparent 0px, transparent 80px, rgba(0,0,0,0.08) 81px, transparent 82px), radial-gradient(ellipse at 20% 30%, rgba(0,0,0,0.12) 0%, transparent 40%), radial-gradient(ellipse at 75% 70%, rgba(26,20,16,0.18) 0%, transparent 35%); pointer-events: none; }
+    .back-room-inner { position: relative; max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: auto auto auto; gap: 24px; }
+    .back-room-map { grid-column: 1 / 5; grid-row: 1; }
+    .back-room-map svg { width: 100%; max-width: 280px; height: auto; }
+    .back-room-still { grid-column: 9 / 13; grid-row: 1; transform: rotate(5deg); padding-top: 12px; }
+    .back-room-still .ph-frame { width: 220px; max-width: 100%; }
+    .back-room-still .tape-l, .back-room-still .tape-r { position: absolute; top: -10px; width: 56px; height: 20px; background: rgba(216,167,64,0.7); }
+    .back-room-still .tape-l { left: 22px; transform: rotate(-10deg); }
+    .back-room-still .tape-r { right: 22px; transform: rotate(8deg); }
+    .back-room-still-wrap { position: relative; width: 220px; max-width: 100%; }
+    .back-room-stack { grid-column: 1 / 13; grid-row: 2; display: flex; flex-direction: column; align-items: flex-start; padding: 48px 0; }
+    .stack-line { font-family: var(--font-display); color: var(--hh-bulletin-cream); text-transform: uppercase; line-height: 0.95; font-weight: 800; }
+    .stack-wolfpen   { font-size: clamp(38px, 5.5vw, 64px); margin-left: 8%; }
+    .stack-holler    { font-size: clamp(56px, 8vw,  96px); margin-left: 22%; margin-top: -0.02em; }
+    .stack-plus      { font-size: clamp(72px, 10vw, 120px); margin-left: 14%; color: var(--hh-bulletin-cream); font-family: var(--font-body); font-style: italic; font-weight: 400; line-height: 0.8; transform: rotate(-3deg); }
+    .stack-the       { font-size: clamp(26px, 3.5vw, 40px); margin-left: 28%; }
+    .stack-still     { font-size: clamp(52px, 7vw,  84px); margin-left: 32%; }
+    .back-room-cratemarks { grid-column: 1 / 13; grid-row: 3; background: var(--hh-hymnal-black); padding: 18px 24px; text-align: center; font-family: var(--font-mono); font-size: clamp(11px, 1.2vw, 14px); letter-spacing: 0.18em; text-transform: uppercase; color: var(--hh-bulletin-cream); margin: 24px -4vw 24px; }
+    .back-room-links { grid-column: 1 / 13; grid-row: 4; display: flex; gap: 8%; align-items: center; padding: 24px 0 0; }
+    .back-room-links a { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--hh-bulletin-cream); padding: 16px 30px; background: transparent; border: 1px solid var(--hh-bulletin-cream); transition: color 200ms, background-color 200ms; }
+    .back-room-links a:hover { background: var(--hh-bulletin-cream); color: var(--hh-barn-rust); }
+    .back-room-links a:nth-child(1) { margin-left: 12%; }
+    .back-room-links a:nth-child(2) { margin-left: 16%; padding: 22px 26px; }
+
+    /* ===== BOTTLES FAN ===== */
+    .bottles-section { background: var(--hh-hymnal-black); color: var(--hh-bulletin-cream); padding: 96px 4vw 128px; position: relative; overflow: hidden; }
+    .bottles-section::before { content: ""; position: absolute; inset: 0; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.92  0 0 0 0 0.85  0 0 0 0 0.72  0 0 0 0.03 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>"); opacity: 0.6; pointer-events: none; mix-blend-mode: screen; }
+    .bottles-section > * { position: relative; z-index: 1; }
+    .bottles-marquee { width: 110%; margin-left: -5%; background: var(--hh-tape-mustard); transform: rotate(-3deg); padding: 14px 0; margin-bottom: 56px; overflow: hidden; display: flex; align-items: center; justify-content: center; clip-path: polygon(0 8%, 100% 0, 100% 92%, 0 100%); }
+    .bottles-marquee span { white-space: nowrap; font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: 0.06em; color: var(--hh-hymnal-black); text-transform: uppercase; }
+
+    .bottles-fan { position: relative; height: 360px; max-width: 1100px; margin: 0 auto 48px; display: grid; place-items: end center; }
+    .bottles-fan-radial { position: absolute; inset: 0; background-image: radial-gradient(ellipse at center bottom, rgba(232,216,184,0.06) 0%, transparent 55%); pointer-events: none; }
+    .bottles-fan svg { width: 100%; height: 100%; max-width: 1100px; }
+    .bottles-fan .six-center { position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); font-family: var(--font-display); font-weight: 800; font-size: clamp(64px, 8vw, 120px); color: var(--hh-barn-rust); text-transform: uppercase; line-height: 0.9; pointer-events: none; }
+
+    .catalog-board { display: grid; grid-template-columns: 1fr 1fr; gap: 0; max-width: 1080px; margin: 56px auto 24px; position: relative; }
+    .catalog-entry { padding: 36px 32px; position: relative; }
+    .catalog-entry-1 { grid-column: 1; grid-row: 1; padding-right: 48px; }
+    .catalog-entry-2 { grid-column: 2; grid-row: 1; padding-top: 60px; padding-left: 48px; }
+    .catalog-entry-3 { grid-column: 1; grid-row: 2; padding-left: 40px; padding-top: 24px; }
+    .catalog-entry .ph-frame { width: 100%; max-width: 220px; background: var(--hh-bulletin-cream); margin-bottom: 20px; }
+    .catalog-entry-1 .ph-frame { float: left; margin-right: 24px; margin-bottom: 8px; }
+    .catalog-entry-3 .ph-frame { float: right; margin-left: 24px; margin-bottom: 8px; }
+    .catalog-entry h3 { font-family: var(--font-display); font-size: clamp(28px, 3.2vw, 44px); text-transform: uppercase; color: var(--hh-bulletin-cream); line-height: 1; letter-spacing: -0.01em; }
+    .catalog-entry .desc { font-family: var(--font-body); font-size: 18px; color: var(--hh-bulletin-cream); margin-top: 12px; }
+    .catalog-entry .meta { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hh-gilt-gold); margin-top: 12px; line-height: 1.7; }
+    .catalog-entry .where { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hh-bulletin-cream); border-bottom: 1px solid var(--hh-barn-rust); padding-bottom: 2px; display: inline-block; margin-top: 16px; }
+    .catalog-entry .where:hover { color: var(--hh-gilt-gold); border-bottom-color: var(--hh-gilt-gold); }
+    .catalog-entry .hellfire-tag { display: inline-block; background: var(--hh-hellfire-neon); color: var(--hh-hymnal-black); font-family: var(--font-mono); font-size: 10px; padding: 3px 10px; border-radius: var(--r-pill); letter-spacing: 0.16em; text-transform: uppercase; margin-left: 12px; vertical-align: middle; }
+    .catalog-entry-2 .kraft-strip { position: absolute; top: 8px; left: -32px; width: 220px; height: 22px; background: rgba(216,167,64,0.45); transform: rotate(-7deg); pointer-events: none; }
+    .catalog-entry-3 .batch-stamp { position: absolute; bottom: 12px; right: 24px; padding: 4px 10px; border: 1.5px solid var(--hh-bulletin-cream); transform: rotate(-8deg); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; color: var(--hh-bulletin-cream); text-transform: uppercase; }
+    .catalog-all { text-align: center; margin-top: 48px; }
+    .catalog-all a { font-family: var(--font-display); font-size: 26px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--hh-bulletin-cream); border: 2px solid var(--hh-bulletin-cream); padding: 14px 36px; display: inline-block; transform: rotate(-1deg); background: transparent; transition: background-color 200ms, color 200ms; }
+    .catalog-all a:hover { background: var(--hh-bulletin-cream); color: var(--hh-barn-rust); }
+
+    /* ===== POUR LIST ===== */
+    .pour-list { background: var(--hh-barn-rust); color: var(--hh-bulletin-cream); padding: 96px 4vw 96px; position: relative; overflow: hidden; min-height: 720px; }
+    .pour-list::before { content: ""; position: absolute; inset: 0; background-image: repeating-linear-gradient(88deg, transparent 0px, transparent 56px, rgba(0,0,0,0.06) 57px, transparent 58px), radial-gradient(ellipse at 65% 25%, rgba(0,0,0,0.10) 0%, transparent 38%), radial-gradient(ellipse at 25% 75%, rgba(26,20,16,0.14) 0%, transparent 32%); pointer-events: none; }
+    .pour-list-inner { position: relative; max-width: 1280px; margin: 0 auto; }
+    .pour-list-header { font-family: var(--font-display); font-weight: 800; font-size: clamp(64px, 9vw, 132px); text-transform: uppercase; color: var(--hh-bulletin-cream); line-height: 0.9; margin-left: 4%; margin-bottom: 8px; }
+    .pour-list-sticker { display: inline-block; padding: 6px 14px; border: 1.5px solid var(--hh-bulletin-cream); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--hh-bulletin-cream); transform: rotate(-5deg); margin-left: 4%; margin-bottom: 56px; border-radius: 100px; }
+    .pour-list-bars { position: relative; min-height: 480px; }
+    .bar-entry { position: absolute; max-width: 380px; }
+    .bar-entry .bar-name { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; line-height: 0.95; letter-spacing: -0.01em; color: var(--hh-bulletin-cream); }
+    .bar-entry .bar-hood { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hh-gilt-gold); margin-top: 8px; }
+    .bar-entry .pour-note { font-family: var(--font-body); font-size: 16px; color: var(--hh-bulletin-cream); margin-top: 6px; font-style: italic; }
+    .bar-entry .pin { position: absolute; left: -32px; top: 8px; width: 18px; height: 18px; pointer-events: none; }
+    .bar-sermon { top: 0; left: 4%; }
+    .bar-sermon .bar-name { font-size: clamp(48px, 6.5vw, 96px); }
+    .bar-backslider { top: 18%; left: 52%; }
+    .bar-backslider .bar-name { font-size: clamp(40px, 5vw, 64px); }
+    .bar-bull { top: 50%; left: 8%; }
+    .bar-bull .bar-name { font-size: clamp(36px, 4.4vw, 56px); }
+    .bar-jumbo { top: 62%; left: 58%; }
+    .bar-jumbo .bar-name { font-size: clamp(32px, 4vw, 48px); }
+    .pour-skyline { position: absolute; bottom: 0; left: -4vw; right: -4vw; height: 60px; pointer-events: none; }
+    .pour-skyline svg { width: 100%; height: 100%; display: block; }
+    .pour-see-all { position: absolute; bottom: 12px; right: 4%; padding: 8px 18px; background: var(--hh-bulletin-cream); color: var(--hh-barn-rust); font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.16em; text-transform: uppercase; transform: rotate(-5deg); transition: background-color 200ms; z-index: 2; }
+    .pour-see-all:hover { background: var(--hh-gilt-gold); }
+    .pour-routes { position: absolute; inset: 0; pointer-events: none; opacity: 0.4; }
+    .pour-routes svg { width: 100%; height: 100%; }
+
+    /* ===== FOOTER — irregular hours board ===== */
+    .site-footer { background: var(--hh-hymnal-black); color: var(--hh-bulletin-cream); padding: 96px 4vw 64px; position: relative; overflow: hidden; }
+    .site-footer::before { content: ""; position: absolute; inset: 0; background-image: repeating-linear-gradient(94deg, transparent 0px, transparent 64px, rgba(232,216,184,0.04) 65px, transparent 66px), radial-gradient(ellipse at 40% 60%, rgba(126,29,18,0.12) 0%, transparent 40%); pointer-events: none; }
+    .footer-board { position: relative; max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 22% 38% 28% auto; gap: 32px; align-items: start; }
+    .footer-col { font-family: var(--font-body); color: var(--hh-bulletin-cream); }
+    .footer-col h3 { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--hh-barn-rust); margin-bottom: 12px; }
+    .footer-col p, .footer-col a { font-family: var(--font-body); font-size: 16px; color: var(--hh-bulletin-cream); line-height: 1.7; }
+    .footer-col .mono { display: block; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+    .footer-hours { grid-column: 1; grid-row: 1; }
+    .footer-directions { grid-column: 2; grid-row: 1; margin-top: 32px; }
+    .footer-directions .arrow { display: block; margin-bottom: 8px; }
+    .footer-contact { grid-column: 3; grid-row: 1; margin-top: 56px; }
+    .footer-signature { font-family: var(--font-script); font-size: 36px; color: var(--hh-bulletin-cream); transform: rotate(-2deg); margin-bottom: 12px; line-height: 1; }
+    .footer-contact a { display: block; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: lowercase; color: var(--hh-bulletin-cream); margin-top: 6px; transition: color 200ms; }
+    .footer-contact a:hover { color: var(--hh-gilt-gold); }
+    .footer-weathervane { grid-column: 4; grid-row: 1; width: 80px; height: 96px; justify-self: end; }
+    .footer-stamp21 { position: absolute; bottom: 96px; left: 4%; width: 72px; height: 72px; transform: rotate(-4deg); }
+    .footer-rule { grid-column: 1 / -1; margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--hh-barn-rust); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--hh-text-mute); transform: rotate(-1deg); transform-origin: left center; }
+    .footer-rule .sep { display: inline-block; padding: 0 8px; opacity: 0.5; }
+
+    /* ===== RESPONSIVE — collapse asymmetry but preserve hand-imperfection ===== */
+    @media (max-width: 1023px) {
+      .hero { padding: 64px 4vw 96px; min-height: auto; }
+      .hero-seal { grid-column: 1 / 6; }
+      .hero-wordmark { grid-column: 1 / 13; grid-row: 2; }
+      .hero-tagline { grid-column: 1 / 13; grid-row: 3; text-align: left; padding-right: 0; }
+      .hero-cta-row { grid-column: 1 / 13; }
+      .back-room-map { grid-column: 1 / 7; }
+      .back-room-still { grid-column: 7 / 13; }
+      .catalog-board { grid-template-columns: 1fr; }
+      .catalog-entry { grid-column: 1 !important; padding: 32px 24px; }
+      .catalog-entry-2 { padding-top: 32px; }
+      .catalog-entry .ph-frame { float: none !important; margin: 0 auto 16px; }
+      .pour-list-bars { min-height: 720px; }
+      .footer-board { grid-template-columns: 1fr; gap: 48px; }
+      .footer-directions, .footer-contact { margin-top: 0; }
+      .footer-weathervane { grid-column: 1; grid-row: auto; justify-self: start; }
+    }
+    @media (max-width: 639px) {
+      .hero-wordmark .line { font-size: 56px; }
+      .hero-wordmark .line-2 { font-size: 88px; }
+      .pour-list-bars { min-height: 880px; }
+      .bar-entry { position: relative; max-width: 100%; top: auto !important; left: auto !important; margin-bottom: 48px; }
+      .bar-entry .pin { left: -24px; }
+      .pour-skyline, .pour-routes { display: none; }
+      .pour-see-all { position: relative; bottom: auto; right: auto; display: inline-block; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; }
+      /* Keep rotations (they're visual character, not animation) */
+    }
+
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--hh-barn-rust); outline-offset: 3px; }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header" data-section="header" data-intent="navigate" data-layout="full-width-cream-irregular" data-mode="bulletin" role="banner">
+    <a href="/" class="brand-mark" aria-label="Holler &amp; Hymn — home">
+      <span>HOLLER</span><span class="amp">&amp;</span><span>HYMN</span>
+    </a>
+    <nav class="nav-bar" aria-label="Primary">
+      <a href="/" aria-current="page">Home</a>
+      <a href="/the-holler">The Holler</a>
+      <a href="/the-still">The Still</a>
+      <a href="/the-bottles">The Bottles</a>
+      <a href="/hymns">Hymns</a>
+      <a href="/pews">Pews</a>
+      <a href="/visit">Visit</a>
+    </nav>
+    <a href="/visit" class="visit-bar">Visit</a>
+  </header>
+
+  <main id="main">
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" data-section="hero" data-intent="brand" data-layout="asymmetric-left-anchored-album-cover" data-mode="revival" data-items="3" aria-labelledby="hero-h1">
+
+      <!-- Seal logo top-left -->
+      <div class="hero-seal" aria-hidden="true">
+        <svg viewBox="0 0 160 160">
+          <circle cx="80" cy="80" r="70" fill="none" stroke="#e8d8b8" stroke-width="2" />
+          <circle cx="80" cy="80" r="62" fill="none" stroke="#e8d8b8" stroke-width="0.5" stroke-dasharray="3 2" />
+          <text x="80" y="38" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#e8d8b8" letter-spacing="2">HOLLER &amp; HYMN</text>
+          <path d="M 38 80 C 38 70, 50 65, 56 65 C 62 65, 66 60, 66 54 C 66 48, 62 45, 56 45 C 50 45, 46 49, 46 54 C 46 64, 56 72, 70 80 C 84 88, 96 90, 110 86" stroke="#7e1d12" stroke-width="3.5" stroke-linecap="round" fill="none" />
+          <circle cx="116" cy="40" r="4.5" fill="#f04a26" />
+          <text x="80" y="120" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="8" fill="#e8d8b8" letter-spacing="2">EST. 2019</text>
+          <text x="80" y="134" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="7" fill="#e8d8b8" letter-spacing="1.5">WOLFPEN HOLLER · NC</text>
+        </svg>
+      </div>
+
+      <!-- Wordmark left-anchored stacked -->
+      <h1 id="hero-h1" class="hero-wordmark" aria-label="Holler &amp; Hymn">
+        <span class="line line-1">Holler</span>
+        <span class="line line-2" aria-hidden="true">&amp;</span>
+        <span class="line line-3">Hymn</span>
+      </h1>
+
+      <!-- Tagline right-anchored with hand-circled words -->
+      <div class="hero-tagline" aria-label="Saturday night sin. Sunday morning hymn. Both in one bottle.">
+        <p class="tline">Saturday night</p>
+        <p class="tline"><span class="marked sin">sin.</span></p>
+        <p class="tline">Sunday morning</p>
+        <p class="tline"><span class="marked hymn">hymn.</span></p>
+      </div>
+
+      <!-- Diagonal marquee tape -->
+      <div class="marquee-tape" aria-hidden="true">
+        <div class="tape-inner">
+          <div class="tape-text">MADE BY HAND · FROM A TO Z · MADE BY HAND · FROM A TO Z · MADE BY HAND · FROM A TO Z · MADE BY HAND · FROM A TO Z</div>
+        </div>
+      </div>
+
+      <!-- CTAs (single primary + secondary link) -->
+      <div class="hero-cta-row">
+        <a href="/pews" class="pew-button">Find a Pew →</a>
+        <a href="/visit" class="secondary-link">book a saturday tasting →</a>
+      </div>
+    </section>
+
+    <!-- ===== SECTION BREAK — tape strip with P.1 ===== -->
+    <div class="break-tape" data-ornament="tape-p1" aria-hidden="true">
+      <div class="tape-strip"><span>P.1 · CONT'D ↓</span></div>
+    </div>
+
+    <!-- ===== WENDELL'S LETTER ===== -->
+    <section class="letter-section" data-section="wendells-letter" data-intent="story" data-layout="full-bleed-letter-on-table" data-mode="bulletin" data-items="1" aria-labelledby="letter-h2">
+      <article class="letter">
+        <div class="letter-waxseal" aria-hidden="true">
+          <svg viewBox="0 0 52 52">
+            <circle cx="26" cy="26" r="22" fill="#7e1d12" />
+            <text x="26" y="32" text-anchor="middle" font-family="'Brush Script MT', cursive" font-size="20" fill="#e8d8b8" font-style="italic">WG</text>
+          </svg>
+        </div>
+        <p class="letter-date">May 11, 2026</p>
+        <h2 id="letter-h2" class="letter-body">
+          "I grew up in a hollow outside Asheville where my grandmother kept a still in the smokehouse and a hymnal on the kitchen table. We never thought of them as different things. <span class="hl-mustard">Twenty-seven herbs</span> foraged from inside <span class="circled">forty miles</span> of my barn. Hand-distilled in the <span class="hl-rust">preacher's shed</span>. Made <span class="underlined">from a to z</span>."
+        </h2>
+        <p class="letter-signature">Wendell</p>
+
+        <!-- Polaroid (Wendell portrait — placeholder pending Gemini Lane 1) -->
+        <div class="letter-polaroid" aria-label="Wendell Greene portrait — placeholder pending Gemini Lane 1">
+          <div class="tape-l" aria-hidden="true"></div>
+          <div class="tape-r" aria-hidden="true"></div>
+          <div class="ph-frame ph-pending">
+            <p class="ph-label">Awaiting Gemini · Lane 1 · Portrait</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Envelope corner peeking from lower-right -->
+      <svg class="letter-envelope" viewBox="0 0 240 180" aria-hidden="true">
+        <path d="M 0 180 L 240 180 L 240 40 L 130 140 L 20 60 Z" fill="#b08858" />
+        <path d="M 240 40 L 130 140 L 20 60" fill="none" stroke="#9a7647" stroke-width="1" />
+        <circle cx="180" cy="100" r="14" fill="#7e1d12" />
+        <text x="180" y="105" text-anchor="middle" font-family="'Brush Script MT', cursive" font-size="14" fill="#e8d8b8" font-style="italic">WG</text>
+      </svg>
+
+      <p class="letter-read-more"><a href="/the-holler">Read the full letter →</a></p>
+    </section>
+
+    <!-- ===== SECTION BREAK — crate stamp ===== -->
+    <div class="break-stamp" data-ornament="crate-stamp" aria-hidden="true">
+      <div class="stamp-text">Passed Insp. WG · 04 · 2026</div>
+    </div>
+
+    <!-- ===== THE BACK ROOM ===== -->
+    <section class="back-room" data-section="the-back-room" data-intent="place-and-process" data-layout="full-bleed-plywood-collage" data-mode="revival" data-items="1" aria-labelledby="backroom-h2">
+      <div class="back-room-inner">
+
+        <!-- Hand-drawn Madison County map top-left -->
+        <div class="back-room-map" aria-label="Hand-drawn map of Madison County, NC, with Wolfpen Holler marked">
+          <svg viewBox="0 0 280 240">
+            <!-- Rough Madison County outline -->
+            <path d="M 28 28 L 56 22 L 96 36 L 132 28 L 168 48 L 212 44 L 248 72 L 256 124 L 240 168 L 212 196 L 168 208 L 124 200 L 88 216 L 56 196 L 36 156 L 24 112 L 32 64 Z" fill="none" stroke="#e8d8b8" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+            <!-- French Broad River squiggle -->
+            <path d="M 248 84 Q 220 96 196 124 T 144 152 Q 116 168 88 156 T 36 140" fill="none" stroke="#e8d8b8" stroke-width="0.8" stroke-dasharray="2 2" />
+            <!-- Spring Creek squiggle -->
+            <path d="M 96 188 Q 116 170 134 144 T 156 96" fill="none" stroke="#e8d8b8" stroke-width="0.8" stroke-dasharray="2 2" />
+            <!-- Mars Hill marker -->
+            <circle cx="186" cy="148" r="2" fill="#e8d8b8" />
+            <text x="190" y="156" font-family="'IBM Plex Mono', monospace" font-size="8" fill="#e8d8b8" letter-spacing="1">MARS HILL</text>
+            <!-- Wolfpen Holler — star + label -->
+            <g transform="translate(124 96)">
+              <path d="M 0 -14 L 4 -4 L 14 -4 L 6 2 L 9 12 L 0 6 L -9 12 L -6 2 L -14 -4 L -4 -4 Z" fill="#f04a26" stroke="#e8d8b8" stroke-width="1" />
+              <!-- Brass thumbtack -->
+              <circle cx="0" cy="0" r="3" fill="#d4a45c" />
+              <circle cx="-1" cy="-1" r="1" fill="#e8d8b8" />
+            </g>
+            <text x="124" y="120" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#e8d8b8" letter-spacing="2" font-weight="700">WOLFPEN HOLLER</text>
+            <!-- "ASHEVILLE →" arrow -->
+            <text x="252" y="200" text-anchor="end" font-family="'IBM Plex Mono', monospace" font-size="8" fill="#e8d8b8" letter-spacing="1">ASHEVILLE →</text>
+            <path d="M 220 196 L 252 196" stroke="#e8d8b8" stroke-width="0.8" />
+            <!-- Map caption -->
+            <text x="140" y="232" text-anchor="middle" font-family="'Brush Script MT', cursive" font-size="14" fill="#e8d8b8" font-style="italic">Madison Co., NC</text>
+          </svg>
+        </div>
+
+        <!-- Polaroid of copper still top-right -->
+        <div class="back-room-still">
+          <div class="back-room-still-wrap">
+            <div class="tape-l" aria-hidden="true"></div>
+            <div class="tape-r" aria-hidden="true"></div>
+            <div class="ph-frame ph-pending" style="aspect-ratio: 4 / 5;" aria-label="Copper still close-up — placeholder pending Gemini Lane 1">
+              <p class="ph-label">Awaiting Gemini · Lane 1 · Process</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Irregularly-stacked center type -->
+        <div class="back-room-stack">
+          <h2 id="backroom-h2" class="stack-line stack-wolfpen">Wolfpen</h2>
+          <p class="stack-line stack-holler">Holler</p>
+          <p class="stack-plus" aria-hidden="true">+</p>
+          <p class="stack-line stack-the">The</p>
+          <p class="stack-line stack-still">Still</p>
+        </div>
+
+        <!-- Crate-marks bottom band -->
+        <p class="back-room-cratemarks">40 MI · 2019 · 27 HERBS · 4,000 BUCKS · 1 DEAD PREACHER</p>
+
+        <!-- Link blocks at irregular horizontal positions -->
+        <div class="back-room-links">
+          <a href="/the-holler">See the Holler →</a>
+          <a href="/the-still">See the Still →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION BREAK — bunting ===== -->
+    <div class="break-bunting" data-ornament="bunting" aria-hidden="true">
+      <svg viewBox="0 0 1200 56" preserveAspectRatio="none">
+        <!-- String line drooping in middle -->
+        <path d="M 0 16 Q 600 38 1200 16" fill="none" stroke="#e8d8b8" stroke-width="0.8" />
+        <!-- Triangular flags -->
+        <g fill="#e8d8b8">
+          <path d="M 40 16 L 80 16 L 60 50 Z" />
+          <path d="M 160 20 L 200 20 L 180 52 Z" />
+          <path d="M 400 28 L 440 28 L 420 54 Z" />
+          <path d="M 640 32 L 680 32 L 660 54 Z" />
+          <path d="M 880 28 L 920 28 L 900 52 Z" />
+          <path d="M 1080 22 L 1120 22 L 1100 50 Z" />
+        </g>
+        <g fill="#7e1d12">
+          <path d="M 100 18 L 140 18 L 120 50 Z" />
+          <path d="M 280 26 L 320 26 L 300 54 Z" />
+          <path d="M 520 30 L 560 30 L 540 54 Z" />
+          <path d="M 760 32 L 800 32 L 780 54 Z" />
+          <path d="M 1000 26 L 1040 26 L 1020 52 Z" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- ===== BOTTLES FAN + CATALOG ===== -->
+    <section class="bottles-section" data-section="bottles-fan" data-intent="catalog" data-layout="180-fan-plus-staggered-catalog" data-mode="revival" data-items="6" aria-labelledby="bottles-h2">
+
+      <!-- Marquee tape -->
+      <div class="bottles-marquee" aria-hidden="true">
+        <span>FOUR CATEGORIES · EVERY LABEL PAINTED BY HAND · FOUR CATEGORIES · EVERY LABEL PAINTED BY HAND · FOUR CATEGORIES</span>
+      </div>
+
+      <!-- 180° bottle fan -->
+      <h2 id="bottles-h2" class="visually-hidden" style="position:absolute;left:-9999px;">Six bottles, four categories. Every label painted by hand.</h2>
+      <div class="bottles-fan" aria-hidden="true">
+        <div class="bottles-fan-radial"></div>
+        <svg viewBox="0 0 1100 360" preserveAspectRatio="xMidYMax meet">
+          <!-- Subtle sunburst rays -->
+          <g stroke="#e8d8b8" stroke-width="0.4" opacity="0.18">
+            <line x1="550" y1="340" x2="550" y2="0" />
+            <line x1="550" y1="340" x2="200" y2="0" />
+            <line x1="550" y1="340" x2="900" y2="0" />
+            <line x1="550" y1="340" x2="0" y2="120" />
+            <line x1="550" y1="340" x2="1100" y2="120" />
+          </g>
+
+          <!-- 6 bottle silhouettes around 180° arc, anchored at (550, 340) -->
+          <!-- Bottle template: bottle body + neck + cap with hand-lettered label -->
+          <g transform="translate(550 340)">
+
+            <!-- -75° (left edge) -->
+            <g transform="rotate(-75) translate(0 -300)">
+              <g>
+                <rect x="-32" y="0" width="64" height="120" fill="#1a1410" stroke="#e8d8b8" stroke-width="2" rx="4" />
+                <rect x="-20" y="-22" width="40" height="22" fill="#1a1410" stroke="#e8d8b8" stroke-width="2" />
+                <rect x="-22" y="-28" width="44" height="8" fill="#7e1d12" stroke="#e8d8b8" stroke-width="1.5" />
+                <!-- Label box -->
+                <rect x="-26" y="24" width="52" height="68" fill="#e8d8b8" />
+                <text x="0" y="56" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="6" fill="#1a1410" letter-spacing="0.4" transform="rotate(0)">PASS</text>
+                <text x="0" y="65" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="6" fill="#1a1410" letter-spacing="0.4">THE</text>
+                <text x="0" y="74" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="6" fill="#1a1410" letter-spacing="0.4">PLATE</text>
+              </g>
+            </g>
+
+            <!-- -45° -->
+            <g transform="rotate(-45) translate(0 -300)">
+              <g>
+                <rect x="-32" y="0" width="64" height="120" fill="#1a1410" stroke="#e8d8b8" stroke-width="2" rx="4" />
+                <rect x="-20" y="-22" width="40" height="22" fill="#1a1410" stroke="#e8d8b8" stroke-width="2" />
+                <rect x="-22" y="-28" width="44" height="8" fill="#7e1d12" stroke="#e8d8b8" stroke-width="1.5" />
+                <rect x="-26" y="24" width="52" height="68" fill="#e8d8b8" />
+                <text x="0" y="56" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="6" fill="#1a1410" letter-spacing="0.4">DEACON'S</text>
+                <text x="0" y="65" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="6" fill="#1a1410" letter-spacing="0.4">DRAUGHT</text>
+              </g>
+            </g>
+
+            <!-- -15° -->
+            <g transform="rotate(-15) translate(0 -300)">
+              <g>
+                <rect x="-32" y="0" width="64" height="120" fill="#1a1410" stroke="#e8d8b8" stroke-width="2" rx="4" />
+                <rect x="-20" y="-22" width="40" height="22" fill="#1a1410" stroke="#e8d8b8" stroke-width="2" />
+                <rect x="-22" y="-28" width="44" height="8" fill="#7e1d12" stroke="#e8d8b8" stroke-width="1.5" />
+                <rect x="-26" y="24" width="52" height="68" fill="#e8d8b8" />
+                <text x="0" y="50" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="5.6" fill="#1a1410" letter-spacing="0.4">DRINK</text>
+                <text x="0" y="58" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="5.6" fill="#1a1410" letter-spacing="0.4">YE ALL</text>
+                <text x="0" y="66" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="5.6" fill="#1a1410" letter-spacing="0.4">OF IT</text>
+              </g>
+            </g>
+
+            <!-- +15° -->
+            <g transform="rotate(15) translate(0 -300)">
+              <g>
+                <rect x="-32" y="0" width="64" height="120" fill="#1a1410" stroke="#e8d8b8" stroke-width="2" rx="4" />
+                <rect x="-20" y="-22" width="40" height="22" fill="#1a1410" stroke="#e8d8b8" stroke-width="2" />
+                <rect x="-22" y="-28" width="44" height="8" fill="#7e1d12" stroke="#e8d8b8" stroke-width="1.5" />
+                <rect x="-26" y="24" width="52" height="68" fill="#e8d8b8" />
+                <text x="0" y="56" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="6" fill="#1a1410" letter-spacing="0.4">THE</text>
+                <text x="0" y="65" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="6" fill="#1a1410" letter-spacing="0.4">BACK-</text>
+                <text x="0" y="74" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="6" fill="#1a1410" letter-spacing="0.4">SLIDER</text>
+              </g>
+            </g>
+
+            <!-- +45° -->
+            <g transform="rotate(45) translate(0 -300)">
+              <g>
+                <rect x="-32" y="0" width="64" height="120" fill="#1a1410" stroke="#e8d8b8" stroke-width="2" rx="4" />
+                <rect x="-20" y="-22" width="40" height="22" fill="#1a1410" stroke="#e8d8b8" stroke-width="2" />
+                <rect x="-22" y="-28" width="44" height="8" fill="#7e1d12" stroke="#e8d8b8" stroke-width="1.5" />
+                <rect x="-26" y="24" width="52" height="68" fill="#e8d8b8" />
+                <text x="0" y="56" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="6" fill="#1a1410" letter-spacing="0.4">TENT</text>
+                <text x="0" y="65" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="6" fill="#1a1410" letter-spacing="0.4">REVIVAL</text>
+              </g>
+            </g>
+
+            <!-- +75° -->
+            <g transform="rotate(75) translate(0 -300)">
+              <g>
+                <rect x="-32" y="0" width="64" height="120" fill="#1a1410" stroke="#e8d8b8" stroke-width="2" rx="4" />
+                <rect x="-20" y="-22" width="40" height="22" fill="#1a1410" stroke="#e8d8b8" stroke-width="2" />
+                <rect x="-22" y="-28" width="44" height="8" fill="#7e1d12" stroke="#e8d8b8" stroke-width="1.5" />
+                <rect x="-26" y="24" width="52" height="68" fill="#e8d8b8" />
+                <text x="0" y="56" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="6" fill="#1a1410" letter-spacing="0.4">THE</text>
+                <text x="0" y="65" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="6" fill="#1a1410" letter-spacing="0.4">NO-SHOW</text>
+              </g>
+            </g>
+
+          </g>
+        </svg>
+        <div class="six-center" aria-hidden="true">Six</div>
+      </div>
+
+      <!-- Staggered 2-col catalog -->
+      <div class="catalog-board">
+
+        <article class="catalog-entry catalog-entry-1" aria-labelledby="bottle-pass">
+          <div class="ph-frame ph-pending" style="aspect-ratio: 4 / 5; max-width: 180px;" aria-label="PASS THE PLATE label — placeholder pending Gemini Lane 3">
+            <p class="ph-label">Awaiting Gemini · Lane 3 · Label</p>
+          </div>
+          <h3 id="bottle-pass">Pass the Plate</h3>
+          <p class="desc">A Sunday-morning aperitif amaro.</p>
+          <p class="meta">24% ABV · Sourwood · Chicory · Magnolia Bark</p>
+          <a href="/pews" class="where">Where to buy →</a>
+        </article>
+
+        <article class="catalog-entry catalog-entry-2" aria-labelledby="bottle-tent">
+          <div class="kraft-strip" aria-hidden="true"></div>
+          <div class="ph-frame ph-pending" style="aspect-ratio: 4 / 5; max-width: 180px;" aria-label="TENT REVIVAL label — placeholder pending Gemini Lane 3">
+            <p class="ph-label">Awaiting Gemini · Lane 3 · Label</p>
+          </div>
+          <h3 id="bottle-tent">Tent Revival <span class="hellfire-tag" aria-label="Hellfire">Hellfire</span></h3>
+          <p class="desc">Mountain herbs. Hellfire heat.</p>
+          <p class="meta">32% ABV · Sumac · Juniper · Black Walnut · Ramps</p>
+          <a href="/pews" class="where">Where to buy →</a>
+        </article>
+
+        <article class="catalog-entry catalog-entry-3" aria-labelledby="bottle-back">
+          <div class="ph-frame ph-pending" style="aspect-ratio: 4 / 5; max-width: 180px;" aria-label="THE BACKSLIDER label — placeholder pending Gemini Lane 3">
+            <p class="ph-label">Awaiting Gemini · Lane 3 · Label</p>
+          </div>
+          <h3 id="bottle-back">The Backslider</h3>
+          <p class="desc">Sunday-school dropouts only.</p>
+          <p class="meta">18% ABV · Paw-Paw · Wild Persimmon · Juniper</p>
+          <a href="/pews" class="where">Where to buy →</a>
+          <div class="batch-stamp" aria-hidden="true">Batch 04</div>
+        </article>
+
+      </div>
+
+      <div class="catalog-all"><a href="/the-bottles">All Six Bottles →</a></div>
+    </section>
+
+    <!-- ===== SECTION BREAK — INTERMISSION sign ===== -->
+    <div class="break-intermission" data-ornament="intermission-sign" aria-hidden="true">
+      <div class="sign">Intermission</div>
+    </div>
+
+    <!-- ===== POUR LIST ===== -->
+    <section class="pour-list" data-section="pour-list" data-intent="stockists" data-layout="folk-art-map" data-mode="revival" data-items="4" aria-labelledby="pour-h2">
+      <div class="pour-list-inner">
+        <h2 id="pour-h2" class="pour-list-header">Pour List</h2>
+        <div class="pour-list-sticker" aria-label="Asheville Edition">Asheville Edition</div>
+
+        <div class="pour-list-bars">
+
+          <!-- Hand-drawn dotted route lines -->
+          <div class="pour-routes" aria-hidden="true">
+            <svg viewBox="0 0 1200 480" preserveAspectRatio="none">
+              <path d="M 80 64 Q 240 120 380 96 T 720 168" fill="none" stroke="#e8d8b8" stroke-width="1" stroke-dasharray="2 6" />
+              <path d="M 720 168 Q 600 264 380 304 T 160 384" fill="none" stroke="#e8d8b8" stroke-width="1" stroke-dasharray="2 6" />
+              <path d="M 160 384 Q 360 416 520 384 T 800 376" fill="none" stroke="#e8d8b8" stroke-width="1" stroke-dasharray="2 6" />
+            </svg>
+          </div>
+
+          <div class="bar-entry bar-sermon">
+            <svg class="pin" viewBox="0 0 18 18" aria-hidden="true"><path d="M 9 0 L 11 6 L 17 6 L 12 10 L 14 17 L 9 13 L 4 17 L 6 10 L 1 6 L 7 6 Z" fill="#e8d8b8" stroke="#7e1d12" stroke-width="0.8"/></svg>
+            <p class="bar-name">Sermon Bar</p>
+            <p class="bar-hood">Lexington Ave</p>
+            <p class="pour-note">Pours TENT REVIVAL neat in a Pyrex cup.</p>
+          </div>
+
+          <div class="bar-entry bar-backslider">
+            <svg class="pin" viewBox="0 0 18 18" aria-hidden="true"><path d="M 9 0 L 11 6 L 17 6 L 12 10 L 14 17 L 9 13 L 4 17 L 6 10 L 1 6 L 7 6 Z" fill="#e8d8b8" stroke="#7e1d12" stroke-width="0.8"/></svg>
+            <p class="bar-name">The Backslider Tavern</p>
+            <p class="bar-hood">River Arts District</p>
+            <p class="pour-note">The whole shelf.</p>
+          </div>
+
+          <div class="bar-entry bar-bull">
+            <svg class="pin" viewBox="0 0 18 18" aria-hidden="true"><path d="M 9 0 L 11 6 L 17 6 L 12 10 L 14 17 L 9 13 L 4 17 L 6 10 L 1 6 L 7 6 Z" fill="#e8d8b8" stroke="#7e1d12" stroke-width="0.8"/></svg>
+            <p class="bar-name">Bull and Beggar</p>
+            <p class="bar-hood">RAD</p>
+            <p class="pour-note">Sourwood-honey old fashioned.</p>
+          </div>
+
+          <div class="bar-entry bar-jumbo">
+            <svg class="pin" viewBox="0 0 18 18" aria-hidden="true"><path d="M 9 0 L 11 6 L 17 6 L 12 10 L 14 17 L 9 13 L 4 17 L 6 10 L 1 6 L 7 6 Z" fill="#e8d8b8" stroke="#7e1d12" stroke-width="0.8"/></svg>
+            <p class="bar-name">Little Jumbo</p>
+            <p class="bar-hood">Downtown</p>
+            <p class="pour-note">Saturday-night TENT REVIVAL flight.</p>
+          </div>
+
+        </div>
+
+        <!-- Asheville skyline frieze -->
+        <div class="pour-skyline" aria-hidden="true">
+          <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+            <path d="M 0 56 L 60 32 L 110 48 L 160 20 L 220 40 L 280 24 L 340 44 L 400 16 L 460 36 L 520 28 L 580 12 L 640 38 L 700 22 L 760 44 L 820 18 L 880 36 L 940 28 L 1000 46 L 1060 24 L 1120 40 L 1200 32 L 1200 60 L 0 60 Z" fill="#e8d8b8" opacity="0.6" />
+            <!-- A few stylized building rectangles -->
+            <rect x="370" y="20" width="18" height="40" fill="#e8d8b8" opacity="0.5" />
+            <rect x="600" y="14" width="22" height="46" fill="#e8d8b8" opacity="0.5" />
+            <rect x="820" y="22" width="16" height="38" fill="#e8d8b8" opacity="0.5" />
+          </svg>
+        </div>
+
+        <a href="/pews" class="pour-see-all">See All Pews →</a>
+      </div>
+    </section>
+
+    <!-- ===== SECTION BREAK — wax seal ===== -->
+    <div class="break-waxseal" data-ornament="wax-seal-wg" aria-hidden="true">
+      <div class="seal">
+        <svg viewBox="0 0 80 80">
+          <circle cx="40" cy="40" r="34" fill="#7e1d12" />
+          <circle cx="40" cy="40" r="28" fill="none" stroke="#e8d8b8" stroke-width="0.5" stroke-dasharray="2 2" />
+          <text x="40" y="50" text-anchor="middle" font-family="'Brush Script MT', cursive" font-size="32" fill="#e8d8b8" font-style="italic">WG</text>
+        </svg>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer" data-section="footer" data-intent="contact-legal" data-layout="irregular-hours-board" data-mode="revival" role="contentinfo">
+    <div class="footer-board">
+
+      <div class="footer-col footer-hours">
+        <h3>Hours</h3>
+        <p>Open by appointment.</p>
+        <p class="mono">Saturdays · 2pm + 4pm</p>
+        <p class="mono">Closed during foraging weeks</p>
+      </div>
+
+      <div class="footer-col footer-directions">
+        <h3>Directions</h3>
+        <svg class="arrow" viewBox="0 0 80 24" width="80" height="24" aria-hidden="true">
+          <path d="M 4 12 Q 30 4 56 12 L 56 8 L 76 14 L 56 20 L 56 16" fill="none" stroke="#e8d8b8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <p>Dirt road off Spring Creek.</p>
+        <p>Last mile unpaved.</p>
+        <p class="mono">Wolfpen Holler · Madison Co. NC 28753</p>
+      </div>
+
+      <div class="footer-col footer-contact">
+        <h3>Contact</h3>
+        <p class="footer-signature">Wendell</p>
+        <a href="mailto:wendell@hollerandhymn.com">wendell@hollerandhymn.com</a>
+        <a href="tel:+18285550143">+1 828 555 0143</a>
+        <a href="https://instagram.com/hollerandhymn" rel="noopener" target="_blank">@hollerandhymn</a>
+      </div>
+
+      <div class="footer-weathervane" aria-hidden="true">
+        <svg viewBox="0 0 80 96">
+          <!-- Pole -->
+          <line x1="40" y1="32" x2="40" y2="96" stroke="#e8d8b8" stroke-width="1.5" />
+          <!-- Arrow -->
+          <path d="M 8 24 L 24 18 L 24 22 L 56 22 L 56 18 L 72 24 L 56 30 L 56 26 L 24 26 L 24 30 Z" fill="#e8d8b8" />
+          <!-- N marker -->
+          <circle cx="40" cy="40" r="3" fill="#e8d8b8" />
+          <line x1="40" y1="44" x2="40" y2="56" stroke="#e8d8b8" stroke-width="1" />
+          <line x1="34" y1="50" x2="46" y2="50" stroke="#e8d8b8" stroke-width="1" />
+          <text x="40" y="76" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="6" fill="#e8d8b8" letter-spacing="1">N</text>
+        </svg>
+      </div>
+
+      <div class="footer-stamp21" aria-hidden="true">
+        <svg viewBox="0 0 72 72">
+          <circle cx="36" cy="36" r="32" fill="#7e1d12" />
+          <text x="36" y="42" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="20" fill="#e8d8b8" font-weight="700" letter-spacing="1">21+</text>
+        </svg>
+      </div>
+
+      <p class="footer-rule">
+        <span>Made in Wolfpen Holler</span>
+        <span class="sep">·</span>
+        <span>© Holler &amp; Hymn 2026</span>
+        <span class="sep">·</span>
+        <span>— WG</span>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

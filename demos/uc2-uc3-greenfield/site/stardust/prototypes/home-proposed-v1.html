@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<!-- stardust:provenance
+  writtenBy:        impeccable:craft (via stardust:prototype)
+  writtenAt:        2026-05-11T00:00:00Z
+  page:             home
+  pageUrl:          https://hollerandhymn.com/
+  againstDirection: stardust/direction.md (Active 2026-05-11T00:00:00Z — Mode A, single variant)
+  shapeBriefPath:   stardust/prototypes/home-shape.md
+  readArtifacts:
+    - stardust/prototypes/home-shape.md
+    - stardust/current/pages/home.json
+    - DESIGN.md
+    - DESIGN.json
+    - PRODUCT.md
+    - stardust/direction.md
+  renderedVia:      impeccable:craft (Skill)
+  stardustVersion:  0.3.0
+  unsourcedContent:
+    - section[data-section="maker"] .portrait img         — Wendell portrait (pending Gemini Lane 1)
+    - section[data-section="the-holler-preview"] img      — Wolfpen Holler landscape (pending Gemini Lane 1)
+    - section[data-section="the-still-preview"] img       — copper still close-up (pending Gemini Lane 1)
+    - section[data-section="featured-bottles"] .bottle-card:nth-child(1) .label  — PASS THE PLATE label (pending Lane 3)
+    - section[data-section="featured-bottles"] .bottle-card:nth-child(2) .label  — TENT REVIVAL label  (pending Lane 3)
+    - section[data-section="featured-bottles"] .bottle-card:nth-child(3) .label  — THE BACKSLIDER label (pending Lane 3)
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Holler &amp; Hymn — botanical liqueurs from Wolfpen Holler, NC</title>
+  <meta name="description" content="Saturday night sin. Sunday morning hymn. Both in one bottle. Small-batch Appalachian botanical liqueurs hand-made by Wendell Greene in Madison County, North Carolina." />
+  <meta name="theme-color" content="#e8d8b8" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1a1410" media="(prefers-color-scheme: dark)" />
+
+  <style>
+    :root {
+      /* Six brand tokens — verbatim from DESIGN.json */
+      --hh-hymnal-black:   #1a1410;
+      --hh-barn-rust:      #7e1d12;
+      --hh-gilt-gold:      #d4a45c;
+      --hh-rhody-green:    #3e5a3e;
+      --hh-bulletin-cream: #e8d8b8;
+      --hh-hellfire-neon:  #f04a26;
+
+      /* Secondary neutrals (derived from brand tokens) */
+      --hh-border-neutral: #c8b89a;
+      --hh-text-mute:      #5a4a3e;
+      --hh-barn-rust-deep: #5e1408;
+
+      /* Spacing scale */
+      --space-xxs: 4px;
+      --space-xs:  8px;
+      --space-sm:  12px;
+      --space-md:  20px;
+      --space-lg:  32px;
+      --space-xl:  56px;
+      --space-xxl: 96px;
+      --space-xxxl: 160px;
+
+      /* Section padding (balanced tier; hard-floor honored) */
+      --section-pad-desktop: 64px;
+      --section-pad-tablet:  48px;
+      --section-pad-mobile:  32px;
+
+      /* Rounded */
+      --r-sm:   2px;
+      --r-md:   4px;
+      --r-lg:   8px;
+      --r-pill: 9999px;
+
+      /* Typography stacks */
+      --font-display: 'Knockout', 'Saloon', 'Camp Type', 'Bebas Neue', 'Oswald', 'Impact', sans-serif;
+      --font-body:    'Sentinel', 'Bookman', 'Bookman Old Style', 'Cycles', 'Georgia', serif;
+      --font-mono:    'IBM Plex Mono', 'Courier New', 'Menlo', monospace;
+    }
+
+    /* Reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--hh-hymnal-black);
+      background: var(--hh-bulletin-cream);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img, svg { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3, h4 { margin: 0; font-weight: normal; }
+    p { margin: 0; }
+    ul, ol { margin: 0; padding: 0; list-style: none; }
+    button { font-family: inherit; }
+
+    /* Container + grid */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-inline: var(--space-lg);
+    }
+
+    /* Section modes */
+    section, header, footer { padding-block: var(--section-pad-desktop); }
+    .mode-bulletin {
+      background: var(--hh-bulletin-cream);
+      color: var(--hh-hymnal-black);
+    }
+    .mode-revival {
+      background: var(--hh-hymnal-black);
+      color: var(--hh-bulletin-cream);
+    }
+
+    /* Typography roles */
+    .display {
+      font-family: var(--font-display);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.005em;
+      line-height: 1.0;
+    }
+    .display.hero    { font-size: clamp(54px, 8vw, 120px); line-height: 0.95; letter-spacing: -0.01em; }
+    .display.h2      { font-size: clamp(36px, 5vw, 56px); line-height: 1.05; }
+    .display.h3      { font-size: clamp(26px, 3.2vw, 34px); line-height: 1.1; }
+    .body-text       { font-family: var(--font-body); font-size: 17px; line-height: 1.55; }
+    .pull-quote      { font-family: var(--font-body); font-size: clamp(20px, 2.2vw, 24px); line-height: 1.45; }
+    .mono {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 12px;
+    }
+    .mono-numerals { font-family: var(--font-mono); font-weight: 500; font-size: 14px; letter-spacing: 0.04em; }
+    .mono.large    { font-size: 14px; }
+
+    /* Buttons (brand-native class names, never .btn-primary / .btn-secondary) */
+    .pew-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      background: var(--hh-barn-rust);
+      color: var(--hh-bulletin-cream);
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: 1px solid var(--hh-barn-rust);
+      border-radius: var(--r-sm);
+      transition: background-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+    .pew-cta:hover, .pew-cta:focus-visible { background: var(--hh-barn-rust-deep); }
+    .pew-cta:focus-visible { outline: 2px solid var(--hh-barn-rust); outline-offset: 3px; }
+
+    .ghost-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 28px;
+      background: transparent;
+      color: var(--hh-bulletin-cream);
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: 1px solid var(--hh-bulletin-cream);
+      border-radius: var(--r-sm);
+      transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1), border-width 200ms cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+    .ghost-cta:hover, .ghost-cta:focus-visible { color: var(--hh-gilt-gold); }
+    .ghost-cta:focus-visible { outline: 2px solid var(--hh-bulletin-cream); outline-offset: 3px; }
+    .ghost-cta.on-cream {
+      color: var(--hh-hymnal-black);
+      border-color: var(--hh-hymnal-black);
+    }
+    .ghost-cta.on-cream:hover, .ghost-cta.on-cream:focus-visible { color: var(--hh-barn-rust); }
+
+    /* Eyelid link (rust-underlined) */
+    .read-on {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--hh-barn-rust);
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 2px;
+      transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .read-on:hover, .read-on:focus-visible { color: var(--hh-barn-rust-deep); }
+    .read-on.on-dark {
+      color: var(--hh-bulletin-cream);
+      border-bottom-color: var(--hh-barn-rust);
+    }
+    .read-on.on-dark:hover { color: var(--hh-gilt-gold); border-bottom-color: var(--hh-gilt-gold); }
+
+    /* Header */
+    .site-header {
+      padding-block: 24px;
+      border-bottom: 1px solid var(--hh-border-neutral);
+    }
+    .site-header .container {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: -0.01em;
+      color: var(--hh-hymnal-black);
+      text-transform: uppercase;
+    }
+    .brand-mark .amp {
+      color: var(--hh-barn-rust);
+      font-style: italic;
+      transform: translateY(1px);
+    }
+    .nav-primary {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      gap: var(--space-lg);
+      flex-wrap: wrap;
+    }
+    .nav-primary a {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--hh-hymnal-black);
+      transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-primary a:hover, .nav-primary a:focus-visible { color: var(--hh-barn-rust); }
+    .nav-primary a[aria-current="page"] { color: var(--hh-barn-rust); }
+    .nav-primary a:focus-visible { outline: 2px solid var(--hh-barn-rust); outline-offset: 4px; }
+    .header-visit { flex-shrink: 0; }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding-block: clamp(72px, 12vw, 160px);
+    }
+    .hero .ornament-amp {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto var(--space-md);
+      position: relative;
+    }
+    .hero .ornament-amp .neon-dot {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 10px; height: 10px;
+      background: var(--hh-hellfire-neon);
+      border-radius: var(--r-pill);
+    }
+    .hero h1.wordmark {
+      font-family: var(--font-display);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 0.95;
+      color: var(--hh-bulletin-cream);
+      font-size: clamp(60px, 11vw, 168px);
+      margin-bottom: var(--space-md);
+    }
+    .hero h1.wordmark .amp {
+      color: var(--hh-barn-rust);
+      font-family: var(--font-body);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.05em;
+      vertical-align: -0.05em;
+      padding-inline: 0.02em;
+    }
+    .hero .tagline {
+      font-family: var(--font-body);
+      font-size: clamp(18px, 2.3vw, 24px);
+      line-height: 1.45;
+      max-width: 36em;
+      margin: 0 auto var(--space-xl);
+      color: var(--hh-bulletin-cream);
+    }
+    .hero .cta-pair {
+      display: inline-flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Section ornament strip */
+    .ornament-rule {
+      display: block;
+      width: 100%;
+      max-width: 240px;
+      margin: 0 auto;
+      padding-block: var(--space-lg);
+      opacity: 0.85;
+    }
+    .ornament-rule svg { display: block; margin: 0 auto; }
+
+    /* Split layout (5/7, 7/5) */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .split.split-5-7 { grid-template-columns: 5fr 7fr; }
+      .split.split-7-5-inverted { grid-template-columns: 7fr 5fr; }
+    }
+
+    /* Maker section */
+    .maker .portrait { aspect-ratio: 4 / 5; }
+    .maker .eyebrow { color: var(--hh-barn-rust); margin-bottom: var(--space-md); }
+    .maker h2 { color: var(--hh-barn-rust); margin-bottom: var(--space-lg); }
+    .maker .pull-quote { color: var(--hh-hymnal-black); max-width: 32em; margin-bottom: var(--space-md); }
+    .maker .signature { color: var(--hh-text-mute); margin-bottom: var(--space-lg); }
+
+    /* Holler preview */
+    .holler-preview h2 { margin-bottom: var(--space-lg); }
+    .holler-preview .body-text { max-width: 32em; margin-bottom: var(--space-lg); color: var(--hh-bulletin-cream); }
+    .holler-preview .landscape { aspect-ratio: 16 / 9; }
+
+    /* Still preview */
+    .still-preview h2 { color: var(--hh-barn-rust); margin-bottom: var(--space-lg); }
+    .still-preview .body-text { max-width: 32em; margin-bottom: var(--space-lg); }
+    .still-preview .still-image { aspect-ratio: 4 / 5; }
+
+    /* Featured bottles */
+    .bottles .eyebrow {
+      text-align: center;
+      color: var(--hh-bulletin-cream);
+      margin-bottom: var(--space-xl);
+      font-size: 13px;
+    }
+    .bottles-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+    @media (min-width: 768px)  { .bottles-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .bottles-grid { grid-template-columns: repeat(3, 1fr); } }
+    .bottle-card {
+      background: var(--hh-bulletin-cream);
+      color: var(--hh-hymnal-black);
+      border: 1px solid var(--hh-border-neutral);
+      border-radius: var(--r-sm);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      transition: outline-color 200ms cubic-bezier(0.16, 1, 0.3, 1), transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+      outline: 0 solid transparent;
+      outline-offset: 4px;
+    }
+    .bottle-card:hover, .bottle-card:focus-within {
+      outline: 2px solid var(--hh-barn-rust);
+      transform: translateY(-2px);
+    }
+    .bottle-card .label { aspect-ratio: 4 / 5; }
+    .bottle-card h3 { color: var(--hh-barn-rust); }
+    .bottle-card .desc { color: var(--hh-hymnal-black); }
+    .bottle-card .meta { color: var(--hh-text-mute); }
+    .bottle-card .where { margin-top: auto; }
+    .bottles-cta-row { text-align: center; margin-top: var(--space-xl); }
+
+    /* Find a pew */
+    .pew h2 { color: var(--hh-barn-rust); margin-bottom: var(--space-md); }
+    .pew .intro { color: var(--hh-hymnal-black); max-width: 36em; margin-bottom: var(--space-xl); }
+    .pew-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md) var(--space-xl);
+    }
+    @media (min-width: 768px) { .pew-list { grid-template-columns: repeat(2, 1fr); } }
+    .pew-list li {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: var(--space-sm);
+      padding-block: var(--space-sm);
+      border-bottom: 1px solid var(--hh-border-neutral);
+    }
+    .pew-list .bar-name {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 19px;
+      color: var(--hh-hymnal-black);
+    }
+    .pew-list .neighborhood {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--hh-text-mute);
+    }
+    .pew-see-all { display: block; text-align: right; margin-top: var(--space-lg); }
+
+    /* Footer */
+    .site-footer {
+      padding-block: var(--space-xxl);
+      border-top: 1px solid var(--hh-barn-rust);
+    }
+    .site-footer .container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+    @media (min-width: 768px)  { .site-footer .container { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .site-footer .container { grid-template-columns: repeat(3, 1fr); } }
+    .footer-col h3 {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--hh-barn-rust);
+      margin-bottom: var(--space-md);
+    }
+    .footer-col ul li { padding-block: 4px; }
+    .footer-col a {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--hh-bulletin-cream);
+      transition: color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .footer-col a:hover, .footer-col a:focus-visible { color: var(--hh-gilt-gold); }
+    .footer-col a:focus-visible { outline: 2px solid var(--hh-bulletin-cream); outline-offset: 3px; }
+    .footer-col.contact a { text-transform: lowercase; letter-spacing: 0.02em; }
+    .footer-col.site-links a { text-transform: uppercase; letter-spacing: 0.1em; font-size: 12px; }
+    .footer-col.legal a { text-transform: lowercase; letter-spacing: 0.02em; font-size: 12px; }
+    .footer-rule {
+      grid-column: 1 / -1;
+      padding-top: var(--space-xl);
+      border-top: 1px solid var(--hh-barn-rust);
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-lg);
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--hh-text-mute);
+    }
+
+    /* Placeholders (image slots awaiting Gemini) */
+    .placeholder {
+      position: relative;
+      display: grid;
+      place-items: center;
+      background: var(--hh-bulletin-cream);
+      border: 1px dashed var(--hh-border-neutral);
+      border-radius: var(--r-sm);
+      padding: var(--space-lg);
+      text-align: center;
+      color: var(--hh-text-mute);
+      overflow: hidden;
+    }
+    .placeholder::after {
+      /* Pending-content marker. Uses barn-rust (not hellfire-neon) so the
+         hero's single neon dot remains the only neon-per-viewport accent —
+         honors the Hellfire-Neon Restraint Rule when multiple placeholders
+         co-exist in one viewport (bottles grid). */
+      content: "";
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 8px;
+      height: 8px;
+      background: var(--hh-barn-rust);
+      border-radius: var(--r-pill);
+    }
+    .placeholder.on-dark {
+      background: var(--hh-hymnal-black);
+      border-color: var(--hh-barn-rust);
+      color: var(--hh-bulletin-cream);
+    }
+    .placeholder.on-dark::after { background: var(--hh-gilt-gold); }
+    .placeholder .ph-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      max-width: 24ch;
+    }
+    .placeholder .ph-aux {
+      margin-top: var(--space-xs);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.62;
+    }
+
+    /* Mode-A: section transitions kept flat (no animations on layout) */
+    @media (max-width: 1023px) {
+      section, header, footer { padding-block: var(--section-pad-tablet); }
+    }
+    @media (max-width: 639px) {
+      section, header, footer { padding-block: var(--section-pad-mobile); }
+      .container { padding-inline: var(--space-md); }
+      .site-header .container { flex-direction: column; gap: var(--space-md); }
+      .nav-primary { gap: var(--space-md); }
+      .pew-list li { flex-direction: column; align-items: flex-start; gap: 2px; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.001ms !important;
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+      .bottle-card:hover { transform: none; }
+    }
+
+    /* Skip link */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 8px;
+      background: var(--hh-barn-rust);
+      color: var(--hh-bulletin-cream);
+      padding: 10px 16px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: var(--r-sm);
+    }
+    .skip-link:focus { left: 16px; z-index: 1000; outline: 2px solid var(--hh-bulletin-cream); outline-offset: 2px; }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Site header (bulletin mode) -->
+  <header class="site-header mode-bulletin" data-section="header" data-intent="navigate" data-layout="full-width-cream" role="banner">
+    <div class="container">
+      <a href="/" class="brand-mark" aria-label="Holler &amp; Hymn — home">
+        <span>HOLLER</span><span class="amp">&amp;</span><span>HYMN</span>
+      </a>
+      <nav class="nav-primary" aria-label="Primary">
+        <a href="/" aria-current="page">Home</a>
+        <a href="/the-holler">The Holler</a>
+        <a href="/the-still">The Still</a>
+        <a href="/the-bottles">The Bottles</a>
+        <a href="/hymns">Hymns</a>
+        <a href="/pews">Pews</a>
+        <a href="/visit">Visit</a>
+      </nav>
+      <a href="/visit" class="pew-cta header-visit">Visit</a>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- Hero (revival mode) -->
+    <section class="hero mode-revival" data-section="hero" data-intent="brand" data-layout="centered-stack" data-mode="revival" data-items="2" aria-labelledby="hero-h1">
+      <div class="container">
+        <div class="ornament-amp" data-ornament="hero-ampersand" aria-hidden="true">
+          <span class="neon-dot"></span>
+          <svg viewBox="0 0 64 64" width="64" height="64" fill="none" role="img" aria-label="Hand-painted ampersand">
+            <path d="M 14 50
+                     C 14 38, 26 32, 32 32
+                     C 38 32, 42 28, 42 22
+                     C 42 16, 38 12, 32 12
+                     C 26 12, 22 16, 22 22
+                     C 22 30, 30 38, 40 46
+                     C 46 51, 50 52, 54 50"
+                  stroke="#e8d8b8"
+                  stroke-width="3.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+          <path d="M 18 44 L 52 18"
+                stroke="#e8d8b8"
+                stroke-width="2"
+                stroke-linecap="round"
+                opacity="0.4" />
+        </svg>
+      </div>
+        <h1 id="hero-h1" class="wordmark">
+          <span>HOLLER</span><span class="amp">&amp;</span><span>HYMN</span>
+        </h1>
+        <p class="tagline">Saturday night sin. Sunday morning hymn. Both in one bottle.</p>
+        <div class="cta-pair">
+          <a href="/pews" class="pew-cta">Find a Pew</a>
+          <a href="/visit" class="ghost-cta">Book a Saturday Tasting</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ornament rule -->
+    <div class="ornament-rule mode-bulletin" data-ornament="rule-sourwood" aria-hidden="true">
+      <svg viewBox="0 0 240 28" width="240" height="28" fill="none">
+        <line x1="0" y1="14" x2="98" y2="14" stroke="#7e1d12" stroke-width="1" opacity="0.5" />
+        <g transform="translate(120 14)">
+          <path d="M -4 -10 C -2 -6, 2 -6, 4 -10 M 0 -10 L 0 10 M -10 -4 C -6 -2, -6 2, -10 4 M 10 -4 C 6 -2, 6 2, 10 4 M -4 10 C -2 6, 2 6, 4 10"
+                stroke="#7e1d12" stroke-width="1.5" stroke-linecap="round" fill="none" />
+          <circle cx="0" cy="0" r="1.5" fill="#7e1d12" />
+        </g>
+        <line x1="142" y1="14" x2="240" y2="14" stroke="#7e1d12" stroke-width="1" opacity="0.5" />
+      </svg>
+    </div>
+
+    <!-- The maker (bulletin mode) -->
+    <section class="maker mode-bulletin" data-section="maker" data-intent="story" data-layout="split-5-7" data-mode="bulletin" data-items="1" aria-labelledby="maker-h2">
+      <div class="container split split-5-7">
+        <div class="portrait">
+          <div class="placeholder" style="aspect-ratio: 4 / 5;" aria-label="Wendell Greene portrait — placeholder pending Gemini Lane 1">
+            <div>
+              <div class="ph-label">Awaiting Gemini</div>
+              <div class="ph-aux">Lane 1 · Portrait · 4:5</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="mono eyebrow">Of Wolfpen Holler · Madison Co. NC</p>
+          <h2 id="maker-h2" class="display h2">Made by Hand. From A to Z.</h2>
+          <blockquote class="pull-quote">"I grew up in a hollow outside Asheville where my grandmother kept a still in the smokehouse and a hymnal on the kitchen table. We never thought of them as different things."</blockquote>
+          <p class="mono signature">— Wendell</p>
+          <a href="/the-holler" class="read-on">Read the full story →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ornament rule (different mark) -->
+    <div class="ornament-rule mode-bulletin" data-ornament="rule-tent" aria-hidden="true">
+      <svg viewBox="0 0 240 28" width="240" height="28" fill="none">
+        <line x1="0" y1="14" x2="98" y2="14" stroke="#7e1d12" stroke-width="1" opacity="0.5" />
+        <g transform="translate(120 14)">
+          <path d="M -14 6 L 0 -10 L 14 6 Z" stroke="#7e1d12" stroke-width="1.5" stroke-linejoin="round" fill="none" />
+          <path d="M -8 6 L -8 -4 M 0 6 L 0 -10 M 8 6 L 8 -4" stroke="#7e1d12" stroke-width="1" opacity="0.5" />
+        </g>
+        <line x1="142" y1="14" x2="240" y2="14" stroke="#7e1d12" stroke-width="1" opacity="0.5" />
+      </svg>
+    </div>
+
+    <!-- The holler preview (revival mode) -->
+    <section class="holler-preview mode-revival" data-section="the-holler-preview" data-intent="story" data-layout="split-7-5-inverted" data-mode="revival" data-items="1" aria-labelledby="holler-h2">
+      <div class="container split split-7-5-inverted">
+        <div>
+          <h2 id="holler-h2" class="display h2">Wolfpen Holler, Madison County</h2>
+          <p class="body-text">Forty minutes outside Asheville. Rhododendron understory, sourwood blossom in late June. Everything in these bottles is foraged within forty miles of my barn.</p>
+          <a href="/the-holler" class="read-on on-dark">See the holler →</a>
+        </div>
+        <div class="landscape">
+          <div class="placeholder on-dark" style="aspect-ratio: 16 / 9;" aria-label="Wolfpen Holler landscape — placeholder pending Gemini Lane 1">
+            <div>
+              <div class="ph-label">Awaiting Gemini</div>
+              <div class="ph-aux">Lane 1 · Landscape · 16:9</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ornament rule (different mark) -->
+    <div class="ornament-rule mode-bulletin" data-ornament="rule-still" aria-hidden="true">
+      <svg viewBox="0 0 240 28" width="240" height="28" fill="none">
+        <line x1="0" y1="14" x2="98" y2="14" stroke="#7e1d12" stroke-width="1" opacity="0.5" />
+        <g transform="translate(120 14)">
+          <ellipse cx="0" cy="2" rx="9" ry="6" stroke="#7e1d12" stroke-width="1.5" fill="none" />
+          <line x1="0" y1="-4" x2="0" y2="-10" stroke="#7e1d12" stroke-width="1.5" />
+          <line x1="-3" y1="-10" x2="3" y2="-10" stroke="#7e1d12" stroke-width="1.5" />
+          <line x1="9" y1="2" x2="14" y2="0" stroke="#7e1d12" stroke-width="1" />
+        </g>
+        <line x1="142" y1="14" x2="240" y2="14" stroke="#7e1d12" stroke-width="1" opacity="0.5" />
+      </svg>
+    </div>
+
+    <!-- The still preview (bulletin mode) -->
+    <section class="still-preview mode-bulletin" data-section="the-still-preview" data-intent="process" data-layout="split-5-7" data-mode="bulletin" data-items="1" aria-labelledby="still-h2">
+      <div class="container split split-5-7">
+        <div class="still-image">
+          <div class="placeholder" style="aspect-ratio: 4 / 5;" aria-label="Copper still close-up — placeholder pending Gemini Lane 1">
+            <div>
+              <div class="ph-label">Awaiting Gemini</div>
+              <div class="ph-aux">Lane 1 · Process · 4:5</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h2 id="still-h2" class="display h2">The Still</h2>
+          <p class="body-text">Built in 2019 from a kit a man in Tennessee sold me. He drew the diagram on the back of a feed-store receipt. I still have the receipt.</p>
+          <a href="/the-still" class="read-on">See the process →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ornament rule (different mark) -->
+    <div class="ornament-rule mode-bulletin" data-ornament="rule-quill-rule" aria-hidden="true">
+      <svg viewBox="0 0 240 28" width="240" height="28" fill="none">
+        <line x1="0" y1="14" x2="106" y2="14" stroke="#7e1d12" stroke-width="1" opacity="0.5" />
+        <g transform="translate(120 14)">
+          <path d="M -10 6 C -6 0, 0 -6, 4 -10" stroke="#7e1d12" stroke-width="1.5" stroke-linecap="round" fill="none" />
+          <line x1="4" y1="-10" x2="10" y2="-4" stroke="#7e1d12" stroke-width="1.5" stroke-linecap="round" />
+        </g>
+        <line x1="134" y1="14" x2="240" y2="14" stroke="#7e1d12" stroke-width="1" opacity="0.5" />
+      </svg>
+    </div>
+
+    <!-- Featured bottles (revival mode) -->
+    <section class="bottles mode-revival" data-section="featured-bottles" data-intent="catalog" data-layout="grid-3" data-mode="revival" data-items="3" aria-labelledby="bottles-h2">
+      <div class="container">
+        <h2 id="bottles-h2" class="mono eyebrow" style="text-align: center;">Six Bottles. Four Categories. Every Label Painted by Hand.</h2>
+        <div class="bottles-grid">
+          <article class="bottle-card" aria-labelledby="bottle-pass-the-plate">
+            <div class="label">
+              <div class="placeholder" style="aspect-ratio: 4 / 5;" aria-label="PASS THE PLATE hand-painted bottle label — placeholder pending Gemini Lane 3">
+                <div>
+                  <div class="ph-label">Awaiting Gemini</div>
+                  <div class="ph-aux">Lane 3 · Label · 4:5</div>
+                </div>
+              </div>
+            </div>
+            <h3 id="bottle-pass-the-plate" class="display h3">Pass the Plate</h3>
+            <p class="desc">A Sunday-morning aperitif amaro.</p>
+            <p class="mono meta">24% ABV · Sourwood · Chicory · Magnolia Bark</p>
+            <a href="/pews" class="read-on where">Where to buy →</a>
+          </article>
+
+          <article class="bottle-card" aria-labelledby="bottle-tent-revival">
+            <div class="label">
+              <div class="placeholder" style="aspect-ratio: 4 / 5;" aria-label="TENT REVIVAL hand-painted bottle label — placeholder pending Gemini Lane 3">
+                <div>
+                  <div class="ph-label">Awaiting Gemini</div>
+                  <div class="ph-aux">Lane 3 · Label · 4:5</div>
+                </div>
+              </div>
+            </div>
+            <h3 id="bottle-tent-revival" class="display h3">Tent Revival</h3>
+            <p class="desc">Mountain herbs. Hellfire heat.</p>
+            <p class="mono meta">32% ABV · Sumac · Juniper · Black Walnut · Ramps</p>
+            <a href="/pews" class="read-on where">Where to buy →</a>
+          </article>
+
+          <article class="bottle-card" aria-labelledby="bottle-the-backslider">
+            <div class="label">
+              <div class="placeholder" style="aspect-ratio: 4 / 5;" aria-label="THE BACKSLIDER hand-painted bottle label — placeholder pending Gemini Lane 3">
+                <div>
+                  <div class="ph-label">Awaiting Gemini</div>
+                  <div class="ph-aux">Lane 3 · Label · 4:5</div>
+                </div>
+              </div>
+            </div>
+            <h3 id="bottle-the-backslider" class="display h3">The Backslider</h3>
+            <p class="desc">Sunday-school dropouts only.</p>
+            <p class="mono meta">18% ABV · Paw-Paw · Wild Persimmon · Juniper</p>
+            <a href="/pews" class="read-on where">Where to buy →</a>
+          </article>
+        </div>
+        <div class="bottles-cta-row">
+          <a href="/the-bottles" class="ghost-cta">All Six Bottles</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ornament rule (different mark) -->
+    <div class="ornament-rule mode-bulletin" data-ornament="rule-rhody-spray" aria-hidden="true">
+      <svg viewBox="0 0 240 28" width="240" height="28" fill="none">
+        <line x1="0" y1="14" x2="98" y2="14" stroke="#7e1d12" stroke-width="1" opacity="0.5" />
+        <g transform="translate(120 14)">
+          <path d="M -10 4 C -8 -2, -4 -6, 0 -8 C 4 -6, 8 -2, 10 4" stroke="#7e1d12" stroke-width="1.5" fill="none" stroke-linecap="round" />
+          <circle cx="-8" cy="0" r="1.2" fill="#7e1d12" />
+          <circle cx="-3" cy="-5" r="1.2" fill="#7e1d12" />
+          <circle cx="3" cy="-5" r="1.2" fill="#7e1d12" />
+          <circle cx="8" cy="0" r="1.2" fill="#7e1d12" />
+          <line x1="0" y1="-8" x2="0" y2="8" stroke="#7e1d12" stroke-width="1" />
+        </g>
+        <line x1="142" y1="14" x2="240" y2="14" stroke="#7e1d12" stroke-width="1" opacity="0.5" />
+      </svg>
+    </div>
+
+    <!-- Find a pew (bulletin mode) -->
+    <section class="pew mode-bulletin" data-section="find-a-pew" data-intent="stockists" data-layout="grid-2" data-mode="bulletin" data-items="4" aria-labelledby="pew-h2">
+      <div class="container">
+        <h2 id="pew-h2" class="display h2">Find a Pew</h2>
+        <p class="body-text intro">If you're in Asheville, try these pews.</p>
+        <ul class="pew-list">
+          <li>
+            <span class="bar-name">Sermon Bar</span>
+            <span class="neighborhood">Lexington Ave</span>
+          </li>
+          <li>
+            <span class="bar-name">The Backslider Tavern</span>
+            <span class="neighborhood">River Arts District</span>
+          </li>
+          <li>
+            <span class="bar-name">Little Jumbo</span>
+            <span class="neighborhood">Downtown</span>
+          </li>
+          <li>
+            <span class="bar-name">Bull and Beggar</span>
+            <span class="neighborhood">RAD</span>
+          </li>
+        </ul>
+        <a href="/pews" class="read-on pew-see-all">See all pews →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site footer (revival mode) -->
+  <footer class="site-footer mode-revival" data-section="footer" data-intent="contact-legal" data-layout="three-column-dark" role="contentinfo">
+    <div class="container">
+      <div class="footer-col contact">
+        <h3>Direct</h3>
+        <ul>
+          <li><a href="mailto:wendell@hollerandhymn.com">wendell@hollerandhymn.com</a></li>
+          <li><a href="tel:+18285550143">+1 828 555 0143</a></li>
+          <li><a href="https://instagram.com/hollerandhymn" rel="noopener" target="_blank">@hollerandhymn</a></li>
+        </ul>
+      </div>
+      <div class="footer-col site-links">
+        <h3>Site</h3>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/the-holler">The Holler</a></li>
+          <li><a href="/the-still">The Still</a></li>
+          <li><a href="/the-bottles">The Bottles</a></li>
+          <li><a href="/hymns">Hymns</a></li>
+          <li><a href="/pews">Pews</a></li>
+          <li><a href="/visit">Visit</a></li>
+          <li><a href="/the-catalog">Catalog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col legal">
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="#age-verification">21+ verified</a></li>
+          <li><a href="/privacy">privacy</a></li>
+          <li><a href="/shipping">shipping</a></li>
+          <li><a href="https://hollerandhymn.shop/" rel="noopener" target="_blank">the shop ↗</a></li>
+        </ul>
+      </div>
+      <div class="footer-rule">
+        <span>Made in Wolfpen Holler</span>
+        <span>© Holler &amp; Hymn 2026</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
