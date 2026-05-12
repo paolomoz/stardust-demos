@@ -1,10 +1,39 @@
 # Stardust prototype — living draft for the prototype-skill's improvements
 
-> Living capture of failures, decisions, and proposed contract changes from running `stardust:prototype` against the Holler & Hymn greenfield brand. Eventual use: source material for upstream changes to the prototype skill (and/or to impeccable's craft + critique) that prevent the failure modes documented here.
+> Living capture of failures, decisions, and proposed contract changes from running `stardust:prototype` against the Holler & Hymn, High Lonesome, and Chapitô greenfield brands. Eventual use: source material for upstream changes to the prototype skill (and/or to impeccable's craft + critique) that prevent the failure modes documented here.
 >
 > **How to maintain:** update inline whenever a `stardust:prototype` run produces output that fails one of the brand's own anti-references, or when the user calls out AI-slop in a render. Capture the failure mode, the contract gap, and the concrete addition.
 >
-> Pair-docs: `context/stardust-seed-brief-skill.md` (seed + brief commands); `context/motion-demo-skill.md` (demo-building skill).
+> **Per-brand iteration logs** live alongside the brand workspace (e.g. `demos/uc2-uc3-greenfield/chapito/PROTOTYPE-NOTES.md`). When a fix observed in a per-brand log generalises across brands, promote it here as a failure mode + proposal.
+>
+> Pair-docs: `context/stardust-seed-brief-skill.md` (seed + brief commands; see § Reference-driven seed for the Chapitô-validated pattern of feeding `stardust:seed` a concrete visual reference); `context/motion-demo-skill.md` (demo-building skill).
+
+## Scope reclassification — 2026-05-12
+
+The proposals captured in this document (A–M plus subsidiary numbering) are now scoped to the **greenfield-pipeline implementation track**. They will be landed in the same upstream session that implements `/stardust:seed` and `/stardust:brief`, not as standalone changes to the existing `extract` → `direct` → `prototype` → `migrate` commands used by UC1 uplift flows.
+
+Reason: every failure mode documented here surfaced from a greenfield build (Holler & Hymn, then High Lonesome) where the brand surface was hand-authored from a BRAND.md rather than crawled from a deployed site. Several proposals depend on greenfield-specific fields (`imageryLanes[].firstPassSource` + `.policy` + `.deployment`, `_brand-extraction.json.logo.pendingExternalGen`, `_provenance.synthesizedInputs[]`) that don't get populated by `stardust:extract` on a real site. Landing them as cross-cutting changes to the existing commands would couple UC1 (uplift of a real site) and UC2/UC3 (greenfield) in ways the validation case doesn't cover — UC1 has not been re-tested with these proposals applied.
+
+The combined-session work plan lives at `context/stardust-greenfield-implementation-prompt.md`. Read that file before starting the implementation work; it sequences seed/brief + proposals A–M as a single coherent landing.
+
+Cross-cutting proposals that *may* later be extended to UC1 once validated against a real-site extract:
+
+- Proposal A (critique non-skippable)
+- Proposal B (shape-brief anti-pattern audit)
+- Proposal C (rendered-HTML anti-pattern scan)
+- Proposal F.1–F.4 (font-availability + character audit)
+- Proposal G.1–G.4 (multi-variant fork default)
+- Proposal J.1–J.4 (brand-axis drift detector)
+- Proposal M.1–M.5 (motion as first-render output)
+
+These are the candidates that are conceptually UC1-applicable. The greenfield implementation lands them first; a follow-up effort can extend to UC1 after UC1-specific validation.
+
+UC1-out-of-scope proposals (greenfield-only by design):
+
+- Proposal D (seed → composition translation contract) — reads seed's rolled inputs
+- Proposal G.5 (Phase 2.7 alternate-palette exploration) — exercises greenfield's palette-token flexibility
+- Proposal H.1–H.5 (palette-deployment intensity axis) — depends on greenfield brand-tension language signals
+- All Pattern 7 imagery proposals — depend on seed-authored `imageryLanes[].firstPassSource` fields
 
 ---
 
@@ -489,7 +518,248 @@ The fact that the run shipped clean **despite** the proposals being proposal-sta
 
 ---
 
+## Failure mode #8 — static first-render leaves brand energy on the table
+
+> **Severity: contract-shaping.** A token-perfect, composition-correct, brand-faithful first render that ships without motion reads as a *brochure* of the brand, not the brand itself. The page can be excellent typographically and color-wise and still feel inert. Motion is what makes a render feel like a designed site, not a designed page.
+
+### What happened
+
+The High Lonesome first render (validation case in Failure mode #7) shipped with zero motion: no scroll-reveal, no entrance choreography, no hover micro-interactions, no atmospheric movement, no age-gate fade. The page rendered correctly but felt static when the user opened it. The cluster of three bottles, in particular, sat in place from page-load — losing the "specimens-being-placed" reading the composition intended.
+
+User feedback: *"now add some motion to make the site more interactive and entertaining."*
+
+Validated motion package (2026-05-12) for the High Lonesome home prototype — 5 items chosen for the brand's "slow, joyful, reverent" register:
+
+1. **Scroll-reveal** — every below-fold section fades + slides up 28px on intersection. 900ms duration, `cubic-bezier(0.22, 1, 0.36, 1)` (ease-out-expo). Threshold 0.12, root-margin `0px 0px -8% 0px`.
+2. **Bottles-cluster fan-in choreography** — the three labels enter from below with stagger: center label 80ms delay (1200ms), left/right labels 380ms delay (1300ms each). Each animates from `translateY(60-90px) scale(0.92)` to final rotated/elevated state. The center bottle leads, the side bottles follow — reads as "specimens placed on the surface, center first, then flanking."
+3. **Hero copy stagger** — eyebrow / wordmark / tagline / CTAs reveal in sequence on initial load (350ms / 500ms / 700ms / 900ms delays). 1100ms duration. Establishes the brand voice before any scroll.
+4. **Ornament-rule SVG draw-in** — hand-painted SVG paths inside `[data-reveal]` sections paint themselves via `stroke-dashoffset` (240 → 0) on intersection. 1600ms duration with 300ms delay. The hand-painted ornament *appears* hand-painted because it's drawing in real time.
+5. **Cluster hover micro-interaction** — hovering over any of the three bottle labels lifts it 8-36px and scales 1.02. 320ms ease-out. Rewards interaction without disturbing the composition.
+
+Plus age-gate fade-out (720ms) replacing the previous instant `display: none` dismiss.
+
+### Why the brand register survives motion
+
+The brand is "meditative mountain music wearing Italian summer color. Single voice in a wide place. Saturated, joyful, slow." A naive motion package would default to SaaS-pattern motion: 200-300ms tight ease curves, bounce-on-click, parallax everywhere. That would break the brand register entirely.
+
+The High Lonesome motion package survives the register because:
+
+- **Durations are long.** 900-1600ms for reveals, not the 200-300ms SaaS default. The page feels slow and deliberate, matching "slow declaratives."
+- **Easing curves are exponential out, no bounce, no elastic.** `cubic-bezier(0.22, 1, 0.36, 1)` lands softly, no spring. Matches "reverent, not irreverent."
+- **Choreography respects composition.** The cluster fan-in lands at the same final rotated/elevated state the composition specifies — motion *delivers* the composition, doesn't replace it.
+- **Atmospheric movement, not theatrical movement.** No parallax, no Ken Burns, no fixed-position elements. The motion is the page coming into being, not the page performing.
+- **`prefers-reduced-motion: reduce` is fully honored.** JS short-circuits before adding `has-motion` class; CSS rules under `body.has-motion` never fire. Users who prefer no motion get the static composition unchanged.
+
+The result: motion *amplifies* the brand register rather than fighting it.
+
+### Why the contract didn't surface this
+
+The prototype skill's current contract authors `home-proposed.html` as a static composition. Motion is treated as a Phase 4 iteration concern (via `$impeccable animate` chat-driven refinement), not a first-render requirement.
+
+For brand-register Mode A first-renders against a `signal-strong` brand surface, this gets the priority backwards: **a static-first render is incomplete for brand register, the same way a flat-color render is incomplete for drenched-palette intent.** The motion isn't decoration; it's how the design language deploys *over time*.
+
+### Proposed addition: motion-by-default for brand-register Mode A first-renders
+
+#### M.1 — Motion package as a first-render contract output
+
+When the resolved direction is brand-register Mode A with `signal-strong` brand surface, the prototype skill should author motion as part of the proposed file, not as a later iteration. Specifically, the shape brief should specify:
+
+- **Section reveal policy** — which sections reveal on scroll (default: all below-fold); duration, easing, stagger.
+- **Composition entrance choreography** — for any section whose composition is itself the brand moment (hero, the cluster section, the loud-flag CTA section), specify a choreographed entrance: per-element delays, transform/opacity keyframes, total duration ≤ 1500ms.
+- **Ornament motion** — if the brand uses hand-painted ornament SVGs (per BRAND.md imagery lanes or DESIGN.md ornament-rule), they should draw in on reveal via `stroke-dashoffset`.
+- **Hover micro-interactions** — at minimum on primary interactive composition elements (CTA, cluster labels, primary navigation). Subtle, ≤ 400ms.
+- **Initial-load reveal** — for content above the fold (hero), a staggered fade-in sequence rather than instant render. Establishes the brand voice through pace.
+- **`prefers-reduced-motion: reduce` honored** — gated via `body.has-motion` class added by JS only when motion is preferred; all motion CSS scoped under that class.
+
+The motion package is **brand-tuned, not template**. The shape brief author picks duration / easing / choreography based on the brand's tone axis (slow / fast), register axis (memoir / tabloid / catalogue), and tension language ("at full volume" → bolder motion; "hushed" → barely-there motion).
+
+#### M.2 — Easing curve register-mapping table
+
+Per the brand's resolved register / tone axes, pick the motion easing from:
+
+| Register / tone | Curve | Duration window | Notes |
+|---|---|---|---|
+| Memoir / contemplative / slow | `cubic-bezier(0.22, 1, 0.36, 1)` (ease-out-expo) | 900-1500ms | High Lonesome default |
+| Tabloid / urgent / loud | `cubic-bezier(0.16, 1, 0.3, 1)` (ease-out-quart) | 400-700ms | Holler & Hymn-shaped |
+| Editorial / luxe / restrained | `cubic-bezier(0.4, 0, 0.2, 1)` (Material-standard) | 600-900ms | When restraint is intentional |
+| Catalogue / functional / direct | `cubic-bezier(0.32, 0.72, 0, 1)` | 300-500ms | Product-register adjacent |
+
+Bounce / elastic / overshoot curves are NEVER picked for brand-register. They read as Web-2010-jQuery slop.
+
+#### M.3 — Composition choreography as a first-class artifact
+
+Sections whose composition is the brand moment (hero, the cluster section, the loud-flag CTA, any "specimen plate" or "tasting flight" arrangement) need explicit entrance choreography in the shape brief. Without it, craft renders them as static and the user has to ask for motion as a follow-up.
+
+Suggested choreography patterns per section archetype:
+
+- **Full-bleed hero with overlaid copy** — copy staggers in (eyebrow → wordmark → tagline → CTAs) on initial load. Background photo holds.
+- **Specimen-plate / cluster arrangement** — center subject enters first (the brand's "primary" specimen), flanking subjects follow with delay. Each element animates from a "before placement" state to its final composed position. Total duration ≤ 1500ms.
+- **Cardinal-flash flag-section** — section ground fades up. CTA pulses gently on hover. No additional motion (the loud color carries the energy).
+- **Cream interlude / surface inversion** — fade + slow rise. Reads as "a quieter page being turned."
+- **Long-form text section** — fade + slide-up uniformly. No staggered reveal of paragraphs (reads as gimmick).
+- **Footer / colophon** — minimal motion. Fade only, no slide.
+
+#### M.4 — JS contract for motion
+
+The motion JS should:
+
+1. Short-circuit when `matchMedia('(prefers-reduced-motion: reduce)').matches`.
+2. Add `body.has-motion` class to scope all motion CSS.
+3. Use `IntersectionObserver` (with feature-check fallback) for scroll-reveal triggers, `threshold: 0.12`, `rootMargin: '0px 0px -8% 0px'` (reveal slightly before the bottom edge so motion completes before the user scrolls past).
+4. Observe all `[data-reveal]` elements once; `unobserve` after first reveal.
+5. Stay inline at end of `<body>` — no external script dependencies (preserves "self-contained" prototype contract).
+
+#### M.5 — Render-validation check
+
+Phase 2 validation should add: **does the prototype carry motion?** If `signal-strong` brand surface + Mode A + no rebrand override, motion is required. Validation fails if:
+
+- No `[data-reveal]` attributes on sections.
+- No `prefers-reduced-motion` media query handling.
+- No JS-driven motion gating (motion would fire even when user prefers reduce).
+
+### What this proposal would have changed about the High Lonesome run
+
+If proposal M had landed:
+
+- The shape brief's "Interaction model" section would have specified the 5-item motion package per the register-mapping table.
+- Craft would have rendered the motion as part of the first proposed file.
+- The user wouldn't have needed to ask for motion as a follow-up.
+- The cluster fan-in choreography would have been a load-bearing artifact (specified in the brief, validated at render), not an after-thought iteration.
+
+The High Lonesome motion work this round (commit pending) is the validation: same brand, same composition, with motion vs. without — and "with motion" reads as a designed site, "without" reads as a flat composition. Motion is brand-load-bearing for brand-register Mode A.
+
+### Source
+
+High Lonesome home prototype iteration, 2026-05-12. User feedback drove the addition; motion package validated end-to-end via Playwright (initial-state opacity 0 / translateY 28px, scroll-trigger fires, final state matches composition, prefers-reduced-motion suppresses all motion correctly).
+
+---
+
+## Failure mode #9 — brand-fidelity crowds out a11y when the motif catalog is the brief's primary contract
+
+### What happened
+
+Chapitô (2026-05-12). The prototype skill (run via hand-authored render) executed every motif from the brand's load-bearing catalog — sunburst hero, X-marquee, highlighter manifesto, 4 color-block sections, chip-tag cluster, big-dark bottle hero, medallion footer, persistent bottom bar. Visual fidelity to the brand register was strong. But when `impeccable:audit` ran against the rendered HTML, it flagged:
+
+- **Missing `<h1>`** — the medallion image was the *de-facto* page title but no h1 existed. AT users got no document title.
+- **No `lang=` attribute on any of 18 dual-language spans** — the prototype's EN/PT toggle used `data-lang` data attributes + CSS visibility, but no `lang="en"` / `lang="pt-PT"` markers. Screen-reader voice synthesis would pronounce all content in the document's root language regardless.
+- **Touch targets <44px** — the persistent bottom bar (36px tall), the iconlinks footer (24px hit-box), the lang-toggle pill (16×40px) all below WCAG 2.5.5 AA Enhanced.
+- **Bottle PNGs eager-loaded with no `width`/`height`** — six 600KB–1.2MB images on initial paint, layout shift inevitable.
+
+The render had executed the **brand contract** (motif catalog + color tokens + typography) but not the **document contract** (semantic skeleton + image perf + i18n markup).
+
+### Why
+
+The shape-brief + render contract emphasises the motif catalog as the brand's load-bearing surface. Each motif is described in DESIGN.json + home-shape.md + direction.md — multiple-source pressure on the cosmetic layer. The semantic skeleton (heading hierarchy, lang attrs, list semantics, touch sizing) is not described per-brand; it sits in PRODUCT.md § Accessibility & Inclusion as a one-paragraph nod, but doesn't propagate into the per-page shape brief or the render contract.
+
+LLM renderers consistently prioritise the *named* contract over the *implied* contract.
+
+### Contract change — semantic skeleton becomes a render-time requirement
+
+The shape brief (`stardust/prototypes/<slug>-shape.md`) needs a new section that's mandatory alongside the motif list:
+
+```markdown
+## Semantic skeleton (LOAD-BEARING)
+
+- The page has exactly one `<h1>`. (Specify: visible or visually-hidden; what it contains.)
+- The page has the following landmarks: header, main, footer (each with appropriate role or aria-label).
+- Heading hierarchy: h1 → h2 per section → h3 per sub-section. No jumps.
+- All interactive elements have a min touch-target of 44×44px (or 24×24 with sufficient spacing per WCAG 2.5.5).
+- All decorative images use `alt=""`; informational images use descriptive alt.
+- All images have explicit `width` and `height` attributes.
+- All below-the-fold images use `loading="lazy"`.
+- For bilingual / multilingual pages: every translatable element has a `lang=` attribute matching its visible language.
+- Focus-visible state defined globally (matches DESIGN.md § Accessibility).
+```
+
+This becomes a non-optional render-output requirement, sibling to the motif catalog. The prototype skill validates against it (audit-style check) before emitting `<slug>-proposed.html`.
+
+### Proposal scope
+
+This change is a small extension to the existing shape-brief contract. It lives in `prototype` (not `direct`, not `migrate`) because the per-page semantic skeleton is per-page knowledge. Landed alongside the proposals A–M; doesn't require new fields in DESIGN.json (the rules are document-level, not token-level).
+
+### Cross-references
+
+- Proposal C (rendered-HTML anti-pattern scan) already runs at render time; extend it to flag missing-h1 / missing-lang-attrs / sub-44px-touch-targets.
+- This proposal can be auto-enforced once the prototype skill calls `impeccable:audit` as a closing phase (see failure mode #10 below — "impeccable as final-pass contract").
+
+## Failure mode #10 — `impeccable:critique` + `audit` catch brand-rule violations that the LLM render misses
+
+### What happened
+
+Chapitô (2026-05-12). The render produced 8 motifs faithfully, but `impeccable:critique` and `impeccable:audit` caught two load-bearing rule violations the render had passed over:
+
+- **Italian-language leak in section 6 heading** — PT mode showed *"Prendete, e Provai"*. "Prendete" is Italian imperative. BRAND.md anti-references explicitly forbid Italian-language words anywhere in copy. The render had inherited the phrase from a draft CONTENT.md without rotating it.
+- **Drop-shadow on bottle hover** — `.bottle-slot:hover>*{filter:drop-shadow(...)}`. DESIGN.md §4 Elevation: "flat by conviction. No drop shadows." The render had added the hover state without checking the rule.
+
+Neither violation was visible at first-render review. Both were caught by the critique pass running against the brand-rule contracts.
+
+### Why this matters
+
+Running `impeccable` against a Stardust render is fundamentally different from running it against a generic frontend. The brand-faithful contract in PRODUCT.md + DESIGN.md provides specific rules to test against (anti-references list, palette deployment rules, typography rules, elevation rule). The pipeline's value is highest when it has these rules as inputs, not when it's run blind.
+
+### Contract change — `impeccable:critique` + `audit` + `adapt` as the closing phase of `/stardust:prototype`
+
+After the render completes (`<slug>-proposed.html` is written), the prototype skill chains into:
+
+1. `impeccable:critique <slug>-proposed.html` — runs LLM-design-review + deterministic-detector, produces a critique report.
+2. **Auto-fix the P0/P1 brand-rule violations** the critique surfaces (the ones tied to explicit BRAND.md anti-references or DESIGN.md named rules). Don't touch the P2/P3 stylistic findings without user input.
+3. `impeccable:audit <slug>-proposed.html` — runs the 5-dimension technical audit (a11y, perf, theming, responsive, anti-patterns).
+4. **Auto-fix the P0/P1 audit findings** scoped to a11y + image-perf + theming (the deterministic categories). Leave P2/P3 responsive nits for the user.
+5. `impeccable:adapt <slug>-proposed.html` — runs the responsive / multi-device pass. Auto-applies if the audit found `Responsive ≤ 2/4`.
+
+This means a `/stardust:prototype` invocation produces TWO artifacts: the initial render AND the impeccable-polished render. The motif catalog stays load-bearing for the first render; the impeccable contracts stay load-bearing for the polish pass.
+
+### Proposal scope
+
+This is a workflow change to the prototype skill's exit phase. Doesn't change the render contract; only adds the closing-pipeline call. The skill needs to know which P0/P1 categories are auto-fixable (a11y semantic skeleton, brand-rule violations against explicit anti-references) vs which need user input (composition rhythm, palette deployment intensity).
+
+Validated against Chapitô; saved 4 critique fixes (Italian leak, drop-shadow, cravo bookend monotony, chip readability) + 9 audit fixes (h1, 18× lang attrs, touch targets, image dims, role=list, aria-label, etc.) + 5 adapt fixes (mobile bottle text, mobile tape rotation, mobile cutout retention, credits-bar simplification, safe-area-inset).
+
 ## Pitfalls / gotchas (cross-cutting)
+
+### CSS specificity tie — stagger-reveal overrides positioning transforms
+
+`[data-stagger].in>*` has specificity (0,2,0): one attribute selector + one class. So does any `.bottle-slot.bX` (or equivalent) rule with two classes. When both target the same element, **source order decides** — and the stagger CSS is usually declared *later* (in the reveal section near the bottom of the stylesheet), so it wins on the tie. The stagger rule sets `transform: translateY(0)`, which **overrides the positioning transform** the element relies on for its layout (e.g. `translate(-50%,-50%) rotate(Xdeg) translateY(-200%) rotate(-Xdeg)` for a radial slot).
+
+**Symptom:** elements with positioning transforms collapse to viewport center / corner when the stagger reveal completes.
+
+**Fix:** for elements that have their own positioning transforms, use `data-reveal` on the *parent* (single fade-in via opacity) instead of `data-stagger` on the parent (cascade-fade via transform on every child). The reveal CSS for `[data-reveal]` only sets transforms on the reveal element itself, not its children, so positioning transforms on children survive.
+
+**Validated:** Chapitô iteration 2. The 6-bottle orbit broke when I switched `data-stagger` to `.orbit` instead of `.hero-ring`. Bottles stacked at center. Fix: `data-reveal` on `.orbit` (the parent fades in as a unit; bottles inside keep their positioning transforms).
+
+### Radial composition rotation: carousel vs ferris-wheel
+
+Two distinct rotation patterns for radial-arranged elements (bottles around a medallion, pendants around a center, badges around an anchor). The choice tracks the brand register; pick deliberately, document the choice in the shape brief.
+
+**Carousel pattern (top points inward).** Each element's "top" axis faces the center of rotation. The element rotates *with* the ring — as the ring turns, each element's local orientation updates. This is the *merry-go-round* feel — horses face inward, carriages tilt with the ring. Brand register: fairground, big-top, ornament-led.
+
+- CSS: each slot's static transform ends with `rotate(180deg)` (so the element's "up" axis points radially inward from its position).
+- No counter-rotation animation on the inner content.
+- The ring's `animation: orbit-spin Xs linear infinite` carries the slots with it.
+
+**Ferris-wheel pattern (top stays upright).** Each element's "top" axis stays vertical in world frame. The ring rotates; the elements counter-rotate at the same rate so they always read upright. This is the *Ferris wheel* feel — gondolas swing to stay level even as the wheel turns. Brand register: modern, clean, label-readable.
+
+- CSS: each slot's static transform ends with `rotate(-Xdeg)` (counter-rotates the slot's static angular position).
+- Plus an `animation: orbit-counter Xs linear infinite` on the inner content, opposite direction to the ring.
+- Math: at any time `t`, the inner content's net rotation is `ring_rotation_at_t + slot_static + inner_counter_at_t = 0` (upright).
+
+Both patterns are validated. Chapitô used carousel (top inward). High Lonesome would use ferris-wheel if it had a radial composition.
+
+### `display: none` hides text from sighted users but leaks to some screen readers; pair with `aria-hidden` for bilingual systems
+
+When implementing a multilingual page with parallel-content spans (e.g. `<span data-lang="en">...</span><span data-lang="pt">...</span>`) toggled via CSS `display: none`, modern engines DO remove the hidden span from the accessibility tree. But:
+
+- Some legacy screen readers ignore the CSS state and announce both spans.
+- "Read all" reader-modes in browsers (Safari, Firefox) sometimes read hidden content.
+- SEO crawlers count hidden text against the page's word inventory.
+
+**Belt-and-braces:** every translatable element gets a `lang=` attribute matching its visible language (`lang="en"` / `lang="pt-PT"` / etc.). The non-active span(s) ALSO get `aria-hidden="true"` toggled dynamically by the language-toggle script, in addition to the CSS `display:none`.
+
+For the language toggle button itself: the visible text alternates ("PT" when EN is active, "EN" when PT is active), so set a dynamic `aria-label` ("Switch to Portuguese" / "Switch to English") via JS — the visible text inside the button is `aria-hidden="true"` since it's decorative shorthand for the action.
+
+**Validated:** Chapitô iteration 3. Audit P0 finding ("Hidden-language DOM leaks to screen readers"). Fix added `lang=` attrs to all 18 dual-language spans + `aria-hidden=true` on toggle text + dynamic aria-label refresh on toggle click.
+
+
 
 - **The agent will substitute "manual critique" for "automatic critique" when fast iteration is wanted.** The skill should refuse to mark `prototyped` when the automatic detector didn't run unless `--no-critique` was the user's explicit instruction.
 - **Token-perfect ≠ brand-faithful.** Mode A pins palette and type. Mode A does *not* automatically pin composition, hierarchy, density, motif, or layout pattern. The seed roll's other dimensions are supposed to drive those — but only if there's a translation contract (proposal D).
@@ -520,5 +790,10 @@ The fact that the run shipped clean **despite** the proposals being proposal-sta
 - **Holler & Hymn** (first failure case). The brand's documented anti-references (Kinfolk-luxe-minimal, Brooklyn industrial, Wes Anderson costume, Etsy folk, generic country signage, craft-beer label, Generic-2026-SaaS, identical-card-grid, hand-imperfect-required) constituted the entire failure surface. Five of nine anti-references were directly shipped. The contract additions above are meant to catch precisely this pattern.
 
 - **High Lonesome** (validation case, 2026-05-12). Mediterranean-pop variant of the WNC mountain-spirits direction. Single-variant Mode A render through the full Stardust pipeline (seed + brief + direct + prototype + craft + critique). Validated Failure mode #7: when the agent applies the documented learnings actively (anti-pattern render-refusal list in the shape brief, hard-rule passthrough in the craft invocation, paletteDeployment + typographyMeta proposed-stage fields in DESIGN.json), the pipeline shipped a clean render. The same pipeline without those active inputs would still risk slop. The brand's render-refusal list (drenched palette deployment, italic-at-display, cardinal-flash one-section-per-route, no SaaS hero, no 3-col card grid, no all-caps display, Mode A placeholder visual signature) all landed correctly.
+
+  Subsequent iterations on the same prototype validated additional failure modes / proposals:
+  - **Pattern 7 (workflow-patterns) — image as atmospheric texture, not as inline object.** First-pass imagery (Unsplash for atmospheric/landscape lanes, Gemini 3 Pro Image Preview for hand-painted bottle labels) wired into 4 sections via section-background + scrim + atmospheric overlay; sharpened the brand-owner-authored bright-line to "final brand artifacts only; first-pass exploration acceptable as draft when clearly marked."
+  - **Pattern 8 / Failure mode #8 — motion as a brand-faithful first-render output.** 5-item motion package (scroll-reveal, cluster fan-in choreography, hero copy stagger, ornament SVG draw-in, hover micro-interactions) landed with `prefers-reduced-motion` respect. Drove the proposal M (motion-by-default for brand-register Mode A).
+  - **`impeccable:adapt` for mobile.** Tap-target audit (19/20 below 44pt initial → 20/20 effective after `::before` hit-area expansion pattern); credits-bar mobile padding; photo credit chips mobile bump. Desktop layout fully preserved (verified via Playwright pre/post measurement).
 
 Add new entries when subsequent brands surface a new failure mode or validate a proposed addition.

@@ -4,6 +4,21 @@
 >
 > **How to maintain:** update this doc inline whenever we (a) lock a decision worth re-using, (b) define a new mapping rule, (c) hit a gotcha. Don't wait until the end — value compounds when the entry is fresh. The pair-doc for the demo-building skill is `context/motion-demo-skill.md`; the patterns conventions match.
 
+## Implementation scope — 2026-05-12
+
+`/stardust:seed` + `/stardust:brief` will land in the **same upstream session** as the slop-prevention proposals tracked in `context/stardust-prototype-skill.md` (proposals A–M and subsidiary numbering). The two efforts are sibling tracks of the same greenfield-pipeline initiative:
+
+- Seed + brief produce the brand half + briefing half of `stardust/current/` from authored docs (UC2/UC3 greenfield).
+- Proposals A–M improve the design quality of what downstream `stardust:direct` + `stardust:prototype` produce when consuming a greenfield `current/`.
+
+The combined session's work plan is at `context/stardust-greenfield-implementation-prompt.md`. That file is the prompt to paste at session start; it sequences seed/brief schema delivery + the proposals as a coherent landing order.
+
+Specific cross-references between the two tracks:
+
+- The "Downstream consumer contract" section in this file names the proposed-stage fields seed must write (`typographyMeta.expectedCharacter`, `typographyMeta.rejectedCharacters`, `extensions.paletteDeployment.intensity`, etc.). Those fields are read by the proposals in `stardust-prototype-skill.md` (specifically F.2 + H + Pattern 7).
+- Without seed writing those fields, the proposals fall back to their default behavior and the High Lonesome render quality regresses. So seed must land first (or alongside) for the proposals to have inputs.
+- The High Lonesome workspace (`demos/uc2-uc3-greenfield/highlonesome/`) is the validation fixture for both tracks. It contains the canonical seed output (`stardust/current/`), the canonical brief output (`current/pages/*.json`), the canonical direct output (`PRODUCT.md` / `DESIGN.md` / `DESIGN.json` / `stardust/direction.md`), and the canonical prototype output (`stardust/prototypes/home-shape.md` + `home-proposed.html`). Each track validates by reproducing its slice of the fixture.
+
 ---
 
 ## Working name
@@ -48,6 +63,8 @@ Required: a brand-definition document. Reference: `demos/uc2-uc3-greenfield/site
 - **Direction phrases for `/stardust:direct`** — 2–3 candidate intent phrases
 
 Optional: a brand assets bundle (logo SVG/PNG, brand imagery per the imagery lanes, custom typeface files). Missing assets become `pending: true` placeholders downstream.
+
+Optional: a **visual-register reference**. See `§ Reference-driven seed` below — this is the single highest-leverage seed input for design-quality, validated against the Chapitô build.
 
 ### `/stardust:brief` input shape
 
@@ -212,6 +229,173 @@ Added fields not in extract's output:
 
 Downstream `direct`/`prototype` need to know about these. Document at the seam.
 
+## Reference-driven seed (validated 2026-05-12 against Chapitô)
+
+**The most important input `/stardust:seed` can take, and the one that most cleanly defeats the AI-craft slop reflex.**
+
+`/stardust:seed` should accept — and actively prompt for — a **visual-register reference**: a real website URL, a screenshot, a set of moodboard images, or any concrete artifact whose *compositional vocabulary* the new brand should inherit. The maker doesn't need to know how to describe their target register in abstract terms; they need to be able to point at one. The seed command does the lift.
+
+### Why this is load-bearing
+
+The High Lonesome build (2026-05-12) authored a thorough BRAND.md with palette, type tier, voice rules, and anti-patterns — and the rendered prototype still felt plain. The failure mode: the BRAND.md described the *register at the level of rules*, not at the level of *moves*. The LLM, asked to render "saturated maximalist single-maker craft brand" from rule descriptions, defaulted to the closest neighbour register it had a strong prior on — clean-editorial-craft.
+
+The Chapitô build (same day, same toolchain, same maker authoring discipline) inverted this: the BRAND.md was authored *against a concrete reference website* (opificiocattaneo.com) with named-and-numbered compositional motifs lifted from the reference and renamed for the new cultural register. The prototype no longer had room to default — every section had a named motif to reimplement. Design quality stepped up correspondingly.
+
+**The rule:** abstract direction is not enough. The seed command needs a reference to *copy compositional moves from*, then a different cultural register to *rotate the source-leakage away*. Token substitution alone produces slop ([[feedback_render_divergence_load_bearing]]); reference-lift produces the brand's surface ([[feedback_reference_driven_seed]]).
+
+### What the reference can be
+
+Validated and ranked by leverage:
+
+1. **A live website URL** — strongest signal. The seed command can crawl it (one page is enough) and read its actual rendered DOM. Layout grid, section composition, ornament repertoire, type lockups, motion vocabulary all become inspectable. Chapitô used opificiocattaneo.com via screenshot — a URL would have given an even cleaner lift.
+2. **A screenshot or PDF of a website / poster / spread** — second strongest. The LLM reads the visual surface; section composition + ornament repertoire + type-treatment ideas are all preserved. Chapitô worked from a full-page screenshot.
+3. **A moodboard (3–8 images)** — useful but lower leverage. The cross-image consistency tells you the register; individual images don't carry the composition vocabulary.
+4. **A named brand or design lineage** ("like Stefan Sagmeister", "like a 1960s Folkways sleeve") — weakest. The LLM has its own prior on the name; the seed loses the specificity that defeats slop. Only useful in combination with #1–3.
+
+### What the seed command does with the reference
+
+Five steps, none of which appear in seed's behaviour before this update:
+
+1. **Survey the reference's compositional moves.** Enumerate every named composition pattern visible — hero composition, section transitions, ornament repertoire (sunbursts, marquees, tape ribbons, ticket stubs, highlighter pulls), imagery treatments (cutouts, photographic backgrounds, illustration), CTA shapes, footer pattern. Aim for 6–10 named moves, not 3 vague ones.
+2. **Rename them in the new brand's vocabulary.** Each move gets a brand-native name and a description that ties the form to a justification in the new brand's identity. Sunburst becomes "sunburst medallion" tied to the brand's fairground identity; marquee tape becomes "X-crossed marquee ribbon" tied to the come-to-the-shop CTA destination. The renaming is the lift — the move's *form* survives, its *source identity* doesn't.
+3. **Write the renamed moves into `BRAND.md § Compositional motif catalog`** with a `loadBearing: true` flag. This section is the seed's most important output for downstream design-quality.
+4. **Mirror the catalog into `DESIGN.json.extensions.motifs.patterns[]`** as machine-readable specs (id, purpose, groundToken, count, rotation, etc.). This is what `stardust:prototype` reads at render time and what its audits check against.
+5. **Rotate the cultural register so source-leakage is structurally impossible.** Change the country / language / category / naming convention. Document the rotation explicitly: "reference is Italian liquor-maker; new brand is Portuguese hot-sauce. Italian language forbidden; Italian-place reference forbidden; liquor category forbidden; reference-brand naming forbidden — anywhere." Include the rotation as anti-references in the brand spec, lifted verbatim into PRODUCT.md and DESIGN.md so downstream commands can refuse outputs that drift back toward the source.
+
+### Logo must differ from the reference's logo — *more* than other moves
+
+A refinement learned from Chapitô (2026-05-12, iteration 2). When a reference is supplied, the rest of the compositional vocabulary can be lifted with a rename — sunburst, marquee, highlighter-tape, color-block all transfer cleanly across cultural rotations because they're *generic compositional moves* dressed in brand-specific tokens. **The logo doesn't transfer cleanly.** The logo is the most identity-specific element a brand owns — re-skinning a reference's logo formula (circular medallion → circular medallion, just with different lettering) reads as the new brand wearing the reference's clothes.
+
+**The rule:** when seeding against a reference, the logo formula must be *different in kind* from the reference's logo formula. Not just different in colour / lettering / detail — different in *form*. If the reference uses a circular medallion, the new brand's logo must NOT be a circular medallion (a different geometric primitive, a typographic-only lockup, a silhouette frame, a ticket-stub, a banner shape — anything but a circle). If the reference uses a vertical lockup, the new brand's logo must not be vertical. Etc.
+
+Chapitô's first iteration mirrored opificiocattaneo's circular medallion with arc-text + monogrammatic centerpiece. Iteration 2 replaced it with a big-top tent silhouette (different geometric primitive: triangle, not circle) carrying the wordmark inside, a pennant rising from the apex echoing the ô-diacritic, and a scalloped base flap. The brand-specific *pun* (ô-circumflex = tent peak) was preserved across forms; the *formal device* (medallion vs. tent silhouette) is what differentiates.
+
+**How seed should apply this:**
+
+1. Detect the reference's logo form (circular medallion · horizontal wordmark · monogram · combination mark · ticket-stub · silhouette).
+2. In the BRAND.md § Logo direction section, name the reference's form *and* explicitly name what the new brand's form must NOT be.
+3. Propose 2–3 alternative formal devices that fit the brand's own identity (Chapitô = big-top tent silhouette; for a fishing-collective brand the alternative might be a net silhouette; for an Atlantic-coast brand a wave-stamp; etc.). Let the user pick.
+4. Capture the rule + reasoning in `_brand-extraction.json.logo.differentiationFromReference`.
+
+The brand-faithful pun (Chapitô's ô = tent peak) typically survives the form change — it's a *concept*, not a *shape*. The shape can change while the concept stays load-bearing.
+
+### What stays clean: the leakage refusal contract
+
+The reference is a vocabulary of *moves*, not a source of words, places, or category cues. The seed must explicitly forbid:
+
+- Source language (Chapitô forbids Italian-language phrases anywhere).
+- Source place names + place-category references (Chapitô forbids any Italian-place reference, no `trattoria` / `piazza` / `Roma`).
+- Source product category (Chapitô is hot sauce; the reference is liquor — the seed forbids `liquor` / `amaro` / `aperitivo` / `bottiglieria` / `liquoreria` / `opificio` naming).
+- Source-brand naming, anywhere, including in voice copy.
+- Source cultural shorthand the new culture doesn't share.
+
+The seed should generate a **"no-leakage checklist"** as part of `_brand-extraction.json.antiReferences[]` — a list of concrete refusals the prototype's anti-toolbox audit can check against.
+
+### Schema additions seed must produce when given a reference
+
+Beyond the existing `_brand-extraction.json` fields:
+
+- `_brand-extraction.json.referenceLift` — `{ sourceUrl, sourceScreenshotPath, culturalRotationFrom, culturalRotationTo, leakageRefusals[] }`
+- `DESIGN.json.extensions.motifs.patterns[]` — already documented; with `loadBearing: true` flag the prototype reads as a hard contract
+- `DESIGN.json.extensions.motifs.rationale` — one paragraph explaining why these moves are non-optional (so downstream agents understand the contract)
+
+### Prompting the user for a reference
+
+The seed command should *prompt for a reference* up front, not bury it as optional:
+
+> "Do you have a visual reference for this brand's register — a website, a screenshot, or a moodboard? This is the single most important input for design quality. If you don't have one, I can offer 3 reference candidates based on the BRAND.md tagline."
+
+Three states the user can be in, all of which the seed should handle:
+
+- **Reference in hand** — user supplies URL or path. Seed performs the 5-step lift.
+- **Reference vibe, no artifact** — user describes the register in words; seed offers 3 candidate references and the user picks one. Then 5-step lift.
+- **No reference, no vibe** — seed proceeds with abstract BRAND.md alone, but writes a high-priority TODO into `_brand-extraction.json.referenceLift` noting the absence and the predicted design-quality risk. The downstream prototype audit treats motif-absence as a yellow flag (not a failure, but logged).
+
+### When the reference itself is multi-page or multi-artifact
+
+For richer references (multi-page sites, branded systems, a full spec), the lift expands proportionally — more motifs, longer catalog. The cap is *quality of named moves*, not arbitrary count. Chapitô's catalog has 8 motifs; that's a healthy density for a single-page render. A 10-page site might justify 12–16 motifs if each is genuinely distinct.
+
+### Pairing with `/stardust:prototype`
+
+Prototype reads `DESIGN.json.extensions.motifs.patterns[]` and treats `loadBearing: true` motifs as required structural elements of the rendered page. The home-shape.md brief enumerates each motif by id; the rendered HTML must instantiate each. Missing-motif output should be flagged at audit time, not approved.
+
+This is the cleanest separation of concerns the pipeline has: seed authors the brand's vocabulary; prototype must speak that vocabulary; neither can drift back to AI-craft defaults if both halves are honest.
+
+### Reference brand for this pattern
+
+**Chapitô** (Portuguese hot-sauce house in Alfama). Reference: opificiocattaneo.com (Italian small-batch liquor maker). 8 motifs lifted and renamed. Cultural rotation: Italy + liquor + Italian language → Portugal + hot-sauce + Portuguese language. Anti-references include "Italian-language anywhere" + "Italian liquor-maker pastiche of any kind" + a list of specific source-brand naming refusals.
+
+The hand-authored worked example is at `demos/uc2-uc3-greenfield/chapito/`. Compare against `demos/uc2-uc3-greenfield/highlonesome/` — same toolchain, no reference; the design quality delta is the validation.
+
+### Reference-driven asset pack — the reference drives BOTH brand surface AND product assets
+
+The same visual reference can be lifted *twice*: once to seed the brand-surface compositional vocabulary (sunburst, marquee, color-block sections — see § above), and once to drive the product-asset prompts that get fed to Gemini for logos, bottle labels, packshots, etc. Chapitô validated both applications against opificiocattaneo's shop catalog.
+
+**The two-stage application:**
+
+1. **Brand surface (this skill's main concern).** Lift compositional moves → motif catalog → seed produces `BRAND.md` + `DESIGN.json.extensions.motifs.patterns[]`.
+2. **Product-asset prompts (this skill's deferred concern, but the same reference works).** Scrape the reference's product catalog → distill the label-style register (Memphis-Milano collage / B&W cutout figure / bold all-caps title band / brand monogram badge) → author per-product prompts that rotate the *subject* (circus figures instead of saints) while preserving the *register*. The shared register notes go into `stardust/current/assets/prompts/_label-style.md`.
+
+**Reusable tooling:**
+
+- **Playwright scraper template.** `chapito/assets/references/_scrape-cattaneo-shop.mjs` — visits the reference URL, scrolls to trigger lazy-loaded imagery, captures full-page screenshot + image inventory JSON, downloads large images. Generalises to any Shopify-hosted reference site.
+- **Shopify CDN trick.** Image URLs like `cdn.shopify.com/.../files/<name>.png?v=...&width=360` can be rewritten with `?width=1600` to fetch high-resolution versions, useful for picking up label artwork at print quality.
+- **Subject-rotation per prompt.** Each per-asset prompt overrides only the subject and palette tokens; the composition formula stays shared (one paragraph at the top of the per-prompt file, then per-asset deltas).
+
+**Why this matters:** when a brand-surface seed exists but the product assets are still Lane-N placeholders, the same reference that drove the brand can drive the asset generation in a coherent register — without re-prompting the brand register from scratch. Chapitô's 6 bottle labels were generated in one Gemini batch using prompts that shared a 95% identical register paragraph; only the figure, label color, and product name varied.
+
+### Two-pass image generation pipeline (Gemini + keying + integration)
+
+Gemini 3 Pro Image consistently misinterprets the phrase "transparent background" as the **checkerboard pattern** image editors use to *indicate* transparency. The PNG that comes back has the checker rendered as RGB content, not as alpha.
+
+**The working two-pass pipeline:**
+
+1. **Generate against a flat known color.** Prompt phrasing: *"flat solid warm cream background, hex #fffaef — NOT a checkerboard / transparency-indicator pattern, NOT a studio backdrop, NOT a gradient. Just uniform flat cream."* (Cream is the choice when the brand has no cream elements in the design — pick any color that won't appear in the asset itself; magenta works too for non-pink brands.)
+2. **Post-process with Pillow.** Read the raw PNG, compute Euclidean distance from each pixel to the background color, build a soft alpha mask (two thresholds — inner = fully transparent, outer = fully opaque, linear blend between). Crop to the bbox of non-transparent pixels with small padding.
+
+**Reusable script.** `chapito/stardust/current/assets/_postprocess_bottle.py` is the prototype implementation:
+- Cream target `#fffaef`
+- Inner threshold 20, outer threshold 60 (Euclidean RGB distance)
+- 16px padding around bbox
+
+Edges come out clean because the soft-key avoids the binary cutoff that would alias on anti-aliased pixels.
+
+**When to use:** any asset that needs true transparency for placement on variable-color sections (logos, bottle photography, cutout illustrations, packshots). Don't ask Gemini for transparency directly — it doesn't work reliably.
+
+### Logo-first cascade rule
+
+The brand's logo is *upstream* of every derivative asset that carries the logo as a sub-element — bottle-label brand-mark badges, footer favicons, ticket-stub corners, header chips, packaging stamps. When the logo iterates, **regenerate the whole pack; don't try to substitute**.
+
+**Why:** the derivatives' Gemini prompts encode the logo's specific construction (the wheel-of-tent had a "circular badge with 12 wedges + Ô centred" spec; the minimal Ô had a "double-ring with italic Ô + flag + 3 stars" spec). Each prompt produces a label with a tiny badge that matches *its prompt's logo description*. Swapping the master logo PNG without re-prompting leaves every product asset showing the *previous* badge spec.
+
+**Workflow:**
+
+1. **Pin the logo first.** Don't generate product assets until the logo is approved.
+2. **Document the logo spec verbatim in `BRAND.md § Logo direction` AND `_brand-extraction.json.logo.synthesizedBasis`.** Both become inputs to the per-asset prompts.
+3. **Reference the logo spec from every product-asset prompt** via a copy-pasted paragraph (~100 words) — this is the badge-on-the-label description. Keep it identical across prompts so all bottles share the same badge construction.
+4. **Iterate the logo before iterating assets.** If the logo changes, batch-regenerate ALL assets; do NOT cherry-pick.
+
+**Validation:** Chapitô iteration 2. The hero medallion was updated from variant C (wheel) to v6 (minimal Ô) but the bottle PNGs from the earlier round still showed the "C" badge. User flagged it. Fix required a fresh Gemini batch for all 6 bottles with the new badge spec written into each prompt. **The cascade is 1:N; iterate at the source, regenerate the leaves.**
+
+### Product silhouette must match product category, not reference category
+
+A reference drives the *visual register* (palette, composition, ornament vocabulary). It does NOT drive the *product silhouette* — that belongs to the new brand's product category.
+
+Chapitô's iteration 1 lifted Cattaneo's bottle photography style (wax-dipped cap, label collage, dark-glass bottle, vertical 5oz format) wholesale. The wax-dipped cap and the cylindrical liquor-bottle silhouette read as *liquor* — wrong category for a Portuguese hot-sauce brand whose actual product is the classic 5fl-oz "woozy" with a black plastic dispenser cap. Iteration 2 separated the layers: register stays (Memphis-Milano collage on the label), silhouette switches (woozy + plastic cap, the universal craft-hot-sauce shape).
+
+**The rule:** when a reference brand and the new brand are in *different product categories*:
+
+- **Lift the LABEL REGISTER** (composition formula on the label paper): palette, title-band placement, figure cutout treatment, brand-mark badge, typography hierarchy.
+- **Lift the LABEL CONTENT REGISTER** (collage style, photographic treatment, ornament vocabulary): from the reference.
+- **Reset the PRODUCT SILHOUETTE** (bottle shape, cap construction, jar form, packaging dimensions, materials cue): to the new product category's canonical form. *Hot sauce ≠ liquor. Cap is plastic dispenser, not wax. Bottle is woozy, not whiskey flask.*
+- **Reset the PRODUCT CONTEXT CUES** (color of the liquid inside, scale relative to a hand, expected serving) to the new category.
+
+The seed prompt's product-asset section should explicitly name the target product category's bottle/jar/box shape, NOT defer it to the reference. Failure mode: prompts that say "in the style of <reference brand>" without category-resetting produce reference-category artifacts dressed in new-brand colors.
+
+**Validation:** Chapitô iterations 1 → 2. Iteration 1 prompts said *"classic small-batch sauce bottle, wax-dipped cap"* (liquor inheritance). Iteration 2 corrected to *"classic 5fl-oz / 148ml woozy / craft-hot-sauce bottle ... flat-topped slightly tapered black plastic dispenser cap (classic craft-hot-sauce cap — NO wax dipping)"* + explicit anti-reference *"NO wax-dipped cap"*.
+
+---
+
 ## Patterns (reusable)
 
 ### `pending: true` + `intent: lane-N` for awaiting external generation
@@ -301,6 +485,79 @@ Hand-authored artifacts use the same `_provenance.writtenBy` field name and the 
 - Could `/stardust:seed` and `/stardust:brief` share implementation under the hood and only differ at the CLI? Probably yes — most of the work is "compile structured documents → JSON/markdown schema." The split is at the user-facing surface, not the internals.
 - Should there be a third sibling command, `/stardust:assets` or `/stardust:gen-imagery`, that handles the external-generation handoff? Currently the user manually generates with Gemini and drops files in. A sibling command could surface the prompts + accept output.
 
+## Sibling-skill contract — `impeccable:teach` + `impeccable:document` compatibility
+
+Seed writes the same `PRODUCT.md` and `DESIGN.md` files that `impeccable:teach` writes (teach delegates the visual half to `impeccable:document`). Downstream `impeccable:craft` / `critique` / `polish` read those files. **Seed's outputs must match teach/document's output contract section-by-section, or downstream impeccable commands break.** Reference: `impeccable/.claude/skills/impeccable/reference/teach.md` Step 4, and the Google Stitch DESIGN.md format teach links to.
+
+### Decision — schema contract, not runtime dependency
+
+Considered: invoking `/impeccable teach` from inside `/stardust:seed`. Rejected because:
+
+- Teach is interactive (Step 3 asks the user about register, anti-references, brand personality, etc.). Seed has explicitly designed the interview away — `BRAND.md` *is* the frozen interview transcript, authored once by the brand owner. A runtime call would either re-ask the user (defeating seed's design) or need a non-interactive mode in teach that does not exist today.
+- Teach Steps 1–2 (load-context loader + codebase scan + register hypothesis) do not apply to greenfield — there is no prior state and no codebase to scan.
+- Step 5 (offer DESIGN.md as a follow-up) does not apply — seed always writes DESIGN.md as part of its core output.
+
+What remains is Step 4 — the write. That is exactly the part to lift as a contract.
+
+### PRODUCT.md section contract (verbatim from teach Step 4)
+
+```
+# Product
+## Register                      (one of: brand, product — bare value, no prose)
+## Users
+## Product Purpose
+## Brand Personality
+## Anti-references
+## Design Principles
+## Accessibility & Inclusion
+```
+
+Seed and brief together must produce a `PRODUCT.md` with every section above, in that order, with teach's exact headings. The seed/brief split confirmed by the contract:
+
+| teach PRODUCT.md section | Source | Command |
+|---|---|---|
+| Register | BRAND.md → Identity at a glance | seed |
+| Users | SITE-BRIEF.md → Audience | brief |
+| Product Purpose | SITE-BRIEF.md → Premise | brief |
+| Brand Personality | BRAND.md → Voice & copy rules + The maker | seed |
+| Anti-references | BRAND.md → Anti-patterns (lift verbatim) | seed |
+| Design Principles | BRAND.md → central tension move + voice rules | seed |
+| Accessibility & Inclusion | SITE-BRIEF.md → Constraints | brief |
+
+This matches the seed/brief split decision already recorded above — and the fact that it aligns is evidence the split is right.
+
+### DESIGN.md section contract
+
+Lift `impeccable:document`'s output template (Google Stitch DESIGN.md format) the same way: verbatim section headings, palette + typography + components + layout structure. Authored entirely by seed (no brief contribution to DESIGN.md).
+
+### What seed extends beyond teach/document
+
+Seed adds machine-readable extensions that downstream prototype/craft audits read. All scoped under `extensions.*` so the document-compatible surface stays clean:
+
+- `DESIGN.json.extensions.divergence.brand_faithful_inversions[]`
+- `DESIGN.json.extensions.paletteDeployment.intensity` / `targetGroundCount` / `cardinalFlashRule` / `homeSectionGroundSequence`
+- `DESIGN.json.typography.<tier>.expectedCharacter` / `rejectedCharacters` / `loadBearingRule`
+- `DESIGN.json.extensions.voice.do[]` / `dont[]` / `examples` / `rules`
+- `DESIGN.json.extensions.colorMeta.quarantined[]`
+- `_brand-extraction.json.imageryLanes[]` / `antiReferences[]` / `logo.pendingExternalGen`
+
+These are additive, not in conflict with teach. They are required by the downstream consumer contract below.
+
+### Drift risk + mitigation
+
+Risk: teach renames or adds a `PRODUCT.md` section; seed silently drops it (BRAND.md has no source for the new section); downstream commands see an incomplete PRODUCT.md and fall back to LLM defaults.
+
+Mitigation:
+- Record the teach contract version in seed's provenance — e.g. `_provenance.teachContractVersion: "3.0.1"` (matching the impeccable plugin version seed was implemented against).
+- When implementing, run seed's output through `impeccable:critique` on a known brand (Holler & Hymn) and verify it does not flag missing PRODUCT.md sections.
+- Treat `impeccable/.claude/skills/impeccable/reference/teach.md` and `.../document.md` as the source-of-truth for seed's output template — if they change, seed's mapping rules update before the next release.
+
+### Open questions raised by this contract
+
+- Should seed also write a `Design Context` pointer section to `CLAUDE.md` (teach's optional Step 6 wrap)? Greenfield projects often don't have a `CLAUDE.md` yet — opportunity or noise?
+- The Register field: teach treats it as one of `brand` / `product`. A site-from-BRAND.md is almost always `brand`. Worth pinning a default in seed and only confirming if BRAND.md says otherwise?
+- Should seed run a self-check at the end — diff its written `PRODUCT.md` against teach's template — and warn on missing sections? Cheap insurance against drift.
+
 ## Downstream consumer contract — what `direct` / `prototype` / `migrate` need from seed+brief output
 
 The output schema isn't free-form documentation; downstream skills have specific reads against it. This section names every load-bearing field a downstream skill consumes, with the audit / decision it powers. The pair-doc `context/stardust-prototype-skill.md` proposals reference these fields explicitly; when the upstream skill team implements seed+brief, the schema is constrained by what these reads require.
@@ -350,6 +607,8 @@ When seed+brief are implemented, **the schema additions above are not optional f
 ## Brands this draft is based on
 
 - **Holler & Hymn** — small-batch Appalachian botanical-liqueur house, single maker, central tension is *Saturday-night sin × Sunday-morning hymn*. Hand-authored proof-of-concept for both commands. Tested input-shape decisions: how richly to describe the central tension, how literally to bind anti-references, how to handle the imagery-lane convention when one lane (botanical/process) requires real outdoor photography and another (label art) requires hand-painted output. Tested output-shape decisions: the seed/brief split of `PRODUCT.md`, the `bgMode` field for two-register sections, the `pending: true` + `intent: lane-N` pattern for awaiting-external-generation assets.
+
+- **Chapitô** (validation case, 2026-05-12 — reference-driven seed) — Portuguese hot-sauce house in Alfama, Lisbon. Single-maker Inês Bento; central tension *Alentejo slow-cook × Lisbon big-top spectacle*. **Seeded against a concrete visual reference** (opificiocattaneo.com, captured as a screenshot). 8 named compositional motifs lifted and renamed (sunburst medallion · X-marquee · highlighter-tape · color-block product collage ×4 · chip-tag cluster · big-dark bottle hero · medallion footer · persistent bottom bar). Cultural rotation: Italian liquor maker → Portuguese hot-sauce house. Worked example at `demos/uc2-uc3-greenfield/chapito/`. **The motif catalog made the design quality step up substantially compared to High Lonesome** — validated the reference-driven seed pattern (see `§ Reference-driven seed`). The pattern is now the recommended default flow for `/stardust:seed` when no real source site exists to extract from. Prototype-fix tracking from the iteration cycle on this brand is captured in `demos/uc2-uc3-greenfield/chapito/PROTOTYPE-NOTES.md` and generalized fixes land in `context/stardust-prototype-skill.md`.
 
 - **High Lonesome** (validation case, 2026-05-12) — Mediterranean-pop variant of the WNC mountain-spirits direction (Hot Springs, NC; saturated 7-token palette; italic-classical-serif display tier; central tension *auditory solitude × visual joy*). Hand-authored proof-of-concept artifacts at `demos/uc2-uc3-greenfield/highlonesome/` ran through the full downstream pipeline (`stardust:direct` → `stardust:prototype` → `impeccable:craft` → `impeccable:critique`) without seam. Validated:
    - The seed-output `_brand-extraction.json` schema (palette role-naming, `imageryLanes[]`, voice anchors, anti-references) feeds `stardust:direct` correctly without translation.
