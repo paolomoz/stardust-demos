@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitô — hero mock (horizontal layout)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cravo:#f4b09d;--areia:#fbe9d0;--piri:#ed7f3f;--laranja:#e95b27;--azulejo:#3fbcaf;
+  --galinha:#f3c84e;--malagueta:#9b3536;--tejo:#1f4548;--noite:#1a1410;--cal:#fffaef;
+  --display:'Anton','Bebas Neue','Oswald','Impact',sans-serif;
+  --body:'Inter','DM Sans','Outfit',sans-serif;
+  --mono:'IBM Plex Mono','JetBrains Mono','Courier New',monospace;
+  --serif:'Bodoni Moda','Playfair Display','GFS Didot','Didot',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--cravo);color:var(--noite);font-family:var(--body);font-size:17px;-webkit-font-smoothing:antialiased}
+body{padding-bottom:44px;min-height:100vh}
+a,button{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--tejo);outline-offset:4px}
+
+/* ============= hero (option A — cravo ground + areia rays) ============= */
+.hero{position:relative;min-height:100vh;background:var(--cravo);overflow:hidden;display:grid;
+  grid-template-rows:auto 1fr auto;padding-top:24px}
+.hero::before{content:"";position:absolute;left:50%;top:50%;width:160vmin;height:160vmin;
+  transform:translate(-50%,-50%);border-radius:50%;
+  background:conic-gradient(from 0deg,
+    var(--areia) 0 11.25deg, transparent 11.25deg 22.5deg,
+    var(--areia) 22.5deg 33.75deg, transparent 33.75deg 45deg,
+    var(--areia) 45deg 56.25deg, transparent 56.25deg 67.5deg,
+    var(--areia) 67.5deg 78.75deg, transparent 78.75deg 90deg,
+    var(--areia) 90deg 101.25deg, transparent 101.25deg 112.5deg,
+    var(--areia) 112.5deg 123.75deg, transparent 123.75deg 135deg,
+    var(--areia) 135deg 146.25deg, transparent 146.25deg 157.5deg,
+    var(--areia) 157.5deg 168.75deg, transparent 168.75deg 180deg,
+    var(--areia) 180deg 191.25deg, transparent 191.25deg 202.5deg,
+    var(--areia) 202.5deg 213.75deg, transparent 213.75deg 225deg,
+    var(--areia) 225deg 236.25deg, transparent 236.25deg 247.5deg,
+    var(--areia) 247.5deg 258.75deg, transparent 258.75deg 270deg,
+    var(--areia) 270deg 281.25deg, transparent 281.25deg 292.5deg,
+    var(--areia) 292.5deg 303.75deg, transparent 303.75deg 315deg,
+    var(--areia) 315deg 326.25deg, transparent 326.25deg 337.5deg,
+    var(--areia) 337.5deg 348.75deg, transparent 348.75deg 360deg);
+  opacity:.78;
+  -webkit-mask:radial-gradient(circle,#000 58%,transparent 75%);
+  mask:radial-gradient(circle,#000 58%,transparent 75%);z-index:0}
+
+/* top credits bar */
+.credits{display:flex;justify-content:space-between;align-items:center;
+  padding:14px 24px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--noite);z-index:5;position:relative}
+.credits span{opacity:.7}
+
+/* hero stage — three stacked rows */
+.hero-stage{position:relative;z-index:2;display:grid;grid-template-rows:auto auto auto;
+  align-content:center;justify-items:center;gap:clamp(20px,3vh,40px);padding:24px 24px 40px}
+
+/* row 1 — horizontal title */
+.title-row{display:flex;align-items:baseline;justify-content:center;gap:18px;
+  font-family:var(--display);font-weight:400;font-size:clamp(28px,3.4vw,46px);
+  letter-spacing:.18em;text-transform:uppercase;color:var(--noite);white-space:nowrap;line-height:1}
+.title-row .wordmark{font-family:var(--serif);font-style:italic;font-weight:400;
+  font-size:clamp(96px,12vw,180px);letter-spacing:.005em;text-transform:none;line-height:.95}
+.title-row .dot{font-family:var(--display);font-size:.7em;color:var(--malagueta);opacity:.8;
+  transform:translateY(-.05em)}
+
+/* row 2 — medallion logo */
+.med{width:clamp(180px,18vw,260px);aspect-ratio:1;display:grid;place-items:center;
+  animation:med-sway 7s ease-in-out infinite alternate}
+.med img{width:100%;height:100%;object-fit:contain}
+@keyframes med-sway{from{transform:rotate(-1.6deg) translateY(-2px)}to{transform:rotate(1.6deg) translateY(2px)}}
+
+/* row 3 — horizontal bottle row, fan-rotated, anchored to bottom */
+.bottle-row{display:flex;align-items:flex-end;justify-content:center;gap:clamp(4px,1vw,18px);
+  margin-top:clamp(8px,1.5vh,24px)}
+.bottle-row img{width:clamp(96px,12vw,170px);height:auto;object-fit:contain;
+  transform-origin:50% 100%;transition:transform .3s cubic-bezier(.22,1,.36,1)}
+.bottle-row img:nth-child(1){transform:rotate(-22deg) translateY(2px)}
+.bottle-row img:nth-child(2){transform:rotate(-13deg) translateY(-4px)}
+.bottle-row img:nth-child(3){transform:rotate(-5deg)}
+.bottle-row img:nth-child(4){transform:rotate(5deg)}
+.bottle-row img:nth-child(5){transform:rotate(13deg) translateY(-4px)}
+.bottle-row img:nth-child(6){transform:rotate(22deg) translateY(2px)}
+.bottle-row img:hover{transform:rotate(0deg) translateY(-12px)}
+
+/* ticket stubs in corners */
+.ticket{position:absolute;display:flex;align-items:center;gap:10px;background:var(--cal);border:1.5px solid var(--noite);
+  border-radius:3px;padding:8px 12px 8px 8px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:600;color:var(--noite);z-index:3}
+.ticket::before,.ticket::after{content:"";position:absolute;top:50%;width:8px;height:8px;border-radius:50%;background:var(--cravo);
+  border:1.5px solid var(--noite);transform:translateY(-50%)}
+.ticket::before{left:-5px}.ticket::after{right:-5px}
+.ticket .photo{width:36px;height:36px;border-radius:50%;overflow:hidden;background:var(--noite);flex-shrink:0;display:grid;place-items:center}
+.ticket .photo svg{width:100%;height:100%;filter:grayscale(1)}
+.ticket.tl{top:64px;left:32px;transform:rotate(-6deg)}
+.ticket.tr{top:64px;right:32px;transform:rotate(6deg)}
+
+/* persistent bottom bar */
+.persistent{position:fixed;left:0;right:0;bottom:0;height:44px;background:var(--cal);border-top:1.5px solid var(--noite);
+  display:flex;justify-content:space-between;align-items:stretch;z-index:50;
+  font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--noite)}
+.persistent a{display:inline-flex;align-items:center;gap:8px;padding:0 24px}
+
+@media (max-width:900px){
+  .title-row{flex-wrap:wrap;font-size:22px}
+  .title-row .wordmark{font-size:84px;flex-basis:100%;text-align:center}
+  .title-row .flank{display:block}
+  .ticket{display:none}
+}
+@media (prefers-reduced-motion: reduce){
+  .med{animation:none}
+  .bottle-row img,.bottle-row img:hover{transition:none}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+
+  <header class="credits">
+    <span>Chapitô · The House · The Garden · The Sauces · Where to Try · Shop · Contact</span>
+    <span>Est. 2018 · Lisbon · No. 01</span>
+  </header>
+
+  <div class="ticket tl">
+    <span class="photo"><svg viewBox="0 0 200 200"><circle cx="100" cy="80" r="40" fill="var(--cal)"/><rect x="40" y="120" width="120" height="80" fill="var(--cal)"/></svg></span>
+    <span>Piri-Piri</span>
+  </div>
+  <div class="ticket tr">
+    <span class="photo"><svg viewBox="0 0 200 200"><circle cx="100" cy="80" r="40" fill="var(--cal)"/><rect x="40" y="120" width="120" height="80" fill="var(--cal)"/></svg></span>
+    <span>Equilibrista</span>
+  </div>
+
+  <div class="hero-stage">
+
+    <div class="title-row" aria-label="Chapitô — small house, big spice">
+      <span class="flank">Small House</span>
+      <span class="dot">·</span>
+      <span class="wordmark">Chapitô</span>
+      <span class="dot">·</span>
+      <span class="flank">Big Spice</span>
+    </div>
+
+    <div class="med">
+      <img src="../current/assets/images/logo.png" alt="Chapitô — Ô monogram">
+    </div>
+
+    <div class="bottle-row" aria-label="Six Chapitô sauces">
+      <img src="../current/assets/images/label-trapezio.png" alt="Trapézio">
+      <img src="../current/assets/images/label-faquir.png" alt="Faquir">
+      <img src="../current/assets/images/label-funambulo.png" alt="Funâmbulo">
+      <img src="../current/assets/images/label-palhaco.png" alt="Palhaço">
+      <img src="../current/assets/images/label-domador.png" alt="Domador">
+      <img src="../current/assets/images/label-acrobata.png" alt="Acrobata">
+    </div>
+
+  </div>
+
+</section>
+
+<footer class="persistent">
+  <a class="left" href="https://chapito.shop/">← Visit the Shop</a>
+  <a class="right" href="https://chapito.shop/">Go there →</a>
+</footer>
+
+</body>
+</html>

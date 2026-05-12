@@ -29,7 +29,7 @@
 <meta name="description" content="Small house, big spice. Handcrafted Portuguese hot sauces from Alfama, Lisbon. By Inês Bento.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bodoni+Moda:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700;1,900&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --cravo:#f4b09d;--areia:#fbe9d0;--piri:#ed7f3f;--laranja:#e95b27;--azulejo:#3fbcaf;
@@ -80,29 +80,36 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--tejo);outline-offse
   opacity:.78;border-radius:50%;-webkit-mask:radial-gradient(circle,#000 60%,transparent 75%);mask:radial-gradient(circle,#000 60%,transparent 75%);z-index:0}
 .hero-stage{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;min-height:92vh;padding:60px 24px}
 .hero-ring{position:relative;width:min(680px,90vmin);aspect-ratio:1;}
-.orbit{position:absolute;inset:0;animation:orbit-spin 36s linear infinite;transform-origin:50% 50%;will-change:transform}
-@keyframes orbit-spin{to{transform:rotate(360deg)}}
+.orbit{position:absolute;inset:0;rotate:var(--ring-angle,0deg);transform-origin:50% 50%;
+  transition:rotate 1.3s cubic-bezier(.22,1,.36,1);will-change:rotate}
+.ring-title{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.ring-title text{fill:var(--noite)}
+.ring-title .word-flank{font-family:var(--display);font-weight:400;letter-spacing:.18em}
+.ring-title .word-mark{font-family:'Bodoni Moda','Playfair Display','GFS Didot','Didot',serif;
+  font-style:italic;font-weight:700;letter-spacing:.02em}
+.ring-title .dot{font-family:var(--display);font-weight:400}
 .medallion{position:absolute;left:50%;top:50%;translate:-50% -50%;width:38%;aspect-ratio:1;display:grid;place-items:center;z-index:3}
 .medallion svg,.medallion img{width:100%;height:100%;object-fit:contain;animation:med-sway 7s ease-in-out infinite alternate;will-change:transform}
 @keyframes med-sway{from{transform:rotate(-1.6deg) translateY(-2px)}to{transform:rotate(1.6deg) translateY(2px)}}
 @media (prefers-reduced-motion: reduce){
   .medallion svg,.medallion img{animation:none}
 }
-.bottle-slot{position:absolute;left:50%;top:50%;width:20%;aspect-ratio:.72;}
+.bottle-slot{position:absolute;left:50%;top:50%;width:17%;aspect-ratio:.72;}
 /* carousel pattern: each bottle's TOP always points toward the ring center.
    The slot's final rotate(180deg) flips the bottle so its top is radially inward.
-   Bottles rotate WITH the orbit (no counter-rotation animation). */
-.bottle-slot.b0{transform:translate(-50%,-50%) rotate(0deg) translateY(-200%) rotate(180deg)}
-.bottle-slot.b1{transform:translate(-50%,-50%) rotate(60deg) translateY(-200%) rotate(180deg)}
-.bottle-slot.b2{transform:translate(-50%,-50%) rotate(120deg) translateY(-200%) rotate(180deg)}
-.bottle-slot.b3{transform:translate(-50%,-50%) rotate(180deg) translateY(-200%) rotate(180deg)}
-.bottle-slot.b4{transform:translate(-50%,-50%) rotate(240deg) translateY(-200%) rotate(180deg)}
-.bottle-slot.b5{transform:translate(-50%,-50%) rotate(300deg) translateY(-200%) rotate(180deg)}
+   Bottles rotate WITH the orbit (no counter-rotation animation).
+   Lower-half placement (6 bottles, 30° intervals around 6 o'clock); same orbital radius
+   as the upper-arc title so bottles + text read as one continuous ring. */
+.bottle-slot.b0{transform:translate(-50%,-50%) rotate(105deg) translateY(-170%) rotate(180deg)}
+.bottle-slot.b1{transform:translate(-50%,-50%) rotate(135deg) translateY(-170%) rotate(180deg)}
+.bottle-slot.b2{transform:translate(-50%,-50%) rotate(165deg) translateY(-170%) rotate(180deg)}
+.bottle-slot.b3{transform:translate(-50%,-50%) rotate(195deg) translateY(-170%) rotate(180deg)}
+.bottle-slot.b4{transform:translate(-50%,-50%) rotate(225deg) translateY(-170%) rotate(180deg)}
+.bottle-slot.b5{transform:translate(-50%,-50%) rotate(255deg) translateY(-170%) rotate(180deg)}
 .bottle-slot>*{width:100%;height:100%;object-fit:contain;transition:transform .28s cubic-bezier(.22,1,.36,1)}
 .bottle-slot:hover>*{transform:translateY(-4px) rotate(-1.5deg)}
-.orbit:hover{animation-play-state:paused}
 @media (prefers-reduced-motion: reduce){
-  .orbit{animation:none}
+  .orbit{rotate:0deg!important;transition:none}
 }
 .ticket{position:absolute;display:flex;align-items:center;gap:10px;background:var(--cal);border:1.5px solid var(--noite);
   border-radius:3px;padding:8px 12px 8px 8px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
@@ -412,8 +419,48 @@ html.pt [data-lang="en"]{display:none}
 
   <div class="hero-stage">
     <div class="hero-ring">
-      <!-- 6 bottles orbiting in a circle (carousel rotation; tops point inward) -->
-      <div class="orbit" data-reveal role="list" aria-label="Six Chapitô sauces orbiting the wordmark">
+      <!-- Ring composition: upper-arc title (CHAPITÔ flanked by tagline) + 6 bottles in the lower half.
+           The whole .orbit rotates ±22° based on cursor position (CSS var --ring-angle, set by JS). -->
+      <div class="orbit" data-reveal role="list" aria-label="Chapitô sauces with the brand wordmark arcing above">
+        <!-- Upper-half arc title (carries the wordmark + tagline; bilingual) -->
+        <svg class="ring-title" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <defs>
+            <!-- Outer arc — CHAPITÔ wordmark, same orbital radius as the bottle row below
+                 so the wordmark + bottles read as one continuous ring around the medallion. -->
+            <path id="ring-arc-outer" d="M 90,500 A 410,410 0 0 1 910,500" fill="none"/>
+            <!-- Inner arc — flanking tagline concentric inside the wordmark.
+                 SMALL HOUSE on the left third, BIG SPICE on the right third. -->
+            <path id="ring-arc-inner" d="M 230,500 A 270,270 0 0 1 770,500" fill="none"/>
+          </defs>
+          <!-- CHAPITÔ wordmark — bold italic Bodoni, identical in both languages -->
+          <text text-anchor="middle">
+            <textPath href="#ring-arc-outer" startOffset="50%">
+              <tspan class="word-mark" font-size="172">CHAPITÔ</tspan>
+            </textPath>
+          </text>
+          <!-- Flanking tagline — EN -->
+          <text data-lang="en" lang="en" text-anchor="middle">
+            <textPath href="#ring-arc-inner" startOffset="25%">
+              <tspan class="word-flank" font-size="34">SMALL HOUSE</tspan>
+            </textPath>
+          </text>
+          <text data-lang="en" lang="en" text-anchor="middle">
+            <textPath href="#ring-arc-inner" startOffset="75%">
+              <tspan class="word-flank" font-size="34">BIG SPICE</tspan>
+            </textPath>
+          </text>
+          <!-- Flanking tagline — PT -->
+          <text data-lang="pt" lang="pt-PT" text-anchor="middle">
+            <textPath href="#ring-arc-inner" startOffset="25%">
+              <tspan class="word-flank" font-size="34">CASA PEQUENA</tspan>
+            </textPath>
+          </text>
+          <text data-lang="pt" lang="pt-PT" text-anchor="middle">
+            <textPath href="#ring-arc-inner" startOffset="75%">
+              <tspan class="word-flank" font-size="34">PICANTE GRANDE</tspan>
+            </textPath>
+          </text>
+        </svg>
         <div class="bottle-slot b0" role="listitem"><img src="../current/assets/images/label-trapezio.png" alt="Trapézio — flagship piri-piri" width="896" height="1164" decoding="async"></div>
         <div class="bottle-slot b1" role="listitem"><img src="../current/assets/images/label-faquir.png" alt="Faquir — extra-hot piri-piri" width="896" height="1200" decoding="async"></div>
         <div class="bottle-slot b2" role="listitem"><img src="../current/assets/images/label-palhaco.png" alt="Palhaço — sweet-fire" width="682" height="1062" decoding="async"></div>
@@ -695,6 +742,31 @@ html.pt [data-lang="en"]{display:none}
         localStorage.setItem('chapito-lang', toPt ? 'pt' : 'en');
         refreshAria();
       });
+    });
+  })();
+
+  // cursor-driven ring rotation — the hero ring tilts ±22° toward the cursor's horizontal position.
+  // Smooth via CSS transition on `rotate` property (1.3s cubic-bezier). Disabled under reduced-motion.
+  (function () {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const hero = document.querySelector('.hero');
+    const orbit = document.querySelector('.hero .orbit');
+    if (!hero || !orbit) return;
+    const MAX_DEG = 22;
+    let pending = false;
+    hero.addEventListener('pointermove', (e) => {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(() => {
+        const rect = hero.getBoundingClientRect();
+        const dx = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+        const angle = Math.max(-MAX_DEG, Math.min(MAX_DEG, dx * MAX_DEG));
+        orbit.style.setProperty('--ring-angle', angle.toFixed(2) + 'deg');
+        pending = false;
+      });
+    });
+    hero.addEventListener('pointerleave', () => {
+      orbit.style.setProperty('--ring-angle', '0deg');
     });
   })();
 

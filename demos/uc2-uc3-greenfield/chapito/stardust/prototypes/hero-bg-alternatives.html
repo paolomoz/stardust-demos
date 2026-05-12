@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chapitô — hero background alternatives</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cravo:#f4b09d;--areia:#fbe9d0;--piri:#ed7f3f;--laranja:#e95b27;--azulejo:#3fbcaf;
+  --galinha:#f3c84e;--malagueta:#9b3536;--tejo:#1f4548;--noite:#1a1410;--cal:#fffaef;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#2d2725;color:#e8e0d4;padding:40px 32px 64px;min-height:100vh}
+h1{font-family:'Bodoni Moda',serif;font-style:italic;font-size:42px;font-weight:400;letter-spacing:.01em;margin-bottom:8px}
+.subtitle{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.6;margin-bottom:40px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(440px,1fr));gap:36px;max-width:1700px;margin:0 auto}
+.panel{display:flex;flex-direction:column;gap:18px}
+.tag{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.75}
+.tag b{font-weight:700;color:#fff}
+.label{font-family:'Bodoni Moda',serif;font-style:italic;font-size:26px;font-weight:400;color:#fff;line-height:1.2}
+.swatches{display:flex;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.swatch{display:flex;align-items:center;gap:6px;opacity:.85}
+.swatch-chip{width:14px;height:14px;border-radius:50%;border:1px solid rgba(255,255,255,.3)}
+.stage{position:relative;aspect-ratio:1;border-radius:6px;overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+.stage::before{content:"";position:absolute;left:50%;top:50%;width:170%;height:170%;
+  transform:translate(-50%,-50%);border-radius:50%;
+  -webkit-mask:radial-gradient(circle,#000 60%,transparent 75%);
+  mask:radial-gradient(circle,#000 60%,transparent 75%);
+  opacity:var(--wedge-op,.62);z-index:0}
+.stage > *{position:relative;z-index:1}
+.medallion{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:34%;aspect-ratio:1;display:grid;place-items:center}
+.medallion img{width:100%;height:100%;object-fit:contain}
+.title{position:absolute;left:50%;top:14%;transform:translateX(-50%);
+  font-family:'Bodoni Moda',serif;font-style:italic;font-size:46px;color:var(--noite);letter-spacing:.02em}
+.bottles{position:absolute;bottom:9%;left:50%;transform:translateX(-50%);display:flex;gap:14px;width:78%;justify-content:space-between}
+.bottles img{width:18%;height:auto;object-fit:contain;transform:rotate(0deg)}
+.bottles img:nth-child(1){transform:rotate(-22deg)}
+.bottles img:nth-child(2){transform:rotate(-10deg)}
+.bottles img:nth-child(3){transform:rotate(0deg)}
+.bottles img:nth-child(4){transform:rotate(10deg)}
+.bottles img:nth-child(5){transform:rotate(22deg)}
+
+/* Per-variant background */
+.v-a{background:var(--cravo)}
+.v-a::before{background:conic-gradient(from 0deg,
+  var(--areia) 0 11.25deg, transparent 11.25deg 22.5deg,
+  var(--areia) 22.5deg 33.75deg, transparent 33.75deg 45deg,
+  var(--areia) 45deg 56.25deg, transparent 56.25deg 67.5deg,
+  var(--areia) 67.5deg 78.75deg, transparent 78.75deg 90deg,
+  var(--areia) 90deg 101.25deg, transparent 101.25deg 112.5deg,
+  var(--areia) 112.5deg 123.75deg, transparent 123.75deg 135deg,
+  var(--areia) 135deg 146.25deg, transparent 146.25deg 157.5deg,
+  var(--areia) 157.5deg 168.75deg, transparent 168.75deg 180deg,
+  var(--areia) 180deg 191.25deg, transparent 191.25deg 202.5deg,
+  var(--areia) 202.5deg 213.75deg, transparent 213.75deg 225deg,
+  var(--areia) 225deg 236.25deg, transparent 236.25deg 247.5deg,
+  var(--areia) 247.5deg 258.75deg, transparent 258.75deg 270deg,
+  var(--areia) 270deg 281.25deg, transparent 281.25deg 292.5deg,
+  var(--areia) 292.5deg 303.75deg, transparent 303.75deg 315deg,
+  var(--areia) 315deg 326.25deg, transparent 326.25deg 337.5deg,
+  var(--areia) 337.5deg 348.75deg, transparent 348.75deg 360deg)}
+
+.v-b{background:var(--galinha)}
+.v-b::before{background:conic-gradient(from 0deg,
+  var(--cravo) 0 11.25deg, transparent 11.25deg 22.5deg,
+  var(--cravo) 22.5deg 33.75deg, transparent 33.75deg 45deg,
+  var(--cravo) 45deg 56.25deg, transparent 56.25deg 67.5deg,
+  var(--cravo) 67.5deg 78.75deg, transparent 78.75deg 90deg,
+  var(--cravo) 90deg 101.25deg, transparent 101.25deg 112.5deg,
+  var(--cravo) 112.5deg 123.75deg, transparent 123.75deg 135deg,
+  var(--cravo) 135deg 146.25deg, transparent 146.25deg 157.5deg,
+  var(--cravo) 157.5deg 168.75deg, transparent 168.75deg 180deg,
+  var(--cravo) 180deg 191.25deg, transparent 191.25deg 202.5deg,
+  var(--cravo) 202.5deg 213.75deg, transparent 213.75deg 225deg,
+  var(--cravo) 225deg 236.25deg, transparent 236.25deg 247.5deg,
+  var(--cravo) 247.5deg 258.75deg, transparent 258.75deg 270deg,
+  var(--cravo) 270deg 281.25deg, transparent 281.25deg 292.5deg,
+  var(--cravo) 292.5deg 303.75deg, transparent 303.75deg 315deg,
+  var(--cravo) 315deg 326.25deg, transparent 326.25deg 337.5deg,
+  var(--cravo) 337.5deg 348.75deg, transparent 348.75deg 360deg)}
+
+.v-c{background:var(--azulejo)}
+.v-c::before{background:conic-gradient(from 0deg,
+  var(--cravo) 0 11.25deg, transparent 11.25deg 22.5deg,
+  var(--cravo) 22.5deg 33.75deg, transparent 33.75deg 45deg,
+  var(--cravo) 45deg 56.25deg, transparent 56.25deg 67.5deg,
+  var(--cravo) 67.5deg 78.75deg, transparent 78.75deg 90deg,
+  var(--cravo) 90deg 101.25deg, transparent 101.25deg 112.5deg,
+  var(--cravo) 112.5deg 123.75deg, transparent 123.75deg 135deg,
+  var(--cravo) 135deg 146.25deg, transparent 146.25deg 157.5deg,
+  var(--cravo) 157.5deg 168.75deg, transparent 168.75deg 180deg,
+  var(--cravo) 180deg 191.25deg, transparent 191.25deg 202.5deg,
+  var(--cravo) 202.5deg 213.75deg, transparent 213.75deg 225deg,
+  var(--cravo) 225deg 236.25deg, transparent 236.25deg 247.5deg,
+  var(--cravo) 247.5deg 258.75deg, transparent 258.75deg 270deg,
+  var(--cravo) 270deg 281.25deg, transparent 281.25deg 292.5deg,
+  var(--cravo) 292.5deg 303.75deg, transparent 303.75deg 315deg,
+  var(--cravo) 315deg 326.25deg, transparent 326.25deg 337.5deg,
+  var(--cravo) 337.5deg 348.75deg, transparent 348.75deg 360deg)}
+.v-c .title{color:var(--noite)}
+</style>
+</head>
+<body>
+
+<h1>Chapitô — hero background, three alternatives</h1>
+<p class="subtitle">pick a color combination for the ground + wedges</p>
+
+<div class="grid">
+
+  <!-- Option A — peach + cream (current refined) -->
+  <div class="panel">
+    <div class="stage v-a">
+      <div class="title">Chapitô</div>
+      <div class="medallion"><img src="../current/assets/images/logo.png" alt=""></div>
+      <div class="bottles">
+        <img src="../current/assets/images/label-faquir.png" alt="">
+        <img src="../current/assets/images/label-funambulo.png" alt="">
+        <img src="../current/assets/images/label-domador.png" alt="">
+        <img src="../current/assets/images/label-palhaco.png" alt="">
+        <img src="../current/assets/images/label-trapezio.png" alt="">
+      </div>
+    </div>
+    <div>
+      <div class="tag"><b>Option A</b> — Cravo + Areia <span style="opacity:.5">(current, refined)</span></div>
+      <div class="label">Warm peach ground, cream rays</div>
+      <div class="swatches" style="margin-top:10px">
+        <span class="swatch"><span class="swatch-chip" style="background:#f4b09d"></span>#F4B09D ground</span>
+        <span class="swatch"><span class="swatch-chip" style="background:#fbe9d0"></span>#FBE9D0 wedges</span>
+      </div>
+      <p style="margin-top:14px;font-size:13px;line-height:1.55;opacity:.8;max-width:46ch">
+        Holds the brand's dominant peach surface from the rest of the page. Cream rays are tonal,
+        very low contrast — sunburst reads as embossed paper rather than poster.
+      </p>
+    </div>
+  </div>
+
+  <!-- Option B — golden mustard + peach wedges -->
+  <div class="panel">
+    <div class="stage v-b">
+      <div class="title">Chapitô</div>
+      <div class="medallion"><img src="../current/assets/images/logo.png" alt=""></div>
+      <div class="bottles">
+        <img src="../current/assets/images/label-faquir.png" alt="">
+        <img src="../current/assets/images/label-funambulo.png" alt="">
+        <img src="../current/assets/images/label-domador.png" alt="">
+        <img src="../current/assets/images/label-palhaco.png" alt="">
+        <img src="../current/assets/images/label-trapezio.png" alt="">
+      </div>
+    </div>
+    <div>
+      <div class="tag"><b>Option B</b> — Galinha + Cravo <span style="opacity:.5">(golden fairground)</span></div>
+      <div class="label">Mustard ground, peach rays</div>
+      <div class="swatches" style="margin-top:10px">
+        <span class="swatch"><span class="swatch-chip" style="background:#f3c84e"></span>#F3C84E ground</span>
+        <span class="swatch"><span class="swatch-chip" style="background:#f4b09d"></span>#F4B09D wedges</span>
+      </div>
+      <p style="margin-top:14px;font-size:13px;line-height:1.55;opacity:.8;max-width:46ch">
+        Major shift toward warm yellow. Mustard reads as "sun through canvas" / Pollocks-style
+        circus poster. Peach wedges hold the brand's pink without dominating. Most fairground-energy
+        of the three.
+      </p>
+    </div>
+  </div>
+
+  <!-- Option C — azulejo turquoise + peach wedges -->
+  <div class="panel">
+    <div class="stage v-c">
+      <div class="title">Chapitô</div>
+      <div class="medallion"><img src="../current/assets/images/logo.png" alt=""></div>
+      <div class="bottles">
+        <img src="../current/assets/images/label-faquir.png" alt="">
+        <img src="../current/assets/images/label-funambulo.png" alt="">
+        <img src="../current/assets/images/label-domador.png" alt="">
+        <img src="../current/assets/images/label-palhaco.png" alt="">
+        <img src="../current/assets/images/label-trapezio.png" alt="">
+      </div>
+    </div>
+    <div>
+      <div class="tag"><b>Option C</b> — Azulejo + Cravo <span style="opacity:.5">(cool surprise)</span></div>
+      <div class="label">Turquoise ground, peach rays</div>
+      <div class="swatches" style="margin-top:10px">
+        <span class="swatch"><span class="swatch-chip" style="background:#3fbcaf"></span>#3FBCAF ground</span>
+        <span class="swatch"><span class="swatch-chip" style="background:#f4b09d"></span>#F4B09D wedges</span>
+      </div>
+      <p style="margin-top:14px;font-size:13px;line-height:1.55;opacity:.8;max-width:46ch">
+        Cool-warm inversion. Turquoise reads as Lisbon morning sky / azulejo tile water.
+        Visually echoes the Trapézio big-dark teal section deeper in the page, creating
+        bookends. Most "designer-confident" option.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<p style="margin-top:48px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;opacity:.5">
+  pick A · B · or C
+</p>
+
+</body>
+</html>
