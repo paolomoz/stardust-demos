@@ -1,0 +1,30 @@
+Studio product photography of a classic 5fl-oz craft hot-sauce bottle, straight-on head-on shot, centred in the frame. The bottle is a tall narrow cylindrical "woozy" form — square shoulder, narrow body about 1.5 inches wide × 7 inches tall (aspect roughly 1:3), clear glass with deep amber-red sauce visible inside (smoked sauce). The cap is a flat-topped slightly tapered BLACK PLASTIC dispenser cap (classic craft-hot-sauce cap — NO wax dipping, NO wax drips).
+
+The bottle floats on a flat solid warm cream background (hex #fffaef). Uniformly flat cream — NOT a checkerboard pattern.
+
+A single rectangular paper label is wrapped around the bottle's body, taller than wide, occupying ~70% of the bottle's vertical span and ~85% of its width. The label uses a vivid orange solid-color ground (the brand's piri color, hex #ed7f3f). Flat, hard-edged.
+
+Label composition:
+
+A hard-edged horizontal band in deep teal (the brand's tejo color, #1f4548) running edge to edge across the upper third of the label, slightly tilted +2°. Inside the teal band, the word "DOMADOR" in bold condensed all-caps sans-serif (Anton register), set in warm cream (cal #fffaef), letter-spacing tight.
+
+Centred on the label below the title band, a black-and-white cut-out vintage photograph of a 1920s–1940s travelling-circus lion tamer — tailcoat with epaulettes, holding a coiled whip in one hand, mustache or beard, theatrical posture, archive photograph register. Sharp hand-cut zine edges. The figure is grayscale only and occupies the middle 50% of the label vertically, slightly offset to the left.
+
+Below the figure, a smaller all-caps subtitle "PIRI-PIRI FUMADO · 100 ML" in IBM Plex Mono uppercase, deep dark ink (noite) text on the vivid orange ground.
+
+In the lower-left corner of the label, a small Chapitô brand-mark badge (~14% of the label width). The badge contains: a double-line circle border (two concentric thin dark rings on the orange label ground), an italic capital "Ô" set in classical Bodoni-style display serif centred inside (dark ink), a tiny dark pennant flag on a thin pole rising vertically from above the Ô, and three small burgundy-red six-pointed Bodoni-style stars scattered inside the circle. The badge's background is the same orange as the label ground. NO 'C' letter, NO wedges, NO stripes — only the Ô + flag + double ring + 3 red stars.
+
+Surface: subtle paper grain, hand-cut zine character. NO drop shadow.
+
+Anti-references — explicitly do NOT produce:
+- Italian-language text anywhere.
+- Catholic / religious iconography.
+- Names "Amaro", "Gin", "Religin", "Cattaneo", "Della Nonna".
+- Purple-as-primary-label-ground.
+- WAX-DIPPED CAP — black plastic only.
+- A wide / flask-shaped bottle.
+- A 'C' letter on the badge — only the Ô.
+- Radial wedges on the badge.
+- A checkerboard pattern as the background.
+- A lion or wild animal centred on the label — the lion tamer himself is the figure.
+- Hand-painted illustration — only B&W photographic cutout.

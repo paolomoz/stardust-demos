@@ -1,0 +1,18 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust (hand-authored, proof-of-concept)",
+    "writtenAt": "2026-05-12T00:00:00Z",
+    "stardustVersion": "0.3.0"
+  },
+  "brand": "chapito",
+  "state": {
+    "extract": { "status": "synthesized", "writtenBy": "stardust:seed + stardust:brief (hand-authored)", "writtenAt": "2026-05-12T00:00:00Z" },
+    "direct":  { "status": "active",      "writtenBy": "stardust:direct (hand-authored)",                "writtenAt": "2026-05-12T00:00:00Z" },
+    "prototype": {
+      "pages": {
+        "home": { "status": "rendered", "shape": "stardust/prototypes/home-shape.md", "proposed": "stardust/prototypes/home-proposed.html", "writtenAt": "2026-05-12T00:00:00Z" }
+      }
+    },
+    "migrate": { "status": "not-run" }
+  }
+}

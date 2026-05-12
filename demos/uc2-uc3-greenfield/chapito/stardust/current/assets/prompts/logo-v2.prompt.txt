@@ -1,0 +1,25 @@
+A delicate hand-engraved-feel logo of a big-top circus tent canvas seen from directly above, in monochrome (black and warm cream only). The wheel fills most of the square canvas — exactly 8 equal radial wedges, alternating between deep ink (hex #1a1410, the brand's noite color) and warm cream (hex #fffaef, the brand's cal color), like a top-down view of striped tent canvas in a vintage scratchboard / wood engraving register.
+
+The line weight is INTENTIONALLY LIGHT — much thinner than a bold poster logo. The dark-ink spoke lines separating each wedge are HAIRLINES (think 0.5–1px equivalent at output size, not 2–3px). The outer ring is a SINGLE THIN hairline circle — no thick poster border. Where two cream wedges meet, only a hairline separates them. Where a noite wedge meets a cream wedge, the boundary is the edge of the noite fill (no extra line).
+
+Centred on the wheel: NO inner hub disc — the centre is open, with the wedges meeting directly at a small filled noite dot at the exact centre. The italic capital letter "Ô" set in classical Bodoni-style display serif sits DIRECTLY at the centre of the wheel, large enough that the letter's bowl spans the wedge intersection. The Ô is in noite ink. The Ô's circumflex accent (^) above the O reads as the Portuguese diacritic and visually as a small flag rising from the tent's centre pole.
+
+Three small six-pointed Bodoni-style star ornaments scattered on the CREAM wedges only, evenly distributed around the wheel at about 65% of the radius, in noite ink — small and delicate, not bold.
+
+Image background: solid warm cream (#fffaef), flat — NOT a checkerboard / transparency-indicator pattern, NOT white, NOT gray.
+
+Aesthetic: hand-engraved / scratchboard / fine-line letterpress feel. Delicate, sophisticated, REFINED rather than bold. The whole logo reads as if engraved into copper or scratched into a scratchboard, with thin precise lines throughout. NO thick poster lines. NO photographic texture. NO drop shadow.
+
+Anti-references — explicitly do NOT produce:
+- Photorealistic circus tent photography
+- 3D rendering
+- A logo with the letter "C" anywhere — only the Ô
+- Any text other than the single letter "Ô"
+- Italian-language words
+- A pinwheel / windmill / cart-wheel reading
+- Burgundy, peach-coral, mustard, teal, or orange — NO COLOR outside black and cream
+- Pure white (use #fffaef cream)
+- An inner hub disc — the centre is open
+- THICK bold lines — this variant is intentionally LIGHT / DELICATE
+- Roman Ô — must be italic
+- More than three star ornaments

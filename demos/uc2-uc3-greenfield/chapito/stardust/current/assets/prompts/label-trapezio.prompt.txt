@@ -1,0 +1,31 @@
+Studio product photography of a classic 5fl-oz craft hot-sauce bottle, straight-on head-on shot, centred in the frame. The bottle is a tall narrow cylindrical "woozy" form — square shoulder, narrow body about 1.5 inches wide × 7 inches tall (aspect roughly 1:3), clear glass with vivid amber-orange sauce visible inside. The cap is a flat-topped slightly tapered BLACK PLASTIC dispenser cap (classic craft-hot-sauce cap — NO wax dipping, NO wax drips, NO cork).
+
+The bottle floats on a flat solid warm cream background (hex #fffaef). The entire surrounding area is uniformly flat cream — NOT a checkerboard pattern, NOT a studio backdrop, NOT a gradient. We will key out the cream programmatically after generation.
+
+A single rectangular paper label is wrapped around the bottle's body, taller than wide, occupying ~70% of the bottle's vertical span and ~85% of its width. The label uses a deep teal solid-color ground (the brand's tejo color, hex #1f4548). Flat, hard-edged, no gradient or texture.
+
+Label composition (Memphis-Milano collage on a tall narrow label):
+
+A hard-edged horizontal band in warm cream (cal #fffaef) running edge to edge across the upper third of the label, slightly tilted -2°. Inside the cream band, the word "TRAPÉZIO" in bold condensed all-caps sans-serif (Anton register), set in deep dark ink (noite #1a1410), letter-spacing tight, sized to span the band's width.
+
+Centred on the label below the title band, a black-and-white cut-out vintage photograph of a 1920s–1940s travelling-circus trapeze artist mid-swing on a trapeze bar — hands gripping the bar, body extended diagonally, archive photograph grain visible, sharp hand-cut zine-style edges as if scissored out of a magazine. The figure is grayscale only and occupies the middle 50% of the label vertically, slightly offset to the right.
+
+Below the figure, a smaller all-caps subtitle "MOLHO PICANTE · 100 ML" in IBM Plex Mono uppercase, warm cream (cal) text on the deep teal ground.
+
+In the lower-left corner of the label, a small Chapitô brand-mark badge (~14% of the label width). The badge contains: a double-line circle border (two concentric thin dark rings with a small gap between them), an italic capital "Ô" set in classical Bodoni-style display serif centred inside the inner ring (dark ink), a tiny dark pennant flag on a thin pole rising vertically from above the Ô, and three small burgundy-red (#9b3536) six-pointed Bodoni-style stars scattered inside the circle. The badge's background is the same deep teal as the label ground (NOT a white disc, NOT a separate light circle). NO 'C' letter, NO wedges, NO stripes, NO inner hub disc — only the Ô + flag + double ring + 3 red stars.
+
+Surface: the label paper looks slightly weathered — subtle paper grain, faint corner foxing, hand-cut zine character. NO drop shadow, NO gradient, NO photographic texture on the bottle or label.
+
+Anti-references — explicitly do NOT produce:
+- Italian-language text anywhere on the label.
+- Catholic / religious iconography.
+- Names "Amaro", "Gin", "Religin", "Cattaneo", "Sant'Ambrogin", "Della Nonna".
+- Purple-as-primary-label-ground.
+- WAX-DIPPED CAP — the cap is black plastic only.
+- A wide / flask-shaped bottle — this is a tall narrow woozy.
+- A 'C' letter on the brand-mark badge — only the Ô.
+- Radial wedges or stripes on the brand-mark badge — only the double ring + Ô + flag + 3 red stars.
+- A checkerboard / transparency-indicator pattern as the image background — solid flat cream only.
+- A landscape or studio backdrop behind the bottle.
+- A modern craft-beer can label aesthetic.
+- Hand-painted illustration of the trapeze artist — only B&W photographic cutout.

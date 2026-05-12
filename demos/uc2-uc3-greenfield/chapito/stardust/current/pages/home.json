@@ -1,0 +1,146 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:seed + stardust:brief (hand-authored, proof-of-concept)",
+    "writtenAt": "2026-05-12T00:00:00Z",
+    "source": "synthesized — no source URL; greenfield brand",
+    "finalUrl": "https://chapito.pt/",
+    "synthesizedInputs": ["brand/BRAND.md", "briefing/SITE-BRIEF.md", "briefing/CONTENT.md#1-home"],
+    "stardustVersion": "0.3.0"
+  },
+  "slug": "home",
+  "meta": {
+    "finalUrl": "https://chapito.pt/",
+    "title": "Chapitô — Molhos com piruetas · Lisboa",
+    "description": "Casa pequena, picante grande. Molhos artesanais portugueses feitos à mão em Alfama, Lisboa. Por Inês Bento.",
+    "og": { "title": "Chapitô — Molhos com piruetas", "description": "Casa pequena, picante grande. Molhos artesanais portugueses.", "image": "/assets/og-home.jpg", "type": "website", "siteName": "Chapitô" },
+    "themeColor": { "light": "#f4b09d", "dark": "#1f4548" }
+  },
+  "headings": [
+    { "level": 1, "text": "CHAPITÔ",                       "fontFamily": "'Bodoni Moda', serif", "fontStyle": "normal", "fontSize": "32px", "color": "#1a1410", "domPath": "main > section.hero > .medallion > h1", "verbatim": true, "note": "set as circular type around the monogrammatic C" },
+    { "level": 2, "text": "PIRI-PIRI",                     "fontFamily": "'Anton', condensed-sans", "fontSize": "80px", "color": "#1a1410", "domPath": "main > section.family-piri > h2", "verbatim": true },
+    { "level": 2, "text": "DOCE FOGO",                     "fontFamily": "'Anton', condensed-sans", "fontSize": "80px", "color": "#1a1410", "domPath": "main > section.family-doce-fogo > h2", "verbatim": true },
+    { "level": 2, "text": "PRENDETE, E PROVAI",           "fontFamily": "'Anton', condensed-sans", "fontSize": "80px", "color": "#1a1410", "domPath": "main > section.family-equilibrista > h2", "verbatim": true },
+    { "level": 2, "text": "CABEÇUDO",                      "fontFamily": "'Anton', condensed-sans", "fontSize": "80px", "color": "#fffaef", "domPath": "main > section.family-cabecudo > h2", "verbatim": true },
+    { "level": 2, "text": "TRAPÉZIO",                      "fontFamily": "'Anton', condensed-sans", "fontSize": "120px", "color": "#fffaef", "domPath": "main > section.bottle-hero > h2", "verbatim": true }
+  ],
+  "landmarks": [
+    { "tag": "header", "role": "header", "className": "credits-bar",       "visibleText": "CHAPITÔ · A CASA · A HORTA · OS MOLHOS · ONDE PROVAR · LOJA · CONTACTO · EST. 2018 · LISBOA", "bgColor": "transparent", "textColor": "#1a1410" },
+    { "tag": "main",   "role": "main",   "className": "page-home",         "visibleText": "Hero Sunburst Medallion · X-Marquee Band · Highlighter-Tape Manifesto · PIRI-PIRI Color Block · DOCE FOGO Color Block · EQUILIBRISTA Color Block + Chip-Tag Cluster · CABEÇUDO Color Block · TRAPÉZIO Big-Dark Bottle Hero · Medallion Footer" },
+    { "tag": "footer", "role": "footer", "className": "persistent-bar",    "visibleText": "VISITA A LOJA · VAI ATÉ LÁ →" }
+  ],
+  "sections": [
+    {
+      "tag": "section", "className": "hero hero-sunburst", "bgMode": "sunburst-medallion", "bgColor": "#f4b09d",
+      "motifId": "sunburst-medallion-hero",
+      "verbatim": true,
+      "childTextSnippet": "Hero — sunburst alternating-ray pattern on chapito-cravo ground. Center: Bodoni circular wordmark medallion (CHAPITÔ top, MOLHOS FEITOS À MÃO bottom, large monogrammatic C with circumflex tent-peak above) on chapito-cal. 6 hand-painted bottle illustrations arranged at clock positions 12/2/4/6/8/10 around the medallion. Top-left ticket-stub tag: PIRI-PIRI label with B&W cutout, rotated -6°. Top-right ticket-stub tag: EQUILIBRISTA label with B&W cutout, rotated +6°."
+    },
+    {
+      "tag": "section", "className": "marquee-x", "bgMode": "x-marquee", "bgColor": "#f4b09d",
+      "motifId": "x-crossed-marquee-band",
+      "verbatim": true,
+      "childTextSnippet": "X-Marquee Band — two diagonally-crossed white-tape ribbons spanning edge-to-edge, intersecting in the center. Ribbon 1 (rotated -12°) repeats 'VEM AO CHAPITÔ' in Anton condensed all-caps with · separators. Ribbon 2 (rotated +12°) repeats 'PROVA A CASA'. At the X-intersection: 180px circular CTA button on chapito-tejo ground with VAI À LOJA in chapito-cal."
+    },
+    {
+      "tag": "section", "className": "manifesto", "bgMode": "highlighter-paragraph", "bgColor": "#f4b09d",
+      "motifId": "highlighter-tape-manifesto",
+      "verbatim": true,
+      "childTextSnippet": "Highlighter-Tape Manifesto — centered free-running paragraph in Inter on chapito-cravo ground. Five phrase-spans wrapped in hard-edged solid-color highlighter rectangles in rotation: azulejo · piri · galinha · malagueta · tejo (white text on tejo). Below: a mono-marker CTA button ▸ DESCARREGA O CATÁLOGO COMPLETO."
+    },
+    {
+      "tag": "section", "className": "family-piri color-block", "bgMode": "color-block", "bgColor": "#ed7f3f",
+      "motifId": "color-block-product-collage",
+      "familyName": "PIRI-PIRI",
+      "subtitleTerms": ["ALTERNATIVOS", "ORIGINAIS", "100% NATURAIS"],
+      "bottles": ["Trapézio", "Faquir", "Equilibrista", "Domador", "Saltimbanco", "Cuspidor de Fogo"],
+      "cutoutsCount": 4,
+      "childTextSnippet": "PIRI-PIRI — chapito-piri ground (vivid orange). Anton 80px all-caps family name top-center. 3-term mono subtitle ALTERNATIVOS | ORIGINAIS | 100% NATURAIS. 6 bottles in a horizontal row middle. 4 B&W cutout-photo overlays floating at -8° / +5° / -3° / +9°. Diagonal-stripe accent bottom-right (cream + laranja-doce). Polka-dot accent bottom-left (azulejo on areia)."
+    },
+    {
+      "tag": "section", "className": "family-doce-fogo color-block", "bgMode": "color-block", "bgColor": "#f3c84e",
+      "motifId": "color-block-product-collage",
+      "familyName": "DOCE FOGO",
+      "subtitleTerms": ["JOVENS", "SAUDÁVEIS", "100% NATURAIS"],
+      "bottles": ["Palhaço", "Contorcionista", "Acrobata", "Funâmbulo", "Mestre-de-Cerimónias", "Malabarista"],
+      "cutoutsCount": 4,
+      "childTextSnippet": "DOCE FOGO — chapito-galinha ground (mustard). Family name + 3-term mono subtitle JOVENS | SAUDÁVEIS | 100% NATURAIS. 6 bottles horizontal row. 4 cutouts. Bottom corners: stripe + polka-dot accents (cyan polka-dots on areia, stripe in cream + piri)."
+    },
+    {
+      "tag": "section", "className": "family-equilibrista color-block", "bgMode": "color-block", "bgColor": "#f4b09d",
+      "cyanOverlay": true,
+      "motifId": "color-block-product-collage + chip-tag-cluster",
+      "familyName": "PRENDETE, E PROVAI",
+      "subtitleTerms": ["IRREVERENTES", "FERMENTADOS", "100% NATURAIS"],
+      "bottles": ["Trapézio Negro", "Funâmbulo Verde", "Acrobata Cinco-Especiarias", "Saltimbanco Cítrico", "Equilibrista", "Contorcionista Misô"],
+      "cutoutsCount": 3,
+      "chipsCount": 6,
+      "childTextSnippet": "EQUILIBRISTA / FERMENTADOS — chapito-cravo ground with cyan-overlay band. Family name + 3-term mono subtitle IRREVERENTES | FERMENTADOS | 100% NATURAIS. 6 bottles horizontal row. 3 cutouts (sparser than other sections). + Chip-tag cluster: 6 circular cutout-photo chips with colored half-band labels (EQUILIBRISTA, FAQUIR, PALHAÇO, FUNÂMBULO, DOMADOR, MALABARISTA), loosely overlapping at -4° to +6°. Bottom corners: stripe + polka-dot accents."
+    },
+    {
+      "tag": "section", "className": "family-cabecudo color-block", "bgMode": "color-block-dark", "bgColor": "#1f4548",
+      "motifId": "color-block-product-collage",
+      "familyName": "CABEÇUDO",
+      "subtitleTerms": ["EXPERIMENTAIS", "SAZONAIS", "100% NATURAIS"],
+      "bottles": ["Cabeçudo", "Anão Sábio", "Mulher-Barbuda", "Homem-Forte", "Diretor do Circo", "Bilheteira"],
+      "cutoutsCount": 4,
+      "childTextSnippet": "CABEÇUDO — chapito-tejo ground (deep teal, light type on dark). Family name in chapito-cal + 3-term mono subtitle EXPERIMENTAIS | SAZONAIS | 100% NATURAIS. 6 bottles horizontal row. 4 cutouts. Bottom corners: stripe (cream + cyan) + polka-dot (malagueta dots on areia)."
+    },
+    {
+      "tag": "section", "className": "bottle-hero", "bgMode": "big-dark-bottle", "bgColor": "#1f4548",
+      "motifId": "big-dark-bottle-hero",
+      "flagshipBottle": "Trapézio",
+      "verbatim": true,
+      "childTextSnippet": "Big-Dark Bottle Hero — chapito-tejo full-bleed 80vh. Centered: 480px-tall Trapézio bottle. Behind: 3 hand-drawn parallel sine-wave lines in chapito-cal 2px stroke (Tagus at dusk motif). Left of bottle: Anton 120px TRAPÉZIO in cal + raster script lockup stamp below. Right of bottle: 3-line mono micro-block LARGO DO CHAFARIZ · COSTA DO CASTELO · ALFAMA, LISBOA. Below the bottle: italic Inter pull-anchor 'O molho de assinatura. Trapézio sobre malagueta.'"
+    },
+    {
+      "tag": "section", "className": "medallion-footer", "bgMode": "medallion-footer", "bgColor": "#f4b09d",
+      "motifId": "medallion-footer",
+      "childTextSnippet": "Medallion Footer — centered 200×200px wordmark medallion (same construction as hero, smaller). Below: 4 icon-links in a single row (email · Instagram · WhatsApp · phone), each rendered as a small mono icon + mono uppercase label."
+    },
+    {
+      "tag": "footer", "className": "persistent-bar", "bgMode": "fixed-bottom", "bgColor": "#fffaef",
+      "motifId": "persistent-bottom-bar",
+      "childTextSnippet": "Persistent Bottom Bar — fixed bottom 36px chapito-cal band. Left: mono uppercase VISITA A LOJA →. Right: mono uppercase VAI ATÉ LÁ → (links to chapito.shop)."
+    }
+  ],
+  "sectionGroundSequence": ["chapito-cravo", "chapito-cravo", "chapito-cravo", "chapito-piri", "chapito-galinha", "chapito-cravo+cyan", "chapito-tejo", "chapito-tejo", "chapito-cravo", "chapito-cal"],
+  "distinctGrounds": 6,
+  "paletteDeploymentIntensity": "drenched",
+  "cardinalFlashRule": "no single token over-deployed; chapito-tejo appears in two consecutive sections (CABEÇUDO family + Trapézio bottle hero) to deliver the cover-of-night beat",
+  "ctas": [
+    { "label": "VAI À LOJA",                       "href": "https://chapito.shop/",  "bgColor": "#1f4548", "color": "#fffaef", "fontFamily": "'IBM Plex Mono', mono", "borderRadius": "9999px", "padding": "44px", "context": "X-marquee section center button" },
+    { "label": "▸ DESCARREGA O CATÁLOGO COMPLETO", "href": "/catalogo.pdf",         "bgColor": "#1a1410", "color": "#fffaef", "fontFamily": "'IBM Plex Mono', mono", "borderRadius": "2px",   "padding": "14px 28px", "context": "below the highlighter-tape manifesto" },
+    { "label": "VISITA A LOJA →",                  "href": "https://chapito.shop/",  "bgColor": "transparent", "color": "#1a1410", "fontFamily": "'IBM Plex Mono', mono", "context": "persistent bottom bar (left)" },
+    { "label": "VAI ATÉ LÁ →",                     "href": "https://chapito.shop/",  "bgColor": "transparent", "color": "#1a1410", "fontFamily": "'IBM Plex Mono', mono", "context": "persistent bottom bar (right)" }
+  ],
+  "links": [
+    { "label": "A Casa",       "href": "/a-casa",      "external": false },
+    { "label": "A Horta",      "href": "/a-horta",     "external": false },
+    { "label": "Os Molhos",    "href": "/os-molhos",   "external": false },
+    { "label": "Onde Provar",  "href": "/onde-provar", "external": false },
+    { "label": "Loja",         "href": "https://chapito.shop/", "external": true },
+    { "label": "Contacto",     "href": "/contacto",    "external": false }
+  ],
+  "media": {
+    "images": [
+      { "src": "/assets/medallion.svg",          "alt": "Chapitô circular wordmark medallion with monogrammatic C and circumflex tent-peak", "intent": "lane-2 logotype",     "pending": false, "policy": "rendered as SVG in HTML directly; not a Gemini asset" },
+      { "src": "/assets/bottle-trapezio.svg",    "alt": "Trapézio flagship bottle hand-painted label",                                          "intent": "lane-2 bottle label", "pending": true,  "policy": "Gemini Lane 2 placeholder" },
+      { "src": "/assets/cutout-fairground.png",  "alt": "B&W cutout of a 1960s travelling-circus performer in mid-trapeze",                    "intent": "lane-1 cutout",       "pending": true,  "policy": "Gemini Lane 1 placeholder; fallback rendered as SVG portrait silhouette" },
+      { "src": "/assets/cutout-grandmother.png", "alt": "B&W cutout of an Alfama balcony grandmother, mid-century photograph",                  "intent": "lane-1 cutout",       "pending": true,  "policy": "Gemini Lane 1 placeholder; fallback rendered as SVG portrait silhouette" },
+      { "src": "/assets/cutout-tram.png",        "alt": "B&W cutout of a Lisbon Carris tram, 1960s",                                            "intent": "lane-1 cutout",       "pending": true,  "policy": "Gemini Lane 1 placeholder; fallback rendered as SVG silhouette" },
+      { "src": "/assets/cutout-fisherman.png",   "alt": "B&W cutout of a Tagus sardine fisherman, mid-century",                                 "intent": "lane-1 cutout",       "pending": true,  "policy": "Gemini Lane 1 placeholder; fallback rendered as SVG silhouette" }
+    ],
+    "svgs": [],
+    "videos": [],
+    "iframes": [],
+    "cssBackgrounds": []
+  },
+  "forms": [],
+  "widgets": { "dialogs": 0, "accordions": 0, "tablists": 0 },
+  "body": { "bgColor": "#f4b09d", "color": "#1a1410", "fontFamily": "'Inter', sans-serif", "fontSize": "17px", "htmlBg": "#f4b09d" },
+  "logoCandidates": [
+    { "kind": "medallion-wordmark", "src": "/assets/medallion.svg", "alt": "Chapitô", "intrinsicWidth": 320, "intrinsicHeight": 320 }
+  ],
+  "appleTouch": null,
+  "favicon": "/assets/favicon.svg"
+}

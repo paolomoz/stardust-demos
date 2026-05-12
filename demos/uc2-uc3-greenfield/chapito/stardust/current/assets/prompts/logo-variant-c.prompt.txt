@@ -1,0 +1,23 @@
+A flat hand-printed-feel logo of a big-top circus tent canvas seen from directly above, in a bolder fairground-poster proportion. The wheel fills most of the square canvas — 8 (NOT 12) wedges, each one chunkier and more prominent than a 12-wedge wheel would have. The 8 wedges alternate between burgundy red (hex #9b3536, the brand's malagueta color) and warm cream (hex #fffaef, the brand's cal color), like a top-down view of bold striped tent canvas. Thin dark-ink spoke lines (hex #1a1410, the brand's noite color) separate each wedge. A clean dark-ink ring runs around the outer perimeter of the wheel.
+
+Centred on the wheel, NO inner hub disc — the centre is open, with the wedges meeting directly at a small dark-ink centre pole dot. The italic capital letter "Ô" set in classical Bodoni-style display serif sits DIRECTLY at the centre of the wheel, large enough that the letter's bowl spans the wedge intersection area and OVERLAPS multiple wedges. The Ô is in deep dark ink (#1a1410). The Ô's circumflex accent (^) above the O reads BOTH as the Portuguese diacritic AND visually as a small pennant flag rising up from the tent's centre pole — a deliberate visual pun.
+
+Three small six-pointed Bodoni-style star ornaments scattered on the CREAM wedges only, evenly distributed around the wheel at about 65% of the radius, painted in burgundy ink.
+
+Image background: solid warm cream (#fffaef), flat — NOT a checkerboard / transparency-indicator pattern, NOT white, NOT gray. Just flat warm cream.
+
+Aesthetic: hand-printed letterpress / silkscreen feel — bolder, more poster-weight than the 12-wedge variant. Slight ink mis-registration. Faint paper grain. Hard-edged hand-cut character. NOT slick vector, NOT digital flat, NOT 3D, NOT glassy. NO drop shadow, NO gradient.
+
+Anti-references — explicitly do NOT produce:
+- Photorealistic circus tent photography
+- 3D rendering or perspective drawing
+- A wagon-wheel or cart-wheel reading
+- A logo with the letter "C" anywhere — only the Ô
+- Any text other than the single letter "Ô"
+- Italian-language words anywhere
+- A starburst / explosion / sunburst rays reading
+- A pinwheel / windmill / fidget-spinner reading
+- Color outside the brand palette (cravo, cal, malagueta, noite — these only)
+- Pure black or pure white
+- An inner hub circle (this variant has NO hub disc — the Ô sits on the open centre)
+- More than three star ornaments — exactly three, no more, no less

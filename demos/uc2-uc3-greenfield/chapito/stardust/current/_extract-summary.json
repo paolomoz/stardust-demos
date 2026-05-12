@@ -1,0 +1,27 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:brief (hand-authored, proof-of-concept)",
+    "writtenAt": "2026-05-12T00:00:00Z",
+    "readArtifacts": ["briefing/SITE-BRIEF.md", "briefing/CONTENT.md"],
+    "synthesizedInputs": ["briefing/SITE-BRIEF.md", "briefing/CONTENT.md"],
+    "stardustVersion": "0.3.0",
+    "scope": "greenfield brief summary — no crawl; pages synthesized from briefing/"
+  },
+  "successes": [
+    { "slug": "home",        "url": "/",            "source": "synthesized", "originDoc": "briefing/CONTENT.md#1-home" },
+    { "slug": "a-casa",      "url": "/a-casa",      "source": "synthesized", "originDoc": "briefing/CONTENT.md#2-a-casa" },
+    { "slug": "a-horta",     "url": "/a-horta",     "source": "synthesized", "originDoc": "briefing/CONTENT.md#3-a-horta" },
+    { "slug": "os-molhos",   "url": "/os-molhos",   "source": "synthesized", "originDoc": "briefing/CONTENT.md#4-os-molhos" },
+    { "slug": "onde-provar", "url": "/onde-provar", "source": "synthesized", "originDoc": "briefing/CONTENT.md#5-onde-provar" },
+    { "slug": "loja",        "url": "/loja",        "source": "synthesized", "originDoc": "briefing/CONTENT.md#6-loja" },
+    { "slug": "contacto",    "url": "/contacto",    "source": "synthesized", "originDoc": "briefing/CONTENT.md#7-contacto" }
+  ],
+  "failures": [],
+  "totals": { "pages": 7, "succeeded": 7, "failed": 0 },
+  "ageGate": false,
+  "shopOffloadedTo": "chapito.shop",
+  "notes": [
+    "Greenfield workspace; no source URL was crawled. Pages synthesized from briefing/CONTENT.md.",
+    "Reference visual register: maximalist Italian-pop artisan-craft sites in the lineage of opificiocattaneo.com — vocabulary lifted as named compositional motifs (see DESIGN.json.extensions.motifs.patterns) and rotated to a Lisbon + circus cultural anchor. No Italian language, place, or brand reference in the implementation."
+  ]
+}

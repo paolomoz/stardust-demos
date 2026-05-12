@@ -1,0 +1,389 @@
+{
+  "_provenance": {
+    "writtenBy": "stardust:seed (hand-authored, proof-of-concept)",
+    "writtenAt": "2026-05-12T00:00:00Z",
+    "readArtifacts": ["brand/BRAND.md"],
+    "synthesizedInputs": ["brand/BRAND.md"],
+    "stardustVersion": "0.3.0",
+    "scope": "descriptive — machine-readable mirror of DESIGN.md + extensions (compositional motif catalog, divergence audit, voice, iaPriorities, narrative)",
+    "notes": [
+      "palette is the 10-token Lisbon fairground-pop set authored in BRAND.md § Visual identity",
+      "tokens renamed in brand-native vocabulary: chapito-cravo / areia / piri / laranja-doce / azulejo / galinha / malagueta / tejo / noite / cal",
+      "palette deployment intensity = `drenched` per intent-dimensions.md § 7.5 (Expressive axis) and per user-documented saturation preference (feedback_palette_saturation_preference.md)",
+      "compositional motifs are LOAD-BEARING and not optional — see extensions.motifs.patterns for the named-and-numbered catalog the prototype must reimplement"
+    ]
+  },
+  "schemaVersion": 2,
+  "name": "Chapitô",
+  "description": "Single-maker Portuguese hot-sauce house in Alfama, Lisbon — palette deployed at maximalist intensity, big-top fairground composition vocabulary lifted from the maximalist Italian-pop artisan-craft reference register and rotated to a Lisbon + circus cultural anchor",
+  "colors": {
+    "chapito-cravo":        "#f4b09d",
+    "chapito-areia":        "#fbe9d0",
+    "chapito-piri":         "#ed7f3f",
+    "chapito-laranja-doce": "#e95b27",
+    "chapito-azulejo":      "#3fbcaf",
+    "chapito-galinha":      "#f3c84e",
+    "chapito-malagueta":    "#9b3536",
+    "chapito-tejo":         "#1f4548",
+    "chapito-noite":        "#1a1410",
+    "chapito-cal":          "#fffaef",
+    "text-mute-on-dark":    "#a8c2c4",
+    "text-mute-on-light":   "#5e3a2e",
+    "border-on-dark":       "#385c5f",
+    "border-on-light":      "#d8b59e"
+  },
+  "typography": {
+    "logotype-medallion": { "fontFamily": "'Bodoni Moda','Playfair Display','GFS Didot','Didot',serif", "fontStyle": "normal", "fontWeight": 400, "letterSpacing": "0.18em", "expectedCharacter": "classical Didot/Bodoni — high-contrast modern serif, set as circular type around a monogrammatic C with a freestanding circumflex; used only inside the medallion", "rejectedCharacters": ["script faces", "geometric sans", "humanist sans"], "loadBearingRule": "wordmark medallion only — never deploy as standing body or display text" },
+    "display":         { "fontFamily": "'Anton','Bebas Neue','Oswald','Impact',sans-serif", "fontStyle": "normal", "fontWeight": 400, "fontSize": "80px",  "lineHeight": "0.92", "letterSpacing": "-0.01em", "textTransform": "uppercase", "expectedCharacter": "bold condensed all-caps poster sans; fairground-marquee weight, tight tracking, mixed-case FORBIDDEN", "rejectedCharacters": ["italic-classical serif (Playfair italic — that's a different brand)", "humanist sans display", "decorative slab"] },
+    "display-large":   { "fontFamily": "'Anton','Bebas Neue','Oswald','Impact',sans-serif", "fontStyle": "normal", "fontWeight": 400, "fontSize": "120px", "lineHeight": "0.9",  "letterSpacing": "-0.015em", "textTransform": "uppercase" },
+    "display-section": { "fontFamily": "'Anton','Bebas Neue','Oswald','Impact',sans-serif", "fontStyle": "normal", "fontWeight": 400, "fontSize": "64px",  "lineHeight": "0.95", "letterSpacing": "-0.005em", "textTransform": "uppercase" },
+    "body":            { "fontFamily": "'Inter','DM Sans','Outfit','Helvetica Neue',sans-serif", "fontStyle": "normal", "fontWeight": 400, "fontSize": "17px", "lineHeight": "1.55", "expectedCharacter": "humanist neutral grotesque designed for screen reading; mixed-case", "rejectedCharacters": ["serif body (would shift register to editorial)", "monospaced body", "geometric grotesque (Futura — too cold)"] },
+    "body-italic":     { "fontFamily": "'Inter','DM Sans','Outfit','Helvetica Neue',sans-serif", "fontStyle": "italic", "fontWeight": 400, "fontSize": "19px", "lineHeight": "1.45" },
+    "body-emphasis":   { "fontFamily": "'Inter','DM Sans','Outfit','Helvetica Neue',sans-serif", "fontStyle": "normal", "fontWeight": 600, "fontSize": "17px", "lineHeight": "1.55" },
+    "mono":            { "fontFamily": "'IBM Plex Mono','JetBrains Mono','Courier New',monospace", "fontSize": "12px", "fontWeight": 500, "letterSpacing": "0.12em", "textTransform": "uppercase", "expectedCharacter": "Selectric typewriter character; tight at micro size, loose at marker size; mono load-bearing for ALL numerals" },
+    "mono-marker":     { "fontFamily": "'IBM Plex Mono','JetBrains Mono','Courier New',monospace", "fontSize": "14px", "fontWeight": 600, "letterSpacing": "0.14em", "textTransform": "uppercase" }
+  },
+  "rounded": { "none": "0px", "sm": "2px", "md": "4px", "lg": "8px", "pill": "9999px" },
+  "spacing": {
+    "xxs": "4px", "xs": "8px", "sm": "12px", "md": "20px", "lg": "32px", "xl": "56px", "xxl": "96px", "xxxl": "160px",
+    "sectionPadding": {
+      "desktop": "96px",
+      "tablet":  "64px",
+      "mobile":  "40px",
+      "tier":    "drenched-fairground"
+    }
+  },
+  "components": {
+    "button-primary-pill":        { "backgroundColor": "{colors.chapito-tejo}", "textColor": "{colors.chapito-cal}", "rounded": "{rounded.pill}", "padding": "14px 28px", "fontFamily": "mono-marker" },
+    "button-primary-rectangle":   { "backgroundColor": "{colors.chapito-noite}", "textColor": "{colors.chapito-cal}", "rounded": "{rounded.sm}", "padding": "14px 28px", "fontFamily": "mono-marker" },
+    "button-circle-cta":          { "backgroundColor": "{colors.chapito-tejo}", "textColor": "{colors.chapito-cal}", "rounded": "{rounded.pill}", "size": "180px", "fontFamily": "mono-marker", "purpose": "sits at the X-intersection of the marquee ribbon" },
+    "ticket-stub-tag":            { "backgroundColor": "{colors.chapito-cal}", "border": "1px solid {colors.chapito-noite}", "rounded": "{rounded.sm}", "padding": "8px 12px", "fontFamily": "mono-marker", "rotation": "±6°" },
+    "highlighter-rectangle":      { "fontFamily": "body-italic", "padding": "2px 8px", "rounded": "{rounded.none}", "purpose": "flat solid-color rectangle wrapped around phrase-spans inside body prose; NO shadow, NO gradient, hard edges" },
+    "marquee-ribbon-tape":        { "backgroundColor": "{colors.chapito-cal}", "textColor": "{colors.chapito-noite}", "fontFamily": "display", "border": "1px solid {colors.chapito-noite}", "rotation": "±12°", "purpose": "white-tape band spanning edge-to-edge, repeating its phrase in condensed all-caps with · separators" },
+    "polka-dot-accent":           { "backgroundColor": "{colors.chapito-areia}", "dotColor": "{colors.chapito-azulejo}", "dotSize": "8px", "dotSpacing": "20px", "purpose": "bottom-left corner accent rectangle in color-block sections" },
+    "diagonal-stripe-accent":     { "stripeColors": ["{colors.chapito-cal}", "{colors.chapito-piri}"], "stripeAngle": "45deg", "stripeWidth": "12px", "purpose": "bottom-right corner accent rectangle in color-block sections" }
+  },
+  "extensions": {
+    "register": "brand",
+    "colorMeta": {
+      "tokenCount": 10,
+      "namingPolicy": "brand-native (no Primary/Secondary/Alarm/Warning/Shadow/Brand)",
+      "loadBearing": ["chapito-cravo", "chapito-piri", "chapito-galinha", "chapito-tejo", "chapito-noite"],
+      "quarantined": [
+        { "token": "chapito-azulejo", "rule": "highlighter-rectangle accent only + polka-dot accent color + occasional chip-band; never used as a primary section ground" },
+        { "token": "chapito-malagueta", "rule": "highlighter-rectangle accent + ticket-stub border + 1-2 word body emphasis; never a section ground" },
+        { "token": "chapito-areia", "rule": "sunburst secondary ray color + diagonal-stripe accent ground + occasional ticket-stub fill; never primary text background for body prose" }
+      ],
+      "forbidden": ["#000000 (pure black)", "#ffffff (pure white)", "Slow-Food / Cereal-Magazine country-luxe palette (terracotta/sage/oat)", "pastel candy palette (Wes Anderson)", "Royal-cobalt Lisbon-tile blue (would read as azulejo set-dressing)"]
+    },
+    "typographyMeta": {
+      "tier": "4-tier: logotype-medallion (Bodoni circular) + display (Anton bold condensed all-caps) + body (Inter humanist sans) + mono (IBM Plex Mono)",
+      "tierAssignments": {
+        "logotype-medallion": "Bodoni-style modern serif; load-bearing inside the medallion only; tracking +0.18em; never deployed outside the medallion",
+        "display":            "Anton bold condensed all-caps; section titles, family banners, CTA labels; mixed-case display FORBIDDEN; italic display FORBIDDEN",
+        "body":               "Inter (or DM Sans / Outfit) humanist sans; roman primary + italic for highlighter-tape pulls + verbatim Inês-voice quotes",
+        "mono":               "IBM Plex Mono; micro-labels, ticket-stub tags, dates, addresses, micro-CTAs; ≤ 14px load-bearing"
+      },
+      "italicAtDisplayRequired": false,
+      "allCapsAtDisplayRequired": true,
+      "rejectedCharacters": ["italic-classical serif display (that is a different brand's register)", "decorative revival-tent slab", "humanist sans display (too soft)", "Roman mixed-case display", "script web fonts (Pacifico, Permanent Marker, Reenie Beanie — script faces are raster-only on bottle labels)"],
+      "loadBearingRule": "the brand's surface is fairground-poster condensed-all-caps; any mixed-case display rendering breaks the brand",
+      "scaleRatio": 1.6
+    },
+    "shadows": [],
+    "motion": {
+      "policy": "flat-by-conviction with off-axis rotation + cutout-layering as depth substitute; subtle scroll-reveal + hover micro-interactions per feedback_motion_by_default",
+      "reducedMotionContract": true,
+      "allowedTransitions": ["opacity", "color", "background-color", "border-color", "transform (translateY, rotate ≤ 4deg)"],
+      "forbidden": ["box-shadow animations", "parallax", "scroll-triggered scale > 1.04", "any animation > 700ms", "fade-in delays > 200ms"],
+      "scrollReveal": { "duration": "520ms", "easing": "cubic-bezier(0.22, 1, 0.36, 1)", "stagger": "80ms", "translateY": "16px" },
+      "hover": { "ticketStubRotate": "rotate(0deg) → rotate(±2deg)", "ribbonAccentShift": "background-position 1s ease", "ctaButtonLift": "translateY(-2px)" }
+    },
+    "breakpoints": {
+      "mobile":  { "max": "639px" },
+      "tablet":  { "min": "640px", "max": "1023px" },
+      "desktop": { "min": "1024px" }
+    },
+    "paletteDeployment": {
+      "intensity": "drenched",
+      "targetGroundCount": 5,
+      "asymmetricCyclingRequired": true,
+      "noSingleGroundOver": "50% of sections",
+      "homeSectionGroundSequence": ["chapito-cravo", "chapito-cravo", "chapito-cravo", "chapito-piri", "chapito-galinha", "chapito-cravo+cyan-overlay", "chapito-tejo", "chapito-tejo", "chapito-cravo", "chapito-cal"],
+      "distinctGrounds": 6,
+      "rationale": "brand's central tension is Alentejo slow-cook × Lisbon big-top spectacle; the palette deploys the spectacle. Saturation deployment is load-bearing per BRAND.md § Central Tension. Each product family gets its own vivid ground exactly once; chapito-cravo dominates as the dominant brand surface; chapito-tejo delivers the cover-of-night beat across two consecutive sections (CABEÇUDO family + Trapézio bottle hero)."
+    },
+    "motifs": {
+      "loadBearing": true,
+      "rationale": "the brand's compositional vocabulary is its load-bearing surface; tokens alone produce slop per feedback_render_divergence_load_bearing.md. Each motif below MUST be reimplemented in any prototype render — they are the brand, not stylistic options.",
+      "patterns": [
+        {
+          "id": "sunburst-medallion-hero",
+          "purpose": "hero section composition — alternating-ray sunburst ground + central circular wordmark medallion + 6 product bottles arranged in a circle + two ticket-stub corner tags",
+          "groundToken": "chapito-cravo",
+          "raysToken": "chapito-areia",
+          "centerMedallionToken": "chapito-cal",
+          "bottlesCount": 6,
+          "bottlesArrangement": "clock positions 12 / 2 / 4 / 6 / 8 / 10 around medallion center",
+          "ticketStubs": ["top-left rotated -6° with PIRI-PIRI label and B&W cutout", "top-right rotated +6° with EQUILIBRISTA label and B&W cutout"]
+        },
+        {
+          "id": "x-crossed-marquee-band",
+          "purpose": "horizontal band with two diagonally-crossed white tape ribbons + central circular CTA button at the X-intersection",
+          "groundToken": "chapito-cravo",
+          "ribbon1": { "text": "VEM AO CHAPITÔ", "repeat": 6, "rotation": "-12deg", "tapeToken": "chapito-cal", "textToken": "chapito-noite" },
+          "ribbon2": { "text": "PROVA A CASA",   "repeat": 6, "rotation": "+12deg", "tapeToken": "chapito-cal", "textToken": "chapito-noite" },
+          "centerButton": { "text": "VAI À LOJA", "groundToken": "chapito-tejo", "textToken": "chapito-cal" }
+        },
+        {
+          "id": "highlighter-tape-manifesto",
+          "purpose": "centered free-running brand-voice paragraph with 5–7 phrase-spans each wrapped in a hard-edged solid-color highlighter rectangle",
+          "groundToken": "chapito-cravo",
+          "textToken": "chapito-noite",
+          "highlighterRotation": ["chapito-azulejo", "chapito-piri", "chapito-galinha", "chapito-malagueta", "chapito-tejo"],
+          "rules": ["NO drop shadow on highlighter rects", "NO gradient on highlighter rects", "NO rounded corners (≤ 2px)", "white text on tejo span"]
+        },
+        {
+          "id": "color-block-product-collage",
+          "purpose": "full-bleed product-family section composed of: bold condensed all-caps family name top-center · 3-term mono micro-label · 6 bottles in a horizontal row across the visual middle · 3–4 B&W cutout photos rotating ±4° to ±10° · diagonal-stripe accent block bottom-right · polka-dot accent rectangle bottom-left",
+          "instanceCount": 4,
+          "groundTokens": ["chapito-piri", "chapito-galinha", "chapito-cravo+cyan-overlay", "chapito-tejo"],
+          "rules": ["each family gets its own ground used once", "bottles are NEVER rendered as a 3-col card grid — always a single horizontal row", "cutout-photo collage is the imagery treatment, never full-bleed photographic background"]
+        },
+        {
+          "id": "chip-tag-cluster",
+          "purpose": "horizontal cluster of small circular cutout-photo chips with colored half-band labels; appears once in the third color-block product section",
+          "chipsCount": 6,
+          "chipSize": "60px",
+          "rotation": "-4° to +6°",
+          "halfBandTokens": ["chapito-piri", "chapito-galinha", "chapito-azulejo", "chapito-malagueta", "chapito-tejo", "chapito-cravo"]
+        },
+        {
+          "id": "big-dark-bottle-hero",
+          "purpose": "full-bleed cover-of-night section with single flagship bottle centered + hand-drawn wave-line motif behind + bold condensed name left + mono address block right",
+          "groundToken": "chapito-tejo",
+          "minViewportHeight": "80vh",
+          "bottleHeight": "480px",
+          "waveLines": 3,
+          "waveLineToken": "chapito-cal"
+        },
+        {
+          "id": "medallion-footer",
+          "purpose": "centered alone — circular wordmark medallion (same as hero, smaller) + single row of icon-links below (email · IG · WhatsApp · phone)",
+          "groundToken": "chapito-cravo",
+          "medallionSize": "200px"
+        },
+        {
+          "id": "persistent-bottom-bar",
+          "purpose": "fixed-bottom 36px band on every page; left: VISITA A LOJA → · right: VAI ATÉ LÁ →",
+          "groundToken": "chapito-cal",
+          "position": "fixed bottom"
+        }
+      ]
+    },
+    "divergence": {
+      "mode": "Mode A — brand-faithful (signal-strong with explicit drenched-deployment + condensed-all-caps display + fairground-collage composition vocabulary declared in BRAND.md)",
+      "seed": {
+        "decade":          { "value": "1950s–60s Portuguese travelling-circus posters × hand-painted Lisbon shopfront signage (cross-decade fusion)", "picked_by": "anchor-reference: BRAND.md § Tone reference" },
+        "craft":           { "value": "B&W cutout-collage photography (Lane 1, load-bearing) + hand-painted bottle labels (Lane 2) + sparing color process photography (Lane 3)", "picked_by": "anchor-reference: BRAND.md § Imagery direction" },
+        "register_flavor": { "value": "Single-maker memoir voice (first-person Inês) crossed with Fairground-Poster (saturated-collage palette deployment + condensed all-caps display + off-axis composition)", "picked_by": "brand-native: central tension = Alentejo slow-cook × Lisbon big-top spectacle" },
+        "ground_family":   { "value": "solid-color blocks + cutout-collage overlay (NOT atmospheric photographic backgrounds, NOT atmospheric radial gradients as primary depth language)", "picked_by": "user-constraint: BRAND.md § Composition rules + reference visual register", "override": "brand-faithful" }
+      },
+      "font_deck": { "name": "brand-inherited", "picked_by": "user-constraint", "tiers": ["Bodoni Moda (medallion only)", "Anton (display all-caps)", "Inter (body)", "IBM Plex Mono (mono)"] },
+      "palette":   { "source": "inherited from BRAND.md (10-token Lisbon fairground-pop set, brand-native naming)", "picked_by": "user-constraint", "tokens": ["chapito-cravo", "chapito-areia", "chapito-piri", "chapito-laranja-doce", "chapito-azulejo", "chapito-galinha", "chapito-malagueta", "chapito-tejo", "chapito-noite", "chapito-cal"] },
+      "brand_faithful_inversions": [
+        { "retain": "condensed all-caps display over italic-classical serif",     "reason": "brand-faithful — fairground-marquee weight is the brand's central display register; italic serif would collapse to a different brand" },
+        { "retain": "solid-color section grounds over atmospheric photo backgrounds", "reason": "brand-faithful — the brand's signature is cutout-collage ON solid grounds, never photographic surfaces with overlaid type" },
+        { "retain": "B&W cutout-collage imagery treatment over color landscape",  "reason": "brand-faithful — cutout collage IS the brand's surface; lane-1 is load-bearing" },
+        { "retain": "10-token saturated palette over Restrained default",         "reason": "user-documented saturation preference + brand-faithful — Drenched deployment is the brand's central thesis" },
+        { "retain": "off-axis rotation (cutouts, ticket-stubs, marquee, chips) over orthogonal grid", "reason": "brand-faithful — fairground-poster composition is asymmetric and rotated; pure grid would collapse to clean-craft" },
+        { "retain": "Portuguese-native voice (with English gloss) over English-only", "reason": "brand-faithful — Portuguese is the brand's native language; English-only would collapse to a tourist register" },
+        { "retain": "all-caps marquee + ticket-stub typography over mixed-case",  "reason": "brand-faithful — the fairground vocabulary is unapologetically all-caps poster" },
+        { "retain": "highlighter-rectangle phrase pulls inside body prose over plain emphasis", "reason": "brand-faithful — the highlighter motif is the brand reading itself out loud; not optional" }
+      ],
+      "antiToolboxAudit": {
+        "checked": [
+          "Generic-2026-SaaS silhouette",
+          "Editorial-register vocabulary on non-editorial brand",
+          "Fabricated content (invented stats / dates / customers)",
+          "Hero text on photographic background without contrast scrim",
+          "Generic role names in palette (forbidden, brand-native used)",
+          "3-col card grid for products (forbidden, single horizontal bottle row used)",
+          "Pure #000000 (forbidden, chapito-noite used)",
+          "Pure #ffffff (forbidden, chapito-cal used)",
+          "Italian liquor-maker pastiche (Opificio / Liquoreria / Cattaneo) — refused at every layer",
+          "Italian-language phrases anywhere — refused",
+          "Tourist-Lisbon clichés (fado / saudade / azulejo as set-dressing / pastel de nata / bacalhau as atmosphere) — refused",
+          "Slow Food / Cereal-Magazine terracotta-luxe — refused via saturated palette + cutout-collage register",
+          "Wes Anderson symmetric pastel — refused via off-axis rotation",
+          "Brooklyn industrial-craft — refused via Portuguese fairground vocabulary",
+          "Script web-fonts as standing text — refused (script lives only on raster bottle labels)",
+          "Mixed-case display — refused (all-caps load-bearing)",
+          "Italic-classical serif as display — refused (Anton condensed load-bearing)"
+        ],
+        "hits": [],
+        "result": "clean — all checked, none required removal"
+      }
+    },
+    "componentStyle": {
+      "buttons": {
+        "primary":         { "background": "#1f4548", "color": "#fffaef", "borderRadius": "9999px", "padding": "14px 28px", "fontFamily": "'IBM Plex Mono', mono", "fontWeight": 600, "textTransform": "uppercase", "letterSpacing": "0.14em", "hoverDelta": "translateY(-2px) + background → #1a1410" },
+        "secondary":       { "background": "transparent", "color": "#1a1410", "border": "1px solid #1a1410", "borderRadius": "2px", "padding": "12px 24px", "fontFamily": "'IBM Plex Mono', mono", "textTransform": "uppercase" },
+        "circleCTA":       { "background": "#1f4548", "color": "#fffaef", "borderRadius": "9999px", "size": "180px", "fontFamily": "'IBM Plex Mono', mono", "fontWeight": 700, "textTransform": "uppercase", "letterSpacing": "0.18em" }
+      },
+      "cards": null,
+      "inputs": null,
+      "dualCTAPattern": null,
+      "ribbon": {
+        "tape": { "background": "#fffaef", "color": "#1a1410", "border": "1px solid #1a1410", "fontFamily": "'Anton', condensed-sans", "fontSize": "28px", "letterSpacing": "0.04em" },
+        "rotation": "±12deg"
+      },
+      "ticketStub": {
+        "background": "#fffaef",
+        "color": "#1a1410",
+        "border": "1px solid #1a1410",
+        "borderRadius": "4px",
+        "padding": "10px 14px 8px",
+        "rotation": "±6deg",
+        "fontFamily": "'IBM Plex Mono', mono",
+        "labelTextTransform": "uppercase"
+      },
+      "highlighter": {
+        "background": "{rotation}",
+        "color": "#1a1410",
+        "padding": "2px 8px",
+        "borderRadius": "1px",
+        "fontStyle": "italic",
+        "fontWeight": 600
+      }
+    },
+    "systemComponentRoles": {
+      "thin-fixed-footer":     { "purpose": "persistent 36px bar at viewport bottom; mono all-caps left + right CTA pair", "positionClass": "site-wide bottom (fixed)", "ground": "chapito-cal" },
+      "sunburst-medallion":    { "purpose": "hero composition unit — alternating-ray ground + central circular wordmark + radial bottle arrangement + ticket-stub corner tags", "positionClass": "hero" },
+      "marquee-x-band":        { "purpose": "horizontal band with X-crossed tape ribbons + center circular CTA", "positionClass": "below-hero rhythm break" },
+      "highlighter-manifesto": { "purpose": "centered manifesto paragraph with highlighter-rectangle phrase pulls", "positionClass": "narrative-anchor" },
+      "color-block-section":   { "purpose": "full-bleed product-family band; family name + bottle row + cutout collage + corner accents", "positionClass": "stacked per family" },
+      "chip-tag-cluster":      { "purpose": "loose horizontal cluster of circular cutout-photo chips with colored half-band labels", "positionClass": "section-internal (single instance)" },
+      "big-dark-bottle":       { "purpose": "cover-of-night flagship bottle section; dark ground + wave-line motif + single bottle", "positionClass": "stacked once near narrative close" },
+      "medallion-footer":      { "purpose": "centered wordmark medallion + icon-link row", "positionClass": "site-wide bottom (above persistent bar)" }
+    },
+    "voice": {
+      "narrator": "first-person singular (Inês Bento)",
+      "register": "slow plainspoken declaratives; specifics over modifiers; reverent about the food, playful about the spectacle; bilingual where bilingual makes sense (Portuguese-native, English gloss)",
+      "do": [
+        "First-person singular (Inês). Never 'we' / 'our team'.",
+        "Slow declaratives. Periods over commas.",
+        "Specifics over modifiers — 'Costa do Castelo, número 7', 'seis semanas de fermentação', 'frasco de 100 ml', 'ano após ano'.",
+        "Reverent about the food. Playful about the spectacle. Both at once.",
+        "Portuguese is the brand's native language; English is the gloss, not the default."
+      ],
+      "dont": [
+        "we / our team / passionate / crafted / curated / artisanal / handcrafted / award-winning / finest",
+        "adjective stacks of three or more",
+        "Italian-language words anywhere",
+        "Tourist-Lisbon clichés as decoration — fado / saudade / azulejo (as tile-set-dressing) / pastel de nata / bacalhau (as atmosphere)",
+        "Costume-Portuguese — obrigado plate, anchor-rope nautical pastiche",
+        "irreverent winks at the food",
+        "exclamation marks in chrome",
+        "mixed-case display",
+        "Italian liquor-maker pastiche of any kind",
+        "naming or referencing the reference brand (Opificio Cattaneo) — anywhere"
+      ],
+      "examples": {
+        "do": [
+          "Molhos com piruetas.",
+          "Casa pequena, picante grande.",
+          "Cada frasco, uma figura.",
+          "As etiquetas são barulhentas porque a cozinha é silenciosa.",
+          "Vem ao Chapitô.",
+          "O sol num frasco.",
+          "Trapézio sobre malagueta.",
+          "Costa do Castelo, número 7."
+        ],
+        "dont": [
+          "Our passionate team of artisans crafts each bottle with care.",
+          "Award-winning small-batch Portuguese hot sauces.",
+          "A taste of saudade in every bottle.",
+          "Crafted with love in the Lisbon sunshine.",
+          "Liquoreria Chapitô — fatti a mano.",
+          "Atelier Inês — a journal of Lisbon spice."
+        ]
+      },
+      "rules": [
+        "Voice is quiet against the loud palette. Saturation × restraint is the brand's tension.",
+        "Portuguese-native register; English serves as gloss only.",
+        "Reverent about the food, playful about the spectacle. Never wink at the food.",
+        "First-person singular everywhere except legal/utility footer.",
+        "No Italian language. No reference to the visual-register source brand by name."
+      ]
+    },
+    "iaPriorities": [
+      {
+        "signal": "single-audience-primary-action (visit the shop)",
+        "evidence": "home page leads with the sunburst medallion + the persistent fixed bottom bar carrying VAI ATÉ LÁ → linking to .shop subdomain. The X-marquee section delivers a center-button VAI À LOJA as the page's most prominent CTA.",
+        "preserveAs": "first-fold visual anchor + fixed bottom CTA on every page",
+        "scope": "site-wide"
+      }
+    ],
+    "brandTokens": {
+      "--chapito-cravo":        "#f4b09d",
+      "--chapito-areia":        "#fbe9d0",
+      "--chapito-piri":         "#ed7f3f",
+      "--chapito-laranja-doce": "#e95b27",
+      "--chapito-azulejo":      "#3fbcaf",
+      "--chapito-galinha":      "#f3c84e",
+      "--chapito-malagueta":    "#9b3536",
+      "--chapito-tejo":         "#1f4548",
+      "--chapito-noite":        "#1a1410",
+      "--chapito-cal":          "#fffaef"
+    }
+  },
+  "narrative": {
+    "northStar": "Big-top spectacle wrapping a quiet pepper farm. A 1962 Portuguese travelling-circus poster wheat-pasted over the door of an Alentejo curing shed.",
+    "overview": "Chapitô is a single-maker Portuguese hot-sauce house in Alfama, Lisbon. The visual system deploys a saturated 10-token Lisbon fairground-pop palette across 6 distinct section grounds on the home page, condensed all-caps display throughout, cutout B&W collage imagery over solid color blocks, and a named-and-numbered compositional motif catalog (sunburst medallion · X-crossed marquee · highlighter-tape manifesto · color-block product collages · chip-tag cluster · big-dark bottle hero · medallion footer · persistent bottom bar). The central tension is Alentejo slow-cook × Lisbon big-top spectacle — quiet kitchen, loud labels.",
+    "keyCharacteristics": [
+      "10 brand tokens deployed across 6 distinct section grounds on the home page (Drenched palette deployment)",
+      "Asymmetric cycling between section grounds — no strict A/B alternation",
+      "Condensed all-caps display (Anton) at all section titles, family banners, CTA labels — mixed-case display FORBIDDEN",
+      "Italic body emphasis reserved for highlighter-tape pulls and Inês-voice quotes",
+      "IBM Plex Mono for ticket-stub tags, micro-labels, dates, addresses, addresses — ≤ 14px load-bearing",
+      "Solid-color section grounds + B&W cutout-collage overlay + off-axis rotation as the depth language (NOT atmospheric photo backgrounds, NOT radial gradients as primary depth)",
+      "Eight named compositional motifs (see extensions.motifs.patterns) reimplemented in every render — load-bearing, not optional"
+    ],
+    "rules": [
+      "The Saturation-Deployment Rule — 6 distinct section grounds; asymmetric cycling required; each product family gets its own ground exactly once.",
+      "The Cutout-Collage Rule — B&W cutout photography on solid grounds; never full-bleed photo background with overlaid type.",
+      "The Condensed-All-Caps Display Rule — Anton bold condensed all-caps for display; mixed-case display forbidden; italic display forbidden.",
+      "The Off-Axis Rotation Rule — cutouts, ticket-stubs, marquee ribbons, accent rectangles, chip-tag clusters all sit at angles -12° to +12°; pure orthogonal layout forbidden except in centered display moments.",
+      "The Highlighter-Tape Rule — flat solid-color rectangles wrap brand-voice phrase-spans inside body prose; no shadow, no gradient, no rounded corners.",
+      "The Mono-As-Marker Rule — IBM Plex Mono ≤ 14px only; numerals always render in mono.",
+      "The Native-Portuguese Rule — Portuguese is the brand's native language; English is gloss, never default.",
+      "The No-Italian Rule — no Italian language, no Italian-place reference, no Italian liquor pastiche; the reference brand is the visual register, not a source of words or places.",
+      "The No-Pure-Black-or-White Rule — chapito-noite #1a1410 darkest; chapito-cal #fffaef lightest.",
+      "IA-priority — single primary CTA destination (the .shop subdomain) reinforced across hero medallion + X-marquee center button + persistent bottom bar."
+    ],
+    "dos": [
+      "Deploy palette across 6 distinct section grounds, each product family on its own ground.",
+      "Use condensed all-caps display (Anton) for every display tier.",
+      "Use cutout B&W collage over solid grounds — never photo background.",
+      "Render every named motif from extensions.motifs.patterns.",
+      "Rotate cutouts, ticket-stubs, ribbons, and accent rectangles off-axis.",
+      "Wrap brand-voice phrase-spans in highlighter rectangles.",
+      "Keep Portuguese as the brand's native language.",
+      "Name palette tokens brand-native."
+    ],
+    "donts": [
+      "Render italic-classical serif as display (that is High Lonesome's register, not Chapitô's).",
+      "Render mixed-case display.",
+      "Use Italian-language words. Anywhere.",
+      "Name or reference the visual-register source brand.",
+      "Render a 3-col card grid for the bottles.",
+      "Default to single-dominant-ground deployment.",
+      "Approach pure #000000 or pure #ffffff.",
+      "Use the Slow-Food / Cereal-Magazine terracotta-luxe palette.",
+      "Render atmospheric photographic backgrounds with overlaid type (use solid grounds + cutout collage instead).",
+      "Render the centered SaaS-hero silhouette.",
+      "Use script web-fonts as standing text (script is raster-only on bottle labels)."
+    ]
+  }
+}

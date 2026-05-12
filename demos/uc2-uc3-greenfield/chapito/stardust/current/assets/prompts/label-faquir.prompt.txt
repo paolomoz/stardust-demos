@@ -1,0 +1,30 @@
+Studio product photography of a classic 5fl-oz craft hot-sauce bottle, straight-on head-on shot, centred in the frame. The bottle is a tall narrow cylindrical "woozy" form — square shoulder, narrow body about 1.5 inches wide × 7 inches tall (aspect roughly 1:3), clear glass with vivid red-orange sauce visible inside. The cap is a flat-topped slightly tapered BLACK PLASTIC dispenser cap (classic craft-hot-sauce cap — NO wax dipping, NO wax drips, NO cork).
+
+The bottle floats on a flat solid warm cream background (hex #fffaef). The entire surrounding area is uniformly flat cream — NOT a checkerboard pattern, NOT a studio backdrop, NOT a gradient.
+
+A single rectangular paper label is wrapped around the bottle's body, taller than wide, occupying ~70% of the bottle's vertical span and ~85% of its width. The label uses a near-black solid-color ground (the brand's noite color, hex #1a1410). Flat, hard-edged.
+
+Label composition:
+
+A hard-edged horizontal band in vivid orange (the brand's piri color, #ed7f3f) running edge to edge across the upper third of the label, slightly tilted +2°. Inside the orange band, the word "FAQUIR" in bold condensed all-caps sans-serif (Anton register), set in deep dark ink (#1a1410), letter-spacing tight.
+
+Centred on the label below the title band, a black-and-white cut-out vintage photograph of a 1920s–1940s travelling-circus fire-eater holding a flaming torch close to his mouth — turban or fez headwear, dramatic side-light, archive photograph grain, sharp hand-cut zine-style edges. The figure is grayscale only and occupies the middle 50% of the label vertically, slightly offset to the left.
+
+Below the figure, a smaller all-caps subtitle "EXTRA FORTE · 100 ML" in IBM Plex Mono uppercase, cream (cal #fffaef) text on the near-black ground.
+
+In the lower-left corner of the label, a small Chapitô brand-mark badge (~14% of the label width). The badge contains: a double-line circle border (two concentric thin cream rings on the dark label ground), an italic capital "Ô" set in classical Bodoni-style display serif centred inside (cream ink), a tiny cream pennant flag on a thin pole rising vertically from above the Ô, and three small burgundy-red six-pointed Bodoni-style stars scattered inside the circle. The badge's background is the same near-black as the label ground. NO 'C' letter, NO wedges, NO stripes — only the Ô + flag + double ring + 3 red stars.
+
+Surface: subtle paper grain, hand-cut zine character. NO drop shadow, NO gradient.
+
+Anti-references — explicitly do NOT produce:
+- Italian-language text anywhere.
+- Catholic / religious iconography.
+- Names "Amaro", "Gin", "Religin", "Cattaneo", "Della Nonna".
+- Purple-as-primary-label-ground.
+- WAX-DIPPED CAP — the cap is black plastic only.
+- A wide / flask-shaped bottle — this is a tall narrow woozy.
+- A 'C' letter on the brand-mark badge — only the Ô.
+- Radial wedges or stripes on the brand-mark badge.
+- A checkerboard pattern as the image background.
+- Hand-painted illustration — only B&W photographic cutout.
+- Photorealistic flames.

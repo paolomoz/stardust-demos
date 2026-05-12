@@ -1,0 +1,22 @@
+A flat hand-printed-feel logo of a big-top circus tent canvas seen from directly above, in a clean austere fairground-poster proportion. The wheel fills most of the square canvas — exactly 8 chunky equal radial wedges, alternating between burgundy red (hex #9b3536, the brand's malagueta color) and warm cream (hex #fffaef, the brand's cal color). Thin dark-ink spoke lines (hex #1a1410, the brand's noite color) separate each wedge. A clean dark-ink ring runs around the outer perimeter of the wheel.
+
+Centred on the wheel: NO inner hub disc — the centre is open, with the wedges meeting at a small filled noite centre dot. The ROMAN (non-italic, upright) capital letter "Ô" set in classical Bodoni-style display serif sits DIRECTLY at the centre of the wheel, large enough that the letter's bowl spans the wedge intersection area and overlaps multiple wedges. The Ô is in deep dark ink (#1a1410). The Ô's circumflex accent (^) above the O reads BOTH as the Portuguese diacritic AND visually as a small pennant flag rising from the tent's centre pole.
+
+ABSOLUTELY NO STAR ORNAMENTS anywhere on the wheel — the wedges are pure flat color with no decoration inside them. The logo reads as more austere / timeless / less decorative than a version with stars.
+
+Image background: solid warm cream (#fffaef), flat — NOT a checkerboard / transparency-indicator pattern, NOT white, NOT gray.
+
+Aesthetic: hand-printed letterpress / silkscreen feel — bolder, poster-weight. Slight ink mis-registration between colors. Faint paper grain. Hard-edged hand-cut character.
+
+Anti-references — explicitly do NOT produce:
+- Photorealistic circus tent photography
+- 3D rendering
+- A logo with the letter "C" anywhere — only the Ô
+- Any text other than the single letter "Ô"
+- Italian-language words
+- A pinwheel / windmill / cart-wheel reading
+- Color outside the brand palette (cravo / cal / malagueta / noite)
+- Pure black or pure white
+- An inner hub disc — the centre is open
+- ANY STAR / ASTERISK / DOT ORNAMENTS on the wedges — this variant has NO decoration on the wedges
+- Italic Ô — this variant has a ROMAN (upright) Ô

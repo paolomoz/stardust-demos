@@ -1,0 +1,22 @@
+A flat hand-printed-feel logo of a big-top circus tent canvas seen from directly above — a perfectly circular wheel shape filling most of the square canvas. The wheel is divided into 12 equal radial wedges, alternating between burgundy red (hex #9b3536, the brand's malagueta color) and warm cream (hex #fffaef, the brand's cal color), like a top-down view of striped tent canvas. Thin dark-ink spoke lines (hex #1a1410, the brand's noite color) separate each wedge from centre to outer edge. A clean dark-ink ring runs around the outer perimeter of the wheel — no scalloping on the outer edge, just a clean circular border.
+
+Centred on the wheel, a smaller circular hub disc (about 35% of the wheel's diameter) in saturated peach-coral (hex #f4b09d, the brand's cravo color), with a thin dark-ink border ring. Inside the hub, a single large italic capital letter "Ô" set in classical Bodoni-style display serif, deep dark ink (#1a1410). The Ô is the entire brand monogram — the letter is the logo's load-bearing identity element. The circumflex accent above the O is preserved as the letter's natural diacritic and reads visually as a small tent-peak/flag pin viewed from above.
+
+Image background: solid warm cream (#fffaef), flat — NOT a checkerboard / transparency-indicator pattern, NOT white, NOT gray. Just flat warm cream.
+
+Aesthetic: hand-printed letterpress / silkscreen feel. Slight ink mis-registration between the cream and burgundy wedges (visible but subtle, no more than 0.5–1 pixel offset). Faint paper grain visible. Hard-edged hand-cut character. NOT slick vector, NOT digital flat, NOT 3D, NOT glassy. NO drop shadow, NO gradient, NO photographic texture.
+
+Anti-references — explicitly do NOT produce:
+- Photorealistic circus tent photography
+- 3D rendering or perspective drawing of a tent
+- A wagon-wheel, cart-wheel, or fidget-spinner reading
+- A peace-sign or pie-chart visual reading
+- A logo with the letter "C" anywhere — the brand monogram is the Ô, only
+- Any text other than the single letter "Ô"
+- Italian-language words anywhere
+- A pinwheel or windmill reading
+- Color outside the brand palette (cravo, cal, malagueta, noite — these only)
+- Pure black or pure white
+- A starburst / explosion / sunburst rays reading
+- Decorative scallop edges
+- Stars or ornaments inside the wedges

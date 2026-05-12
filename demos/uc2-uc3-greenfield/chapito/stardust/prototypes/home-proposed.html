@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- stardust:provenance
+  writtenBy: impeccable:craft (via stardust:prototype, hand-authored proof-of-concept)
+  writtenAt: 2026-05-12T00:00:00Z
+  readArtifacts:
+    - stardust/prototypes/home-shape.md
+    - stardust/current/pages/home.json
+    - stardust/current/PRODUCT.md
+    - stardust/current/DESIGN.md
+    - stardust/current/DESIGN.json
+    - stardust/direction.md
+  againstDirection: stardust/direction.md#active (2026-05-12)
+  renderedVia: impeccable:craft
+  motifs:
+    - sunburst-medallion-hero
+    - x-crossed-marquee-band
+    - highlighter-tape-manifesto
+    - color-block-product-collage (x4)
+    - chip-tag-cluster
+    - big-dark-bottle-hero
+    - medallion-footer
+    - persistent-bottom-bar
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chapitô — Sauces with pirouettes · Lisbon</title>
+<meta name="description" content="Small house, big spice. Handcrafted Portuguese hot sauces from Alfama, Lisbon. By Inês Bento.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cravo:#f4b09d;--areia:#fbe9d0;--piri:#ed7f3f;--laranja:#e95b27;--azulejo:#3fbcaf;
+  --galinha:#f3c84e;--malagueta:#9b3536;--tejo:#1f4548;--noite:#1a1410;--cal:#fffaef;
+  --display:'Anton','Bebas Neue','Oswald','Impact',sans-serif;
+  --body:'Inter','DM Sans','Outfit','Helvetica Neue',sans-serif;
+  --mono:'IBM Plex Mono','JetBrains Mono','Courier New',monospace;
+  --serif:'Bodoni Moda','Playfair Display','GFS Didot','Didot',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--cravo);color:var(--noite);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{padding-bottom:44px}
+@supports (padding-bottom:env(safe-area-inset-bottom)){
+  body{padding-bottom:calc(44px + env(safe-area-inset-bottom))}
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--tejo);outline-offset:4px}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em;font-weight:500}
+.display{font-family:var(--display);text-transform:uppercase;letter-spacing:-0.01em;line-height:.92}
+
+/* ---------- credits bar ---------- */
+.credits{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;
+  padding:14px 24px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--noite);z-index:5}
+.credits span{opacity:.7}
+
+/* ---------- section 1: sunburst medallion hero ---------- */
+.hero{position:relative;min-height:92vh;overflow:hidden;background:var(--cravo)}
+.hero::before{content:"";position:absolute;left:50%;top:50%;width:160vmin;height:160vmin;transform:translate(-50%,-50%);
+  background:conic-gradient(from 0deg,
+    var(--areia) 0 11.25deg, transparent 11.25deg 22.5deg,
+    var(--areia) 22.5deg 33.75deg, transparent 33.75deg 45deg,
+    var(--areia) 45deg 56.25deg, transparent 56.25deg 67.5deg,
+    var(--areia) 67.5deg 78.75deg, transparent 78.75deg 90deg,
+    var(--areia) 90deg 101.25deg, transparent 101.25deg 112.5deg,
+    var(--areia) 112.5deg 123.75deg, transparent 123.75deg 135deg,
+    var(--areia) 135deg 146.25deg, transparent 146.25deg 157.5deg,
+    var(--areia) 157.5deg 168.75deg, transparent 168.75deg 180deg,
+    var(--areia) 180deg 191.25deg, transparent 191.25deg 202.5deg,
+    var(--areia) 202.5deg 213.75deg, transparent 213.75deg 225deg,
+    var(--areia) 225deg 236.25deg, transparent 236.25deg 247.5deg,
+    var(--areia) 247.5deg 258.75deg, transparent 258.75deg 270deg,
+    var(--areia) 270deg 281.25deg, transparent 281.25deg 292.5deg,
+    var(--areia) 292.5deg 303.75deg, transparent 303.75deg 315deg,
+    var(--areia) 315deg 326.25deg, transparent 326.25deg 337.5deg,
+    var(--areia) 337.5deg 348.75deg, transparent 348.75deg 360deg);
+  opacity:.78;border-radius:50%;-webkit-mask:radial-gradient(circle,#000 60%,transparent 75%);mask:radial-gradient(circle,#000 60%,transparent 75%);z-index:0}
+.hero-stage{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;min-height:92vh;padding:60px 24px}
+.hero-ring{position:relative;width:min(680px,90vmin);aspect-ratio:1;}
+.orbit{position:absolute;inset:0;animation:orbit-spin 36s linear infinite;transform-origin:50% 50%;will-change:transform}
+@keyframes orbit-spin{to{transform:rotate(360deg)}}
+.medallion{position:absolute;left:50%;top:50%;translate:-50% -50%;width:38%;aspect-ratio:1;display:grid;place-items:center;z-index:3}
+.medallion svg,.medallion img{width:100%;height:100%;object-fit:contain;animation:med-sway 7s ease-in-out infinite alternate;will-change:transform}
+@keyframes med-sway{from{transform:rotate(-1.6deg) translateY(-2px)}to{transform:rotate(1.6deg) translateY(2px)}}
+@media (prefers-reduced-motion: reduce){
+  .medallion svg,.medallion img{animation:none}
+}
+.bottle-slot{position:absolute;left:50%;top:50%;width:20%;aspect-ratio:.72;}
+/* carousel pattern: each bottle's TOP always points toward the ring center.
+   The slot's final rotate(180deg) flips the bottle so its top is radially inward.
+   Bottles rotate WITH the orbit (no counter-rotation animation). */
+.bottle-slot.b0{transform:translate(-50%,-50%) rotate(0deg) translateY(-200%) rotate(180deg)}
+.bottle-slot.b1{transform:translate(-50%,-50%) rotate(60deg) translateY(-200%) rotate(180deg)}
+.bottle-slot.b2{transform:translate(-50%,-50%) rotate(120deg) translateY(-200%) rotate(180deg)}
+.bottle-slot.b3{transform:translate(-50%,-50%) rotate(180deg) translateY(-200%) rotate(180deg)}
+.bottle-slot.b4{transform:translate(-50%,-50%) rotate(240deg) translateY(-200%) rotate(180deg)}
+.bottle-slot.b5{transform:translate(-50%,-50%) rotate(300deg) translateY(-200%) rotate(180deg)}
+.bottle-slot>*{width:100%;height:100%;object-fit:contain;transition:transform .28s cubic-bezier(.22,1,.36,1)}
+.bottle-slot:hover>*{transform:translateY(-4px) rotate(-1.5deg)}
+.orbit:hover{animation-play-state:paused}
+@media (prefers-reduced-motion: reduce){
+  .orbit{animation:none}
+}
+.ticket{position:absolute;display:flex;align-items:center;gap:10px;background:var(--cal);border:1.5px solid var(--noite);
+  border-radius:3px;padding:8px 12px 8px 8px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:600;color:var(--noite);z-index:3;transition:transform .28s ease}
+.ticket::before,.ticket::after{content:"";position:absolute;top:50%;width:8px;height:8px;border-radius:50%;background:var(--cravo);
+  border:1.5px solid var(--noite);transform:translateY(-50%)}
+.ticket::before{left:-5px}.ticket::after{right:-5px}
+.ticket .photo{width:36px;height:36px;border-radius:50%;overflow:hidden;background:var(--noite);flex-shrink:0;display:grid;place-items:center}
+.ticket .photo svg{width:100%;height:100%}
+.ticket.tl{top:32px;left:32px;transform:rotate(-6deg)}
+.ticket.tr{top:32px;right:32px;transform:rotate(6deg)}
+.ticket.tl:hover{transform:rotate(-2deg)}
+.ticket.tr:hover{transform:rotate(2deg)}
+
+/* ---------- section 2: x-crossed marquee ---------- */
+.marquee{position:relative;background:var(--cravo);padding:120px 0 140px;overflow:hidden}
+.tape{position:absolute;left:-12%;right:-12%;width:124%;height:60px;background:var(--cal);
+  border-top:1.5px solid var(--noite);border-bottom:1.5px solid var(--noite);display:flex;align-items:center;
+  font-family:var(--display);font-size:32px;letter-spacing:.04em;color:var(--noite);overflow:hidden;white-space:nowrap}
+.tape.t1{top:50%;transform:translateY(-50%) rotate(-12deg)}
+.tape.t2{top:50%;transform:translateY(-50%) rotate(12deg)}
+.tape-inner{display:inline-flex;align-items:center;animation:tape-scroll 22s linear infinite;will-change:transform}
+@keyframes tape-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.tape.t2 .tape-inner{animation-direction:reverse;animation-duration:26s}
+.tape span{padding:0 24px;display:inline-block}
+.tape .dot{display:inline-block;color:var(--malagueta);font-size:24px;transform:translateY(-2px)}
+@media (prefers-reduced-motion: reduce){
+  .tape-inner{animation:none}
+}
+.marquee-cta{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:180px;height:180px;border-radius:50%;
+  background:var(--tejo);color:var(--cal);display:grid;place-items:center;text-align:center;font-family:var(--mono);
+  font-weight:700;font-size:18px;letter-spacing:.18em;text-transform:uppercase;line-height:1.1;z-index:3;
+  border:1.5px solid var(--noite);transition:transform .24s ease,background .24s ease}
+.marquee-cta:hover{transform:translate(-50%,-50%) scale(1.04);background:var(--noite)}
+.marquee-cta::after{content:"›";display:block;font-size:22px;margin-top:6px;font-weight:400}
+
+/* ---------- section 3: manifesto ---------- */
+.manifesto{background:var(--cal);padding:96px 24px;text-align:center}
+.manifesto-inner{max-width:760px;margin:0 auto}
+.manifesto p{font-size:19px;line-height:1.7;color:var(--noite)}
+.manifesto .sig{margin-top:18px;font-family:var(--body);font-style:italic;font-size:18px;color:var(--noite);opacity:.7}
+.hl{padding:1px 8px 3px;font-style:italic;font-weight:600;color:var(--noite);border-radius:1px;display:inline;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.hl-azulejo{background:var(--azulejo)}
+.hl-piri{background:var(--piri)}
+.hl-galinha{background:var(--galinha)}
+.hl-malagueta{background:var(--malagueta);color:var(--cal)}
+.hl-tejo{background:var(--tejo);color:var(--cal)}
+.dl-btn{display:inline-flex;align-items:center;gap:8px;margin-top:32px;background:var(--noite);color:var(--cal);
+  padding:14px 28px;border-radius:2px;font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;transition:background .24s ease,transform .24s ease}
+.dl-btn:hover{background:var(--tejo);transform:translateY(-1px)}
+
+/* ---------- color-block sections ---------- */
+.cblock{position:relative;padding:96px 24px;overflow:hidden;min-height:620px}
+.cblock.alt{padding-block:64px 96px}
+.cblock.dark{color:var(--cal)}
+.cblock .head{text-align:center;position:relative;z-index:2}
+.cblock h2{font-family:var(--display);font-size:clamp(48px,7vw,88px);letter-spacing:-0.01em;line-height:.92}
+.cblock .sub{margin-top:14px;font-family:var(--mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+.cblock .sub i{display:inline-block;margin:0 14px;font-style:normal;opacity:.55}
+.bottle-row{position:relative;z-index:2;margin:64px auto 0;display:grid;grid-template-columns:repeat(6,1fr);gap:18px;max-width:1180px;padding:0 8px}
+.bottle-row figure{display:flex;flex-direction:column;align-items:center;gap:8px}
+.bottle-row figcaption{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;text-align:center}
+.bottle-row svg{width:88%;height:auto;transition:transform .2s ease}
+.bottle-row figure:hover svg{transform:translateY(-3px)}
+.cutout{position:absolute;pointer-events:none;z-index:1}
+.cutout svg{width:100%;height:auto;filter:grayscale(1) contrast(1.05)}
+.stripe-accent,.dot-accent{position:absolute;bottom:24px;width:140px;height:90px;border:1.5px solid var(--noite);z-index:3}
+.stripe-accent{right:24px;transform:rotate(-8deg)}
+.dot-accent{left:24px;transform:rotate(6deg);background:var(--areia)}
+.dot-accent .dots{position:absolute;inset:0;background-image:radial-gradient(circle,var(--azulejo) 4px,transparent 4.5px);background-size:18px 18px}
+.cblock.dark .stripe-accent,.cblock.dark .dot-accent{border-color:var(--cal)}
+
+/* per-family stripe + dot palettes */
+.f-piri .stripe-accent{background:repeating-linear-gradient(45deg,var(--cal) 0 14px,var(--laranja) 14px 28px)}
+.f-doce .stripe-accent{background:repeating-linear-gradient(45deg,var(--cal) 0 14px,var(--piri) 14px 28px)}
+.f-doce .dot-accent{background:var(--azulejo)}
+.f-doce .dot-accent .dots{background-image:radial-gradient(circle,var(--areia) 4px,transparent 4.5px)}
+.f-equi .stripe-accent{background:repeating-linear-gradient(45deg,var(--cal) 0 14px,var(--azulejo) 14px 28px)}
+.f-equi .dot-accent .dots{background-image:radial-gradient(circle,var(--malagueta) 4px,transparent 4.5px)}
+.f-cabe .stripe-accent{background:repeating-linear-gradient(45deg,var(--cal) 0 14px,var(--azulejo) 14px 28px)}
+.f-cabe .dot-accent{background:var(--areia)}
+.f-cabe .dot-accent .dots{background-image:radial-gradient(circle,var(--malagueta) 4px,transparent 4.5px)}
+
+.cravo-cyan{position:relative;background:var(--cravo)}
+.cravo-cyan::before{content:"";position:absolute;left:0;right:0;top:0;height:42%;background:var(--azulejo);opacity:.55;z-index:0}
+
+/* chip-tag cluster */
+.chip-cluster{position:relative;z-index:2;display:flex;justify-content:center;gap:8px;margin-top:48px;flex-wrap:wrap}
+.chip{position:relative;width:112px;height:112px;border-radius:50%;overflow:hidden;background:var(--cal);
+  border:1.5px solid var(--noite);box-shadow:inset 0 0 0 4px var(--cal)}
+.chip svg{width:100%;height:100%;filter:grayscale(1) contrast(1.05)}
+.chip .band{position:absolute;left:0;right:0;bottom:0;height:36%;display:grid;place-items:center;
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--noite);
+  border-top:1.5px solid var(--noite);padding:0 6px;text-align:center;line-height:1.05}
+.chip-cluster .chip:nth-child(1){transform:rotate(-4deg)}
+.chip-cluster .chip:nth-child(2){transform:rotate(6deg)}
+.chip-cluster .chip:nth-child(3){transform:rotate(-2deg)}
+.chip-cluster .chip:nth-child(4){transform:rotate(5deg)}
+.chip-cluster .chip:nth-child(5){transform:rotate(-3deg)}
+.chip-cluster .chip:nth-child(6){transform:rotate(4deg)}
+
+/* ---------- big-dark bottle hero ---------- */
+.dark-bottle{position:relative;background:var(--tejo);color:var(--cal);min-height:80vh;padding:96px 24px;overflow:hidden;
+  display:grid;place-items:center}
+.dark-bottle .waves{position:absolute;left:0;right:0;top:50%;width:120%;height:300px;transform:translate(-8%,-50%);opacity:.6}
+.dark-bottle .waves path{stroke-dasharray:2800;stroke-dashoffset:2800;transition:stroke-dashoffset 1400ms cubic-bezier(.22,1,.36,1)}
+.dark-bottle.in .waves path{stroke-dashoffset:0}
+.dark-bottle.in .waves path:nth-child(2){transition-delay:220ms}
+.dark-bottle.in .waves path:nth-child(3){transition-delay:440ms}
+@media (prefers-reduced-motion: reduce){
+  .dark-bottle .waves path{stroke-dasharray:none;stroke-dashoffset:0;transition:none}
+}
+.db-stage{position:relative;display:grid;grid-template-columns:1fr auto 1fr;gap:48px;align-items:center;
+  max-width:1280px;width:100%;z-index:2}
+.db-stage .name{justify-self:end;text-align:right}
+.db-stage .name h2{font-family:var(--display);font-size:clamp(72px,11vw,140px);line-height:.85;letter-spacing:-0.02em;color:var(--cal)}
+.db-stage .name .script{display:inline-block;margin-top:14px;transform:rotate(-3deg)}
+.db-stage .meta{justify-self:start;font-family:var(--mono);font-size:14px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;line-height:2}
+.db-stage .meta div+div{opacity:.85}
+.db-stage .center-bottle{justify-self:center}
+.db-stage .center-bottle svg{width:240px;height:auto;filter:drop-shadow(0 12px 0 rgba(0,0,0,0))}
+.db-anchor{margin-top:48px;font-family:var(--body);font-style:italic;font-size:22px;color:var(--cal);text-align:center;
+  position:relative;z-index:2;max-width:680px;line-height:1.4;opacity:.95}
+
+/* ---------- medallion footer ---------- */
+.medfooter{background:var(--cravo);padding:96px 24px 72px;text-align:center}
+.medfooter .med-small{width:200px;height:200px;margin:0 auto 32px;display:grid;place-items:center}
+.medfooter .med-small svg,.medfooter .med-small img{width:100%;height:100%;object-fit:contain}
+.iconlinks{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--noite)}
+.iconlinks a{display:inline-flex;align-items:center;gap:8px;padding:12px 6px;min-height:44px;border-bottom:1px solid transparent;transition:border-color .2s ease}
+.iconlinks a:hover{border-bottom-color:var(--noite)}
+.iconlinks svg{width:14px;height:14px}
+
+/* ---------- persistent bottom bar ---------- */
+.persistent{position:fixed;left:0;right:0;bottom:0;height:44px;background:var(--cal);border-top:1.5px solid var(--noite);
+  display:flex;justify-content:space-between;align-items:stretch;padding:0;z-index:50;
+  font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--noite)}
+.persistent a{display:inline-flex;align-items:center;gap:8px;padding:0 24px;transition:transform .2s ease}
+.persistent a:hover{transform:translateX(4px)}
+.persistent .left:hover{transform:translateX(-4px)}
+
+/* ---------- scroll reveal ---------- */
+[data-reveal]{opacity:0;transform:translateY(16px);transition:opacity .52s cubic-bezier(.22,1,.36,1),transform .52s cubic-bezier(.22,1,.36,1)}
+[data-reveal].in{opacity:1;transform:none}
+[data-stagger]>*{opacity:0;transform:translateY(12px);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1)}
+[data-stagger].in>*{opacity:1;transform:translateY(0)}
+[data-stagger].in>*:nth-child(1){transition-delay:.04s}
+[data-stagger].in>*:nth-child(2){transition-delay:.12s}
+[data-stagger].in>*:nth-child(3){transition-delay:.2s}
+[data-stagger].in>*:nth-child(4){transition-delay:.28s}
+[data-stagger].in>*:nth-child(5){transition-delay:.36s}
+[data-stagger].in>*:nth-child(6){transition-delay:.44s}
+
+@media (prefers-reduced-motion: reduce){
+  [data-reveal],[data-stagger]>*{opacity:1!important;transform:none!important;transition:none!important}
+  .bottle-slot svg,.bottle-row figure:hover svg,.persistent a:hover,.marquee-cta:hover{transform:none}
+}
+
+/* ---------- responsive ---------- */
+/* language toggle visibility */
+html:not(.pt) [data-lang="pt"]{display:none}
+html.pt [data-lang="en"]{display:none}
+.lang-toggle{display:inline-flex;align-items:center;gap:6px;background:var(--cal);color:var(--noite);
+  border:1px solid var(--noite);border-radius:999px;padding:8px 14px;font-family:var(--mono);font-size:10px;
+  letter-spacing:.16em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:background .2s ease,color .2s ease;
+  min-height:32px}
+.lang-toggle:hover{background:var(--noite);color:var(--cal)}
+.lang-toggle::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--malagueta)}
+
+@media (max-width:1024px){
+  .bottle-row{grid-template-columns:repeat(3,1fr);gap:24px}
+  .bottle-row figure:nth-child(n+4){margin-top:16px}
+  .db-stage{grid-template-columns:1fr;text-align:center;gap:24px}
+  .db-stage .name,.db-stage .meta{justify-self:center;text-align:center}
+  .credits{font-size:9px;padding:10px 16px}
+  .credits>span:first-child{max-width:55%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+}
+@media (max-width:640px){
+  .bottle-row{grid-template-columns:repeat(2,1fr);gap:18px}
+  .bottle-row svg text{display:none}
+  .ticket{font-size:9px;padding:6px 8px 6px 6px}
+  .ticket .photo{width:28px;height:28px}
+  .cblock{padding:64px 16px;min-height:auto}
+  .cblock h2{font-size:44px}
+  .marquee{padding:64px 0 72px}
+  .tape.t1{transform:translateY(-50%) rotate(-8deg)}
+  .tape.t2{transform:translateY(-50%) rotate(8deg)}
+  .marquee-cta{width:128px;height:128px;font-size:13px;letter-spacing:.14em}
+  .cutout{display:none}
+  .cutout:nth-of-type(1),.cutout:nth-of-type(3){display:block;width:90px!important;opacity:.85}
+  .credits{font-size:9px;padding:8px 12px;gap:8px}
+  .credits>span:first-child{display:none}
+  .credits>span:last-child{margin-left:auto}
+  .chip{width:88px;height:88px}
+  .chip .band{font-size:9px;padding:0 4px}
+  .db-stage{gap:18px}
+  .db-stage .meta{font-size:11px;line-height:1.7}
+  .iconlinks{gap:18px;flex-wrap:wrap;justify-content:center}
+  .iconlinks a{font-size:10px}
+}
+</style>
+</head>
+<body data-route="home" data-palette-deployment="drenched">
+
+<!-- ============================================================
+   SVG DEFS — reusable bottle, cutout, medallion, wave shapes
+============================================================ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- generic bottle silhouette; parameterised via classes -->
+    <symbol id="bottle" viewBox="0 0 80 200">
+      <path d="M34 6 h12 a3 3 0 0 1 3 3 v10 l5 12 a6 6 0 0 1 1.5 4 v150 a8 8 0 0 1-8 8 h-23 a8 8 0 0 1-8-8 v-150 a6 6 0 0 1 1.5-4 l5-12 v-10 a3 3 0 0 1 3-3z" fill="currentColor"/>
+      <path d="M34 6 h12 v10 h-12z" fill="rgba(0,0,0,.45)"/>
+      <rect class="lab" x="14" y="74" width="52" height="92" fill="var(--cal)" stroke="rgba(0,0,0,.4)"/>
+    </symbol>
+
+    <!-- abstract B&W cutout silhouettes -->
+    <symbol id="cut-trapeze" viewBox="0 0 200 280">
+      <path fill="var(--noite)" d="M100 14c-12 0-22 8-22 22 0 11 8 19 19 21l-3 18-20 6c-10 3-16 12-16 23v44l-18 50c-3 8 2 16 10 16 6 0 11-4 13-10l16-44h6v92c0 6 5 11 11 11s11-5 11-11v-92h6l16 44c2 6 7 10 13 10 8 0 13-8 10-16l-18-50v-44c0-11-6-20-16-23l-20-6-3-18c11-2 19-10 19-21 0-14-10-22-22-22z"/>
+      <path fill="var(--noite)" d="M40 40 L50 36 L160 36 L150 40z" opacity=".6"/>
+    </symbol>
+    <symbol id="cut-grandmother" viewBox="0 0 200 280">
+      <path fill="var(--noite)" d="M100 18c-26 0-42 22-42 48 0 17 7 31 18 39l-5 18-30 6c-22 4-34 22-34 44v107h186v-107c0-22-12-40-34-44l-30-6-5-18c11-8 18-22 18-39 0-26-16-48-42-48zm-32 60c-3-2-6-6-6-12h76c0-12-10-22-22-22h-26c-12 0-22 10-22 22 0 6-3 10-6 12-2 0-4 0-4 2 0 16 14 30 32 30s32-14 32-30c0-2-2-2-4-2z"/>
+    </symbol>
+    <symbol id="cut-tram" viewBox="0 0 260 180">
+      <path fill="var(--noite)" d="M30 50c0-12 10-22 22-22h156c12 0 22 10 22 22v92c0 6-4 10-10 10h-12c0 11-9 20-20 20s-20-9-20-20H82c0 11-9 20-20 20s-20-9-20-20H30c-6 0-10-4-10-10v-12h10zm22-2c-6 0-10 4-10 10v50h180v-50c0-6-4-10-10-10z"/>
+      <circle cx="62" cy="142" r="10" fill="var(--noite)"/>
+      <circle cx="194" cy="142" r="10" fill="var(--noite)"/>
+      <rect x="56" y="48" width="36" height="42" fill="var(--cal)"/>
+      <rect x="100" y="48" width="36" height="42" fill="var(--cal)"/>
+      <rect x="144" y="48" width="36" height="42" fill="var(--cal)"/>
+      <rect x="188" y="48" width="22" height="42" fill="var(--cal)"/>
+    </symbol>
+    <symbol id="cut-fisherman" viewBox="0 0 200 280">
+      <path fill="var(--noite)" d="M104 14c-14 0-24 12-24 26s10 26 24 26 24-12 24-26-10-26-24-26zm-6 60c-10 0-18 6-22 14l-26 56c-2 6 1 12 6 14 6 2 12-1 14-6l16-34v140c0 6 5 11 11 11s11-5 11-11v-72h12v72c0 6 5 11 11 11s11-5 11-11v-140l16 34c2 5 9 9 14 6 6-2 8-8 6-14l-26-56c-4-8-12-14-22-14z"/>
+      <path d="M148 86 L240 24" stroke="var(--noite)" stroke-width="3"/>
+      <circle cx="148" cy="86" r="4" fill="var(--noite)"/>
+    </symbol>
+    <symbol id="cut-strongman" viewBox="0 0 260 200">
+      <path fill="var(--noite)" d="M130 14c-14 0-24 10-24 24s10 24 24 24 24-10 24-24-10-24-24-24zm-10 56c-12 0-20 8-22 18l-12 50c-2 8 4 16 12 16h4v40c0 6 4 10 10 10s10-4 10-10v-40h16v40c0 6 4 10 10 10s10-4 10-10v-40h4c8 0 14-8 12-16l-12-50c-2-10-10-18-22-18z"/>
+      <rect x="4" y="86" width="60" height="22" fill="var(--noite)"/>
+      <rect x="44" y="74" width="20" height="46" fill="var(--noite)"/>
+      <rect x="196" y="86" width="60" height="22" fill="var(--noite)"/>
+      <rect x="196" y="74" width="20" height="46" fill="var(--noite)"/>
+    </symbol>
+    <symbol id="cut-boat" viewBox="0 0 280 160">
+      <path fill="var(--noite)" d="M20 96c0-4 4-6 8-6h224c4 0 8 2 8 6l-22 36c-4 6-12 10-20 10H62c-8 0-16-4-20-10zM130 8l92 70H40zm-6 8v60h-66z"/>
+    </symbol>
+    <symbol id="cut-singer" viewBox="0 0 200 280">
+      <path fill="var(--noite)" d="M100 14c-14 0-26 12-26 26s12 26 26 26 26-12 26-26-12-26-26-26zm-8 60c-8 0-14 4-18 10l-14 60c4 0 8-2 10-6l8-30v172c0 6 5 11 11 11s11-5 11-11v-78h6l30-44c4-6 4-12 0-16-4-2-8-2-12 0l-18 28v-64c12 8 24 6 30-4 4-8 0-18-10-22-4-2-10-4-16-4z"/>
+    </symbol>
+    <symbol id="cut-laundry" viewBox="0 0 260 200">
+      <path d="M10 60 L250 30" stroke="var(--noite)" stroke-width="2.5"/>
+      <path fill="var(--noite)" d="M30 60 l-8 70 a4 4 0 0 0 4 6 h28 a4 4 0 0 0 4-6 l-8-70z"/>
+      <path fill="var(--noite)" d="M76 56 l-10 90 a4 4 0 0 0 4 6 h32 a4 4 0 0 0 4-6 l-10-90z"/>
+      <path fill="var(--noite)" d="M130 52 l-6 60 a3 3 0 0 0 3 5 h22 a3 3 0 0 0 3-5 l-6-60z"/>
+      <path fill="var(--noite)" d="M174 48 L168 138 a4 4 0 0 0 4 6 h32 a4 4 0 0 0 4-6 l-6-90z"/>
+      <path fill="var(--noite)" d="M226 44 l-4 56 a3 3 0 0 0 3 4 h12 a3 3 0 0 0 3-4 l-4-56z"/>
+    </symbol>
+
+    <!-- wave-line motif -->
+    <symbol id="waves" viewBox="0 0 1400 300" preserveAspectRatio="none">
+      <path d="M0 80 C 200 20, 400 140, 700 80 S 1200 20, 1400 80" fill="none" stroke="var(--cal)" stroke-width="2.5"/>
+      <path d="M0 150 C 200 90, 400 210, 700 150 S 1200 90, 1400 150" fill="none" stroke="var(--cal)" stroke-width="2.5"/>
+      <path d="M0 220 C 200 160, 400 280, 700 220 S 1200 160, 1400 220" fill="none" stroke="var(--cal)" stroke-width="2.5"/>
+    </symbol>
+
+    <!-- medallion (parameterised: outer text via use+textPath in section) -->
+    <path id="arc-top" d="M 40 100 a 60 60 0 0 1 120 0" fill="none"/>
+    <path id="arc-bot" d="M 40 100 a 60 60 0 0 0 120 0" fill="none"/>
+  </defs>
+</svg>
+
+<header class="credits">
+  <span>
+    <span data-lang="en" lang="en">Chapitô · The House · The Garden · The Sauces · Where to Try · Shop · Contact</span>
+    <span data-lang="pt" lang="pt-PT">Chapitô · A Casa · A Horta · Os Molhos · Onde Provar · Loja · Contacto</span>
+  </span>
+  <span style="display:flex;align-items:center;gap:14px">
+    <span><span data-lang="en" lang="en">Est. 2018 · Lisbon · No. 01</span><span data-lang="pt" lang="pt-PT">Est. 2018 · Lisboa · Nº 01</span></span>
+    <button class="lang-toggle" type="button" aria-label="Switch to Portuguese">
+      <span data-lang="en" lang="en" aria-hidden="true">PT</span><span data-lang="pt" lang="pt-PT" aria-hidden="true">EN</span>
+    </button>
+  </span>
+</header>
+
+<!-- ============================================================
+   SECTION 1 — SUNBURST MEDALLION HERO
+============================================================ -->
+<section class="hero" data-section="hero-sunburst" data-mode="sunburst-medallion" data-ground="chapito-cravo" aria-label="Chapitô — handcrafted Portuguese hot sauces from Alfama, Lisbon">
+  <h1 class="visually-hidden">
+    <span data-lang="en" lang="en">Chapitô — handcrafted Portuguese hot sauces from Alfama, Lisbon. By Inês Bento.</span>
+    <span data-lang="pt" lang="pt-PT">Chapitô — molhos picantes feitos à mão em Alfama, Lisboa. Por Inês Bento.</span>
+  </h1>
+  <div class="ticket tl" data-reveal>
+    <span class="photo"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice"><use href="#cut-trapeze"/></svg></span>
+    <span>Piri-Piri</span>
+  </div>
+  <div class="ticket tr" data-reveal>
+    <span class="photo"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice"><use href="#cut-grandmother"/></svg></span>
+    <span>Equilibrista</span>
+  </div>
+  <!-- Piri-Piri and Equilibrista are product-family names — kept verbatim in both languages. -->
+
+  <div class="hero-stage">
+    <div class="hero-ring">
+      <!-- 6 bottles orbiting in a circle (carousel rotation; tops point inward) -->
+      <div class="orbit" data-reveal role="list" aria-label="Six Chapitô sauces orbiting the wordmark">
+        <div class="bottle-slot b0" role="listitem"><img src="../current/assets/images/label-trapezio.png" alt="Trapézio — flagship piri-piri" width="896" height="1164" decoding="async"></div>
+        <div class="bottle-slot b1" role="listitem"><img src="../current/assets/images/label-faquir.png" alt="Faquir — extra-hot piri-piri" width="896" height="1200" decoding="async"></div>
+        <div class="bottle-slot b2" role="listitem"><img src="../current/assets/images/label-palhaco.png" alt="Palhaço — sweet-fire" width="682" height="1062" decoding="async"></div>
+        <div class="bottle-slot b3" role="listitem"><img src="../current/assets/images/label-domador.png" alt="Domador — smoked piri-piri" width="896" height="1200" decoding="async"></div>
+        <div class="bottle-slot b4" role="listitem"><img src="../current/assets/images/label-funambulo.png" alt="Funâmbulo — fermented" width="896" height="1200" decoding="async"></div>
+        <div class="bottle-slot b5" role="listitem"><img src="../current/assets/images/label-acrobata.png" alt="Acrobata — five-spice fermented" width="896" height="1126" decoding="async"></div>
+      </div>
+      <!-- center logo: Gemini-generated wheel-of-tent + Ô monogram (variant C) -->
+      <div class="medallion">
+        <img src="../current/assets/images/logo.png" alt="Chapitô — Ô-monogram with pennant flag and three stars" width="1024" height="1024" decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+   SECTION 2 — X-CROSSED MARQUEE BAND
+============================================================ -->
+<section class="marquee" data-section="marquee-x" data-mode="x-marquee" data-ground="chapito-cravo">
+  <div class="tape t1" aria-hidden="true" data-lang="en" lang="en">
+    <div class="tape-inner">
+      <span>COME TO CHAPITÔ</span><span class="dot">·</span><span>COME TO CHAPITÔ</span><span class="dot">·</span><span>COME TO CHAPITÔ</span><span class="dot">·</span><span>COME TO CHAPITÔ</span><span class="dot">·</span><span>COME TO CHAPITÔ</span><span class="dot">·</span><span>COME TO CHAPITÔ</span><span class="dot">·</span>
+      <span>COME TO CHAPITÔ</span><span class="dot">·</span><span>COME TO CHAPITÔ</span><span class="dot">·</span><span>COME TO CHAPITÔ</span><span class="dot">·</span><span>COME TO CHAPITÔ</span><span class="dot">·</span><span>COME TO CHAPITÔ</span><span class="dot">·</span><span>COME TO CHAPITÔ</span><span class="dot">·</span>
+    </div>
+  </div>
+  <div class="tape t1" aria-hidden="true" data-lang="pt" lang="pt-PT">
+    <div class="tape-inner">
+      <span>VEM AO CHAPITÔ</span><span class="dot">·</span><span>VEM AO CHAPITÔ</span><span class="dot">·</span><span>VEM AO CHAPITÔ</span><span class="dot">·</span><span>VEM AO CHAPITÔ</span><span class="dot">·</span><span>VEM AO CHAPITÔ</span><span class="dot">·</span><span>VEM AO CHAPITÔ</span><span class="dot">·</span>
+      <span>VEM AO CHAPITÔ</span><span class="dot">·</span><span>VEM AO CHAPITÔ</span><span class="dot">·</span><span>VEM AO CHAPITÔ</span><span class="dot">·</span><span>VEM AO CHAPITÔ</span><span class="dot">·</span><span>VEM AO CHAPITÔ</span><span class="dot">·</span><span>VEM AO CHAPITÔ</span><span class="dot">·</span>
+    </div>
+  </div>
+  <div class="tape t2" aria-hidden="true" data-lang="en" lang="en">
+    <div class="tape-inner">
+      <span>TASTE THE HOUSE</span><span class="dot">·</span><span>TASTE THE HOUSE</span><span class="dot">·</span><span>TASTE THE HOUSE</span><span class="dot">·</span><span>TASTE THE HOUSE</span><span class="dot">·</span><span>TASTE THE HOUSE</span><span class="dot">·</span><span>TASTE THE HOUSE</span><span class="dot">·</span>
+      <span>TASTE THE HOUSE</span><span class="dot">·</span><span>TASTE THE HOUSE</span><span class="dot">·</span><span>TASTE THE HOUSE</span><span class="dot">·</span><span>TASTE THE HOUSE</span><span class="dot">·</span><span>TASTE THE HOUSE</span><span class="dot">·</span><span>TASTE THE HOUSE</span><span class="dot">·</span>
+    </div>
+  </div>
+  <div class="tape t2" aria-hidden="true" data-lang="pt" lang="pt-PT">
+    <div class="tape-inner">
+      <span>PROVA A CASA</span><span class="dot">·</span><span>PROVA A CASA</span><span class="dot">·</span><span>PROVA A CASA</span><span class="dot">·</span><span>PROVA A CASA</span><span class="dot">·</span><span>PROVA A CASA</span><span class="dot">·</span><span>PROVA A CASA</span><span class="dot">·</span>
+      <span>PROVA A CASA</span><span class="dot">·</span><span>PROVA A CASA</span><span class="dot">·</span><span>PROVA A CASA</span><span class="dot">·</span><span>PROVA A CASA</span><span class="dot">·</span><span>PROVA A CASA</span><span class="dot">·</span><span>PROVA A CASA</span><span class="dot">·</span>
+    </div>
+  </div>
+  <a href="https://chapito.shop/" class="marquee-cta">
+    <span data-lang="en" lang="en">Visit<br>Shop</span>
+    <span data-lang="pt" lang="pt-PT">Vai à<br>Loja</span>
+  </a>
+</section>
+
+<!-- ============================================================
+   SECTION 3 — HIGHLIGHTER-TAPE MANIFESTO
+============================================================ -->
+<section class="manifesto" data-section="manifesto" data-mode="highlighter-paragraph" data-ground="chapito-cravo">
+  <div class="manifesto-inner" data-reveal>
+    <p data-lang="en" lang="en">"Chapitô is a dream made real. <span class="hl hl-azulejo">A passion turned into a project.</span> My vision is to bring tradition and modernity together. Playful, colorful, pop packaging alongside a product of <span class="hl hl-piri">the highest quality, 100% natural</span>. <span class="hl hl-galinha">New, inventive recipes</span> — nothing ordinary — made by a fully artisanal process. My bottles are made by hand, from A to Z, <span class="hl hl-malagueta">the old way, as it used to be done</span>, using only herbs, spices, flowers, fruits, and noble ingredients. <span class="hl hl-tejo">No flavorings, no additives.</span>"</p>
+    <p data-lang="pt" lang="pt-PT">"O Chapitô é a realização de um sonho. <span class="hl hl-azulejo">Uma paixão tornada em projeto.</span> A minha visão é unir tradição e modernidade. Embalagem divertida, colorida, pop, ao lado de um produto de <span class="hl hl-piri">alta qualidade e 100% natural</span>. <span class="hl hl-galinha">Receitas novas e inovadoras</span>, nada banais, mas com um método produtivo totalmente artesanal. Os meus frascos são feitos à mão, de A a Z, <span class="hl hl-malagueta">como se fazia antigamente</span>, usando só ervas, especiarias, flores, frutas e ingredientes nobres. <span class="hl hl-tejo">Sem aromas nem aditivos.</span>"</p>
+    <p class="sig">— Inês Bento, Costa do Castelo, Nº 7</p>
+    <a class="dl-btn" href="/catalogo.pdf">
+      <span data-lang="en" lang="en">▸ Download the full catalog</span>
+      <span data-lang="pt" lang="pt-PT">▸ Descarrega o catálogo completo</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============================================================
+   SECTION 4 — PIRI-PIRI COLOR BLOCK
+============================================================ -->
+<section class="cblock f-piri" data-section="family-piri" data-mode="color-block" data-ground="chapito-piri" style="background:var(--piri)">
+  <div class="head" data-reveal>
+    <h2>Piri-Piri</h2>
+    <div class="sub">
+      <span data-lang="en" lang="en">Alternative<i>|</i>Original<i>|</i>100% Natural</span>
+      <span data-lang="pt" lang="pt-PT">Alternativos<i>|</i>Originais<i>|</i>100% Naturais</span>
+    </div>
+  </div>
+  <div class="cutout" style="top:80px;left:60px;width:160px;transform:rotate(-8deg)" aria-hidden="true"><svg viewBox="0 0 200 280"><use href="#cut-trapeze"/></svg></div>
+  <div class="cutout" style="top:60px;right:80px;width:200px;transform:rotate(5deg)" aria-hidden="true"><svg viewBox="0 0 260 180"><use href="#cut-tram"/></svg></div>
+  <div class="cutout" style="bottom:130px;left:140px;width:160px;transform:rotate(-3deg)" aria-hidden="true"><svg viewBox="0 0 200 280"><use href="#cut-grandmother"/></svg></div>
+  <div class="cutout" style="bottom:140px;right:160px;width:180px;transform:rotate(9deg)" aria-hidden="true"><svg viewBox="0 0 260 200"><use href="#cut-laundry"/></svg></div>
+  <div class="bottle-row" data-stagger>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--malagueta)"><use href="#bottle"/><text x="40" y="116" text-anchor="middle" font-family="Anton" font-size="11" fill="var(--noite)">TRAPÉZIO</text><text x="40" y="132" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--noite)">Nº 01 · 100 ML</text></svg><figcaption>Trapézio</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--tejo)"><use href="#bottle"/><text x="40" y="116" text-anchor="middle" font-family="Anton" font-size="13" fill="var(--noite)">FAQUIR</text><text x="40" y="132" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--noite)">Nº 02 · 100 ML</text></svg><figcaption>Faquir</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--cravo)"><use href="#bottle"/><text x="40" y="116" text-anchor="middle" font-family="Anton" font-size="7" fill="var(--noite)">EQUILIBRISTA</text><text x="40" y="132" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--noite)">Nº 03 · 100 ML</text></svg><figcaption>Equilibrista</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--galinha)"><use href="#bottle"/><text x="40" y="116" text-anchor="middle" font-family="Anton" font-size="10" fill="var(--noite)">DOMADOR</text><text x="40" y="132" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--noite)">Nº 04 · 100 ML</text></svg><figcaption>Domador</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--azulejo)"><use href="#bottle"/><text x="40" y="116" text-anchor="middle" font-family="Anton" font-size="8" fill="var(--noite)">SALTIMBANCO</text><text x="40" y="132" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--noite)">Nº 05 · 100 ML</text></svg><figcaption>Saltimbanco</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--noite)"><use href="#bottle"/><text x="40" y="114" text-anchor="middle" font-family="Anton" font-size="6" fill="var(--cal)">CUSPIDOR</text><text x="40" y="122" text-anchor="middle" font-family="Anton" font-size="6" fill="var(--cal)">DE FOGO</text><text x="40" y="134" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--cal)">Nº 06 · 100 ML</text></svg><figcaption>Cuspidor de&nbsp;Fogo</figcaption></figure>
+  </div>
+  <div class="dot-accent"><span class="dots"></span></div>
+  <div class="stripe-accent"></div>
+</section>
+
+<!-- ============================================================
+   SECTION 5 — DOCE FOGO COLOR BLOCK
+============================================================ -->
+<section class="cblock f-doce alt" data-section="family-doce-fogo" data-mode="color-block" data-ground="chapito-galinha" style="background:var(--galinha)">
+  <div class="head" data-reveal>
+    <h2>Doce Fogo</h2>
+    <div class="sub">
+      <span data-lang="en" lang="en">Young<i>|</i>Healthy<i>|</i>100% Natural</span>
+      <span data-lang="pt" lang="pt-PT">Jovens<i>|</i>Saudáveis<i>|</i>100% Naturais</span>
+    </div>
+  </div>
+  <div class="cutout" style="top:70px;left:80px;width:170px;transform:rotate(-6deg)" aria-hidden="true"><svg viewBox="0 0 200 280"><use href="#cut-singer"/></svg></div>
+  <div class="cutout" style="top:90px;right:60px;width:180px;transform:rotate(4deg)" aria-hidden="true"><svg viewBox="0 0 260 200"><use href="#cut-laundry"/></svg></div>
+  <div class="cutout" style="bottom:140px;left:120px;width:150px;transform:rotate(-5deg)" aria-hidden="true"><svg viewBox="0 0 200 280"><use href="#cut-fisherman"/></svg></div>
+  <div class="cutout" style="bottom:120px;right:140px;width:170px;transform:rotate(7deg)" aria-hidden="true"><svg viewBox="0 0 200 280"><use href="#cut-grandmother"/></svg></div>
+  <div class="bottle-row" data-stagger>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--cravo)"><use href="#bottle"/><text x="40" y="116" text-anchor="middle" font-family="Anton" font-size="12" fill="var(--noite)">PALHAÇO</text><text x="40" y="132" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--noite)">Nº 07 · 100 ML</text></svg><figcaption>Palhaço</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--malagueta)"><use href="#bottle"/><text x="40" y="116" text-anchor="middle" font-family="Anton" font-size="6" fill="var(--cal)">CONTORCIONISTA</text><text x="40" y="132" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--cal)">Nº 08 · 100 ML</text></svg><figcaption>Contorcionista</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--azulejo)"><use href="#bottle"/><text x="40" y="116" text-anchor="middle" font-family="Anton" font-size="9" fill="var(--noite)">ACROBATA</text><text x="40" y="132" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--noite)">Nº 09 · 100 ML</text></svg><figcaption>Acrobata</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--tejo)"><use href="#bottle"/><text x="40" y="116" text-anchor="middle" font-family="Anton" font-size="7" fill="var(--cal)">FUNÂMBULO</text><text x="40" y="132" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--cal)">Nº 10 · 100 ML</text></svg><figcaption>Funâmbulo</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--piri)"><use href="#bottle"/><text x="40" y="113" text-anchor="middle" font-family="Anton" font-size="5" fill="var(--noite)">MESTRE-DE-</text><text x="40" y="121" text-anchor="middle" font-family="Anton" font-size="5" fill="var(--noite)">CERIMÓNIAS</text><text x="40" y="134" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--noite)">Nº 11 · 100 ML</text></svg><figcaption>Mestre-de-Cerim.</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--noite)"><use href="#bottle"/><text x="40" y="116" text-anchor="middle" font-family="Anton" font-size="6" fill="var(--cal)">MALABARISTA</text><text x="40" y="132" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--cal)">Nº 12 · 100 ML</text></svg><figcaption>Malabarista</figcaption></figure>
+  </div>
+  <div class="dot-accent"><span class="dots"></span></div>
+  <div class="stripe-accent"></div>
+</section>
+
+<!-- ============================================================
+   SECTION 6 — EQUILIBRISTA / FERMENTADOS + CHIP CLUSTER
+============================================================ -->
+<section class="cblock f-equi cravo-cyan" data-section="family-equilibrista" data-mode="color-block + chip-cluster" data-ground="chapito-cravo+cyan">
+  <div class="head" data-reveal style="position:relative;z-index:3">
+    <h2>
+      <span data-lang="en" lang="en">Take, and Taste</span>
+      <span data-lang="pt" lang="pt-PT">Pega, e Prova</span>
+    </h2>
+    <div class="sub">
+      <span data-lang="en" lang="en">Irreverent<i>|</i>Fermented<i>|</i>100% Natural</span>
+      <span data-lang="pt" lang="pt-PT">Irreverentes<i>|</i>Fermentados<i>|</i>100% Naturais</span>
+    </div>
+  </div>
+  <div class="cutout" style="top:80px;left:80px;width:160px;transform:rotate(-7deg)" aria-hidden="true"><svg viewBox="0 0 260 200"><use href="#cut-strongman"/></svg></div>
+  <div class="cutout" style="top:100px;right:80px;width:170px;transform:rotate(6deg)" aria-hidden="true"><svg viewBox="0 0 200 280"><use href="#cut-trapeze"/></svg></div>
+  <div class="cutout" style="bottom:160px;right:200px;width:140px;transform:rotate(-4deg)" aria-hidden="true"><svg viewBox="0 0 280 160"><use href="#cut-boat"/></svg></div>
+  <div class="bottle-row" data-stagger>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--noite)"><use href="#bottle"/><text x="40" y="113" text-anchor="middle" font-family="Anton" font-size="7" fill="var(--cal)">TRAPÉZIO</text><text x="40" y="123" text-anchor="middle" font-family="Anton" font-size="9" fill="var(--cal)">NEGRO</text><text x="40" y="136" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--cal)">Nº 13 · 100 ML</text></svg><figcaption>Trapézio Negro</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--azulejo)"><use href="#bottle"/><text x="40" y="113" text-anchor="middle" font-family="Anton" font-size="7" fill="var(--noite)">FUNÂMBULO</text><text x="40" y="124" text-anchor="middle" font-family="Anton" font-size="8" fill="var(--noite)">VERDE</text><text x="40" y="136" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--noite)">Nº 14 · 100 ML</text></svg><figcaption>Funâmbulo Verde</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--piri)"><use href="#bottle"/><text x="40" y="113" text-anchor="middle" font-family="Anton" font-size="8" fill="var(--noite)">ACROBATA</text><text x="40" y="123" text-anchor="middle" font-family="Anton" font-size="5" fill="var(--noite)">5-ESPECIARIAS</text><text x="40" y="136" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--noite)">Nº 15 · 100 ML</text></svg><figcaption>Acrobata 5-Esp.</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--galinha)"><use href="#bottle"/><text x="40" y="113" text-anchor="middle" font-family="Anton" font-size="7" fill="var(--noite)">SALTIMBANCO</text><text x="40" y="124" text-anchor="middle" font-family="Anton" font-size="8" fill="var(--noite)">CÍTRICO</text><text x="40" y="136" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--noite)">Nº 16 · 100 ML</text></svg><figcaption>Saltimbanco Cítrico</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--cravo)"><use href="#bottle"/><text x="40" y="116" text-anchor="middle" font-family="Anton" font-size="7" fill="var(--noite)">EQUILIBRISTA</text><text x="40" y="132" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--noite)">Nº 17 · 100 ML</text></svg><figcaption>Equilibrista</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--malagueta)"><use href="#bottle"/><text x="40" y="113" text-anchor="middle" font-family="Anton" font-size="6" fill="var(--cal)">CONTORCIONISTA</text><text x="40" y="124" text-anchor="middle" font-family="Anton" font-size="9" fill="var(--cal)">MISÔ</text><text x="40" y="136" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--cal)">Nº 18 · 100 ML</text></svg><figcaption>Contorcionista Misô</figcaption></figure>
+  </div>
+  <div class="chip-cluster" data-stagger>
+    <div class="chip"><svg viewBox="0 0 200 280"><use href="#cut-trapeze"/></svg><span class="band" style="background:var(--piri)">Equilibrista</span></div>
+    <div class="chip"><svg viewBox="0 0 200 280"><use href="#cut-singer"/></svg><span class="band" style="background:var(--galinha)">Faquir</span></div>
+    <div class="chip"><svg viewBox="0 0 200 280"><use href="#cut-grandmother"/></svg><span class="band" style="background:var(--azulejo)">Palhaço</span></div>
+    <div class="chip"><svg viewBox="0 0 200 280"><use href="#cut-fisherman"/></svg><span class="band" style="background:var(--malagueta);color:var(--cal)">Funâmbulo</span></div>
+    <div class="chip"><svg viewBox="0 0 260 200"><use href="#cut-strongman"/></svg><span class="band" style="background:var(--tejo);color:var(--cal)">Domador</span></div>
+    <div class="chip"><svg viewBox="0 0 260 200"><use href="#cut-laundry"/></svg><span class="band" style="background:var(--cravo)">Malabarista</span></div>
+  </div>
+  <div class="dot-accent"><span class="dots"></span></div>
+  <div class="stripe-accent"></div>
+</section>
+
+<!-- ============================================================
+   SECTION 7 — CABEÇUDO COLOR BLOCK (cover-of-night begins)
+============================================================ -->
+<section class="cblock f-cabe dark" data-section="family-cabecudo" data-mode="color-block-dark" data-ground="chapito-tejo" style="background:var(--tejo)">
+  <div class="head" data-reveal>
+    <h2 style="color:var(--cal)">Cabeçudo</h2>
+    <div class="sub" style="color:var(--cal)">
+      <span data-lang="en" lang="en">Experimental<i>|</i>Seasonal<i>|</i>100% Natural</span>
+      <span data-lang="pt" lang="pt-PT">Experimentais<i>|</i>Sazonais<i>|</i>100% Naturais</span>
+    </div>
+  </div>
+  <div class="cutout" style="top:80px;left:80px;width:170px;transform:rotate(-7deg);opacity:.85" aria-hidden="true"><svg viewBox="0 0 200 280" style="--noite:var(--cal)"><use href="#cut-singer"/></svg></div>
+  <div class="cutout" style="top:90px;right:90px;width:200px;transform:rotate(5deg);opacity:.85" aria-hidden="true"><svg viewBox="0 0 280 160" style="--noite:var(--cal)"><use href="#cut-boat"/></svg></div>
+  <div class="cutout" style="bottom:140px;left:140px;width:180px;transform:rotate(-3deg);opacity:.85" aria-hidden="true"><svg viewBox="0 0 260 180" style="--noite:var(--cal)"><use href="#cut-tram"/></svg></div>
+  <div class="cutout" style="bottom:160px;right:120px;width:160px;transform:rotate(8deg);opacity:.85" aria-hidden="true"><svg viewBox="0 0 260 200" style="--noite:var(--cal)"><use href="#cut-strongman"/></svg></div>
+  <div class="bottle-row" data-stagger>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--galinha)"><use href="#bottle"/><text x="40" y="116" text-anchor="middle" font-family="Anton" font-size="10" fill="var(--noite)">CABEÇUDO</text><text x="40" y="132" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--noite)">Nº 19 · 100 ML</text></svg><figcaption style="color:var(--cal)">Cabeçudo</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--azulejo)"><use href="#bottle"/><text x="40" y="113" text-anchor="middle" font-family="Anton" font-size="9" fill="var(--noite)">ANÃO</text><text x="40" y="124" text-anchor="middle" font-family="Anton" font-size="9" fill="var(--noite)">SÁBIO</text><text x="40" y="136" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--noite)">Nº 20 · 100 ML</text></svg><figcaption style="color:var(--cal)">Anão Sábio</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--cravo)"><use href="#bottle"/><text x="40" y="113" text-anchor="middle" font-family="Anton" font-size="6" fill="var(--noite)">MULHER-</text><text x="40" y="123" text-anchor="middle" font-family="Anton" font-size="6" fill="var(--noite)">BARBUDA</text><text x="40" y="136" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--noite)">Nº 21 · 100 ML</text></svg><figcaption style="color:var(--cal)">Mulher-Barbuda</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--malagueta)"><use href="#bottle"/><text x="40" y="113" text-anchor="middle" font-family="Anton" font-size="7" fill="var(--cal)">HOMEM-</text><text x="40" y="123" text-anchor="middle" font-family="Anton" font-size="7" fill="var(--cal)">FORTE</text><text x="40" y="136" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--cal)">Nº 22 · 100 ML</text></svg><figcaption style="color:var(--cal)">Homem-Forte</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--piri)"><use href="#bottle"/><text x="40" y="113" text-anchor="middle" font-family="Anton" font-size="6" fill="var(--noite)">DIRETOR DO</text><text x="40" y="123" text-anchor="middle" font-family="Anton" font-size="7" fill="var(--noite)">CIRCO</text><text x="40" y="136" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--noite)">Nº 23 · 100 ML</text></svg><figcaption style="color:var(--cal)">Diretor do Circo</figcaption></figure>
+    <figure><svg viewBox="0 0 80 200" style="color:var(--cal)"><use href="#bottle"/><text x="40" y="116" text-anchor="middle" font-family="Anton" font-size="8" fill="var(--noite)">BILHETEIRA</text><text x="40" y="132" text-anchor="middle" font-family="IBM Plex Mono" font-size="5" fill="var(--noite)">Nº 24 · 100 ML</text></svg><figcaption style="color:var(--cal)">Bilheteira</figcaption></figure>
+  </div>
+  <div class="dot-accent"><span class="dots" style="background-image:radial-gradient(circle,var(--malagueta) 4px,transparent 4.5px)"></span></div>
+  <div class="stripe-accent"></div>
+</section>
+
+<!-- ============================================================
+   SECTION 8 — TRAPÉZIO BIG-DARK BOTTLE HERO
+============================================================ -->
+<section class="dark-bottle" data-section="bottle-hero" data-mode="big-dark-bottle" data-ground="chapito-tejo" data-reveal>
+  <svg class="waves" viewBox="0 0 1400 300" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 80 C 200 20, 400 140, 700 80 S 1200 20, 1400 80" fill="none" stroke="var(--cal)" stroke-width="2.5"/>
+    <path d="M0 150 C 200 90, 400 210, 700 150 S 1200 90, 1400 150" fill="none" stroke="var(--cal)" stroke-width="2.5"/>
+    <path d="M0 220 C 200 160, 400 280, 700 220 S 1200 160, 1400 220" fill="none" stroke="var(--cal)" stroke-width="2.5"/>
+  </svg>
+  <div class="db-stage" data-stagger>
+    <div class="name">
+      <h2>Trapézio</h2>
+      <span class="script">
+        <svg viewBox="0 0 300 80" width="240" aria-hidden="true">
+          <path d="M20 60 Q 40 10, 80 40 T 160 40 T 240 30" fill="none" stroke="var(--cal)" stroke-width="2.5"/>
+          <text x="150" y="56" text-anchor="middle" font-family="Bodoni Moda" font-style="italic" font-size="36" fill="var(--cal)" letter-spacing="2">Trapézio</text>
+        </svg>
+      </span>
+    </div>
+    <div class="center-bottle">
+      <svg viewBox="0 0 160 400" style="color:var(--malagueta)">
+        <path d="M68 8 h24 a4 4 0 0 1 4 4 v18 l10 22 a8 8 0 0 1 2 6 v306 a14 14 0 0 1-14 14 h-44 a14 14 0 0 1-14-14 v-306 a8 8 0 0 1 2-6 l10-22 v-18 a4 4 0 0 1 4-4z" fill="currentColor"/>
+        <path d="M68 8 h24 v18 h-24z" fill="rgba(0,0,0,.5)"/>
+        <rect x="28" y="160" width="104" height="170" fill="var(--cal)" stroke="var(--noite)"/>
+        <text x="80" y="200" text-anchor="middle" font-family="Anton" font-size="28" fill="var(--noite)" letter-spacing="1">TRAPÉZIO</text>
+        <line x1="40" y1="208" x2="120" y2="208" stroke="var(--noite)" stroke-width=".5"/>
+        <text x="80" y="226" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" fill="var(--noite)" letter-spacing="1.5">Nº 01 · MOLHO DE ASSINATURA</text>
+        <!-- circus figure -->
+        <g transform="translate(80 268)">
+          <circle r="14" fill="var(--noite)"/>
+          <path d="M-2 14 v36 M2 14 v36 M-2 28 L-22 18 M2 28 L22 18" stroke="var(--noite)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </g>
+        <text x="80" y="316" text-anchor="middle" font-family="IBM Plex Mono" font-size="6" fill="var(--noite)" letter-spacing="1">100 ML · CHAPITÔ</text>
+      </svg>
+    </div>
+    <div class="meta">
+      <div>Largo do Chafariz</div>
+      <div>Costa do Castelo · Nº 7</div>
+      <div><span data-lang="en" lang="en">Alfama, Lisbon</span><span data-lang="pt" lang="pt-PT">Alfama, Lisboa</span></div>
+      <div style="margin-top:18px;font-size:11px;opacity:.7">Est. 2018 · Vol. I</div>
+    </div>
+  </div>
+  <p class="db-anchor">
+    <em data-lang="en" lang="en">"The signature sauce. Trapeze over chili."</em>
+    <em data-lang="pt" lang="pt-PT">"O molho de assinatura. Trapézio sobre malagueta."</em>
+  </p>
+</section>
+
+<!-- ============================================================
+   SECTION 9 — MEDALLION FOOTER
+============================================================ -->
+<section class="medfooter" data-section="medallion-footer" data-mode="medallion-footer" data-ground="chapito-cravo">
+  <div class="med-small" data-reveal>
+    <img src="../current/assets/images/logo.png" alt="" width="1024" height="1024" loading="lazy" decoding="async">
+  </div>
+  <nav class="iconlinks" aria-label="Contacto" data-reveal>
+    <a href="mailto:ines@chapito.pt"><svg viewBox="0 0 24 24" fill="none" stroke="var(--noite)" stroke-width="1.5"><rect x="3" y="6" width="18" height="12"/><path d="M3 7 L12 14 L21 7"/></svg>ines@chapito.pt</a>
+    <a href="https://instagram.com/chapito_molhos"><svg viewBox="0 0 24 24" fill="none" stroke="var(--noite)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="var(--noite)"/></svg>@chapito_molhos</a>
+    <a href="https://wa.me/351900000000"><svg viewBox="0 0 24 24" fill="none" stroke="var(--noite)" stroke-width="1.5"><path d="M3 20 L4.5 15 A8.5 8.5 0 1 1 8 19.5 Z"/></svg>WhatsApp +351 9X</a>
+    <a href="tel:+351210000000"><svg viewBox="0 0 24 24" fill="none" stroke="var(--noite)" stroke-width="1.5"><path d="M5 4 h4 l2 5 -2 1 a11 11 0 0 0 5 5 l1 -2 5 2 v4 a2 2 0 0 1 -2 2 A17 17 0 0 1 3 6 a2 2 0 0 1 2 -2z"/></svg>+351 21 XXX XXXX</a>
+  </nav>
+</section>
+
+<!-- ============================================================
+   SECTION 10 — PERSISTENT BOTTOM BAR
+============================================================ -->
+<footer class="persistent" data-section="persistent-bar" data-mode="fixed-bottom" data-ground="chapito-cal">
+  <a class="left" href="https://chapito.shop/">
+    <span data-lang="en" lang="en">← Visit the Shop</span>
+    <span data-lang="pt" lang="pt-PT">← Visita a Loja</span>
+  </a>
+  <a class="right" href="https://chapito.shop/">
+    <span data-lang="en" lang="en">Go there →</span>
+    <span data-lang="pt" lang="pt-PT">Vai até lá →</span>
+  </a>
+</footer>
+
+<script>
+  // language toggle — default EN, persistent via localStorage
+  (function () {
+    const html = document.documentElement;
+    const saved = localStorage.getItem('chapito-lang');
+    if (saved === 'pt') html.classList.add('pt');
+    html.lang = html.classList.contains('pt') ? 'pt-PT' : 'en';
+    const refreshAria = () => {
+      const isPt = html.classList.contains('pt');
+      document.querySelectorAll('.lang-toggle').forEach((btn) => {
+        btn.setAttribute('aria-label', isPt ? 'Switch to English' : 'Switch to Portuguese');
+      });
+    };
+    refreshAria();
+    document.querySelectorAll('.lang-toggle').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const toPt = !html.classList.contains('pt');
+        html.classList.toggle('pt', toPt);
+        html.lang = toPt ? 'pt-PT' : 'en';
+        localStorage.setItem('chapito-lang', toPt ? 'pt' : 'en');
+        refreshAria();
+      });
+    });
+  })();
+
+  // scroll-reveal
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      }
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('[data-reveal],[data-stagger]').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('[data-reveal],[data-stagger]').forEach(el => el.classList.add('in'));
+  }
+</script>
+</body>
+</html>

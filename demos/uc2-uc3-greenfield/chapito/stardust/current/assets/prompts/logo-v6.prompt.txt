@@ -1,0 +1,32 @@
+A delicate flat hand-printed-feel logo. A single minimal circular composition — NOT a wheel, NOT a striped tent. Just three elements:
+
+1. A DOUBLE-LINE OUTER CIRCLE BORDER — two concentric thin dark-ink rings, each about 1.5px equivalent line weight, separated by a small gap of about 3–4px. The two rings are deep dark ink (hex #1a1410, the brand's noite color). The rings define the logo's outer boundary.
+
+2. A single italic capital letter "Ô" in classical Bodoni-style display serif, centred inside the inner ring, deep dark ink (#1a1410). The letter is large — about 55% of the inner circle's diameter — but does not touch the rings. Generous airy negative space between the letter and the inner ring.
+
+3. From the TOP of the Ô letter — above its circumflex accent — a SMALL THIN flagpole rises vertically (about 15% of the canvas height). At the top of the pole, a small triangular pennant flag pointing RIGHT, filled deep dark ink. Simple, graphic, hand-cut. The flag is part of the logo's overall ink palette (dark, not red).
+
+4. Three small six-pointed Bodoni-style star ornaments scattered INSIDE the inner circle, evenly distributed around the Ô letter (one at roughly 4 o'clock, one at roughly 8 o'clock, one at roughly 11 o'clock relative to the centre — adjust for visual balance). The stars are painted in burgundy red ink (hex #9b3536, the brand's malagueta color). EXACTLY three stars — no more, no less. The stars are small relative to the Ô letter.
+
+Image background: flat solid warm cream (hex #fffaef), absolutely uniform — NOT a checkerboard / transparency-indicator pattern, NOT a studio backdrop, NOT a gradient. Just flat cream. We will key out the cream programmatically after generation to produce a transparent PNG.
+
+Aesthetic: hand-printed letterpress / silkscreen feel. Slight ink mis-registration possible. Faint paper grain. Hard-edged hand-cut character. Minimal, austere — the whole logo is just the double-ring frame, the Ô with its flag, and the three red stars. Nothing else.
+
+Anti-references — explicitly do NOT produce:
+- Wedges, stripes, slices, or radial sections within the circle
+- A central dot, hub, or pole at the wheel's centre
+- Spoke lines or radial divisions of any kind
+- Any decorative ornaments other than the three burgundy stars
+- More than one circle pair (double-line border only)
+- Photorealistic circus tent photography
+- 3D rendering or perspective drawing
+- A logo with the letter "C" anywhere — only the Ô
+- Any text other than the single letter "Ô"
+- Italian-language words
+- Color outside the brand palette (cravo / cal / malagueta / noite)
+- Pure black or pure white
+- More than three star ornaments — exactly three
+- A flag with stars, pattern, or text on it — the pennant is a single solid dark triangle
+- Multiple flagpoles
+- Stars in any color other than burgundy red (#9b3536) — all three stars are red, not dark
+- Roman (non-italic) Ô — must be italic

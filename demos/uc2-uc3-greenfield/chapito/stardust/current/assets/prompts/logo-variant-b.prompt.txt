@@ -1,0 +1,24 @@
+A flat hand-printed-feel logo of a big-top circus tent canvas seen from directly above, with a decorative scalloped tent-skirt edge visible from this overhead vantage point. The wheel fills most of the square canvas. 12 equal radial wedges alternate between burgundy red (hex #9b3536, the brand's malagueta color) and warm cream (hex #fffaef, the brand's cal color), like a top-down view of striped tent canvas. Thin dark-ink spoke lines (hex #1a1410, the brand's noite color) separate each wedge.
+
+The OUTER EDGE of the wheel is SCALLOPED — a decorative wavy / scalloped border showing the tent skirt as seen from above, with 12 small rounded semicircular scallops aligned with each wedge's outer arc (each scallop crowns one wedge). The scallop edge is outlined in thin dark ink.
+
+Centred on the wheel, a smaller circular hub disc (about 30% of the wheel's diameter) in saturated peach-coral (hex #f4b09d, the brand's cravo color), with a thin dark-ink border ring. Inside the hub, a single large italic capital letter "Ô" set in classical Bodoni-style display serif, deep dark ink (#1a1410). The Ô is the entire brand monogram.
+
+Six small six-pointed star ornaments (Bodoni-style typographic stars, NOT cartoon stars) are positioned on alternate wedge mid-points at about 68% of the wheel's radius — three stars on the cream wedges painted in burgundy ink, three stars on the burgundy wedges painted in cream ink (each star in the colour OPPOSITE to its wedge). Even distribution around the wheel.
+
+Image background: solid warm cream (#fffaef), flat — NOT a checkerboard / transparency-indicator pattern, NOT white, NOT gray. Just flat warm cream.
+
+Aesthetic: hand-printed letterpress / silkscreen feel. Slight ink mis-registration between the cream and burgundy wedges. Faint paper grain. Hard-edged hand-cut character. NOT slick vector, NOT digital flat, NOT 3D, NOT glassy. NO drop shadow, NO gradient, NO photographic texture.
+
+Anti-references — explicitly do NOT produce:
+- Photorealistic circus tent photography
+- 3D rendering or perspective drawing
+- A wagon-wheel or cart-wheel reading
+- A flower / petal / mandala reading
+- A logo with the letter "C" anywhere — only the Ô
+- Any text other than the single letter "Ô"
+- Italian-language words anywhere
+- A starburst / explosion / fireworks reading
+- Color outside the brand palette (cravo, cal, malagueta, noite — these only)
+- Pure black or pure white
+- More than six star ornaments — exactly six, no more, no less

@@ -1,0 +1,9 @@
+# Reference scrape: keep the scraper + the style characterisation,
+# but exclude the copyrighted third-party imagery + node_modules.
+cattaneo-shop/*.png
+cattaneo-shop/fullpage.png
+cattaneo-shop/images.json
+cattaneo-shop/unique-product-urls.txt
+node_modules/
+package.json
+package-lock.json

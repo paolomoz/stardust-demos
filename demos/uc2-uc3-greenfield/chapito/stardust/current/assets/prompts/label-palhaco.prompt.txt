@@ -1,0 +1,30 @@
+Studio product photography of a classic 5fl-oz craft hot-sauce bottle, straight-on head-on shot, centred in the frame. The bottle is a tall narrow cylindrical "woozy" form — square shoulder, narrow body about 1.5 inches wide × 7 inches tall (aspect roughly 1:3), clear glass with golden-yellow sauce visible inside (sweet-fire sauce). The cap is a flat-topped slightly tapered BLACK PLASTIC dispenser cap (classic craft-hot-sauce cap — NO wax dipping, NO wax drips).
+
+The bottle floats on a flat solid warm cream background (hex #fffaef). The entire surrounding area is uniformly flat cream — NOT a checkerboard pattern.
+
+A single rectangular paper label is wrapped around the bottle's body, taller than wide, occupying ~70% of the bottle's vertical span and ~85% of its width. The label uses a yolk-mustard solid-color ground (the brand's galinha color, hex #f3c84e). Flat, hard-edged.
+
+Label composition:
+
+A hard-edged horizontal band in warm cream (cal #fffaef) running edge to edge across the upper third of the label, slightly tilted -3°. Inside the cream band, the word "PALHAÇO" in bold condensed all-caps sans-serif (Anton register), set in deep dark ink (noite #1a1410), letter-spacing tight.
+
+Centred on the label below the title band, a black-and-white cut-out vintage photograph of a 1920s–1940s European travelling-circus clown — classic clown makeup, painted exaggerated mouth, ruff collar or oversized bow-tie, pointed conical hat or floppy beret. Archive photograph grain, sharp hand-cut zine edges. The figure is grayscale only and occupies the middle 50% of the label vertically, slightly offset to the right.
+
+Below the figure, a smaller all-caps subtitle "DOCE FOGO · 100 ML" in IBM Plex Mono uppercase, dark ink (noite) text on the mustard ground.
+
+In the lower-left corner of the label, a small Chapitô brand-mark badge (~14% of the label width). The badge contains: a double-line circle border (two concentric thin dark rings on the mustard label ground), an italic capital "Ô" set in classical Bodoni-style display serif centred inside (dark ink), a tiny dark pennant flag on a thin pole rising vertically from above the Ô, and three small burgundy-red six-pointed Bodoni-style stars scattered inside the circle. The badge's background is the same mustard as the label ground. NO 'C' letter, NO wedges, NO stripes — only the Ô + flag + double ring + 3 red stars.
+
+Surface: subtle paper grain, hand-cut zine character. NO drop shadow.
+
+Anti-references — explicitly do NOT produce:
+- Italian-language text anywhere.
+- Catholic / religious iconography.
+- Names "Amaro", "Gin", "Religin", "Cattaneo", "Della Nonna".
+- Purple-as-primary-label-ground.
+- WAX-DIPPED CAP — the cap is black plastic only.
+- A wide / flask-shaped bottle.
+- A 'C' letter on the badge — only the Ô.
+- Radial wedges or stripes on the badge.
+- A checkerboard pattern as the background.
+- A creepy / horror-movie clown — classic travelling-circus register.
+- Hand-painted clown illustration — only B&W photographic cutout.
